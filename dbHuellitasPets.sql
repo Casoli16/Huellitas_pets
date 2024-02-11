@@ -121,8 +121,8 @@ CREATE TABLE IF NOT EXISTS valoraciones (
   comentario VARCHAR(250),
   fecha_valoracion DATE,
   estado BOOL,
-  id_detallePedido INT,
-  CONSTRAINT fk_Valoraciones_DetallesPedidos FOREIGN KEY (id_detallePedido) REFERENCES detallesPedidos (id_detallePedido)
+  id_cliente INT,
+  CONSTRAINT fk_Valoraciones_clientes FOREIGN KEY (id_clienteo) REFERENCES detallesPedidos (id_cliente)
 );
 
 
