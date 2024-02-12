@@ -72,10 +72,8 @@ CREATE TABLE IF NOT EXISTS productos (
   existencia_producto INT,
   fecha_registro_producto DATE,
   mascotas ENUM('perro', 'gato'),
-  id_admin INT,
   id_categoria INT,
   id_marca INT,
-  CONSTRAINT fk_Productos_Admin FOREIGN KEY (id_admin) REFERENCES administradores (id_admin),
   CONSTRAINT fk_Productos_Marca FOREIGN KEY (id_marca) REFERENCES marcas (id_marca),
   CONSTRAINT fk_Productos_categoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria)
 );
