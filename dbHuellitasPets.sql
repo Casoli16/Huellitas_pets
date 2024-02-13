@@ -20,14 +20,14 @@ CREATE TABLE IF NOT EXISTS clientes (
 CREATE TABLE IF NOT EXISTS permisos (
   id_permiso INT AUTO_INCREMENT PRIMARY KEY,
   nombre_permiso VARCHAR(100),
-  agregar_actualizar_usuarios BOOL,
-  eliminar_usuarios BOOL,
-  agregar_actualizar_productos BOOL,
-  eliminar_croductos BOOL,
-  borrar_comentarios BOOL,
-  agregar_actuaizar_subcategoria BOOL,
-  borrar_subcategoria BOOL,
-  gestionar_cupones BOOL
+  agregar_actualizar_usuario BOOL,
+  eliminar_usuario BOOL,
+  agregar_actualizar_producto BOOL,
+  eliminar_producto BOOL,
+  borrar_comentario BOOL,
+  agregar_actuaizar_categoria BOOL,
+  borrar_categoria BOOL,
+  gestionar_cupon BOOL
 );
 
 CREATE TABLE IF NOT EXISTS administradores (
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS administradores (
 );
 
 CREATE TABLE IF NOT EXISTS asignacionPermisos (
-  id_asignacionPermiso INT AUTO_INCREMENT PRIMARY KEY,
+  id_asignacion_permiso INT AUTO_INCREMENT PRIMARY KEY,
   id_permiso INT,
   id_admin INT,
   CONSTRAINT fk_asignacionPermisos_permisos FOREIGN KEY (id_permiso) REFERENCES permisos (id_permiso),
