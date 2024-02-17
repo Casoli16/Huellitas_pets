@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS permisos (
   agregar_actualizar_producto BOOL,
   eliminar_producto BOOL,
   borrar_comentario BOOL,
-  agregar_actuaizar_categoria BOOL,
+  agregar_actualizar_categoria BOOL,
   borrar_categoria BOOL,
   gestionar_cupon BOOL
 );
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS administradores (
   alias_admin VARCHAR(50) UNIQUE,
   clave_admin VARCHAR(100),
   fecha_registro_admin DATE,
-  imagen_administrador VARCHAR(50)
+  imagen_admin VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS asignacionPermisos (
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS categorias (
 CREATE TABLE IF NOT EXISTS marcas (
   id_marca INT AUTO_INCREMENT PRIMARY KEY,
   nombre_marca VARCHAR(100) NOT NULL,
-  imagen VARCHAR(25)
+  imagen_marca VARCHAR(25)
 );
 
 CREATE TABLE IF NOT EXISTS productos (
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS productos (
 CREATE TABLE IF NOT EXISTS pedidos (
   id_pedido INT AUTO_INCREMENT PRIMARY KEY,
   estado_pedido ENUM('pendiente', 'completado', 'cancelado'),
-  fecha_registro TIMESTAMP NOT NULL,
+  fecha_registro_pedido DATE NOT NULL,
   direccion_pedido VARCHAR(250) NOT NULL,
   id_cliente INT,
   CONSTRAINT fk_Pedidos_Clientes FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
@@ -89,10 +89,10 @@ CREATE TABLE IF NOT EXISTS pedidos (
 
 CREATE TABLE IF NOT EXISTS cuponOferta(
  id_cupon INT AUTO_INCREMENT PRIMARY KEY,
- codigo VARCHAR(50) UNIQUE,
- porcentaje FLOAT,
- estado BOOL,
- fecha_ingreso DATE NOT NULL
+ codigo_cupon VARCHAR(50) UNIQUE,
+ porcentaje_cupon FLOAT,
+ estado_cupon BOOL,
+ fecha_ingreso_cupon DATE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS cuponesUtilizados(
@@ -104,9 +104,9 @@ CREATE TABLE IF NOT EXISTS cuponesUtilizados(
 );
 
 CREATE TABLE IF NOT EXISTS detallesPedidos (
-  id_detallePedido INT AUTO_INCREMENT PRIMARY KEY,
-  cantidad_producto INT CHECK(Cantidad_producto >= 0),
-  precio_producto DECIMAL(5,2) NOT NULL,
+  id_detalle_pedido INT AUTO_INCREMENT PRIMARY KEY,
+  cantidad_detalle_pedido INT CHECK(Cantidad_producto >= 0),
+  precio__detalle_pedido DECIMAL(5,2) NOT NULL,
   id_producto INT,
   id_pedido INT,
   CONSTRAINT fk_DetallesPedidos_Productos FOREIGN KEY (id_producto) REFERENCES productos (id_producto),
@@ -115,10 +115,10 @@ CREATE TABLE IF NOT EXISTS detallesPedidos (
 
 CREATE TABLE IF NOT EXISTS valoraciones (
   id_valoracion INT AUTO_INCREMENT PRIMARY KEY,
-  calificacion INT,
-  comentario VARCHAR(250),
+  calificacion_valoracion INT,
+  comentario_valoracion VARCHAR(250),
   fecha_valoracion DATE NOT NULL,
-  estado BOOL,
+  estado_valoracion BOOL,
   id_cliente INT,
   CONSTRAINT fk_Valoraciones_clientes FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
