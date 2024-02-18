@@ -1,0 +1,10 @@
+
+$primary: rgb(244, 211, 94);
+
+
+$theme-colors: (
+  "primary": $primary,
+);
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss"
