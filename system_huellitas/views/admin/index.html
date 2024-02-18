@@ -1,11 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huellitas Pets sitio privado</title>
+    <title>Huellitas Pets - Login</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/global/bootstrap.min.css">
+    <!-- Archivo css donde se tiene la paleta de colores-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/global/color_variables.css">
+    <!-- Archivo css donde se tienen los estilos de la pantalla index -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/index.css">
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-4">
+                <img src="../../resources/img/huellitas_logo.png" width="500px">
+            </div>
+            <div class="col-4">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Alias</label>
+                    <input type="text" class="form-control" id="nameInput">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="passwordInput">
+                 </div>
+                <div class="container text-center">
+                    <button type="button" class="btn btn-warning">Warning</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
+
 </html>
