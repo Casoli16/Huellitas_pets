@@ -1,10 +1,31 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
 
-$primary: rgb(244, 211, 94);
 
+// Declaración de variables para asignación de colores
+$yellow-color: (
+  "yellow-color": rgb(244, 211, 94)
 
-$theme-colors: (
-  "primary": $primary,
 );
 
+$orange-color: (
+  "orange-color": rgb(238, 150, 75)
+
+);
+
+$skin-color: (
+  "skin-color": rgb(250, 240, 202)
+);
+
+$red-color: (
+  "red-color": rgb(249, 87, 56)
+);
+
+// Agregar variables al tema de colores de boostrap, mergearlas
+$theme-colors: map-merge($theme-colors, $orange-color);
+$theme-colors: map-merge($theme-colors, $skin-color);
+$theme-colors: map-merge($theme-colors, $red-color);
+$theme-colors: map-merge($theme-colors, $yellow-color);
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss"
