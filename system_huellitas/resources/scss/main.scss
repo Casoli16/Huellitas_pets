@@ -2,7 +2,7 @@
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/variables-dark";
 
-
+// PALETA DE COLORES
 // Declaración de variables para asignación de colores
 $yellow-color: (
   "yellow-color": rgb(244, 211, 94)
@@ -27,5 +27,7 @@ $theme-colors: map-merge($theme-colors, $orange-color);
 $theme-colors: map-merge($theme-colors, $skin-color);
 $theme-colors: map-merge($theme-colors, $red-color);
 $theme-colors: map-merge($theme-colors, $yellow-color);
+
+
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss"
