@@ -1,19 +1,4 @@
-const navbar = `<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huellitas Pets - Menu</title>
-    <!-- Agregamos una imagen para que se vea en la ventana -->
-    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
-    <!-- Agregamos el framework de boostrap - css -->
-    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
-    <!-- Agregamos el archivo css - css -->
-    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
-</head>
-
-<body>
+const navbar = `
     <nav class="navbar bg-skin-color fixed-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -151,13 +136,8 @@ const navbar = `<!DOCTYPE html>
             </div>
         </div>
     </nav>
+`;
 
-    <!-- Agregamos el framework de boostrap - js -->
-    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>`;
-
-function insertNavbar() {
+document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('navbar').innerHTML = navbar;
-}
+});

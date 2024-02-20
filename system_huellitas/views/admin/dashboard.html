@@ -11,9 +11,12 @@
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Agregamos su archivo css -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/dashboard.css">
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
 </head>
 
 <body>
+    <!-- Insertar nuestro navbar a esta pantalla usando js -->
+    <div id="navbar"></div>
     <header class="container_one p-4 ">
         <div class="container-fluid bg-yellow-color p-4 mt-5 ">
             <div class="row">
@@ -37,19 +40,9 @@
         </div>
         </div>
     </header>
-
-
-
-
-    <!-- Insertar nuestro navbar a esta pantalla usando js -->
-    <div id="navbar"></div>
-    <script src="../../resources/js/menu.js"></script>
-    <script>
-        window.onload = insertNavbar;
-    </script>
-
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../controllers/utils/admin.js"></script>
 </body>
 
 </html>
