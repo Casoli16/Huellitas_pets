@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas Pets - Dashboard</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos su archivo css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/dashboard.css">
+</head>
+
+<body>
+    <header class="container_one p-4 ">
+        <div class="container-fluid bg-yellow-color p-4 mt-5 ">
+            <div class="row">
+                <div class="col-auto">
+                    <img src="../../resources/img/svg/dog.svg" alt="">
+                </div>
+                <div class="col align-self-center">
+                    <div class="row">
+                        <p class="fs-1 fw-bold text-light">¡Buenas tarde María!</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" aria-label="Search">
+                                <button class="btn btn-orange-color text-light" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+
+
+
+    <!-- Insertar nuestro navbar a esta pantalla usando js -->
+    <div id="navbar"></div>
+    <script src="../../resources/js/menu.js"></script>
+    <script>
+        window.onload = insertNavbar;
+    </script>
+
+    <!-- Agregamos el framework de boostrap - js -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

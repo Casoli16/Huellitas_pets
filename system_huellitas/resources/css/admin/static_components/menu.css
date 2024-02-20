@@ -1,0 +1,8 @@
+.offcanvas-body{
+    scrollbar-width: none;
+}
+
+hr{
+    color: rgb(218, 151, 28);
+    border-width: 3px;
+}
