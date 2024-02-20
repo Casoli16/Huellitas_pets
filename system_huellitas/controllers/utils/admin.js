@@ -13,10 +13,6 @@ const navbar = `
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-orange-color text-light" type="submit">Buscar</button>
-                    </form>
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <div class="row mt-4">
                             <div class="col-2">
