@@ -143,3 +143,27 @@ END //
 DELIMITER ;
 
 CALL AgregarCupon ('TREBOR', 30, 1);
+
+-- Función para calcular precio total de varios productos
+DELIMITER //
+
+CREATE FUNCTION calcular_precio_total_producto(producto_id INT, cantidad_detalle_pedido INT)
+RETURNS DECIMAL(10,2)
+BEGIN
+    DECLARE precio_total DECIMAL(10,2);
+    DECLARE total DECIMAL(10,2);
+
+    SELECT precio_producto INTO precio_total
+    FROM productos
+    WHERE id_producto = producto_id;
+
+    SET total = precio_total * cantidad_detalle_pedido;
+
+    RETURN total;
+END //
+
+DELIMITER ;
+
+SELECT * FROM productos
+SELECT calcular_precio_total_producto(2, 5);	
+
