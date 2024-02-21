@@ -1,0 +1,26 @@
+.custom-margin-right {
+    margin-right: 8px;
+}
+
+.tamanio_imagen{
+    width: 40px;
+    left: auto;
+}
+
+.tamanio_imagen_botones{
+    width: 20px;
+    left: auto;
+}
+
+.tamanio_edicion_botones{
+    width: 30px;
+    left: auto;
+}
+
+.barra_busqueda{
+    margin-left: 50px;
+}
+
+.boton_busqueda{
+    float: right;
+}
