@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS dbHuellitasPets;
 
-USE dbHuellitasPets;
+dbhuellitaspetsUSE dbHuellitasPets;
 
 CREATE TABLE IF NOT EXISTS clientes (
   id_cliente INT AUTO_INCREMENT PRIMARY KEY,
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS cuponesUtilizados(
 
 CREATE TABLE IF NOT EXISTS detallesPedidos (
   id_detalle_pedido INT AUTO_INCREMENT PRIMARY KEY,
-  cantidad_detalle_pedido INT CHECK(Cantidad_producto >= 0),
+  cantidad_detalle_pedido INT CHECK(cantidad_detalle_pedido >= 0),
   precio__detalle_pedido DECIMAL(5,2) NOT NULL,
   id_producto INT,
   id_pedido INT,
@@ -123,7 +123,23 @@ CREATE TABLE IF NOT EXISTS valoraciones (
   CONSTRAINT fk_Valoraciones_clientes FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 
-SELECT * FROM valoraciones
+SELECT * FROM cuponOferta;
 
 
 /*SELECT * FROM valoraciones, detallespedidos, pedidos, productos, subcategorias, administradores, Permisos, clientes;*/
+
+DELIMITER //
+
+CREATE PROCEDURE AgregarCupon(codigo VARCHAR(100), porcentaje INT, estado BOOL)
+BEGIN
+    -- Declaramos la variable que contendrá el día de ingreso del cupón
+    DECLARE fechaActual DATE;
+    SET fechaActual = CURDATE();
+    
+    INSERT INTO cuponOferta(codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon) VALUES (codigo, porcentaje, estado, fechaActual);
+
+END //
+
+DELIMITER ;
+
+CALL AgregarCupon ('TREBOR', 30, 1);
