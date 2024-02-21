@@ -1,10 +1,18 @@
 const navbar = `
-    <nav class="navbar bg-skin-color fixed-top">
-        <div class="container-fluid">
+<nav class="navbar bg-skin-color fixed-top">
+        <div class="container-fluid ">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="row">
+                <div class="col-3">
+                    <img src="../../resources/img/png/huellitas_logo.png" width="40">
+                </div>
+                <div class="col">
+                    <a class="navbar-brand" href="../../views/admin/dashboard.html">Huellitas Pet's</a>
+                </div>
+            </div>
             <div class="offcanvas offcanvas-start bg-skin-color" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">

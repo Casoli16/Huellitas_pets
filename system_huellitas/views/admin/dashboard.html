@@ -11,37 +11,114 @@
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Agregamos su archivo css -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/dashboard.css">
+    <!-- Agregamos el archivo css del menu -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
 </head>
 
 <body>
     <!-- Insertar nuestro navbar a esta pantalla usando js -->
     <div id="navbar"></div>
-    <header class="container_one p-4 ">
-        <div class="container-fluid bg-yellow-color p-4 mt-5 ">
-            <div class="row">
-                <div class="col-auto">
-                    <img src="../../resources/img/svg/dog.svg" alt="">
-                </div>
-                <div class="col align-self-center">
-                    <div class="row">
-                        <p class="fs-1 fw-bold text-light">¡Buenas tarde María!</p>
+    <main>
+        <div class="container_one p-4 ">
+            <div class="shadow p-4 mt-5 bg-yellow-color rounded">
+                <div class="row">
+                    <div class="col-auto">
+                        <img src="../../resources/img/svg/dog.svg" alt="">
                     </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" aria-label="Search">
-                                <button class="btn btn-orange-color text-light" type="submit">Buscar</button>
-                            </form>
+                    <div class="col align-self-center">
+                        <div class="row">
+                            <h1 class="fw-bold text-light">¡Buenas tarde María!</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <form class="d-flex" role="search" id="search">
+                                    <input class="form-control me-2" type="search" aria-label="Search" id="search">
+                                    <button class="btn btn-orange-color text-light" type="submit">Buscar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row p-3">
+                <div class="col-auto">
+                    <img src="../../resources/img/svg/orders.svg" width="70">
+                </div>
+                <div class="col">
+                    <h3 class="fs-2 fw-semibold mb-0">Ventas de este mes</h3>
+                    <p class="fw-normal">Revisa las gráficas de venta que ha tenido Huellitas pet’s en estos meses.
+                    </p>
+                    <!-- Codigo para agregar el dropdown -->
+                    <div class="dropdown">
+                        <a class="btn btn-skin-color dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Septiembre
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Enero</a></li>
+                            <li><a class="dropdown-item" href="#">Febrero</a></li>
+                            <li><a class="dropdown-item" href="#">Marzo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-8">
+                    <div class="shadow p-4 bg-terciary rounded">
+                        <canvas id="myChart" width="1000px" height="400px"></canvas>
+                    </div>
+                </div>
+                <div class="col-4 container bg-skin-color p-3 rounded-4 ">
+                    <div class="row ">
+                        <div class="row p-4 d-flex justify-content-center align-items-center">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img class="picture rounded-circle" src="../../resources/img/png/picture.png">
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-2">
+                                <a href="../../views/admin/settings.html"
+                                    class="button1 btn btn-red-color text-light p-2 rounded-5">Ver mi perfil</a>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="fw-semibold fs-5 mt-3 mb-1">María Eugenia Castro</p>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="">mariaEugenia@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-auto bg-orange-color rounded-4 ">
+                    <div class="d-flex align-items-center p-2">
+                        <img src="../../resources/img/svg/people.svg" alt="">
+                        <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
+                    </div>
+                    <p class="d-flex align-items-center justify-content-center fs-1 fw-bold text-light">5</p>
+                </div>
+                <div class="col-auto bg-orange-color rounded-4 mx-5">
+                    <div class="d-flex align-items-center p-2">
+                        <img src="../../resources/img/svg/people.svg" alt="">
+                        <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
+                    </div>
+                    <p class="d-flex align-items-center justify-content-center fs-1 fw-bold text-light">5</p>
+                </div>
+                <div class="col-auto bg-orange-color rounded-4">
+                    <div class="d-flex align-items-center p-2">
+                        <img src="../../resources/img/svg/people.svg" alt="">
+                        <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
+                    </div>
+                    <p class="d-flex align-items-center justify-content-center fs-1 fw-bold text-light">5</p>
+                </div>
+            </div>
         </div>
-        </div>
-    </header>
+        <script type="text/javascript" src="../../resources/js/chart.umd.js"></script>
+    </main>
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/admin.js"></script>
 </body>
 

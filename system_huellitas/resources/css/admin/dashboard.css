@@ -1,3 +1,18 @@
 .container-fluid{
     border-radius: 10px;
 }
+
+.picture{
+    width: 180px;
+    height: 170px;
+}
+
+.profilePicture{
+    width: 100px;
+    height: 100px;
+}
+
+
+.button1{
+    width: 40%;
+}
