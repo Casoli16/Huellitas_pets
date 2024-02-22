@@ -28,7 +28,7 @@ const navbar = `
                             </div>
                             <div class="col-2">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/dashboard.html">Dashboard</a>
                                 </li>
                             </div>
                         </div>
@@ -88,7 +88,7 @@ const navbar = `
                             </div>
                             <div class="col-2">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Marcas</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/scrud_categorias.html">Marcas</a>
                                 </li>
                             </div>
                         </div>
@@ -98,7 +98,7 @@ const navbar = `
                             </div>
                             <div class="col-2 mb-3">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Cupones</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/cupones.html">Cupones</a>
                                 </li>
                             </div>
                         </div>
@@ -131,7 +131,7 @@ const navbar = `
                             </div>
                             <div class="col-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Cerrar sesión</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/index_admin.html">Cerrar sesión</a>
                                 </li>
                             </div>
                         </div>
