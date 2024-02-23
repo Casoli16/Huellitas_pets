@@ -20,7 +20,7 @@
     <div id="navbar"></div>
     <main>
         <div class="container_one p-4 ">
-            <div class="shadow p-4 mt-5 bg-yellow-color rounded">
+            <div class="shadow p-4 mt-5  mb-3 bg-yellow-color rounded-4">
                 <div class="row">
                     <div class="col-auto">
                         <img src="../../resources/img/svg/dog.svg" alt="">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-3">
+            <div class="row p-3 mb-2">
                 <div class="col-8">
                     <div class="shadow p-4 bg-terciary rounded">
                         <canvas id="myChart" width="1000px" height="400px"></canvas>
@@ -75,7 +75,7 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <img class="picture rounded-circle" src="../../resources/img/png/picture.png">
                             </div>
-                            <div class="d-flex justify-content-center align-items-center mt-2">
+                            <div class="d-flex justify-content-center align-items-center mt-3">
                                 <a href="../../views/admin/settings.html"
                                     class="button1 btn btn-red-color text-light p-2 rounded-5">Ver mi perfil</a>
                             </div>
@@ -89,27 +89,39 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-3">
-                <div class="col-auto bg-orange-color rounded-4 ">
+            <div class="row p-3 justify-content-center">
+                <div class="col-auto bg-orange-color shadow p-3 rounded-4">
                     <div class="d-flex align-items-center p-2">
                         <img src="../../resources/img/svg/people.svg" alt="">
                         <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
                     </div>
                     <p class="d-flex align-items-center justify-content-center fs-1 fw-bold text-light">5</p>
                 </div>
-                <div class="col-auto bg-orange-color rounded-4 mx-5">
+                <div class="col-auto bg-orange-color rounded-4 mx-5 shadow p-3 rounded-4">
                     <div class="d-flex align-items-center p-2">
-                        <img src="../../resources/img/svg/people.svg" alt="">
-                        <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
+                        <img src="../../resources/img/svg/orders_white.svg" alt="">
+                        <span class="fw-semibold text-light fs-4">Producto más vendido</span>
                     </div>
-                    <p class="d-flex align-items-center justify-content-center fs-1 fw-bold text-light">5</p>
-                </div>
-                <div class="col-auto bg-orange-color rounded-4">
-                    <div class="d-flex align-items-center p-2">
-                        <img src="../../resources/img/svg/people.svg" alt="">
-                        <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
+                    <div class="p-3">
+                        <p class=" fs-5 fw-light text-light mb-0">Alimentación</p>
+                        <img src="../../resources/img/svg/line.svg" alt="">
+                        <p class=" fs-5 fw-semibold text-light">Saco de Pedigree</p>
                     </div>
-                    <p class="d-flex align-items-center justify-content-center fs-1 fw-bold text-light">5</p>
+                    </div>
+                <div class="col-auto bg-orange-color rounded-4 overflow-auto shadow p-3 rounded-4">
+                    <div class="d-flex align-items-center p-2 grid gap-2">
+                        <img src="../../resources/img/svg/edit.svg" alt="">
+                        <span class="fw-semibold text-light fs-4">Categorías</span>
+                        <a href="../../views/admin/scrud_categorias.html"
+                        class="button1 btn btn-light text-orange-color p-2 rounded-5 mx-3">Ver más</a>
+                    </div>
+                    <div class="third_col">
+                        <ul class="list-group list-group-flush ">
+                            <li class="list-group-item">Salud y cuidado</li>
+                            <li class="list-group-item">Alimentación</li>
+                            <li class="list-group-item">Entretenimiento</li>
+                          </ul>
+                    </div>
                 </div>
             </div>
         </div>
