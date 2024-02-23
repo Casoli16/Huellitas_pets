@@ -48,7 +48,7 @@ const navbar = `
                             </div>
                             <div class="col-2">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Productos</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/menu_productos.html">Productos</a>
                                 </li>
                             </div>
                         </div>
