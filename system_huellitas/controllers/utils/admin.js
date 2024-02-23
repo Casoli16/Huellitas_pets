@@ -111,7 +111,7 @@ const navbar = `
                             </div>
                             <div class="col">
                                 <li class="col-2">
-                                    <a class="nav-link active" aria-current="page" href="#">Permisos</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/scrud_permisos.html">Permisos</a>
                                 </li>
                             </div>
                         </div>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huellitas Pets - cupones</title>
+  <!-- Agregamos una imagen para que se vea en la ventana -->
+  <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+  <!-- Agregamos el framework de boostrap - css -->
+  <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+  <!-- Agregamos el archivo css del menu -->
+  <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+  <!-- Agregamos su archivo css para el estilo de la tabla -->
+  <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_marcas.css">
+  <!-- Agregamos la libreria de los iconos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <!-- Insertar nuestro navbar a esta pantalla usando js -->
+  <div id="navbar"></div>
+
+  <header class="container_one p-2S">
+    <div class="container-fluid p-4 mt-5">
+      <div class="d-flex">
+        <img src="../../resources/img/png/giftcardIcon.png" class="custom-margin-right" alt="">
+        <h2 class="mt-2"><strong>Cupones</strong></h2>
+        <div class="row"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="row justify-content-center">
+      <div class="col align-self-center">
+        <div class="col-10 barra_busqueda">
+          <form class="d-flex" role="search">
+            <input class="form-control me-4 shadow" type="search" aria-label="Search">
+            <div class="col-7">
+              <button type="button" class="btn btn-red-color text-white btn-sm float-end" data-bs-toggle="modal"
+                data-bs-target="#agCupon">
+                <i class="bi bi-plus-circle-fill"></i>
+                Agregar cupón
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container p-4 mt-5">
+      <table class="table">
+        <thead class="text-center">
+          <tr class="table-warning">
+            <th scope="col">Nombre del código</th>
+            <th scope="col">Fecha registro</th>
+            <th scope="col">Porcentaje %</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr>
+            <td>ING_WILL</td>
+            <td>2024-02-14</td>
+            <td>40%</td>
+            <td>
+              <div class="form-switch">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked disabled>
+              </div>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger img-fluid"><img
+                  src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"></button>
+              <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
+                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                  class="tamanio_edicion_botones"></button>
+            </td>
+          </tr>
+          <tr>
+            <td>SUSAN_pro</td>
+            <td>2024-01-20</td>
+            <td>60%</td>
+            <td>
+              <div class="form-switch">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked disabled>
+              </div>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger img-fluid"><img
+                  src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"></button>
+              <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
+                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                  class="tamanio_edicion_botones"></button>
+            </td>
+          </tr>
+          <tr>
+            <td>MICH</td>
+            <td>2023-12-15</td>
+            <td>35%</td>
+            <td>
+              <div class="form-switch">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" disabled>
+              </div>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger img-fluid"><img
+                  src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"></button>
+              <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
+                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                  class="tamanio_edicion_botones"></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+
+
+  <!-- Agregamos el framework de Bootstrap - JS -->
+  <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../controllers/utils/admin.js"></script>
+</body>
+
+
+<!--Modal para el boton de agregar cupon-->
+<div class="modal" id="agCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header bg-orange-color">
+              <div class="container text-center">
+                  <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar</h1>
+              </div>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                      <p class="fs-8 btn-orange-color">Código</p>
+                      <input type="text" class="form-control" placeholder="#####" aria-label="codigo">
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                      <p class="fs-8 btn-orange-color">Porcentaje</p>
+                      <input type="text" class="form-control" placeholder="100%" aria-label="porcentaje">
+                  </div>
+              </div>
+              <br>
+              <div class="form-check form-switch">
+                  <label class="form-check-label" for="flexSwitchCheckChecked">Cupón habilitado</label>
+                  <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                      id="flexSwitchCheckChecked" checked>
+              </div>
+          </div>
+          <div class="container text-center">
+              <button type="button" class="btn btn-orange-color text-white">Agregar</button>
+          </div>
+          <br>
+      </div>
+  </div>
+</div>
+
+
+
+
+<!--Modal para el boton de actualizar cupon-->
+<div class="modal " id="actCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-orange-color">
+        <div class="container text-center">
+          <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar</h1>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <p class="fs-8 btn-orange-color"> Código</p>
+            <input type="text" class="form-control" placeholder="#####" aria-label="codigo">
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <p class="fs-8 btn-orange-color"> Porcentaje</p>
+            <input type="text" class="form-control" placeholder="100%" aria-label="porcentaje">
+          </div>
+        </div>
+        <br>
+        <div class="form-check form-switch">
+          <label class="form-check-label" for="flexSwitchCheckChecked">Cupón habilitado</label>
+          <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+            checked>
+        </div>
+      </div>
+      <div class="container text-center">
+        <button type="button" class="btn btn-orange-color text-white">Actualizar</button>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+</html>
