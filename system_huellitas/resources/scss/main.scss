@@ -28,5 +28,4 @@ $theme-colors: map-merge($theme-colors, $skin-color);
 $theme-colors: map-merge($theme-colors, $red-color);
 $theme-colors: map-merge($theme-colors, $yellow-color);
 
-
 @import "../../node_modules/bootstrap/scss/bootstrap.scss"

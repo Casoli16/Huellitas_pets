@@ -24,3 +24,9 @@
 .boton_busqueda{
     float: right;
 }
+
+
+th{
+    --bs-table-color: var(--bs-light);
+    background-image: linear-gradient(180deg, rgb(238, 150, 75), rgba(235, 195, 81, 1));
+}
