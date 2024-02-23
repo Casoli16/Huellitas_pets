@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Huellitas Pets - cupones</title>
+  <title>Huellitas Pets - permisos</title>
   <!-- Agregamos una imagen para que se vea en la ventana -->
   <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
   <!-- Agregamos el framework de boostrap - css -->
@@ -24,8 +24,8 @@
   <header class="container_one p-2S">
     <div class="container-fluid p-4 mt-5">
       <div class="d-flex">
-        <img src="../../resources/img/png/giftcardIcon.png" class="custom-margin-right" alt="">
-        <h2 class="mt-2"><strong>Cupones</strong></h2>
+        <img src="../../resources/img/png/permisos.png" class="custom-margin-right" alt="">
+        <h2 class="mt-2"><strong>Permisos</strong></h2>
         <div class="row"></div>
       </div>
     </div>
@@ -39,9 +39,9 @@
             <input class="form-control me-4 shadow" type="search" aria-label="Search">
             <div class="col-7">
               <button type="button" class="btn btn-red-color text-white btn-sm float-end" data-bs-toggle="modal"
-                data-bs-target="#agCupon">
+                data-bs-target="#agPermiso">
                 <i class="bi bi-plus-circle-fill"></i>
-                Agregar cupón
+                Agregar permiso
               </button>
             </div>
           </form>
@@ -53,65 +53,38 @@
       <table class="table">
         <thead class="text-center">
           <tr class="table">
-            <th scope="col">Nombre del código</th>
-            <th scope="col">Fecha registro</th>
-            <th scope="col">Porcentaje %</th>
-            <th scope="col">Estado</th>
+            <th scope="col">Nombre</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody class="text-center">
           <tr>
-            <td>ING_WILL</td>
-            <td>2024-02-14</td>
-            <td>40%</td>
-            <td>
-              <div class="form-switch">
-                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                  id="flexSwitchCheckChecked" checked disabled>
-              </div>
-            </td>
+            <td>Contador</td>
             <td>
               <button type="button" class="btn btn-danger img-fluid"><img
                   src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"></button>
               <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
-                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                data-bs-target="#actPermiso"><img src="../../resources/img/png/editar_boton.png"
                   class="tamanio_edicion_botones"></button>
             </td>
           </tr>
           <tr>
-            <td>SUSAN_pro</td>
-            <td>2024-01-20</td>
-            <td>60%</td>
-            <td>
-              <div class="form-switch">
-                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                  id="flexSwitchCheckChecked" checked disabled>
-              </div>
-            </td>
+            <td>Administrador</td>
             <td>
               <button type="button" class="btn btn-danger img-fluid"><img
                   src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"></button>
               <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
-                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                data-bs-target="#actPermiso"><img src="../../resources/img/png/editar_boton.png"
                   class="tamanio_edicion_botones"></button>
             </td>
           </tr>
           <tr>
-            <td>MICH</td>
-            <td>2023-12-15</td>
-            <td>35%</td>
-            <td>
-              <div class="form-switch">
-                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                  id="flexSwitchCheckChecked" disabled>
-              </div>
-            </td>
+            <td>Vendedor</td>
             <td>
               <button type="button" class="btn btn-danger img-fluid"><img
                   src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"></button>
               <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
-                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                data-bs-target="#actPermiso"><img src="../../resources/img/png/editar_boton.png"
                   class="tamanio_edicion_botones"></button>
             </td>
           </tr>
@@ -129,7 +102,7 @@
 
 
 <!--Modal para el boton de agregar cupon-->
-<div class="modal" id="agCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="agPermiso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header bg-orange-color">
@@ -142,8 +115,8 @@
           <div class="modal-body">
               <div class="row">
                   <div class="col-sm-12 col-md-6">
-                      <p class="fs-8 btn-orange-color">Código</p>
-                      <input type="text" class="form-control" placeholder="#####" aria-label="codigo">
+                      <p class="fs-8 btn-orange-color">Nombre del permiso</p>
+                      <input type="text" class="form-control" placeholder="Ej. Analista" aria-label="codigo">
                   </div>
                   <div class="col-sm-12 col-md-6">
                       <p class="fs-8 btn-orange-color">Porcentaje</p>
@@ -169,7 +142,7 @@
 
 
 <!--Modal para el boton de actualizar cupon-->
-<div class="modal " id="actCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal " id="actPermiso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-orange-color">
@@ -181,8 +154,8 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12 col-md-6">
-            <p class="fs-8 btn-orange-color"> Código</p>
-            <input type="text" class="form-control" placeholder="#####" aria-label="codigo">
+            <p class="fs-8 btn-orange-color"> Nombre del permiso</p>
+            <input type="text" class="form-control" placeholder="Administrador" aria-label="codigo">
           </div>
           <div class="col-sm-12 col-md-6">
             <p class="fs-8 btn-orange-color"> Porcentaje</p>
