@@ -104,88 +104,91 @@
 <!--Modal para el boton de agregar permiso-->
 <div class="modal" id="agPermiso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-orange-color">
-        <div class="container text-center">
-          <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar</h1>
+    <form>
+      <div class="modal-content">
+        <div class="modal-header bg-orange-color">
+          <div class="container text-center">
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar</h1>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-12">
-            <p class="fs-8 btn-orange-color">Nombre del permiso</p>
-            <input type="text" class="form-control" placeholder="Ej. Analista" aria-label="codigo">
-            <br>
-          </div>
-          <div class="col-12">
-            <p class="fs-8 btn-orange-color">Asigna los permisos que tendrá este tipo de permiso</p>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar usuarios</label>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <p class="fs-8 btn-orange-color">Nombre del permiso</p>
+              <input type="text" class="form-control" placeholder="Ej. Analista" aria-label="codigo">
+              <br>
+            </div>
+            <div class="col-12">
+              <p class="fs-8 btn-orange-color">Asigna los permisos que tendrá este tipo de permiso</p>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar usuarios</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar usuarios</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar productos</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar productos</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Borrar comentarios</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar categorias</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Borrar categorias</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar cupones</label>
+              </div>
             </div>
           </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar usuarios</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar productos</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar productos</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Borrar comentarios</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar categorias</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Borrar categorias</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar cupones</label>
-            </div>
-          </div>
+          <br>
+        </div>
+        <div class="container text-center">
+          <button type="button" class="btn btn-orange-color text-white">Agregar</button>
         </div>
         <br>
       </div>
-      <div class="container text-center">
-        <button type="button" class="btn btn-orange-color text-white">Agregar</button>
-      </div>
-      <br>
-    </div>
+    </form>
   </div>
+
 </div>
 
 
@@ -194,88 +197,91 @@
 <!--Modal para el boton de actualizar permiso-->
 <div class="modal " id="actPermiso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-orange-color">
-        <div class="container text-center">
-          <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar</h1>
+    <form>
+      <div class="modal-content">
+        <div class="modal-header bg-orange-color">
+          <div class="container text-center">
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar</h1>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-12">
-            <p class="fs-8 btn-orange-color">Nombre del permiso</p>
-            <input type="text" class="form-control" placeholder="Ej. Analista" aria-label="codigo">
-            <br>
-          </div>
-          <div class="col-12">
-            <p class="fs-8 btn-orange-color">Asigna los permisos que tendrá este tipo de permiso</p>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar usuarios</label>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <p class="fs-8 btn-orange-color">Nombre del permiso</p>
+              <input type="text" class="form-control" placeholder="Ej. Analista" aria-label="codigo">
+              <br>
+            </div>
+            <div class="col-12">
+              <p class="fs-8 btn-orange-color">Asigna los permisos que tendrá este tipo de permiso</p>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar usuarios</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar usuarios</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar productos</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar productos</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Borrar comentarios</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar categorias</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Borrar categorias</label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="form-switch form-check">
+                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                  id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar cupones</label>
+              </div>
             </div>
           </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar usuarios</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar productos</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar productos</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Borrar comentarios</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar categorias</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Borrar categorias</label>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="form-switch form-check">
-              <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                checked>
-              <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar cupones</label>
-            </div>
-          </div>
+          <br>
+        </div>
+        <div class="container text-center">
+          <button type="button" class="btn btn-orange-color text-white">Actualizar</button>
         </div>
         <br>
       </div>
-      <div class="container text-center">
-        <button type="button" class="btn btn-orange-color text-white">Actualizar</button>
-      </div>
-      <br>
-    </div>
+    </form>
   </div>
+
 </div>
 
 

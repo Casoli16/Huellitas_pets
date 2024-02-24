@@ -4,6 +4,11 @@
 
 // PALETA DE COLORES
 // Declaración de variables para asignación de colores
+$gray-color: (
+  "gray-color": rgb(246, 243, 243) 
+
+); 
+
 $yellow-color: (
   "yellow-color": rgb(244, 211, 94)
 
@@ -27,5 +32,6 @@ $theme-colors: map-merge($theme-colors, $orange-color);
 $theme-colors: map-merge($theme-colors, $skin-color);
 $theme-colors: map-merge($theme-colors, $red-color);
 $theme-colors: map-merge($theme-colors, $yellow-color);
+$theme-colors: map-merge($theme-colors, $gray-color);
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss"

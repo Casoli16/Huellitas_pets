@@ -1,0 +1,11 @@
+.bg-gray-color {
+    background-color: #F6F3F3; /* Tu color gris en hexadecimal */
+}
+
+.custom-dropdown-menu .dropdown-item {
+    color: black; /* Cambia el color del texto a negro */
+}
+
+.custom-bold-label {
+    font-weight: bold;
+}
