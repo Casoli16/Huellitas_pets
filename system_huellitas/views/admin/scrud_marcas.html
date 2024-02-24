@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huellitas Pets - Dashboard</title>
+    <title>Huellitas Pets - Marcas</title>
     <!-- Agregamos una imagen para que se vea en la ventana -->
     <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
     <!-- Agregamos el framework de boostrap - css -->
@@ -33,11 +33,10 @@
             <div class="col align-self-center">
                 <div class="col-10 barra_busqueda">
                     <form class="d-flex" role="search">
-                        <input class="form-control me-4 shadow" type="search" aria-label="Search">
+                        <input class="form-control me-4 shadow" type="search" placeholder="Buscar..." aria-label="Search">
                         <div class="col-7">
-                            <button class="btn btn-red-color text-light boton_busqueda img-fluid" type="submit"><img
-                                    src="../../resources/img/png/boton_agregar.png"
-                                    class="custom-margin-right tamanio_imagen_botones" alt="">Buscar
+                            <button class="btn btn-red-color text-light boton_busqueda img-fluid" type="button" data-bs-toggle="modal" data-bs-target="#agmarc">
+                                <img src="../../resources/img/png/boton_agregar.png" class="custom-margin-right tamanio_imagen_botones" alt="">Buscar
                             </button>
                         </div>
                     </form>
@@ -48,7 +47,7 @@
         <div class="container p-4 mt-5">
             <table class="table">
                 <thead class="text-center">
-                    <tr class="table">
+                    <tr class="table-warning">
                         <th scope="col">Imagen</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Acciones</th>
@@ -60,9 +59,9 @@
                         <td>Otto</td>
                         <td>
                             <button type="button" class="btn btn-danger img-fluid"><img
-                                    src="../../resources/img/png/eliminar_img_boton.png"
-                                    class="tamanio_edicion_botones" alt=""></button>
-                            <button type="button" class="btn btn-warning img-fluid"><img
+                                    src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"
+                                    alt=""></button>
+                            <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal" data-bs-target="#agmarc"><img
                                     src="../../resources/img/png/editar_boton.png"
                                     class="tamanio_edicion_botones"></button>
                         </td>
@@ -72,9 +71,9 @@
                         <td>Thornton</td>
                         <td>
                             <button type="button" class="btn btn-danger img-fluid"><img
-                                    src="../../resources/img/png/eliminar_img_boton.png"
-                                    class="tamanio_edicion_botones" alt=""></button>
-                            <button type="button" class="btn btn-warning img-fluid"><img
+                                    src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"
+                                    alt=""></button>
+                            <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal" data-bs-target="#agmarc"><img
                                     src="../../resources/img/png/editar_boton.png"
                                     class="tamanio_edicion_botones"></button>
                         </td>
@@ -84,9 +83,9 @@
                         <td>@twitter</td>
                         <td>
                             <button type="button" class="btn btn-danger img-fluid"><img
-                                    src="../../resources/img/png/eliminar_img_boton.png"
-                                    class="tamanio_edicion_botones" alt=""></button>
-                            <button type="button" class="btn btn-warning img-fluid"><img
+                                    src="../../resources/img/png/eliminar_img_boton.png" class="tamanio_edicion_botones"
+                                    alt=""></button>
+                            <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal" data-bs-target="#agmarc"><img
                                     src="../../resources/img/png/editar_boton.png"
                                     class="tamanio_edicion_botones"></button>
                         </td>
@@ -101,5 +100,39 @@
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
 </body>
+
+<!--Modal para el boton de agregar cupon-->
+<div class="modal fade" id="agmarc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-orange-color">
+                <div class="container text-center">
+                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar marca</h1>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                    <div class="container d-flex align-items-center justify-content-center">
+                        <img src="../../resources/img/png/fondo_img.png" class="img-fluid" stalt="">
+                    </div>
+                    <br>
+                    <div class="container text-center">
+                        <button type="button" class="btn btn-red-color text-white"> Cargar Imagen</button>
+                    </div>
+                </div>
+                <div class="row container d-flex align-items-center">
+                    <div class="col">
+                        <p class="fs-8 btn-orange-color"> Nombre</p>
+                        <input type="text" class="form-control" aria-label="codigo">
+                        <br>
+            <div class="container text-center">
+                <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
 
 </html>

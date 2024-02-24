@@ -58,7 +58,7 @@ const navbar = `
                             </div>
                             <div class="col-2">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Categorías</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/scrud_categorias.html">Categorías</a>
                                 </li>
                             </div>
                         </div>
@@ -78,7 +78,7 @@ const navbar = `
                             </div>
                             <div class="col-2">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Comentarios</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/scrud_comentarios.html">Comentarios</a>
                                 </li>
                             </div>
                         </div>
