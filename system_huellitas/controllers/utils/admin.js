@@ -38,7 +38,7 @@ const navbar = `
                             </div>
                             <div class="col-2">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Administradores</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/scrud_admin.html">Administradores</a>
                                 </li>
                             </div>
                         </div>
@@ -68,7 +68,7 @@ const navbar = `
                             </div>
                             <div class="col-2">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Pedidos</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/scrud_pedidos.html">Pedidos</a>
                                 </li>
                             </div>
                         </div>
@@ -121,7 +121,7 @@ const navbar = `
                             </div>
                             <div class="col-2">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Ajustes</a>
+                                    <a class="nav-link active" aria-current="page" href="../../views/admin/settings.html">Ajustes</a>
                                 </li>
                             </div>
                         </div>

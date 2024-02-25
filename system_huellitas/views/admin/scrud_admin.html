@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas Pets - Administradores</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos su archivo css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/table_styles.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+</head>
+
+<body>
+    <header>
+        <div id="navbar"></div>
+        <div class="container p-2 mt-5">
+            <div class="row mt-5">
+                <div class="col-auto">
+                    <img src="../../resources/img/svg/admins.svg" width="60px">
+                </div>
+                <div class="col">
+                    <h2 class="fw-bold">Administradores</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Buscador y boton de agregar -->
+        <div class="container mt-4">
+            <div class="row align-items-center">
+                <div class="col">
+                    <form class="d-flex" role="search" id="search_productos_perros">
+                        <input class="form-control rounded-4 shadow" type="search" aria-label="Search" id="search"
+                            placeholder="Buscar...">
+                    </form>
+                </div>
+                <div class="col">
+                    <button class="btn btn-red-color text-light float-end" type="button">
+                        <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="25px">
+                        Agregar administrador
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Tabla -->
+        <div class="container mt-4">
+            <table class="table align-middle">
+                <thead class="table">
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Permiso</th>
+                        <th>Detalle permiso</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
+                                height="70px">
+                        </td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
+                                    width="33px"></button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-light"><img
+                                    src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                data-bs-target="#actCupon"><img src="../../resources/img/svg/edit_icon.svg"
+                                    width="35px"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
+                                height="70px">
+                        </td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
+                                    width="33px"></button>
+                        <td>
+                            <button type="button" class="btn btn-light"><img
+                                    src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                data-bs-target="#actCupon"><img src="../../resources/img/svg/edit_icon.svg"
+                                    width="35px"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <!-- Agregamos el framework de boostrap - js -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script src="../../controllers/utils/admin.js"></script>
+</body>
+
+</html>
