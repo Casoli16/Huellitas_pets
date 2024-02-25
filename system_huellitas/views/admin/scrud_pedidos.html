@@ -70,7 +70,7 @@
                                     src="../../resources/img/png/eliminar_img_boton.png"
                                     class="tamanio_edicion_botones"></button>
                             <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                                data-bs-target="#InfoPedido"><img src="../../resources/img/png/editar_boton.png"
                                     class="tamanio_edicion_botones"></button>
                         </td>
                     </tr>
@@ -88,7 +88,7 @@
                                     src="../../resources/img/png/eliminar_img_boton.png"
                                     class="tamanio_edicion_botones"></button>
                             <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                                data-bs-target="#InfoPedido"><img src="../../resources/img/png/editar_boton.png"
                                     class="tamanio_edicion_botones"></button>
                         </td>
                     </tr>
@@ -106,7 +106,7 @@
                                     src="../../resources/img/png/eliminar_img_boton.png"
                                     class="tamanio_edicion_botones"></button>
                             <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
+                                data-bs-target="#InfoPedido"><img src="../../resources/img/png/editar_boton.png"
                                     class="tamanio_edicion_botones"></button>
                         </td>
                     </tr>
@@ -138,7 +138,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="container text-center">
-                        <label class="form-check-label custom-bold-label" for="flexSwitchCheckChecked">Estado actual del pedido</label>
+                        <label class="form-check-label custom-bold-label" for="flexSwitchCheckChecked">Estado actual del
+                            pedido</label>
                         <br>
                         <div class="dropdown">
                             <br>
@@ -147,14 +148,14 @@
                                 <!-- Agrega el texto del estado seleccionado -->
                                 <span id="estadoSeleccionado">Elige un estado</span>
                             </button>
-                    
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#" id="completadooption"> Completado</a>
                                 <a class="dropdown-item" href="#" id="pendienteoption"> Pendiente</a>
                                 <a class="dropdown-item" href="#" id="canceladooption"> Cancelado</a>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                     <br>
                 </div>
                 <div class="container text-center">
@@ -169,14 +170,14 @@
 
 
 
-<!--Modal para el boton de actualizar cupon-->
-<div class="modal " id="actCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!--Modal para el boton de información pedido-->
+<div class="modal " id="InfoPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
         <form>
             <div class="modal-content">
                 <div class="modal-header bg-orange-color">
                     <div class="container text-center">
-                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar</h1>
+                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Información del pedido</h1>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
@@ -184,23 +185,37 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            <p class="fs-8 btn-orange-color"> Código</p>
-                            <input type="text" class="form-control" placeholder="#####" aria-label="codigo">
+                            <label class="form-check-label custom-bold-label"
+                                for="flexSwitchCheckChecked">Nombre</label>
+                                <br>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Daniel Carranza</label>
                         </div>
+                        <br>
                         <div class="col-sm-12 col-md-6">
-                            <p class="fs-8 btn-orange-color"> Porcentaje</p>
-                            <input type="text" class="form-control" placeholder="100%" aria-label="porcentaje">
+                            <label class="form-check-label custom-bold-label"
+                                for="flexSwitchCheckChecked">Dirección</label>
+                                <br>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Calle las rosas, residencial 4, poligono 3A, casa #10</label>
+                        </div>
+                        <br>
+                        <div class="col-sm-12 col-md-6">
+                            <label class="form-check-label custom-bold-label" for="flexSwitchCheckChecked">Fecha que se
+                                realizo el pago</label>
+                                <br>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">2024-03-10</label>
+                        </div>
+                        <br>
+                        <div class="col-sm-12 col-md-6">
+                            <label class="form-check-label custom-bold-label" for="flexSwitchCheckChecked">Total a
+                                pagar</label>
+                                <br>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">$29.40</label>
                         </div>
                     </div>
                     <br>
-                    <div class="form-check form-switch">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Cupón habilitado</label>
-                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                            id="flexSwitchCheckChecked" checked>
-                    </div>
                 </div>
                 <div class="container text-center">
-                    <button type="button" class="btn btn-orange-color text-white">Actualizar</button>
+                    <button type="button" class="btn btn-orange-color text-white">Salir</button>
                 </div>
                 <br>
             </div>
