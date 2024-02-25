@@ -20,10 +20,11 @@
         <div id="navbar"></div>
         <div class="container p-2 mt-5">
             <div class="row mt-5">
+                <!-- Automaticamente cada col se va distribuir en la row -->
                 <div class="col-auto">
                     <img src="../../resources/img/svg/admins.svg" width="60px">
                 </div>
-                <div class="col">
+                <div class="col-auto">
                     <h2 class="fw-bold">Administradores</h2>
                 </div>
             </div>
@@ -32,43 +33,52 @@
     <main>
         <!-- Buscador y boton de agregar -->
         <div class="container mt-4">
-            <div class="row align-items-center">
-                <div class="col">
+            <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 col-lg-6">
                     <form class="d-flex" role="search" id="search_productos_perros">
                         <input class="form-control rounded-4 shadow" type="search" aria-label="Search" id="search"
                             placeholder="Buscar...">
                     </form>
                 </div>
-                <div class="col">
-                    <button class="btn btn-red-color text-light float-end" type="button">
-                        <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="25px">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
+                    <div class="d-md-none d-lg-none">
+                        <p>Haz clíc en el siguiente botón para poder agregar un nuevo administrador.</p>
+                    </div>
+                    <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
+                    <button
+                        class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
+                        data-bs-toggle="modal" data-bs-target="#agregar_admin" type="button">
+                        <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
                         Agregar administrador
                     </button>
                 </div>
             </div>
         </div>
         <!-- Tabla -->
-        <div class="container mt-4">
+        <div class="container mt-5">
             <table class="table align-middle">
-                <thead class="table">
+                <!-- Encabezado de las tablas -->
+                <thead class="table table-responsive">
                     <tr>
                         <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Permiso</th>
                         <th>Detalle permiso</th>
-                        <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
+                <!-- Cuerpo de la tabla -->
                 <tbody>
+                    <!-- Fila 1 -->
                     <tr>
                         <td>
                             <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
                                 height="70px">
                         </td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>Mariana Campos</td>
+                        <td>Vendedor</td>
                         <td>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
                                 data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
@@ -82,14 +92,14 @@
                                     width="35px"></button>
                         </td>
                     </tr>
+                    <!-- fila 2 -->
                     <tr>
                         <td>
                             <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
                                 height="70px">
                         </td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>Eduardo Castro</td>
+                        <td>Contador</td>
                         <td>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
                                 data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
@@ -108,9 +118,89 @@
     </main>
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/admin.js"></script>
 </body>
+
+
+
+
+
+<!-- Modals -->
+<!-- Agregar admin -->
+<div class="modal fade" id="agregar_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-orange-color">
+                <div class="container text-center text-light">
+                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Crear administrador</h1>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Fila 1 -->
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img class="rounded-1" src="../../resources/img/png/rectangulo.png" width="120px">
+                        </div>
+                        <div class="col d-flex">
+                            <button type="button" class="btn btn-red-color text-light" id="btn_cargarImagen">Cargar
+                                imagen</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fila 2 -->
+                <div class="container mt-4">
+                    <form action="">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="nombre_admin" class="form-label">Nombre</label>
+                                    <input type="name" class="form-control" id="nombre_admin"
+                                        placeholder="Susan Abigail" name="nombre_admin">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre_admin" class="form-label">Apellidos</label>
+                                    <input type="name" class="form-control" id="nombre_admin"
+                                        placeholder="Susan Abigail" name="nombre_admin">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre_admin" class="form-label">Contraseña</label>
+                                    <input type="name" class="form-control" id="nombre_admin"
+                                        placeholder="Susan Abigail" name="nombre_admin">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="nombre_admin" class="form-label">Fecha de ingreso</label>
+                                    <input type="name" class="form-control" id="nombre_admin"
+                                        placeholder="Susan Abigail" name="nombre_admin">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre_admin" class="form-label">Correo electrónico</label>
+                                    <input type="name" class="form-control" id="nombre_admin"
+                                        placeholder="Susan Abigail" name="nombre_admin">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre_admin" class="form-label">Alías</label>
+                                    <input type="name" class="form-control" id="nombre_admin"
+                                        placeholder="Susan Abigail" name="nombre_admin">
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+            <div class="container text-center mb-4 mt-4">
+                <button type="button" class="btn btn-orange-color text-light me-3"
+                    data-bs-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-red-color text-light">Cancelar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </html>
