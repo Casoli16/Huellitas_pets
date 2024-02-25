@@ -1,16 +1,27 @@
-// Obtener referencias a los elementos relevantes
-const dropdownItems = document.querySelectorAll('.dropdown-item');
-const estadoSeleccionado = document.getElementById('estadoSeleccionado');
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener referencia al span que contiene el texto del estado seleccionado
+    const estadoSeleccionado = document.getElementById('estadoSeleccionado');
 
-// Iterar sobre cada elemento del menú desplegable y agregar un event listener
-dropdownItems.forEach(item => {
-    item.addEventListener('click', function() {
-        // Obtener el texto de la opción seleccionada
-        const textoSeleccionado = this.textContent;
-        
-        // Actualizar el contenido del párrafo con el texto seleccionado
-        estadoSeleccionado.textContent = textoSeleccionado;
-        console.log(textoSeleccionado);
-        console.log('ola');
-    });
+    // Función para manejar el clic en el botón "Completado"
+    function handleCompletadoClick() {
+        // Establecer el texto del estado seleccionado como "Completado"
+        estadoSeleccionado.textContent = "Completado";
+    }
+
+    // Función para manejar el clic en el botón "Pendiente"
+    function handlePendienteClick() {
+        // Establecer el texto del estado seleccionado como "Pendiente"
+        estadoSeleccionado.textContent = "Pendiente";
+    }
+
+    // Función para manejar el clic en el botón "Cancelado"
+    function handleCanceladoClick() {
+        // Establecer el texto del estado seleccionado como "Cancelado"
+        estadoSeleccionado.textContent = "Cancelado";
+    }
+
+    // Agregar event listeners a los botones de opciones
+    document.getElementById('completadooption').addEventListener('click', handleCompletadoClick);
+    document.getElementById('pendienteoption').addEventListener('click', handlePendienteClick);
+    document.getElementById('canceladooption').addEventListener('click', handleCanceladoClick);
 });

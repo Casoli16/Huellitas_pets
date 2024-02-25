@@ -9,3 +9,9 @@
 .custom-bold-label {
     font-weight: bold;
 }
+
+.dropdown-menu .dropdown-item {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0.5rem 1rem !important;
+}
