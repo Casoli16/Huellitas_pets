@@ -16,3 +16,26 @@
     padding: 0.5rem 1rem !important;
 }
 
+.list-group-item {
+    border-radius: 20px; /* Ajusta este valor según tus preferencias */
+
+}
+
+.badge-custom {
+    border-radius: 30px; /* Ajusta el valor según tus preferencias */
+    padding: 6px 40px; /* Ajusta el padding según tus preferencias */
+    font-size: 14px; /* Ajusta el tamaño de fuente según tus preferencias */
+    background-color: rgb(255, 255, 255); 
+}
+
+.producto {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+
+.marca {
+    font-size: 12px;
+    color: black;
+}
+
