@@ -15,50 +15,65 @@
   <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_marcas.css">
   <!-- Agregamos la libreria de los iconos -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Agregamos el archivo css para estilizar los switch-->
+  <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
 </head>
 
 <body>
   <!-- Insertar nuestro navbar a esta pantalla usando js -->
   <div id="navbar"></div>
 
+  <!-- Aqui insertamos el titulo de la página y la imagen que lo acompaña -->
   <header class="container_one p-2S">
     <div class="container-fluid p-4 mt-5">
       <div class="d-flex">
         <img src="../../resources/img/png/permisos.png" class="custom-margin-right" alt="">
         <h2 class="mt-2"><strong>Permisos</strong></h2>
-        <div class="row"></div>
       </div>
     </div>
   </header>
 
   <main>
-    <div class="row justify-content-center">
-      <div class="col align-self-center">
-        <div class="col-10 barra_busqueda">
-          <form class="d-flex" role="search">
-            <input class="form-control me-4 shadow" type="search" aria-label="Search">
-            <div class="col-7">
-              <button type="button" class="btn btn-red-color text-white btn-sm float-end" data-bs-toggle="modal"
-                data-bs-target="#agPermiso">
-                <i class="bi bi-plus-circle-fill"></i>
-                Agregar permiso
-              </button>
-            </div>
+    <!-- Buscador y boton de agregar -->
+    <div class="container mt-4">
+      <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+      <div class="row align-items-center gy-4">
+        <div class="col-md-6 col-lg-6">
+          <form class="d-flex" role="search" id="search_productos_perros">
+            <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search" id="search"
+              placeholder="Buscar...">
           </form>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
+          <div class="d-md-none d-lg-none">
+            <p>Haz clíc en el siguiente botón para poder agregar un nuevo permiso.</p>
+          </div>
+          <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
+          <button class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
+            data-bs-toggle="modal" data-bs-target="#agPermiso" type="button">
+            <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
+            Agregar permiso
+          </button>
+          <!--  Lo de arriba crea un botón y lo conecta con un modal por medio de la palabra data-bs-target y se conecta con el id del modal-->
         </div>
       </div>
     </div>
 
+    <!-- Empieza la programación de las tablas
+      Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->
     <div class="container p-4 mt-5">
       <table class="table">
         <thead class="text-center">
           <tr class="table">
+            <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
             <th scope="col">Nombre</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody class="text-center">
           <tr>
+            <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
             <td>Contador</td>
             <td>
               <button type="button" class="btn btn-danger img-fluid"><img
@@ -76,6 +91,8 @@
               <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
                 data-bs-target="#actPermiso"><img src="../../resources/img/png/editar_boton.png"
                   class="tamanio_edicion_botones"></button>
+              <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                    se pone arriba del </html pero fuera del body-->
             </td>
           </tr>
           <tr>
@@ -107,11 +124,13 @@
     <form>
       <div class="modal-content">
         <div class="modal-header bg-orange-color">
+          <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
           <div class="container text-center">
             <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar</h1>
           </div>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <!-- Aqui comienzan los inputs y el boton del formulario del modal -->
         <div class="modal-body">
           <div class="row">
             <div class="col-12">
@@ -122,6 +141,8 @@
             <div class="col-12">
               <p class="fs-8 btn-orange-color">Asigna los permisos que tendrá este tipo de permiso</p>
             </div>
+            <!-- EL div que esta debajo donde se dice col-sm-12 y col-sm-6 es para que los input usen
+            todo el espacio disponible y sino se ordenen 2 inputs a la par-->
             <div class="col-sm-12 col-md-6">
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
@@ -130,6 +151,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -137,6 +159,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -144,6 +167,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -151,6 +175,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -158,6 +183,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -165,6 +191,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -172,6 +199,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -181,6 +209,7 @@
           </div>
           <br>
         </div>
+        <!-- Este Boton es para enviar los datos del formulario -->
         <div class="container text-center">
           <button type="button" class="btn btn-orange-color text-white">Agregar</button>
         </div>
@@ -188,7 +217,6 @@
       </div>
     </form>
   </div>
-
 </div>
 
 
@@ -199,6 +227,7 @@
   <div class="modal-dialog">
     <form>
       <div class="modal-content">
+        <!-- El div que esta debajo del comentario indica el color de fondo del titulo del modal y el titulo -->
         <div class="modal-header bg-orange-color">
           <div class="container text-center">
             <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar</h1>
@@ -216,6 +245,7 @@
               <p class="fs-8 btn-orange-color">Asigna los permisos que tendrá este tipo de permiso</p>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -223,6 +253,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -230,6 +261,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -237,6 +269,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -244,6 +277,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -251,6 +285,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -258,6 +293,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -265,6 +301,7 @@
               </div>
             </div>
             <div class="col-sm-12 col-md-6">
+              <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
               <div class="form-switch form-check">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked>
@@ -274,6 +311,7 @@
           </div>
           <br>
         </div>
+        <!-- Este botón servirá para enviar la información del formulario -->
         <div class="container text-center">
           <button type="button" class="btn btn-orange-color text-white">Actualizar</button>
         </div>

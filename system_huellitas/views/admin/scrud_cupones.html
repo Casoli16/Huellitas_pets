@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <!-- Definimos el lenguaje para indicar que caracteres deberá leer -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Huellitas Pets - cupones</title>
@@ -34,27 +35,38 @@
   </header>
 
   <main>
-    <div class="row justify-content-center">
-      <div class="col align-self-center">
-        <div class="col-10 barra_busqueda">
-          <form class="d-flex" role="search">
-            <input class="form-control me-4 shadow" type="search" aria-label="Search">
-            <div class="col-7">
-              <button type="button" class="btn btn-red-color text-white btn-sm float-end" data-bs-toggle="modal"
-                data-bs-target="#agCupon">
-                <i class="bi bi-plus-circle-fill"></i>
-                Agregar cupón
-              </button>
-            </div>
+    <!-- Buscador y boton de agregar -->
+    <div class="container mt-4">
+      <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+      <div class="row align-items-center gy-4">
+        <div class="col-md-6 col-lg-6">
+          <form class="d-flex" role="search" id="search_productos_perros">
+            <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search" id="search"
+              placeholder="Buscar...">
           </form>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
+          <div class="d-md-none d-lg-none">
+            <p>Haz clíc en el siguiente botón para poder agregar un nuevo cupón.</p>
+          </div>
+          <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
+          <button class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
+            data-bs-toggle="modal" data-bs-target="#agCupon" type="button">
+            <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
+            Agregar cupon
+          </button>
         </div>
       </div>
     </div>
 
+    <!-- Empieza la programación de las tablas
+      Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->
     <div class="container p-4 mt-5">
       <table class="table">
         <thead class="text-center">
           <tr class="table">
+            <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
             <th scope="col">Nombre del código</th>
             <th scope="col">Fecha registro</th>
             <th scope="col">Porcentaje %</th>
@@ -64,6 +76,7 @@
         </thead>
         <tbody class="text-center">
           <tr>
+            <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
             <td>ING_WILL</td>
             <td>2024-02-14</td>
             <td>40%</td>
@@ -71,6 +84,8 @@
               <div class="form-switch">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked disabled>
+                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                  No lo habilitamos-->
               </div>
             </td>
             <td>
@@ -79,6 +94,8 @@
               <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
                 data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
                   class="tamanio_edicion_botones"></button>
+              <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                    se pone arriba del </html pero fuera del body-->
             </td>
           </tr>
           <tr>
@@ -89,6 +106,8 @@
               <div class="form-switch">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" checked disabled>
+                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                  No lo habilitamos-->
               </div>
             </td>
             <td>
@@ -97,6 +116,8 @@
               <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
                 data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
                   class="tamanio_edicion_botones"></button>
+              <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                  No lo habilitamos-->
             </td>
           </tr>
           <tr>
@@ -107,6 +128,8 @@
               <div class="form-switch">
                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
                   id="flexSwitchCheckChecked" disabled>
+                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                  No lo habilitamos-->
               </div>
             </td>
             <td>
@@ -115,6 +138,8 @@
               <button type="button" class="btn btn-warning img-fluid" data-bs-toggle="modal"
                 data-bs-target="#actCupon"><img src="../../resources/img/png/editar_boton.png"
                   class="tamanio_edicion_botones"></button>
+              <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                  No lo habilitamos-->
             </td>
           </tr>
         </tbody>
@@ -136,29 +161,35 @@
     <form>
       <div class="modal-content">
         <div class="modal-header bg-orange-color">
+          <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
           <div class="container text-center">
             <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar</h1>
           </div>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <!-- Aqui comienzan los inputs y el boton del formulario del modal -->
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-12 col-md-6">
               <p class="fs-8 btn-orange-color">Código</p>
               <input type="text" class="form-control" placeholder="#####" aria-label="codigo">
             </div>
+            <!-- EL div que esta debajo donde se dice col-sm-12 y col-sm-6 es para que los input usen
+            todo el espacio disponible y sino se ordenen 2 inputs a la par-->
             <div class="col-sm-12 col-md-6">
               <p class="fs-8 btn-orange-color">Porcentaje</p>
               <input type="text" class="form-control" placeholder="100%" aria-label="porcentaje">
             </div>
           </div>
           <br>
+          <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
           <div class="form-check form-switch">
             <label class="form-check-label" for="flexSwitchCheckChecked">Cupón habilitado</label>
             <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
               checked>
           </div>
         </div>
+        <!-- Este Boton es para enviar los datos del formulario -->
         <div class="container text-center">
           <button type="button" class="btn btn-orange-color text-white">Agregar</button>
         </div>
@@ -176,12 +207,14 @@
   <div class="modal-dialog">
     <form>
       <div class="modal-content">
+        <!-- El div que esta debajo del comentario indica el color de fondo del titulo del modal y el titulo -->
         <div class="modal-header bg-orange-color">
           <div class="container text-center">
             <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar</h1>
           </div>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <!-- Aqui comienzan las preguntas e inputs del formulario y el boton para enviar esta información -->
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-12 col-md-6">
@@ -194,12 +227,14 @@
             </div>
           </div>
           <br>
+          <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
           <div class="form-check form-switch">
             <label class="form-check-label" for="flexSwitchCheckChecked">Cupón habilitado</label>
             <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
               checked>
           </div>
         </div>
+        <!-- Este botón servirá para enviar la información del formulario -->
         <div class="container text-center">
           <button type="button" class="btn btn-orange-color text-white">Actualizar</button>
         </div>
