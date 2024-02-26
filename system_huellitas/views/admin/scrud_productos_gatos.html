@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <!-- Agregamos el archivo css del menu -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
 </head>
+
 <body>
     <header>
         <div id="navbar"></div>
@@ -29,7 +31,7 @@
     </header>
     <main>
         <!-- Titulo de la tabla -->
-        <div class="container mt-5">
+        <div class="container mt-4">
             <div class="row align-items-center">
                 <div class="col-auto">
                     <img src="../../resources/img/png/cat.png" alt="">
@@ -41,15 +43,17 @@
         </div>
         <!-- Buscador y boton de agregar -->
         <div class="container mt-4">
-            <div class="row align-items-center">
-                <div class="col">
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 col-lg-6">
                     <form class="d-flex" role="search" id="search_productos_perros">
-                        <input class="form-control rounded-4 shadow" type="search" aria-label="Search" id="search"
-                            placeholder="Buscar...">
+                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
+                            id="search" placeholder="Buscar...">
                     </form>
                 </div>
-                <div class="col">
-                    <button class="btn btn-red-color text-light float-end" type="button">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <button
+                        class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
+                        data-bs-toggle="modal" data-bs-target="#agregar_producto" type="button">
                         <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="25px">
                         Agregar producto
                     </button>
@@ -82,10 +86,10 @@
                             <button type="button" class="btn btn-light"><img
                                     src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#actCupon"><img src="../../resources/img/svg/edit_icon.svg"
+                                data-bs-target="#editar_producto"><img src="../../resources/img/svg/edit_icon.svg"
                                     width="35px"></button>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
+                                data-bs-target="#info_producto"><img src="../../resources/img/svg/info_icon.svg"
                                     width="33px"></button>
                         </td>
                     </tr>
@@ -101,10 +105,10 @@
                             <button type="button" class="btn btn-light"><img
                                     src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#actCupon"><img src="../../resources/img/svg/edit_icon.svg"
+                                data-bs-target="#editar_producto"><img src="../../resources/img/svg/edit_icon.svg"
                                     width="35px"></button>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
+                                data-bs-target="#info_producto"><img src="../../resources/img/svg/info_icon.svg"
                                     width="33px"></button>
                         </td>
                     </tr>
@@ -116,5 +120,307 @@
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/admin.js"></script>
+
+
+
+    <!-- Modals -->
+    <!-- Agregar producto -->
+    <div class="modal fade" id="agregar_producto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <div class="modal-header bg-orange-color">
+                    <div class="container text-center text-light">
+                        <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Agregar producto</h1>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="crear_admin">
+                        <!-- Fila 1 -->
+                        <div class="container text-center text-md-start text-lg-start">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm-12 col-md-auto">
+                                    <img class="rounded-1" src="../../resources/img/png/rectangulo.png" width="120px">
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-red-color text-light"
+                                        id="btn_cargarImagen">Cargar
+                                        imagen</button>
+                                </div>
+                                <div class="col-sm-12 col-md-auto">
+                                    <div class="form-check form-switch float-end mb-md-5">
+                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                            id="flexSwitchCheckChecked" checked>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fila 2 -->
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label fw-semibold">Descripción</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label for="nombre_admin" class="form-label fw-semibold">Precio</label>
+                                                <input type="number" class="form-control" id="nombre_admin"
+                                                    name="nombre_admin">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label for="nombre_admin"
+                                                    class="form-label fw-semibold">Cantidad</label>
+                                                <input type="number" class="form-control" id="nombre_admin"
+                                                    name="nombre_admin">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="validationDefault04" class="form-label fw-semibold">Mascota</label>
+                                        <select class="form-select" id="validationDefault04" required>
+                                            <option selected disabled value=""></option>
+                                            <option>Perro</option>
+                                            <option>Gato</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="validationDefault04"
+                                            class="form-label fw-semibold">Categoría</label>
+                                        <select class="form-select" id="validationDefault04" required>
+                                            <option selected disabled value=""></option>
+                                            <option>Perro</option>
+                                            <option>Gato</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="validationDefault04" class="form-label fw-semibold">Marca</label>
+                                        <select class="form-select" id="validationDefault04" required>
+                                            <option selected disabled value=""></option>
+                                            <option></option>
+                                        </select>
+                                        <div class="text-end mt-2">¿No existe la marca que buscas?</div>
+                                        <a class="btn btn-red-color btn-sm text-light rounded-3 p-1 float-end mt-1"
+                                            type="button" href="../admin/scrud_marcas.html">
+                                            <img class="me-1" src="../../resources/img/png/boton_agregar.png"
+                                                width="15px">
+                                            Agregar marca
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                <div class="container text-center mb-4 mt-4">
+                    <button type="button" class="btn btn-orange-color text-light me-3"
+                        data-bs-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light">Cancelar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Editar producto -->
+    <div class="modal fade" id="editar_producto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <div class="modal-header bg-orange-color">
+                    <div class="container text-center text-light">
+                        <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Editar producto</h1>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="crear_admin">
+                        <!-- Fila 1 -->
+                        <div class="container text-center text-md-start text-lg-start">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm-12 col-md-auto">
+                                    <img class="rounded-1" src="../../resources/img/png/rectangulo.png" width="120px">
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-red-color text-light"
+                                        id="btn_cargarImagen">Cargar
+                                        imagen</button>
+                                </div>
+                                <div class="col-sm-12 col-md-auto">
+                                    <div class="form-check form-switch float-end mb-md-5">
+                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                            id="flexSwitchCheckChecked" checked>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fila 2 -->
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label fw-semibold">Descripción</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label for="nombre_admin" class="form-label fw-semibold">Precio</label>
+                                                <input type="number" class="form-control" id="nombre_admin"
+                                                    name="nombre_admin">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label for="nombre_admin"
+                                                    class="form-label fw-semibold">Cantidad</label>
+                                                <input type="number" class="form-control" id="nombre_admin"
+                                                    name="nombre_admin">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="validationDefault04" class="form-label fw-semibold">Mascota</label>
+                                        <select class="form-select" id="validationDefault04" required>
+                                            <option selected disabled value=""></option>
+                                            <option>Perro</option>
+                                            <option>Gato</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="validationDefault04"
+                                            class="form-label fw-semibold">Categoría</label>
+                                        <select class="form-select" id="validationDefault04" required>
+                                            <option selected disabled value=""></option>
+                                            <option>Perro</option>
+                                            <option>Gato</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="validationDefault04" class="form-label fw-semibold">Marca</label>
+                                        <select class="form-select" id="validationDefault04" required>
+                                            <option selected disabled value=""></option>
+                                            <option></option>
+                                        </select>
+                                        <div class="text-end mt-2">¿No existe la marca que buscas?</div>
+                                        <a class="btn btn-red-color btn-sm text-light rounded-3 p-1 float-end mt-1"
+                                            type="button" href="../admin/scrud_marcas.html">
+                                            <img class="me-1" src="../../resources/img/png/boton_agregar.png"
+                                                width="15px">
+                                            Agregar marca
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                <div class="container text-center mb-4 mt-4">
+                    <button type="button" class="btn btn-orange-color text-light me-3"
+                        data-bs-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light">Cancelar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informacion producto -->
+    <div class="modal fade" id="info_producto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-orange-color">
+                    <div class="container text-center text-light">
+                        <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Información del producto</h1>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="crear_admin">
+                        <!-- Fila 1 -->
+                        <div class="container text-center text-md-start text-lg-start">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm-12 col-md-auto">
+                                    <img class="rounded-1" src="../../resources/img/png/rectangulo.png" width="120px">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fila 2 -->
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6 ">
+                                    <div class="mb-3">
+                                        <label for="nombre_admin" class="form-label fw-semibold mb-0">Nombre</label>
+                                        <p>Bola giratoria - Juguetes de gato</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label fw-semibold mb-0">Descripción</label>
+                                        <p>Pelotas de plástico de diferentes colores</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label fw-semibold mb-0">Mascota</label>
+                                        <p>Gatos</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label fw-semibold mb-0">Categoría</label>
+                                        <p>Entretenimiento</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label fw-semibold mb-0">Precio</label>
+                                        <p>Entretenimiento</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label fw-semibold mb-0">Cantidad</label>
+                                        <p>$20.50</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1"
+                                            class="form-label fw-semibold mb-0">Marca</label>
+                                        <p>MIMI</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
