@@ -164,6 +164,20 @@ END //
 
 DELIMITER ;
 
+-- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE HACE UN PEDIDO --
+DELIMITER //
+
+CREATE TRIGGER actualizar_existencias AFTER INSERT ON detallesPedidos
+FOR EACH ROW
+BEGIN 
+	UPDATE productos
+	SET existencia_producto = existencia_producto - NEW.cantidad_producto
+	WHERE id_producto = NEW.id_producto;
+END
+
+//
+DELIMITER ;
+
 SELECT * FROM productos
 SELECT calcular_precio_total_producto(2, 5);	
 
