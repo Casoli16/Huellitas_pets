@@ -1,0 +1,117 @@
+/* Establece la altura de la imagen del perfil a 200px */
+.imagen_perfil {
+    height: 200px;
+}
+
+/* Configuración del contenedor de datos */
+.contenedor_datos {
+    background-color: #FFEDA9; /* Fondo de color para el contenedor */
+    margin-left: 60px; /* Margen izquierdo de 60px */
+}
+
+/* Estilo para el botón de guardar */
+.boton_guardar{
+    margin-right: 446px;
+}
+
+/* Estilo para el botón de cerrar sesión */
+.boton_cerrar_sesion{
+    background-color: #EEF4FE; /* Fondo de color para el botón */
+}
+
+/* Establece el ancho de la imagen del logo a 70px */
+.imagen_logo{
+    width: 70px;
+}
+
+/* Establece el ancho de los campos de entrada a 600px */
+.tamanio_input{
+    width: 600px;
+}
+
+/* Consulta de medios para pantallas con un ancho máximo de 1330px */
+@media only screen and (max-width: 1330px) {
+    .contenedor_datos {
+        margin-left:18px;
+    }
+
+    .tamanio_input{
+        width: 380px;
+    }
+
+    .boton_guardar{
+        margin-right: 22px;
+    }
+
+    .texto_input{
+        margin-right: 65px;
+    }
+}
+
+/* Consulta de medios para pantallas con un ancho máximo de 980px */
+@media only screen and (max-width: 980px) {
+    .contenedor_datos {
+        margin-left:18px;
+    }
+
+    .tamanio_input{
+        width: 380px;
+    }
+
+    .boton_guardar{
+        margin-right: 22px;
+    }
+
+    .texto_input{
+        margin-right: 55px;
+    }
+}
+
+/* Consulta de medios para pantallas con un ancho máximo de 500px */
+@media only screen and (max-width: 500px) {
+    .contenedor_datos {
+        margin-left:18px;
+    }
+
+    .tamanio_input{
+        width: 310px;
+    }
+
+    .boton_guardar{
+        margin-right: 22px;
+    }
+
+    .texto_input{
+        margin-right: 0px;
+    }
+}
+
+/* Consulta de medios para pantallas con un ancho máximo de 380px */
+@media only screen and (max-width: 380px) {
+    .contenedor_datos {
+        margin-left:18px;
+    }
+
+    .tamanio_input{
+        width: auto;
+    }
+
+    .boton_guardar{
+        margin-right: 22px;
+    }
+}
+
+/* Consulta de medios para pantallas con un ancho máximo de 280px */
+@media only screen and (max-width: 280px) {
+    .contenedor_datos {
+        margin-left:18px;
+    }
+
+    .tamanio_input{
+        width: 180px;
+    }
+
+    .boton_guardar{
+        margin-right: 22px;
+    }
+}

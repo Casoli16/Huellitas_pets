@@ -1,8 +1,10 @@
+/* Establece el tamaño de la imagen de valoración */
 .imagen_valoration{
     width: 25px;
     left: auto;
 }
 
+/* Establece un margen izquierdo pequeño para el área de mensajes */
 .mensaje_margin{
     margin-left: 3px;
 }

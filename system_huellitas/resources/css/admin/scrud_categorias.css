@@ -1,44 +1,54 @@
+/* Establece un margen derecho personalizado */
 .custom-margin-right {
     margin-right: 8px;
 }
 
+/* Establece el tamaño de la imagen */
 .tamanio_imagen{
     width: 40px;
     left: auto;
 }
 
+/* Ajusta el margen izquierdo del interruptor agregar */
 .swicth_agregar{
     margin-left: 80px;
 }
 
+/* Establece el tamaño de la imagen para botones */
 .tamanio_imagen_botones{
     width: 20px;
     left: auto;
 }
 
+/* Establece el tamaño de la imagen para botones de edición */
 .tamanio_edicion_botones{
     width: 30px;
     left: auto;
 }
 
+/* Ajusta el margen izquierdo de la barra de búsqueda */
 .barra_busqueda{
     margin-left: 50px;
 }
 
+/* Hace que el botón de búsqueda flote a la derecha */
 .boton_busqueda{
     float: right;
 }
 
+/* Establece el tamaño de la imagen en la tabla */
 .tamanio_imagen_tabla{
     width: 55px;
     left: auto;
 }
 
+/* Establece el tamaño de la imagen para agregar en la interfaz modal */
 .tamanio_imagen_agregar{
     width: 120px;
     left: auto;
 }
 
+/* Estiliza el encabezado de la tabla con un degradado de color de fondo */
 th{
     --bs-table-color: var(--bs-light);
     background-image: linear-gradient(180deg, rgb(238, 150, 75), rgba(235, 195, 81, 1));

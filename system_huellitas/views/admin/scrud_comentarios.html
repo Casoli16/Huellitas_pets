@@ -2,25 +2,32 @@
 <html lang="en">
 
 <head>
+    <!-- Configuración del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas Pets - Comentarios</title>
-    <!-- Agregamos una imagen para que se vea en la ventana -->
+
+    <!-- Icono de la pestaña del navegador -->
     <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
-    <!-- Agregamos el framework de boostrap - css -->
+
+    <!-- Framework Bootstrap - CSS -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
-    <!-- Agregamos su archivo css -->
+
+    <!-- Estilos propios -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_categorias.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_comentarios.css">
-    <!-- Agregamos el archivo css del menu -->
+
+    <!-- Estilos del menú -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+</head>
 
 <body>
-    <!-- Insertar nuestro navbar a esta pantalla usando js -->
-    <div id="navbar"></div>
-
+    <!-- Encabezado de la página -->
     <header class="container_one p-2S">
+        <!-- Insertar nuestro navbar a esta pantalla usando js -->
+        <div id="navbar"></div>
         <div class="container-fluid p-4 mt-5">
+            <!-- Encabezado con logo y título -->
             <div class="d-flex">
                 <img src="../../resources/img/svg/comments.svg" class="custom-margin-right" alt="">
                 <h2 class="mt-2"><strong>Comentarios</strong></h2>
@@ -30,27 +37,26 @@
     </header>
 
     <main>
+        <!-- Barra de búsqueda -->
         <div class="row">
             <div class="col align-self-center">
                 <div class="col-10 barra_busqueda">
-                    <form class="d-flex" role="search">
+                    <form class="d-flex" id="buscar_comentario" role="search">
                         <input class="form-control me-4 shadow" type="search" placeholder="Buscar..."
-                            aria-label="Search">
+                            aria-label="Search" name="busquedaComentarios" id="busqueda_comentarios">
                         <div class="col-7">
-                            <button class="btn btn-red-color text-light boton_busqueda img-fluid" type="button"
-                                data-bs-toggle="modal" data-bs-target="#agcoment">
-                                <img src="../../resources/img/png/boton_agregar.png"
-                                    class="custom-margin-right tamanio_imagen_botones" alt="">Buscar
-                            </button>
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
+        <!-- Contenido principal: Tabla de comentarios -->
         <div class="container p-4 mt-5">
             <table class="table">
                 <thead class="text-center">
+                    <!-- Encabezados de la tabla -->
                     <tr class="table-warning">
                         <th scope="col">Producto</th>
                         <th scope="col">Nombre</th>
@@ -61,6 +67,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
+                    <!-- Datos de ejemplo en la tabla -->
                     <tr>
                         <td class="align-middle">Comida Rufo Para Perro Cachorro - 44lbs</td>
                         <td class="align-middle">Juan Alberto</td>
@@ -68,10 +75,13 @@
                         <td class="align-middle">5/5</td>
                         <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt=""></td>
                         <td class="align-middle">
-                            <button type="button" class="btn img-fluid" data-bs-toggle="modal" data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
+                            <!-- Botón de acción (info/detalles) -->
+                            <button type="button" class="btn img-fluid" data-bs-toggle="modal"
+                                data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
                                     class="tamanio_edicion_botones" alt=""></button>
                         </td>
                     </tr>
+                    <!-- Datos de ejemplo en la tabla -->
                     <tr>
                         <td class="align-middle">Comida Rufo Para Perro Cachorro - 44lbs</td>
                         <td class="align-middle">Juan Alberto</td>
@@ -79,10 +89,13 @@
                         <td class="align-middle">5/5</td>
                         <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt=""></td>
                         <td class="align-middle">
-                            <button type="button" class="btn img-fluid" data-bs-toggle="modal" data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
+                            <!-- Botón de acción (info/detalles) -->
+                            <button type="button" class="btn img-fluid" data-bs-toggle="modal"
+                                data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
                                     class="tamanio_edicion_botones" alt=""></button>
                         </td>
                     </tr>
+                    <!-- Datos de ejemplo en la tabla -->
                     <tr>
                         <td class="align-middle">Comida Rufo Para Perro Cachorro - 44lbs</td>
                         <td class="align-middle">Juan Alberto</td>
@@ -90,7 +103,9 @@
                         <td class="align-middle">5/5</td>
                         <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt=""></td>
                         <td class="align-middle">
-                            <button type="button" class="btn img-fluid" data-bs-toggle="modal" data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
+                            <!-- Botón de acción (info/detalles) -->
+                            <button type="button" class="btn img-fluid" data-bs-toggle="modal"
+                                data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
                                     class="tamanio_edicion_botones" alt=""></button>
                         </td>
                     </tr>
@@ -99,80 +114,94 @@
         </div>
     </main>
 
-
-    <!-- Agregamos el framework de Bootstrap - JS -->
+    <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
 </body>
 
-<!--Modal para el boton una categoria-->
+<!-- Modal para gestionar comentarios -->
 <div class="modal fade" id="agcoment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-orange-color">
                 <div class="container text-center">
+                    <!-- Título del modal -->
                     <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Comentarios/Detalles</h1>
                 </div>
+                <!-- Botón para cerrar el modal -->
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="container d-flex align-items-center">
-                            <img src="../../resources/img/png/ejemplo_producto.png" class="tamanio_imagen_agregar"
-                                stalt="">
+                <form action="" id="gestionar_comentario">
+                    <!-- Sección para cargar información del comentario -->
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="container d-flex align-items-center">
+                                <img src="../../resources/img/png/ejemplo_producto.png" class="tamanio_imagen_agregar"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div>
+                                <!-- Campos para nombre del producto y cliente -->
+                                <label class="fs-8 btn-orange-color" for="nombre_producto_comentario"> Producto</label>
+                                <input type="text" name="nombre_producto_comentario" id="nombreProductoComentario"
+                                    class="form-control" aria-label="codigo">
+                            </div>
+                            <br>
+                            <div>
+                                <label class="fs-8 btn-orange-color" for="nombre_cliente_comentario"> Cliente</label>
+                                <input type="text" name="nombre_cliente_comentario" id="nombreClienteComentario"
+                                    class="form-control" aria-label="codigo">
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex flex-column align-items-center justify-content-center">
+                            <!-- Sección de valoración con estrellas -->
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="../../resources/img/png/start_on.png" class="imagen_valoration" alt="">
+                                </div>
+                                <div class="col-4">
+                                    <img src="../../resources/img/png/start_on.png" class="imagen_valoration" alt="">
+                                </div>
+                                <div class="col-4 ">
+                                    <img src="../../resources/img/png/start_on.png" class="imagen_valoration" alt="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="../../resources/img/png/start_on.png" class="imagen_valoration" alt="">
+                                </div>
+                                <div class="col-6">
+                                    <img src="../../resources/img/png/start_off.png" class="imagen_valoration" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div>
-                            <p class="fs-8 btn-orange-color"> Producto</p>
-                            <input type="text" class="form-control" aria-label="codigo">
-                        </div>
-                        <br>
-                        <div>
-                            <p class="fs-8 btn-orange-color"> Cliente</p>
-                            <input type="text" class="form-control" aria-label="codigo">
-                        </div>
-                    </div>
-                    <div class="col-4 d-flex flex-column align-items-center justify-content-center">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="../../resources/img/png/start_on.png" class="imagen_valoration" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="../../resources/img/png/start_on.png" class="imagen_valoration" alt="">
-                            </div>
-                            <div class="col-4 ">
-                                <img src="../../resources/img/png/start_on.png" class="imagen_valoration" alt="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <img src="../../resources/img/png/start_on.png" class="imagen_valoration" alt="">
-                            </div>
-                            <div class="col-6">
-                                <img src="../../resources/img/png/start_off.png" class="imagen_valoration" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row container d-flex align-items-center mensaje_margin">
-                <div class="mb-3">
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
+                    <!-- Mensaje del comentario -->
                     <br>
-                    <div class="container text-center">
-                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
-                        <button type="button" class="btn btn-red-color text-white"> Ocultar</button>
+                    <div class="row container d-flex align-items-center mensaje_margin">
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="mensaje_comentario" class="form-label">Mensaje</label>
+                                <!-- Área de texto para el mensaje del comentario -->
+                                <textarea class="form-control" id="mensaje_comentario" name="mensajeComentario"
+                                    rows="3"></textarea>
+                            </div>
+                            <br>
+                            <!-- Botones de acción (Agregar, Ocultar) -->
+                            <div class="container text-center">
+                                <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                                <button type="button" class="btn btn-red-color text-white"> Ocultar</button>
+                            </div>
+                            <br>
+                        </div>
                     </div>
-                    <br>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
 
 </html>
