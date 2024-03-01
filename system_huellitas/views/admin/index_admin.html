@@ -17,44 +17,45 @@
 </head>
 
 <body class="bg-yellow-color">
-    <div class="container">
+    <div class="container p-4">
         <div class="row justify-content-center align-items-center">
             <div class="col-sm-12 col-md-5 col-lg-5">
-                <img src="../../resources/img/png/huellitas_logo.png" width="600px">
+                <img src="../../resources/img/png/huellitas_logo.png" class="img-fluid">
             </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <form action="">
-                        <div class="row">
-                            <div class="col-auto ">
-                                <i class="bi bi-eye-fill" style="font-size: 2rem; color: black;"></i>
-                            </div>
-                            <div class="col">
-                                <div class="mb-4">
-                                    <label for="name" class="form-label">Alias</label>
-                                    <input type="text" class="form-control bg-skin-color p-2" id="name">
-                                </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <form action="">
+                    <div class="row align-items-center">
+                        <div class="col-auto ">
+                            <img src="../../resources/img/svg/eye.svg" width="35px">
+                        </div>
+                        <div class="col">
+                            <div class="mb-4">
+                                <label for="name" class="form-label">Alias</label>
+                                <input type="text" class="form-control bg-skin-color p-2" id="name">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-auto">
-                                <i class="bi bi-lock-fill" style="font-size: 2rem; color: black;"></i>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img src="../../resources/img/svg/lock.svg" width="35px">
+                        </div>
+                        <div class="col">
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control bg-skin-color p-2" id="password">
                             </div>
-                            <div class="col">
-                                <div class="mb-4">
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control bg-skin-color p-2" id="password">
-                                </div>
-                    </form>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 mt-5">
+                        <a id="loginButton" class="btn btn-orange-color text-light p-2 rounded-3" href="#">Ingresar</a>
+                    </div>
+                </form>
             </div>
-                <div class="container text-center mt-4">
-                    <!--<button type="button" class="btn btn-orange-color text-light p-2" href="dashboard.html">Ingresar</button>
-                    -->
-                    <a id="loginButton" class="btn btn-orange-color text-light p-2" href="#">Ingresar</a>
-                </div>
-            </div>
+
         </div>
     </div>
-
+    </div>
+    </div>
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../../controllers/admin/loginadmin.js"></script>

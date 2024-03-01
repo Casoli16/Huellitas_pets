@@ -7,6 +7,7 @@ body{
     font-weight:500
 }
 
-button{
-    width: 60%;
+
+#loginButton{
+    width: 100%;
 }
