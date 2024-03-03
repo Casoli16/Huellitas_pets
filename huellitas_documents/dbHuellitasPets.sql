@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS dbHuellitasPets;
+CREATE DATABASE IF NOT EXISTS db_huellitas_pets;
 
-dbhuellitaspetsUSE dbHuellitasPets;
+USE db_huellitas_pets;
 
 CREATE TABLE IF NOT EXISTS clientes (
   id_cliente INT AUTO_INCREMENT PRIMARY KEY,
