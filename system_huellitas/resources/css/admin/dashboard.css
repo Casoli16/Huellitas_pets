@@ -6,11 +6,6 @@
 .text{
     font-size: 70px;
 }
-  
-/* Quitamos la degradación de color que trae por defecto los botones de boostrap */
-.btn {
-    background-image: none;
-}
 
 /* Tamaño de la columna que tendrá la lista */
 .third_col{

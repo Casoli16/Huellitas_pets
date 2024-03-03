@@ -13,6 +13,8 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/table_styles.css">
     <!-- Agregamos el archivo css del menu -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+    <!-- Agregamos el archivo css para estilizar los switch-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
 </head>
 
 <body>
@@ -45,15 +47,16 @@
         <div class="container mt-4">
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
-                    <form class="d-flex" role="search" id="search_productos_perros">
+                    <form class="d-flex" role="search" id="search_productos_gatos">
                         <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="search" placeholder="Buscar...">
+                            id="searchGatos" name="searchGatos" placeholder="Buscar...">
                     </form>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-                        data-bs-toggle="modal" data-bs-target="#agregar_producto" type="button">
+                        data-bs-toggle="modal" data-bs-target="#agregar_producto" type="button"
+                        id="btn_agregar_producto" name="btnAgregarProducto">
                         <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="25px">
                         Agregar producto
                     </button>
@@ -144,14 +147,14 @@
                                     <img class="rounded-1" src="../../resources/img/png/rectangulo.png" width="120px">
                                 </div>
                                 <div class="col">
-                                    <button type="button" class="btn btn-red-color text-light"
-                                        id="btn_cargarImagen">Cargar
+                                    <button type="button" class="btn btn-red-color text-light" id="btn_cargarImagen"
+                                        name="btnCargarImg">Cargar
                                         imagen</button>
                                 </div>
                                 <div class="col-sm-12 col-md-auto">
                                     <div class="form-check form-switch float-end mb-md-5">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
+                                            id="switch" name="switch" checked>
                                     </div>
                                 </div>
                             </div>
@@ -161,55 +164,56 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
+                                        <label for="nombre_producto" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_producto"
+                                            name="nombreProducto">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1"
+                                        <label for="descripcion_producto"
                                             class="form-label fw-semibold">Descripción</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                                            rows="3"></textarea>
+                                        <textarea class="form-control" id="descripcion_producto"
+                                            name="descripcionProducto" rows="3"></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="nombre_admin" class="form-label fw-semibold">Precio</label>
-                                                <input type="number" class="form-control" id="nombre_admin"
-                                                    name="nombre_admin">
+                                                <label for="precio_producto"
+                                                    class="form-label fw-semibold">Precio</label>
+                                                <input type="number" min="0" step="any" class="form-control"
+                                                    id="precio_producto" name="precioProducto">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="nombre_admin"
+                                                <label for="cantidad_producto"
                                                     class="form-label fw-semibold">Cantidad</label>
-                                                <input type="number" class="form-control" id="nombre_admin"
-                                                    name="nombre_admin">
+                                                <input type="number" class="form-control" id="cantidad_producto"
+                                                    name="cantidadProducto">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Mascota</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_mascota" class="form-label fw-semibold">Mascota</label>
+                                        <select class="form-select" id="tipo_mascota" name="tipoMascota" required>
+                                            <option selected disabled value="">Selecciona el tipo de mascota</option>
                                             <option>Perro</option>
                                             <option>Gato</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="validationDefault04"
-                                            class="form-label fw-semibold">Categoría</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_categoria" class="form-label fw-semibold">Categoría</label>
+                                        <select class="form-select" id="tipo_categoria" name="tipoCategoria" required>
+                                            <option selected disabled value="">Selecciona la categoría</option>
                                             <option>Perro</option>
                                             <option>Gato</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Marca</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_marca" class="form-label fw-semibold">Marca</label>
+                                        <select class="form-select" id="tipo_marca" name="tipoMarca" required>
+                                            <option selected disabled value="">Selecciona la marca</option>
                                             <option></option>
                                         </select>
                                         <div class="text-end mt-2">¿No existe la marca que buscas?</div>
@@ -221,14 +225,14 @@
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                 </div>
                 <div class="container text-center mb-4 mt-4">
-                    <button type="button" class="btn btn-orange-color text-light me-3"
-                        data-bs-dismiss="modal">Guardar</button>
-                    <button type="button" class="btn btn-red-color text-light">Cancelar</button>
+                    <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
+                        id="btnGuardar" name="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light" id="btnCancelar"
+                        name="btnCancelar">Cancelar</button>
                 </div>
                 </form>
             </div>
@@ -277,54 +281,55 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
+                                        <label for="nombre_producto" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_producto"
+                                            name="nombreProducto">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1"
+                                        <label for="descripcion_producto"
                                             class="form-label fw-semibold">Descripción</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                                            rows="3"></textarea>
+                                        <textarea class="form-control" id="descripcion_producto" rows="3"
+                                            name="descripcionProducto"></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="nombre_admin" class="form-label fw-semibold">Precio</label>
-                                                <input type="number" class="form-control" id="nombre_admin"
-                                                    name="nombre_admin">
+                                                <label for="precio_producto"
+                                                    class="form-label fw-semibold">Precio</label>
+                                                <input type="number" min="0" step="any" class="form-control"
+                                                    id="precio_producto" name="precioProducto">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="nombre_admin"
+                                                <label for="cantidad_producto"
                                                     class="form-label fw-semibold">Cantidad</label>
-                                                <input type="number" class="form-control" id="nombre_admin"
-                                                    name="nombre_admin">
+                                                <input type="number" class="form-control" id="cantidad_producto"
+                                                    name="cantidadProducto">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Mascota</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_mascota" class="form-label fw-semibold">Mascota</label>
+                                        <select class="form-select" id="tipo_mascota" name="tipoMascota" required>
+                                            <option selected disabled value="">Selecciona el tipo de mascota</option>
                                             <option>Perro</option>
                                             <option>Gato</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="validationDefault04"
-                                            class="form-label fw-semibold">Categoría</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_categoria" class="form-label fw-semibold">Categoría</label>
+                                        <select class="form-select" id="tipo_categoria" name="tipoCategoria" required>
+                                            <option selected disabled value="">Selecciona la categoría</option>
                                             <option>Perro</option>
                                             <option>Gato</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Marca</label>
-                                        <select class="form-select" id="validationDefault04" required>
+                                        <label for="tipo_marca" class="form-label fw-semibold">Marca</label>
+                                        <select class="form-select" id="tipo_marca" name="tipoMarca" required>
                                             <option selected disabled value=""></option>
                                             <option></option>
                                         </select>
@@ -337,14 +342,14 @@
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                 </div>
                 <div class="container text-center mb-4 mt-4">
-                    <button type="button" class="btn btn-orange-color text-light me-3"
-                        data-bs-dismiss="modal">Guardar</button>
-                    <button type="button" class="btn btn-red-color text-light">Cancelar</button>
+                    <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
+                        id="btnGuardar" name="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light" id="btnCancelar"
+                        name="btnCancelar">Cancelar</button>
                 </div>
                 </form>
             </div>
@@ -357,7 +362,8 @@
             <div class="modal-content">
                 <div class="modal-header bg-orange-color">
                     <div class="container text-center text-light">
-                        <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Información del producto</h1>
+                        <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Información del producto
+                        </h1>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
@@ -378,42 +384,41 @@
                                 <div class="col-sm-12 col-md-6 col-lg-6 ">
                                     <div class="mb-3">
                                         <label for="nombre_admin" class="form-label fw-semibold mb-0">Nombre</label>
-                                        <p>Bola giratoria - Juguetes de gato</p>
+                                        <p id="nombre_producto">Bola giratoria - Juguetes de gato</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Descripción</label>
-                                        <p>Pelotas de plástico de diferentes colores</p>
+                                        <p id="descripcion_producto">Pelotas de plástico de diferentes colores</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Mascota</label>
-                                        <p>Gatos</p>
+                                        <p id="tipo_mascota">Gatos</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Categoría</label>
-                                        <p>Entretenimiento</p>
+                                        <p id="tipo_categoria">Entretenimiento</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Precio</label>
-                                        <p>Entretenimiento</p>
+                                        <p id="precio_producto">Entretenimiento</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Cantidad</label>
-                                        <p>$20.50</p>
+                                        <p id="cantidad_producto">$20.50</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Marca</label>
-                                        <p>MIMI</p>
+                                        <p id="tipo_marca">MIMI</p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                 </div>
