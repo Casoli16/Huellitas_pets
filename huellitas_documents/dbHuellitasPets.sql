@@ -150,7 +150,7 @@ END //
 
 DELIMITER ;
 
-CALL agregar_cupon ('TREBOR', 30, 1);
+CALL agregar_cupon_PA ('TREBOR', 30, 1);
 
 -- Función para calcular precio total de varios productos
 DELIMITER //
