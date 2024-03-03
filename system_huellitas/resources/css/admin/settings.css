@@ -1,3 +1,7 @@
+.btn {
+    background-image: none;
+}
+
 /* Establece la altura de la imagen del perfil a 200px */
 .imagen_perfil {
     height: 200px;

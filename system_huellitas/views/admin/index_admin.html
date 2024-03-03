@@ -13,39 +13,45 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/index.css">
     <!-- Iconos de boostrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
 </head>
 
 <body class="bg-yellow-color">
     <div class="container p-4">
+        <!-- Se centra la row tanto horizontalmente como veticalmente -->
         <div class="row justify-content-center align-items-center">
             <div class="col-sm-12 col-md-5 col-lg-5">
                 <img src="../../resources/img/png/huellitas_logo.png" class="img-fluid">
             </div>
             <div class="col-sm-12 col-md-4 col-lg-4">
-                <form action="">
+                <!-- Formulario -->
+                <form action="" id="login_admin" name="loginAdmin">
+                    <!-- Row que contiene el icono y el input -->
                     <div class="row align-items-center">
                         <div class="col-auto ">
                             <img src="../../resources/img/svg/eye.svg" width="35px">
                         </div>
                         <div class="col">
                             <div class="mb-4">
-                                <label for="name" class="form-label">Alias</label>
-                                <input type="text" class="form-control bg-skin-color p-2" id="name">
+                                <label for="name_login" class="form-label">Alias</label>
+                                <input type="text" class="form-control bg-skin-color p-2" id="name_login"
+                                    name="nameLogin">
                             </div>
                         </div>
                     </div>
+                    <!-- Row que contiene el icono y el input -->
                     <div class="row align-items-center">
                         <div class="col-auto">
                             <img src="../../resources/img/svg/lock.svg" width="35px">
                         </div>
                         <div class="col">
                             <div class="mb-4">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control bg-skin-color p-2" id="password">
+                                <label for="password_login" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control bg-skin-color p-2" id="password_login"
+                                    name="passwordLogin">
                             </div>
                         </div>
                     </div>
+                    <!-- Boton para ingresar, d-grid gap-2 toma todo el espacio horizontal de la col-->
                     <div class="d-grid gap-2 mt-5">
                         <a id="loginButton" class="btn btn-orange-color text-light p-2 rounded-3" href="#">Ingresar</a>
                     </div>

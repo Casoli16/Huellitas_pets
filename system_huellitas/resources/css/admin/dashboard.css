@@ -1,28 +1,24 @@
-.container-fluid{
-    border-radius: 10px;
-}
-
 .picture{
     width: 160px;
     height: 155px;
 }
 
-.button1{
-    width: 40%;
+.text{
+    font-size: 70px;
+}
+  
+/* Quitamos la degradación de color que trae por defecto los botones de boostrap */
+.btn {
+    background-image: none;
 }
 
-hr{
-    color: rgb(255, 255, 255);
-    border-width: 3px;
-}
-
+/* Tamaño de la columna que tendrá la lista */
 .third_col{
     height: 100px;
 }
 
+/* Color de fondo y de texto que tendrá la lista */
 .list-group-item {
     background-color: rgb(238, 150, 75);
     color: white;
   }
-
-  

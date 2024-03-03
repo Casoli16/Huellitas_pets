@@ -1,3 +1,4 @@
+/* Centrar todo mi contenido tanto horizontal como verticalmente en toda la pantalla*/
 body{
     display: flex;
     justify-content: center;
@@ -10,4 +11,8 @@ body{
 
 #loginButton{
     width: 100%;
+}
+
+.btn {
+    background-image: none;
 }
