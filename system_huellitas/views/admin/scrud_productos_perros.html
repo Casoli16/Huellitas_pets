@@ -49,7 +49,7 @@
                 <div class="col-md-6 col-lg-6">
                     <form class="d-flex" role="search" id="search_productos_perros">
                         <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="search" placeholder="Buscar...">
+                            id="searchPerros" name="searchPerros" placeholder="Buscar...">
                     </form>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
@@ -138,7 +138,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" id="crear_admin">
+                    <form action="" id="crear_producto">
                         <!-- Fila 1 -->
                         <div class="container text-center text-md-start text-lg-start">
                             <div class="row align-items-center gy-3">
@@ -147,13 +147,13 @@
                                 </div>
                                 <div class="col">
                                     <button type="button" class="btn btn-red-color text-light"
-                                        id="btn_cargarImagen">Cargar
+                                        id="btn_cargarImagen" name="btn_cargarImagen">Cargar
                                         imagen</button>
                                 </div>
                                 <div class="col-sm-12 col-md-auto">
                                     <div class="form-check form-switch float-end mb-md-5">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
+                                            id="switchPerros" name="switchPerros" checked>
                                     </div>
                                 </div>
                             </div>
@@ -163,59 +163,59 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
+                                        <label for="nombre_producto" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_producto" name="nombre_producto">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1"
+                                        <label for="descripcion_producto"
                                             class="form-label fw-semibold">Descripción</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                        <textarea class="form-control" id="descripcion_producto" name="descripcionProducto"
                                             rows="3"></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="nombre_admin" class="form-label fw-semibold">Precio</label>
-                                                <input type="number" class="form-control" id="nombre_admin"
-                                                    name="nombre_admin">
+                                                <label for="precio_producto" class="form-label fw-semibold">Precio</label>
+                                                <input type="number" min="0" step="any" class="form-control" id="precio_producto"
+                                                    name="precioProducto">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="nombre_admin"
+                                                <label for="cantidad_producto"
                                                     class="form-label fw-semibold">Cantidad</label>
-                                                <input type="number" class="form-control" id="nombre_admin"
-                                                    name="nombre_admin">
+                                                <input type="number" class="form-control" id="cantidad_producto"
+                                                    name="cantidadProducto">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Mascota</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_mascota" class="form-label fw-semibold">Mascota</label>
+                                        <select class="form-select" id="tipo_mascota" name="tipoMascota" required>
+                                            <option selected disabled value="">Selecciona el tipo de mascota</option>
                                             <option>Perro</option>
                                             <option>Gato</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="validationDefault04"
+                                        <label for="tipo_categoria"
                                             class="form-label fw-semibold">Categoría</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <select class="form-select" id="tipo_categoria" name="tipoCategoria" required>
+                                            <option selected disabled value="">Selecciona la Categoría</option>
                                             <option>Perro</option>
                                             <option>Gato</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Marca</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_marca" class="form-label fw-semibold">Marca</label>
+                                        <select class="form-select" id="tipo_marca" name="tipoMarca" required>
+                                            <option selected disabled value="">Selecciona la marca</option>
                                             <option></option>
                                         </select>
                                         <div class="text-end mt-2">¿No existe la marca que buscas?</div>
-                                        <a class="btn btn-red-color btn-sm text-light rounded-3 p-1 float-end mt-1"
+                                        <a class="btn btn-red-color btn-sm text-light rounded-3 p-1 float-end mt-1 "
                                             type="button" href="../admin/scrud_marcas.html">
                                             <img class="me-1" src="../../resources/img/png/boton_agregar.png"
                                                 width="15px">
@@ -229,14 +229,13 @@
                 </div>
                 <div class="container text-center mb-4 mt-4">
                     <button type="button" class="btn btn-orange-color text-light me-3"
-                        data-bs-dismiss="modal">Guardar</button>
-                    <button type="button" class="btn btn-red-color text-light">Cancelar</button>
+                        data-bs-dismiss="modal" id="btnGuardar" name="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light" id="btnCancelar" name="btnCancelar">Cancelar</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
-
 
 
 
@@ -254,7 +253,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" id="crear_admin">
+                    <form action="" id="crear_producto">
                         <!-- Fila 1 -->
                         <div class="container text-center text-md-start text-lg-start">
                             <div class="row align-items-center gy-3">
@@ -263,13 +262,13 @@
                                 </div>
                                 <div class="col">
                                     <button type="button" class="btn btn-red-color text-light"
-                                        id="btn_cargarImagen">Cargar
+                                        id="btn_cargarImagen" name="btn_cargarImagen">Cargar
                                         imagen</button>
                                 </div>
                                 <div class="col-sm-12 col-md-auto">
                                     <div class="form-check form-switch float-end mb-md-5">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
+                                            id="switchPerros" name="switchPerros" checked>
                                     </div>
                                 </div>
                             </div>
@@ -279,59 +278,59 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
+                                        <label for="nombre_producto" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_producto" name="nombre_producto">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1"
+                                        <label for="descripcion_producto"
                                             class="form-label fw-semibold">Descripción</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                        <textarea class="form-control" id="descripcion_producto" name="descripcionProducto"
                                             rows="3"></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="nombre_admin" class="form-label fw-semibold">Precio</label>
-                                                <input type="number" class="form-control" id="nombre_admin"
-                                                    name="nombre_admin">
+                                                <label for="precio_producto" class="form-label fw-semibold">Precio</label>
+                                                <input type="number" min="0" step="any" class="form-control" id="precio_producto"
+                                                    name="precioProducto">
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="nombre_admin"
+                                                <label for="cantidad_producto"
                                                     class="form-label fw-semibold">Cantidad</label>
-                                                <input type="number" class="form-control" id="nombre_admin"
-                                                    name="nombre_admin">
+                                                <input type="number" class="form-control" id="cantidad_producto"
+                                                    name="cantidadProducto">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Mascota</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_mascota" class="form-label fw-semibold">Mascota</label>
+                                        <select class="form-select" id="tipo_mascota" name="tipoMascota" required>
+                                            <option selected disabled value="">Selecciona el tipo de mascota</option>
                                             <option>Perro</option>
                                             <option>Gato</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="validationDefault04"
+                                        <label for="tipo_categoria"
                                             class="form-label fw-semibold">Categoría</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <select class="form-select" id="tipo_categoria" name="tipoCategoria" required>
+                                            <option selected disabled value="">Selecciona la Categoría</option>
                                             <option>Perro</option>
                                             <option>Gato</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="validationDefault04" class="form-label fw-semibold">Marca</label>
-                                        <select class="form-select" id="validationDefault04" required>
-                                            <option selected disabled value=""></option>
+                                        <label for="tipo_marca" class="form-label fw-semibold">Marca</label>
+                                        <select class="form-select" id="tipo_marca" name="tipoMarca" required>
+                                            <option selected disabled value="">Selecciona la marca</option>
                                             <option></option>
                                         </select>
                                         <div class="text-end mt-2">¿No existe la marca que buscas?</div>
-                                        <a class="btn btn-red-color btn-sm text-light rounded-3 p-1 float-end mt-1"
+                                        <a class="btn btn-red-color btn-sm text-light rounded-3 p-1 float-end mt-1 "
                                             type="button" href="../admin/scrud_marcas.html">
                                             <img class="me-1" src="../../resources/img/png/boton_agregar.png"
                                                 width="15px">
@@ -345,13 +344,14 @@
                 </div>
                 <div class="container text-center mb-4 mt-4">
                     <button type="button" class="btn btn-orange-color text-light me-3"
-                        data-bs-dismiss="modal">Guardar</button>
-                    <button type="button" class="btn btn-red-color text-light">Cancelar</button>
+                        data-bs-dismiss="modal" id="btnGuardar" name="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light" id="btnCancelar" name="btnCancelar">Cancelar</button>
                 </div>
                 </form>
             </div>
         </div>
     </div>
+
 
     <!-- Informacion producto -->
     <div class="modal fade" id="info_producto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -380,39 +380,39 @@
                                 <div class="col-sm-12 col-md-6 col-lg-6 ">
                                     <div class="mb-3">
                                         <label for="nombre_admin" class="form-label fw-semibold mb-0">Nombre</label>
-                                        <p>Bola giratoria - Juguetes de gato</p>
+                                        <p id="nombre_producto">Bola giratoria - Juguetes de gato</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Descripción</label>
-                                        <p>Pelotas de plástico de diferentes colores</p>
+                                        <p id="descripcion_producto">Pelotas de plástico de diferentes colores</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Mascota</label>
-                                        <p>Gatos</p>
+                                        <p id="tipo_mascota">Gatos</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Categoría</label>
-                                        <p>Entretenimiento</p>
+                                        <p id="tipo_categoria">Entretenimiento</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Precio</label>
-                                        <p>Entretenimiento</p>
+                                        <p id="precio_producto">Entretenimiento</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Cantidad</label>
-                                        <p>$20.50</p>
+                                        <p id="cantidad_producto">$20.50</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1"
                                             class="form-label fw-semibold mb-0">Marca</label>
-                                        <p>MIMI</p>
+                                        <p id="tipo_marca">MIMI</p>
                                     </div>
                                 </div>
 
