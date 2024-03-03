@@ -41,12 +41,12 @@ CREATE TABLE IF NOT EXISTS administradores (
   imagen_admin VARCHAR(50)
 );
 
-CREATE TABLE IF NOT EXISTS asignacionPermisos (
+CREATE TABLE IF NOT EXISTS asignacion_permisos (
   id_asignacion_permiso INT AUTO_INCREMENT PRIMARY KEY,
   id_permiso INT,
   id_admin INT,
-  CONSTRAINT fk_asignacionPermisos_permisos FOREIGN KEY (id_permiso) REFERENCES permisos (id_permiso),
-  CONSTRAINT fk_asignacionPermisos_administradores FOREIGN KEY (id_admin) REFERENCES administradores (id_admin)
+  CONSTRAINT fk_asignacion_permisos_permisos FOREIGN KEY (id_permiso) REFERENCES permisos (id_permiso),
+  CONSTRAINT fk_asignacion_permisos_administradores FOREIGN KEY (id_admin) REFERENCES administradores (id_admin)
 );
 
 CREATE TABLE IF NOT EXISTS categorias (
@@ -74,8 +74,8 @@ CREATE TABLE IF NOT EXISTS productos (
   mascotas ENUM('perro', 'gato'),
   id_categoria INT,
   id_marca INT,
-  CONSTRAINT fk_Productos_Marca FOREIGN KEY (id_marca) REFERENCES marcas (id_marca),
-  CONSTRAINT fk_Productos_categoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria)
+  CONSTRAINT fk_productos_marca FOREIGN KEY (id_marca) REFERENCES marcas (id_marca),
+  CONSTRAINT fk_productos_categoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria)
 );
 
 CREATE TABLE IF NOT EXISTS pedidos (
@@ -84,10 +84,10 @@ CREATE TABLE IF NOT EXISTS pedidos (
   fecha_registro_pedido DATE NOT NULL,
   direccion_pedido VARCHAR(250) NOT NULL,
   id_cliente INT,
-  CONSTRAINT fk_Pedidos_Clientes FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+  CONSTRAINT fk_pedidos_clientes FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
 );
 
-CREATE TABLE IF NOT EXISTS cuponOferta(
+CREATE TABLE IF NOT EXISTS cupon_oferta(
  id_cupon INT AUTO_INCREMENT PRIMARY KEY,
  codigo_cupon VARCHAR(50) UNIQUE,
  porcentaje_cupon FLOAT,
@@ -95,22 +95,22 @@ CREATE TABLE IF NOT EXISTS cuponOferta(
  fecha_ingreso_cupon DATE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS cuponesUtilizados(
+CREATE TABLE IF NOT EXISTS cupones_utilizados(
  id_utilizado INT AUTO_INCREMENT PRIMARY KEY,
  id_cupon INT,
  id_cliente INT,
- CONSTRAINT fk_cupononesUtilizados_idcupon FOREIGN KEY (id_cupon) REFERENCES cuponOferta (id_cupon),	
- CONSTRAINT fk_cupononesUtilizados_idcliente FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+ CONSTRAINT fk_cuponones_utilizados_idcupon FOREIGN KEY (id_cupon) REFERENCES cupon_oferta (id_cupon),	
+ CONSTRAINT fk_cuponones_utilizados_idcliente FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
 );
 
-CREATE TABLE IF NOT EXISTS detallesPedidos (
+CREATE TABLE IF NOT EXISTS detalles_pedidos (
   id_detalle_pedido INT AUTO_INCREMENT PRIMARY KEY,
   cantidad_detalle_pedido INT CHECK(cantidad_detalle_pedido >= 0),
   precio__detalle_pedido DECIMAL(5,2) NOT NULL,
   id_producto INT,
   id_pedido INT,
-  CONSTRAINT fk_DetallesPedidos_Productos FOREIGN KEY (id_producto) REFERENCES productos (id_producto),
-  CONSTRAINT fk_DetallesPedidos_Pedidos FOREIGN KEY (id_pedido) REFERENCES pedidos (id_pedido)
+  CONSTRAINT fk_detalles_pedidos_productos FOREIGN KEY (id_producto) REFERENCES productos (id_producto),
+  CONSTRAINT fk_detalles_pedidos_pedidos FOREIGN KEY (id_pedido) REFERENCES pedidos (id_pedido)
 );
 
 CREATE TABLE IF NOT EXISTS valoraciones (
@@ -120,29 +120,24 @@ CREATE TABLE IF NOT EXISTS valoraciones (
   fecha_valoracion DATE NOT NULL,
   estado_valoracion BOOL,
   id_cliente INT,
-  CONSTRAINT fk_Valoraciones_clientes FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+  CONSTRAINT fk_valoraciones_clientes FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
-
-SELECT * FROM cuponOferta;
-
-
-/*SELECT * FROM valoraciones, detallespedidos, pedidos, productos, subcategorias, administradores, Permisos, clientes;*/
 
 DELIMITER //
 
-CREATE PROCEDURE AgregarCupon(codigo VARCHAR(100), porcentaje INT, estado BOOL)
+CREATE PROCEDURE agregar_cupon_PA(codigo VARCHAR(100), porcentaje INT, estado BOOL)
 BEGIN
     -- Declaramos la variable que contendrá el día de ingreso del cupón
-    DECLARE fechaActual DATE;
-    SET fechaActual = CURDATE();
+    DECLARE fecha_actual DATE;
+    SET fecha_actual = CURDATE();
     
-    INSERT INTO cuponOferta(codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon) VALUES (codigo, porcentaje, estado, fechaActual);
+    INSERT INTO cupon_oferta(codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon) VALUES (codigo, porcentaje, estado, fecha_actual);
 
 END //
 
 DELIMITER ;
 
-CALL AgregarCupon ('TREBOR', 30, 1);
+CALL agregar_cupon ('TREBOR', 30, 1);
 
 -- Función para calcular precio total de varios productos
 DELIMITER //
@@ -167,7 +162,7 @@ DELIMITER ;
 -- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE HACE UN PEDIDO --
 DELIMITER //
 
-CREATE TRIGGER actualizar_existencias AFTER INSERT ON detallesPedidos
+CREATE TRIGGER actualizar_existencias AFTER INSERT ON detalles_pedidos
 FOR EACH ROW
 BEGIN 
 	UPDATE productos
