@@ -179,7 +179,7 @@ CREATE TRIGGER actualizar_existencias AFTER INSERT ON detalles_pedidos
 FOR EACH ROW
 BEGIN 
 	UPDATE productos
-	SET existencia_producto = existencia_producto - NEW.cantidad_producto
+	SET existencia_producto = existencia_producto - NEW.cantidad_detalle_pedido
 	WHERE id_producto = NEW.id_producto;
 END
 
