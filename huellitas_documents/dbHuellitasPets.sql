@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS categorias (
 CREATE TABLE IF NOT EXISTS marcas (
   id_marca INT AUTO_INCREMENT PRIMARY KEY,
   nombre_marca VARCHAR(100) NOT NULL,
-  imagen_marca VARCHAR(25) 'imagen_marca.png'
+  imagen_marca VARCHAR(25) DEFAULT 'imagen_marca.png'
 );
 
 CREATE TABLE IF NOT EXISTS productos (
