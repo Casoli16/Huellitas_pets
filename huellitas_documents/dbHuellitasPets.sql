@@ -6,15 +6,19 @@ CREATE TABLE IF NOT EXISTS clientes (
   id_cliente INT AUTO_INCREMENT PRIMARY KEY,
   nombre_cliente VARCHAR(50) NOT NULL,
   apellido_cliente VARCHAR(50) NOT NULL,
-  dui_cliente VARCHAR(10) UNIQUE,
-  correo_cliente VARCHAR(100) UNIQUE,
-  telefono_cliente VARCHAR(9) UNIQUE,
+  dui_cliente VARCHAR(10),
+  CONSTRAINT dui_cliente_unico UNIQUE(dui_cliente),
+  correo_cliente VARCHAR(100),
+  CONSTRAINT correo_cliente_unico UNIQUE(correo_cliente),
+  telefono_cliente VARCHAR(9),
+  CONSTRAINT telefono_cliente_unico UNIQUE(telefono_cliente),
   nacimiento_cliente DATE,
+  CONSTRAINT nacimiento_cliente_check_edad CHECK (nacimiento_cliente <= '2006-01-01'),
   direccion_cliente VARCHAR(250) NOT NULL,
   clave_cliente VARCHAR(200),
   estado_cliente ENUM ('Activo', 'Inactivo'),
   fecha_registro_cliente DATE,
-  imagen_cliente VARCHAR(50)
+  imagen_cliente VARCHAR(50) DEFAULT 'imagen_cliente.png'
 );
 
 CREATE TABLE IF NOT EXISTS permisos (
@@ -34,11 +38,13 @@ CREATE TABLE IF NOT EXISTS administradores (
   id_admin INT AUTO_INCREMENT PRIMARY KEY,
   nombre_admin VARCHAR(50) NOT NULL,
   apellido_admin VARCHAR(50) NOT NULL,
-  correo_admin VARCHAR(100) UNIQUE,
-  alias_admin VARCHAR(50) UNIQUE,
+  correo_admin VARCHAR(100),
+  CONSTRAINT correo_admin_unico UNIQUE(correo_admin),
+  alias_admin VARCHAR(50),
+  CONSTRAINT alias_admin_unico UNIQUE(alias_admin),
   clave_admin VARCHAR(100),
   fecha_registro_admin DATE,
-  imagen_admin VARCHAR(50)
+  imagen_admin VARCHAR(50) DEFAULT 'imagen_admin.png'
 );
 
 CREATE TABLE IF NOT EXISTS asignacion_permisos (
@@ -53,13 +59,13 @@ CREATE TABLE IF NOT EXISTS categorias (
   id_categoria INT AUTO_INCREMENT PRIMARY KEY,
   nombre_categoria VARCHAR(50) NOT NULL,
   descripcion_categoria VARCHAR(250) NOT NULL,
-  imagen_categoria VARCHAR(50)
+  imagen_categoria VARCHAR(50) DEFAULT 'imagen_categoria.png'
 );
 
 CREATE TABLE IF NOT EXISTS marcas (
   id_marca INT AUTO_INCREMENT PRIMARY KEY,
   nombre_marca VARCHAR(100) NOT NULL,
-  imagen_marca VARCHAR(25)
+  imagen_marca VARCHAR(25) 'imagen_marca.png'
 );
 
 CREATE TABLE IF NOT EXISTS productos (
@@ -67,9 +73,11 @@ CREATE TABLE IF NOT EXISTS productos (
   nombre_producto VARCHAR(50) NOT NULL,
   descripcion_producto VARCHAR(250) NOT NULL,
   precio_producto DECIMAL(5,2) NOT NULL,
-  imagen_producto VARCHAR(50),
+  CONSTRAINT precio_producto_check CHECK(precio_producto > 0),
+  imagen_producto VARCHAR(50) DEFAULT 'imagen_producto.png',
   estado_producto ENUM('activo', 'inactivo'),
   existencia_producto INT,
+  CONSTRAINT existencia_producto_check CHECK(existencia_producto > 0),
   fecha_registro_producto DATE NOT NULL,
   mascotas ENUM('perro', 'gato'),
   id_categoria INT,
@@ -89,7 +97,8 @@ CREATE TABLE IF NOT EXISTS pedidos (
 
 CREATE TABLE IF NOT EXISTS cupon_oferta(
  id_cupon INT AUTO_INCREMENT PRIMARY KEY,
- codigo_cupon VARCHAR(50) UNIQUE,
+ codigo_cupon VARCHAR(50),
+ CONSTRAINT codigo_cupon_check UNIQUE(codigo_cupon),
  porcentaje_cupon FLOAT,
  estado_cupon BOOL,
  fecha_ingreso_cupon DATE NOT NULL
@@ -105,8 +114,10 @@ CREATE TABLE IF NOT EXISTS cupones_utilizados(
 
 CREATE TABLE IF NOT EXISTS detalles_pedidos (
   id_detalle_pedido INT AUTO_INCREMENT PRIMARY KEY,
-  cantidad_detalle_pedido INT CHECK(cantidad_detalle_pedido >= 0),
+  cantidad_detalle_pedido INT,
+  CONSTRAINT precio_producto_check CHECK(cantidad_detalle_pedido >= 0),
   precio__detalle_pedido DECIMAL(5,2) NOT NULL,
+  CONSTRAINT precio__detalle_pedido_check CHECK(precio__detalle_pedido > 0),
   id_producto INT,
   id_pedido INT,
   CONSTRAINT fk_detalles_pedidos_productos FOREIGN KEY (id_producto) REFERENCES productos (id_producto),
@@ -116,12 +127,14 @@ CREATE TABLE IF NOT EXISTS detalles_pedidos (
 CREATE TABLE IF NOT EXISTS valoraciones (
   id_valoracion INT AUTO_INCREMENT PRIMARY KEY,
   calificacion_valoracion INT,
+  CONSTRAINT calificacion_valoracion_check CHECK(calificacion_valoracion >= 0),
   comentario_valoracion VARCHAR(250),
   fecha_valoracion DATE NOT NULL,
   estado_valoracion BOOL,
   id_cliente INT,
   CONSTRAINT fk_valoraciones_clientes FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
+
 
 DELIMITER //
 
