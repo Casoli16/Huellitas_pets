@@ -149,7 +149,7 @@
 <!-- Modal para modificar el estado del pedido -->
 <div class="modal" id="EstadoPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form>
+        <form id="Formulario_ModificarPed">
             <div class="modal-content">
                 <!-- Encabezado del modal -->
                 <div class="modal-header bg-orange-color">
@@ -168,7 +168,7 @@
                             pedido</label>
                         <br>
                         <!-- Dropdown para seleccionar el estado -->
-                        <div class="dropdown">
+                        <div class="dropdown" id="DropDown_ModificarPed" name="DropDown_ModificarPedN">
                             <br>
                             <button class="btn bg-gray-color dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -201,8 +201,8 @@
 
 <!-- Modal para mostrar información detallada del pedido -->
 <div class="modal" id="InfoPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <form>
+    <div class="modal-dialog modal-xl">
+        <form id="Formulario_InformacionPedidos" name="Formulario_InformacionPedidosN">
             <div class="modal-content">
                 <!-- Encabezado del modal -->
                 <div class="modal-header bg-orange-color">
@@ -225,9 +225,9 @@
                                     <img src="../../resources/img/png/product1.png" alt="Imagen" height="90">
                                     <!-- Información del producto -->
                                     <div class="ms-2 me-auto">
-                                        <span class="badge badge-custom text-dark shadow mb-4">1</span>
-                                        <div class="marca"> Pedigree</div>
-                                        <div class="producto"> Bolsa 21 kilos, pedigree perro adulto </div>
+                                        <span class="badge badge-custom text-dark shadow mb-4" id="Cantidad_InformacionPedidos" name="Cantidad__InformacionPedidosN">1</span>
+                                        <div class="marca" id="Marca_InformacionPedidos" name="Marca_InformacionPedidosN"> Pedigree</div>
+                                        <div class="producto" id="Producto_InformacionPedidos" name="Producto__InformacionPedidosN"> Bolsa 21 kilos, pedigree perro adulto </div>
                                     </div>
                                     <!-- Opciones para el producto -->
                                     <div class="d-flex flex-column mb-3">
@@ -236,7 +236,7 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="p-2">
-                                            <label class="fw-bold">$9.80</label>
+                                            <label class="fw-bold" id="Precio_InformacionPedidosN">$9.80</label>
                                         </div>
                                     </div>
                                 </li>
@@ -287,7 +287,7 @@
                                 for="flexSwitchCheckChecked">Nombre</label>
                             <br>
                             <!-- Nombre del cliente -->
-                            <label class="form-check-label" for="flexSwitchCheckChecked">Daniel Carranza</label>
+                            <label class="form-check-label" for="flexSwitchCheckChecked" id="Nombre__InformacionPedidos" name="Nombr_InformacionPedidosN">Daniel Carranza</label>
                         </div>
                         <!-- Más información adicional -->
                         <br>
@@ -296,7 +296,7 @@
                             <label class="form-check-label custom-bold-label"
                                 for="flexSwitchCheckChecked">Dirección</label>
                             <br>
-                            <label class="form-check-label" for="flexSwitchCheckChecked">Calle las rosas, residencial 4,
+                            <label class="form-check-label" for="flexSwitchCheckChecked" id="Direccion_InformacionPedidos" name="Direccion_InformacionPedidosN">Calle las rosas, residencial 4,
                                 poligono 3A, casa #10</label>
                         </div>
                         <!-- Más información de la dirección -->
@@ -307,7 +307,7 @@
                                 realizo el pago</label>
                             <br>
                             <!-- Fecha de pago del pedido -->
-                            <label class="form-check-label" for="flexSwitchCheckChecked">2024-03-10</label>
+                            <label class="form-check-label" for="flexSwitchCheckChecked" id="Fecha_InformacionPedidos" name="Fecha_InformacionPedidosN">2024-03-10</label>
                         </div>
                         <!-- Total a pagar -->
                         <br>
@@ -316,7 +316,7 @@
                                 pagar</label>
                             <br>
                             <!-- Monto total a pagar por el pedido -->
-                            <label class="form-check-label" for="flexSwitchCheckChecked">$29.40</label>
+                            <label class="form-check-label" for="flexSwitchCheckChecked" id="Total_InformacionPedidos" name="Total_InformacionPedidosN">$29.40</label>
                         </div>
                     </div>
                     <br>
@@ -324,7 +324,7 @@
                 <!-- Pie del modal -->
                 <div class="container text-center">
                     <!-- Botón para salir del modal -->
-                    <button type="button" class="btn btn-orange-color text-white">Salir</button>
+                    <button type="button" class="btn btn-orange-color text-white" data-bs-dismiss="modal">Salir</button>
                 </div>
                 <br>
             </div>

@@ -40,7 +40,7 @@
       <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
       <div class="row align-items-center gy-4">
         <div class="col-md-6 col-lg-6">
-          <form class="d-flex" role="search" id="search_productos_perros">
+          <form class="d-flex" role="search" id="search_cupones_perros">
             <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search" id="search"
               placeholder="Buscar...">
           </form>
@@ -158,7 +158,7 @@
 <!--Modal para el boton de agregar cupon-->
 <div class="modal" id="agCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form>
+    <form id="AgregarCuponFormulario" name="AgregarCuponFormularioN">
       <div class="modal-content">
         <div class="modal-header bg-orange-color">
           <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
@@ -172,18 +172,18 @@
           <div class="row">
             <div class="col-sm-12 col-md-6">
               <p class="fs-8 btn-orange-color">Código</p>
-              <input type="text" class="form-control" placeholder="#####" aria-label="codigo">
+              <input type="text" class="form-control" placeholder="#####" aria-label="codigo" id="Codigo_AgregarCuponFormulario" name="Codigo_AgregarCuponFormularioN">
             </div>
             <!-- EL div que esta debajo donde se dice col-sm-12 y col-sm-6 es para que los input usen
             todo el espacio disponible y sino se ordenen 2 inputs a la par-->
             <div class="col-sm-12 col-md-6">
               <p class="fs-8 btn-orange-color">Porcentaje</p>
-              <input type="text" class="form-control" placeholder="100%" aria-label="porcentaje">
+              <input type="text" class="form-control" placeholder="100%" aria-label="porcentaje" id="Porcentaje_AgregarCuponFormulario" name="Porcentaje_AgregarCuponFormularioN">
             </div>
           </div>
           <br>
           <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-          <div class="form-check form-switch">
+          <div class="form-check form-switch" id="check_AgregarCuponFormulario" name="check_AgregarCuponFormularioN">
             <label class="form-check-label" for="flexSwitchCheckChecked">Cupón habilitado</label>
             <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
               checked>
@@ -191,7 +191,7 @@
         </div>
         <!-- Este Boton es para enviar los datos del formulario -->
         <div class="container text-center">
-          <button type="button" class="btn btn-orange-color text-white">Agregar</button>
+          <button type="button" class="btn btn-orange-color text-white" id="BotonAgregar_AgregarCuponFormulario">Agregar</button>
         </div>
         <br>
       </div>
@@ -205,7 +205,7 @@
 <!--Modal para el boton de actualizar cupon-->
 <div class="modal " id="actCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form>
+    <form id="ActualizarCuponFormulario" name="ActualizarCuponFormularioN">
       <div class="modal-content">
         <!-- El div que esta debajo del comentario indica el color de fondo del titulo del modal y el titulo -->
         <div class="modal-header bg-orange-color">
@@ -219,7 +219,7 @@
           <div class="row">
             <div class="col-sm-12 col-md-6">
               <p class="fs-8 btn-orange-color"> Código</p>
-              <input type="text" class="form-control" placeholder="#####" aria-label="codigo">
+              <input type="text" class="form-control" placeholder="#####" aria-label="codigo" id="Codigo_ActualizarCupon" name="Codigo_ActualizarCuponN"> 
             </div>
             <div class="col-sm-12 col-md-6">
               <p class="fs-8 btn-orange-color"> Porcentaje</p>
@@ -228,7 +228,7 @@
           </div>
           <br>
           <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-          <div class="form-check form-switch">
+          <div class="form-check form-switch" id="switch_ActualizarCupon" name="switch_ActualizarCuponN">
             <label class="form-check-label" for="flexSwitchCheckChecked">Cupón habilitado</label>
             <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
               checked>
@@ -236,7 +236,7 @@
         </div>
         <!-- Este botón servirá para enviar la información del formulario -->
         <div class="container text-center">
-          <button type="button" class="btn btn-orange-color text-white">Actualizar</button>
+          <button type="button" class="btn btn-orange-color text-white" id="BotonAc_ActualizarCupon">Actualizar</button>
         </div>
         <br>
       </div>
