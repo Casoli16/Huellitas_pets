@@ -1,5 +1,6 @@
-// Script JavaScript para manejar la redirección al dashboard
 document.getElementById("loginButton").addEventListener("click", function() {
-    // Redirecciona al usuario al dashboard.html
-    window.location.href = "../../views/admin/dashboard.html";
+    // Marcar que se ha hecho clic en el botón de inicio de sesión
+    localStorage.setItem("loginClicked", "true");
+    // Redirigir a la página de la pantalla de carga
+    window.location.href = "../../views/admin/pantalla_carga.html";
 });
