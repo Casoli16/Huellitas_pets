@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS detalles_pedidos (
 
 CREATE TABLE IF NOT EXISTS valoraciones (
   id_valoracion INT AUTO_INCREMENT PRIMARY KEY,
-  calificacion_valoracion DECIMAL(5,2),
+  calificacion_valoracion INT,
   CONSTRAINT calificacion_valoracion_check CHECK(calificacion_valoracion >= 0),
   comentario_valoracion VARCHAR(250),
   fecha_valoracion DATE DEFAULT NOW(),
