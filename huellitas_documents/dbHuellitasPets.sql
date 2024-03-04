@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS pedidos (
   CONSTRAINT fk_pedidos_clientes FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
 );
 
-CREATE TABLE cupones_oferta(
+CREATE TABLE IF NOT EXISTS cupones_oferta(
  id_cupon INT AUTO_INCREMENT PRIMARY KEY,
  codigo_cupon VARCHAR(50),
  CONSTRAINT codigo_cupon_unique UNIQUE(codigo_cupon),
@@ -105,7 +105,7 @@ CREATE TABLE cupones_oferta(
  CONSTRAINT porcentaje_cupon_check CHECK(porcentaje_cupon > 0),
  estado_cupon BOOL,
  fecha_ingreso_cupon DATE DEFAULT NOW()
-)
+);
 
 CREATE TABLE IF NOT EXISTS cupones_utilizados(
  id_utilizado INT AUTO_INCREMENT PRIMARY KEY,
@@ -147,7 +147,7 @@ BEGIN
     DECLARE fecha_actual DATE;
     SET fecha_actual = CURDATE();
     
-    INSERT INTO cupon_oferta(codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon) VALUES (codigo, porcentaje, estado, fecha_actual);
+    INSERT INTO cupones_oferta(codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon) VALUES (codigo, porcentaje, estado, fecha_actual);
 
 END //
 
@@ -189,6 +189,6 @@ END
 //
 DELIMITER ;
 
-SELECT * FROM productos
+SELECT * FROM productos;
 SELECT calcular_precio_total_producto(2, 5);	
 
