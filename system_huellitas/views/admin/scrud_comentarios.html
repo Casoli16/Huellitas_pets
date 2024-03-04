@@ -22,35 +22,35 @@
 </head>
 
 <body>
-    <!-- Encabezado de la página -->
-    <header class="container_one p-2S">
+    <header>
         <!-- Insertar nuestro navbar a esta pantalla usando js -->
         <div id="navbar"></div>
-        <div class="container-fluid p-4 mt-5">
-            <!-- Encabezado con logo y título -->
-            <div class="d-flex">
-                <img src="../../resources/img/svg/comments.svg" class="custom-margin-right" alt="">
-                <h2 class="mt-2"><strong>Comentarios</strong></h2>
-                <div class="row"></div>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- Barra de búsqueda -->
-        <div class="row">
-            <div class="col align-self-center">
-                <div class="col-10 barra_busqueda">
-                    <form class="d-flex" id="buscar_comentario" role="search">
-                        <input class="form-control me-4 shadow" type="search" placeholder="Buscar..."
-                            aria-label="Search" name="busquedaComentarios" id="busqueda_comentarios">
-                        <div class="col-7">
-
-                        </div>
-                    </form>
+        <div class="container p-2 mt-5">
+            <div class="row mt-5">
+                <!-- Automaticamente cada col se va distribuir en la row -->
+                <div class="col-auto">
+                    <img src="../../resources/img/svg/comments.svg" width="50px">
+                </div>
+                <div class="col-auto">
+                    <h2 class="fw-bold">Comentarios</h2>
                 </div>
             </div>
         </div>
+    </header>
+    
+        <main>
+            <!-- Barra de búsqueda -->
+            <div class="container mt-4">
+                <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+                <div class="row align-items-center gy-4">
+                    <div class="col-md-6 col-lg-6">
+                        <form class="d-flex" role="search" id="search_Comentarios">
+                            <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
+                                id="busqueda_comentarios" name="busquedaComentarios" placeholder="Buscar...">
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         <!-- Contenido principal: Tabla de comentarios -->
         <div class="container p-4 mt-5">
