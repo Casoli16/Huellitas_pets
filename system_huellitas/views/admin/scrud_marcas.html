@@ -21,37 +21,45 @@
 </head>
 
 <body>
-    <!-- Encabezado de la página -->
-    <header class="container_one p-2S">
-        <!-- Navbar (será insertado mediante JS) -->
+    <header>
+        <!-- Insertar nuestro navbar a esta pantalla usando js -->
         <div id="navbar"></div>
-        <div class="container-fluid p-4 mt-5">
-            <!-- Encabezado con logo y título -->
-            <div class="d-flex">
-                <img src="../../resources/img/svg/brand.svg" class="custom-margin-right" alt="">
-                <h2 class="mt-2"><strong>Marcas</strong></h2>
-                <div class="row"></div>
+        <div class="container p-2 mt-5">
+            <div class="row mt-5">
+                <!-- Automaticamente cada col se va distribuir en la row -->
+                <div class="col-auto">
+                    <img src="../../resources/img/svg/brand.svg" width="50px">
+                </div>
+                <div class="col-auto">
+                    <h2 class="fw-bold">Marcas</h2>
+                </div>
             </div>
         </div>
     </header>
 
     <main>
         <!-- Barra de búsqueda -->
-        <div class="row">
-            <div class="col align-self-center">
-                <div class="col-10 barra_busqueda">
-                    <form class="d-flex" id="buscar_marcas" role="search">
-                        <input class="form-control me-4 shadow" type="search" placeholder="Buscar..."
-                            aria-label="Search" name="busquedaMarcas" id="busqueda_marcas">
-                        <div class="col-7">
-                            <!-- Botón para abrir el modal de agregar marca -->
-                            <button class="btn btn-red-color text-light boton_busqueda img-fluid" type="button"
-                                data-bs-toggle="modal" data-bs-target="#agmarc">
-                                <img src="../../resources/img/png/boton_agregar.png"
-                                    class="custom-margin-right tamanio_imagen_botones" alt="">Agregar Marca
-                            </button>
-                        </div>
+        <div class="container mt-4">
+            <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 col-lg-6">
+                    <form class="d-flex" role="search" id="search_marcas">
+                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
+                            id="busqueda_marca" name="busquedaMarca" placeholder="Buscar...">
                     </form>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
+                    <div class="d-md-none d-lg-none">
+                        <p>Haz clíc en el siguiente botón para poder agregar una nueva marca.</p>
+                    </div>
+                    <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
+                    <button
+                        class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
+                        data-bs-toggle="modal" data-bs-target="#agmarc" type="button">
+                        <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
+                        Agregar Marca
+                    </button>
                 </div>
             </div>
         </div>
@@ -70,8 +78,8 @@
                 <tbody class="text-center">
                     <!-- Datos de ejemplo en la tabla -->
                     <tr>
-                        <td><img class="tamanio_imagen" src="../../resources/img/svg/dog.svg" alt=""></td>
-                        <td>Otto</td>
+                        <td><img class="" src="../../resources/img/png/marcas_img_ejemplo.png" alt=""></td>
+                        <td>Pedigree</td>
                         <td>
                             <!-- Botones de acciones (eliminar, editar) -->
                             <button type="button" class="btn btn-light"><img
@@ -83,8 +91,8 @@
                     </tr>
                     <!-- Datos de ejemplo en la tabla -->
                     <tr>
-                        <td><img class="tamanio_imagen" src="../../resources/img/svg/dog.svg" alt=""></td>
-                        <td>Otto</td>
+                        <td><img class="" src="../../resources/img/png/marcas_img_ejemplo.png" alt=""></td>
+                        <td>Pedigree</td>
                         <td>
                             <!-- Botones de acciones (eliminar, editar) -->
                             <button type="button" class="btn btn-light"><img
@@ -96,8 +104,8 @@
                     </tr>
                     <!-- Datos de ejemplo en la tabla -->
                     <tr>
-                        <td><img class="tamanio_imagen" src="../../resources/img/svg/dog.svg" alt=""></td>
-                        <td>Otto</td>
+                        <td><img class="" src="../../resources/img/png/marcas_img_ejemplo.png" alt=""></td>
+                        <td>Pedigree</td>
                         <td>
                             <!-- Botones de acciones (eliminar, editar) -->
                             <button type="button" class="btn btn-light"><img
