@@ -97,20 +97,21 @@ CREATE TABLE IF NOT EXISTS pedidos (
   CONSTRAINT fk_pedidos_clientes FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
 );
 
-CREATE TABLE IF NOT EXISTS cupon_oferta(
+CREATE TABLE cupones_oferta(
  id_cupon INT AUTO_INCREMENT PRIMARY KEY,
  codigo_cupon VARCHAR(50),
- CONSTRAINT codigo_cupon_check UNIQUE(codigo_cupon),
+ CONSTRAINT codigo_cupon_unique UNIQUE(codigo_cupon),
  porcentaje_cupon INT,
+ CONSTRAINT porcentaje_cupon_check CHECK(porcentaje_cupon > 0),
  estado_cupon BOOL,
  fecha_ingreso_cupon DATE DEFAULT NOW()
-);
+)
 
 CREATE TABLE IF NOT EXISTS cupones_utilizados(
  id_utilizado INT AUTO_INCREMENT PRIMARY KEY,
  id_cupon INT,
  id_cliente INT,
- CONSTRAINT fk_cuponones_utilizados_idcupon FOREIGN KEY (id_cupon) REFERENCES cupon_oferta (id_cupon),	
+ CONSTRAINT fk_cuponones_utilizados_idcupon FOREIGN KEY (id_cupon) REFERENCES cupones_oferta (id_cupon),	
  CONSTRAINT fk_cuponones_utilizados_idcliente FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
 );
 
