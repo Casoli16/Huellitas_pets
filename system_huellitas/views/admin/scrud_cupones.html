@@ -2,207 +2,213 @@
 <html lang="en">
 
 <head>
-  <!-- Definimos el lenguaje para indicar que caracteres deberá leer -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Huellitas Pets - cupones</title>
-  <!-- Agregamos una imagen para que se vea en la ventana -->
-  <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
-  <!-- Agregamos el framework de boostrap - css -->
-  <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
-  <!-- Agregamos el archivo css del menu -->
-  <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
-  <!-- Agregamos su archivo css para el estilo de la tabla -->
-  <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_marcas.css">
-  <!-- Agregamos la libreria de los iconos -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- Agregamos el archivo css para estilizar los switch-->
-  <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
+    <!-- Definimos el lenguaje para indicar que caracteres deberá leer -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas Pets - cupones</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+    <!-- Agregamos su archivo css para el estilo de la tabla -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_marcas.css">
+    <!-- Agregamos la libreria de los iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Agregamos el archivo css para estilizar los switch-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
 </head>
 
 <body>
-  <header>
-    <!-- Insertar nuestro navbar a esta pantalla usando js -->
-    <div id="navbar"></div>
-    <div class="container p-2 mt-5">
-      <div class="row mt-5">
-        <!-- Automaticamente cada col se va distribuir en la row -->
-        <div class="col-auto">
-          <img src="../../resources/img/png/giftcardIcon.png" width="50px">
+    <header>
+        <!-- Insertar nuestro navbar a esta pantalla usando js -->
+        <div id="navbar"></div>
+        <div class="container p-2 mt-5">
+            <div class="row mt-5">
+                <!-- Automaticamente cada col se va distribuir en la row -->
+                <div class="col-auto">
+                    <img src="../../resources/img/png/giftcardIcon.png" width="50px">
+                </div>
+                <div class="col-auto">
+                    <h2 class="fw-bold">Cupones</h2>
+                </div>
+            </div>
         </div>
-        <div class="col-auto">
-          <h2 class="fw-bold">Cupones</h2>
-        </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <!-- Buscador y boton de agregar -->
-    <div class="container mt-4">
-      <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
-      <div class="row align-items-center gy-4">
-        <div class="col-md-6 col-lg-6">
-          <form class="d-flex" role="search" id="search_cupones_perros">
-            <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search" id="search"
-              placeholder="Buscar...">
-          </form>
+    <main>
+        <!-- Buscador y boton de agregar -->
+        <div class="container mt-4">
+            <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 col-lg-6">
+                    <form class="d-flex" role="search" id="search_cupones_perros">
+                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
+                            id="search" placeholder="Buscar...">
+                    </form>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
+                    <div class="d-md-none d-lg-none">
+                        <p>Haz clíc en el siguiente botón para poder agregar un nuevo cupón.</p>
+                    </div>
+                    <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
+                    <button
+                        class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
+                        data-bs-toggle="modal" data-bs-target="#agCupon" type="button">
+                        <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
+                        Agregar cupon
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
-          <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
-          <div class="d-md-none d-lg-none">
-            <p>Haz clíc en el siguiente botón para poder agregar un nuevo cupón.</p>
-          </div>
-          <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
-          <button class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-            data-bs-toggle="modal" data-bs-target="#agCupon" type="button">
-            <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
-            Agregar cupon
-          </button>
-        </div>
-      </div>
-    </div>
 
-    <!-- Empieza la programación de las tablas
+        <!-- Empieza la programación de las tablas
       Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->
-    <div class="container p-4 mt-4">
-      <table class="table">
-        <thead>
-          <tr class="table">
-            <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
-            <th scope="col">Nombre del código</th>
-            <th scope="col">Fecha registro</th>
-            <th scope="col">Porcentaje %</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
-            <td>ING_WILL</td>
-            <td>2024-02-14</td>
-            <td>40%</td>
-            <td>
-              <div class="form-switch">
-                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                  id="flexSwitchCheckChecked" checked disabled>
-                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+        <div class="container p-4 mt-4">
+            <table class="table">
+                <thead>
+                    <tr class="table">
+                        <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
+                        <th scope="col">Nombre del código</th>
+                        <th scope="col">Fecha registro</th>
+                        <th scope="col">Porcentaje %</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
+                        <td>ING_WILL</td>
+                        <td>2024-02-14</td>
+                        <td>40%</td>
+                        <td>
+                            <div class="form-switch">
+                                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                    id="flexSwitchCheckChecked" checked disabled>
+                                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
                   No lo habilitamos-->
-              </div>
-            </td>
-            <td>
-              <button type="button" class="btn btn-light img-fluid"><img src="../../resources/img/svg/delete_icon.svg"
-                  class="tamanio_edicion_botones"></button>
-              <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
-                  class="tamanio_edicion_botones"></button>
-              <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-light img-fluid"><img
+                                    src="../../resources/img/svg/delete_icon.svg"
+                                    class="tamanio_edicion_botones"></button>
+                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
+                                    class="tamanio_edicion_botones"></button>
+                            <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
                     se pone arriba del </html pero fuera del body-->
-            </td>
-          </tr>
-          <tr>
-            <td>SUSAN_pro</td>
-            <td>2024-01-20</td>
-            <td>60%</td>
-            <td>
-              <div class="form-switch">
-                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                  id="flexSwitchCheckChecked" checked disabled>
-                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SUSAN_pro</td>
+                        <td>2024-01-20</td>
+                        <td>60%</td>
+                        <td>
+                            <div class="form-switch">
+                                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                    id="flexSwitchCheckChecked" checked disabled>
+                                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
                   No lo habilitamos-->
-              </div>
-            </td>
-            <td>
-              <button type="button" class="btn btn-light img-fluid"><img src="../../resources/img/svg/delete_icon.svg"
-                  class="tamanio_edicion_botones"></button>
-              <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
-                  class="tamanio_edicion_botones"></button>
-              <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-light img-fluid"><img
+                                    src="../../resources/img/svg/delete_icon.svg"
+                                    class="tamanio_edicion_botones"></button>
+                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
+                                    class="tamanio_edicion_botones"></button>
+                            <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
                   No lo habilitamos-->
-            </td>
-          </tr>
-          <tr>
-            <td>MICH</td>
-            <td>2023-12-15</td>
-            <td>35%</td>
-            <td>
-              <div class="form-switch">
-                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                  id="flexSwitchCheckChecked" disabled>
-                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MICH</td>
+                        <td>2023-12-15</td>
+                        <td>35%</td>
+                        <td>
+                            <div class="form-switch">
+                                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                    id="flexSwitchCheckChecked" disabled>
+                                <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
                   No lo habilitamos-->
-              </div>
-            </td>
-            <td>
-              <button type="button" class="btn btn-light img-fluid"><img src="../../resources/img/svg/delete_icon.svg"
-                  class="tamanio_edicion_botones"></button>
-              <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
-                  class="tamanio_edicion_botones"></button>
-              <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-light img-fluid"><img
+                                    src="../../resources/img/svg/delete_icon.svg"
+                                    class="tamanio_edicion_botones"></button>
+                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                data-bs-target="#actCupon"><img src="../../resources/img/svg/info_icon.svg"
+                                    class="tamanio_edicion_botones"></button>
+                            <!-- Aqui se define si el check se le podrá cambiar la propiedad, aqui es una vista previa así que por motivos de diseño
                   No lo habilitamos-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 
 
 
-  <!-- Agregamos el framework de Bootstrap - JS -->
-  <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../controllers/utils/admin.js"></script>
+    <!-- Agregamos el framework de Bootstrap - JS -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../controllers/utils/admin.js"></script>
 </body>
 
 
 <!--Modal para el boton de agregar cupon-->
 <div class="modal" id="agCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form id="AgregarCuponFormulario" name="AgregarCuponFormularioN">
-      <div class="modal-content">
-        <div class="modal-header bg-orange-color">
-          <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
-          <div class="container text-center">
-            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar cupón</h1>
-          </div>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <!-- Aqui comienzan los inputs y el boton del formulario del modal -->
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-12 col-md-6">
-              <p class="fs-8 btn-orange-color fw-bold">Código</p>
-              <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
-                id="Codigo_AgregarCuponFormulario" name="Codigo_AgregarCuponFormularioN">
-            </div>
-            <!-- EL div que esta debajo donde se dice col-sm-12 y col-sm-6 es para que los input usen
+    <div class="modal-dialog">
+        <form id="AgregarCuponFormulario" name="AgregarCuponFormularioN">
+            <div class="modal-content">
+                <div class="modal-header bg-orange-color">
+                    <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
+                    <div class="container text-center">
+                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar cupón</h1>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <!-- Aqui comienzan los inputs y el boton del formulario del modal -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <p class="fs-8 btn-orange-color fw-bold">Código</p>
+                            <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
+                                id="Codigo_AgregarCuponFormulario" name="Codigo_AgregarCuponFormularioN">
+                        </div>
+                        <!-- EL div que esta debajo donde se dice col-sm-12 y col-sm-6 es para que los input usen
             todo el espacio disponible y sino se ordenen 2 inputs a la par-->
-            <div class="col-sm-12 col-md-6">
-              <p class="fs-8 btn-orange-color fw-bold">Porcentaje</p>
-              <input type="number" class="form-control" placeholder="100%" aria-label="porcentaje"
-                id="Porcentaje_AgregarCuponFormulario" name="Porcentaje_AgregarCuponFormularioN">
+                        <div class="col-sm-12 col-md-6">
+                            <p class="fs-8 btn-orange-color fw-bold">Porcentaje</p>
+                            <input type="number" class="form-control" placeholder="100%" aria-label="porcentaje"
+                                id="Porcentaje_AgregarCuponFormulario" name="Porcentaje_AgregarCuponFormularioN">
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
+                    <div class="form-check form-switch" id="check_AgregarCuponFormulario"
+                        name="check_AgregarCuponFormularioN">
+                        <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón habilitado</label>
+                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                            id="flexSwitchCheckChecked" checked>
+                    </div>
+                </div>
+                <!-- Este Boton es para enviar los datos del formulario -->
+                <div class="container text-center">
+                    <button type="button" class="btn btn-orange-color text-white"
+                        id="BotonAgregar_AgregarCuponFormulario">Agregar</button>
+                </div>
+                <br>
             </div>
-          </div>
-          <br>
-          <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-          <div class="form-check form-switch" id="check_AgregarCuponFormulario" name="check_AgregarCuponFormularioN">
-            <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón habilitado</label>
-            <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-              checked>
-          </div>
-        </div>
-        <!-- Este Boton es para enviar los datos del formulario -->
-        <div class="container text-center">
-          <button type="button" class="btn btn-orange-color text-white"
-            id="BotonAgregar_AgregarCuponFormulario">Agregar</button>
-        </div>
-        <br>
-      </div>
-    </form>
-  </div>
+        </form>
+    </div>
 </div>
 
 
@@ -210,45 +216,47 @@
 
 <!--Modal para el boton de actualizar cupon-->
 <div class="modal " id="actCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form id="ActualizarCuponFormulario" name="ActualizarCuponFormularioN">
-      <div class="modal-content">
-        <!-- El div que esta debajo del comentario indica el color de fondo del titulo del modal y el titulo -->
-        <div class="modal-header bg-orange-color">
-          <div class="container text-center">
-            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar cupón</h1>
-          </div>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <!-- Aqui comienzan las preguntas e inputs del formulario y el boton para enviar esta información -->
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-12 col-md-6">
-              <p class="fs-8 btn-orange-color fw-bold"> Código</p>
-              <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
-                id="Codigo_ActualizarCupon" name="Codigo_ActualizarCuponN">
+    <div class="modal-dialog">
+        <form id="ActualizarCuponFormulario" name="ActualizarCuponFormularioN">
+            <div class="modal-content">
+                <!-- El div que esta debajo del comentario indica el color de fondo del titulo del modal y el titulo -->
+                <div class="modal-header bg-orange-color">
+                    <div class="container text-center">
+                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar cupón</h1>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <!-- Aqui comienzan las preguntas e inputs del formulario y el boton para enviar esta información -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <p class="fs-8 btn-orange-color fw-bold"> Código</p>
+                            <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
+                                id="Codigo_ActualizarCupon" name="Codigo_ActualizarCuponN">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <p class="fs-8 btn-orange-color fw-bold"> Porcentaje</p>
+                            <input type="number" class="form-control" placeholder="100%" aria-label="porcentaje">
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
+                    <div class="form-check form-switch" id="switch_ActualizarCupon" name="switch_ActualizarCuponN">
+                        <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón habilitado</label>
+                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                            id="flexSwitchCheckChecked" checked>
+                    </div>
+                </div>
+                <!-- Este botón servirá para enviar la información del formulario -->
+                <div class="container text-center">
+                    <button type="button" class="btn btn-orange-color text-white"
+                        id="BotonAc_ActualizarCupon">Actualizar</button>
+                </div>
+                <br>
             </div>
-            <div class="col-sm-12 col-md-6">
-              <p class="fs-8 btn-orange-color fw-bold"> Porcentaje</p>
-              <input type="number" class="form-control" placeholder="100%" aria-label="porcentaje">
-            </div>
-          </div>
-          <br>
-          <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-          <div class="form-check form-switch" id="switch_ActualizarCupon" name="switch_ActualizarCuponN">
-            <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón habilitado</label>
-            <input class="form-check-input bg-orange-color" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-              checked>
-          </div>
-        </div>
-        <!-- Este botón servirá para enviar la información del formulario -->
-        <div class="container text-center">
-          <button type="button" class="btn btn-orange-color text-white" id="BotonAc_ActualizarCupon">Actualizar</button>
-        </div>
-        <br>
-      </div>
-    </form>
-  </div>
+        </form>
+    </div>
 </div>
 
 
