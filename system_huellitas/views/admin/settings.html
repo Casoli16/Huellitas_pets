@@ -27,7 +27,7 @@
     <header class="container_one p-2S">
         <!-- Insertar nuestro navbar a esta pantalla usando js -->
         <div id="navbar"></div>
-        <div class="container-fluid p-4 mt-5">
+        <div class="container-fluid p-4 mt-3">
             <!-- Sección del encabezado -->
         </div>
     </header>
@@ -35,7 +35,7 @@
     <!-- Contenido principal -->
     <main>
         <div class="col-11">
-            <div class="container-fluid contenedor_datos">
+            <div class="container-fluid contenedor_datos rounded-4 mb-5">
                 <!-- Encabezado de la sección -->
                 <div class="container-fluid p-4 mt-5">
                     <div class="d-flex">
@@ -60,39 +60,47 @@
                         <br>
                         <!-- Campos para nombre, apellido, correo, alias y contraseña -->
                         <div class="mb-3 row container d-flex align-items-center justify-content-center">
-                            <label for="nombre_cliente_ajustes" class="col-sm-1 col-form-label texto_input"><strong>Nombre</strong></label>
+                            <label for="nombre_cliente_ajustes"
+                                class="col-sm-1 col-form-label texto_input"><strong>Nombre</strong></label>
                             <div class="col-sm-6">
-                                <input class="form-control input-sm tamanio_input" type="text" name="nombreClienteAjustes"
-                                    id="nombre_cliente_ajustes">
+                                <input class="form-control input-sm tamanio_input bg-white" type="text"
+                                    name="nombreClienteAjustes" id="nombre_cliente_ajustes">
                             </div>
                         </div>
                         <br>
                         <div class="mb-3 row container d-flex align-items-center justify-content-center">
-                            <label for="apellido_cliente_ajustes" class="col-sm-1 col-form-label texto_input"><strong>Apellido</strong></label>
+                            <label for="apellido_cliente_ajustes"
+                                class="col-sm-1 col-form-label texto_input"><strong>Apellido</strong></label>
                             <div class="col-sm-6">
-                                <input class="form-control tamanio_input" type="text" name="apellidoClienteAjustes" id="apellido_cliente_ajuestes">
+                                <input class="form-control tamanio_input bg-white" type="text"
+                                    name="apellido_cliente_ajustes" id="apellidoClienteAjustes">
                             </div>
                         </div>
                         <br>
                         <div class="mb-3 row container d-flex align-items-center justify-content-center">
-                            <label for="correo_cliente_ajustes" class="col-sm-1 col-form-label texto_input"><strong>Correo</strong></label>
+                            <label for="correo_cliente_ajustes"
+                                class="col-sm-1 col-form-label texto_input"><strong>Correo</strong></label>
                             <div class="col-sm-6">
-                                <input class="form-control tamanio_input" type="email" name="correoClienteAjustes" id="correo_cliente_ajustes">
+                                <input class="form-control tamanio_input bg-white" type="email"
+                                    name="correoClienteAjustes" id="correo_cliente_ajustes">
                             </div>
                         </div>
                         <br>
                         <div class="mb-3 row container d-flex align-items-center justify-content-center">
-                            <label for="alias_cliente_ajustes" class="col-sm-1 col-form-label texto_input"><strong>Alias del usuario</strong></label>
+                            <label for="alias_cliente_ajustes" class="col-sm-1 col-form-label texto_input"><strong>Alias
+                                    del usuario</strong></label>
                             <div class="col-sm-6">
-                                <input class="form-control tamanio_input" type="text" name="aliasClienteAjustes" id="alias_cliente_ajustes">
+                                <input class="form-control tamanio_input bg-white" type="text"
+                                    name="aliasClienteAjustes" id="alias_cliente_ajustes">
                             </div>
                         </div>
                         <br>
-                        <div class="mb-3 row container d-flex align-items-center justify-content-center">
+                        <div class="mb-0 row container d-flex align-items-center justify-content-center">
                             <label for="contrasenia_cliente_ajustes"
                                 class="col-sm-1 col-form-label texto_input"><strong>Contraseña</strong></label>
                             <div class="col-sm-6">
-                                <input type="password" name="contraseniaClienteAjustes" id="contrasenia_cliente_ajustes" class="form-control tamanio_input">
+                                <input type="password" name="contraseniaClienteAjustes" id="contrasenia_cliente_ajustes"
+                                    class="form-control tamanio_input bg-white">
                             </div>
                         </div>
                         <br>
@@ -109,9 +117,10 @@
                     <br>
                     <!-- Botón para cerrar sesión -->
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-light me-md-2 boton_cerrar_sesion" type="button"><img
-                                src="../../resources/img/svg/close_sesion.svg" class="tamanio_edicion_botones" alt="">
-                            Cerrar Sesión</button>
+                        <a href="../admin/index_admin.html" class="btn btn-light me-md-2 boton_cerrar_sesion"
+                            type="button"><img src="../../resources/img/svg/close_sesion.svg"
+                                class="tamanio_edicion_botones" alt="">
+                            Cerrar Sesión</a>
                     </div>
                     <br>
                 </div>

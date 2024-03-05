@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Obtener referencia al span que contiene el texto del estado seleccionado
     const estadoSeleccionado = document.getElementById('estadoSeleccionado');
 

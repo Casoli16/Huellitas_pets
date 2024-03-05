@@ -6,92 +6,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas Pets - Categorias</title>
-
     <!-- Icono de la pestaña del navegador -->
     <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
-
     <!-- Framework Bootstrap - CSS -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
-
     <!-- Estilos propios -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_categorias.css">
-
     <!-- Estilos del menú -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
 </head>
 
 <body>
-        <header>
-            <!-- Insertar nuestro navbar a esta pantalla usando js -->
-            <div id="navbar"></div>
-            <div class="container p-2 mt-5">
-                <div class="row mt-5">
-                    <!-- Automaticamente cada col se va distribuir en la row -->
-                    <div class="col-auto">
-                        <img src="../../resources/img/svg/categories.svg" width="50px">
-                    </div>
-                    <div class="col-auto">
-                        <h2 class="fw-bold">Categorias</h2>
-                    </div>
+    <header>
+        <!-- Insertar nuestro navbar a esta pantalla usando js -->
+        <div id="navbar"></div>
+        <div class="container p-2 mt-5">
+            <div class="row mt-5">
+                <!-- Automaticamente cada col se va distribuir en la row -->
+                <div class="col-auto">
+                    <img src="../../resources/img/svg/categories.svg" width="50px">
+                </div>
+                <div class="col-auto">
+                    <h2 class="fw-bold">Categorías</h2>
                 </div>
             </div>
-        </header>
-    
-        <main>
-            <!-- Barra de búsqueda -->
-            <div class="container mt-4">
-                <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
-                <div class="row align-items-center gy-4">
-                    <div class="col-md-6 col-lg-6">
-                        <form class="d-flex" role="search" id="search_categoria">
-                            <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
+        </div>
+    </header>
+
+    <main>
+        <!-- Barra de búsqueda -->
+        <div class="container mt-4">
+            <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 col-lg-6">
+                    <form class="d-flex" role="search" id="search_categoria">
+                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
                             name="busquedaCategorias" id="busqueda_categorias" placeholder="Buscar...">
-                        </form>
+                    </form>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
+                    <div class="d-md-none d-lg-none">
+                        <p>Haz clíc en el siguiente botón para poder agregar una nueva categoría.</p>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
-                        <div class="d-md-none d-lg-none">
-                            <p>Haz clíc en el siguiente botón para poder agregar una nueva categoria.</p>
-                        </div>
-                        <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
-                        <button
-                            class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-                            data-bs-toggle="modal" data-bs-target="#agCateg" type="button">
-                            <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
-                            Agregar Categoria
-                        </button>
-                    </div>
+                    <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
+                    <button
+                        class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
+                        data-bs-toggle="modal" data-bs-target="#agCateg" type="button">
+                        <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
+                        Agregar categoría
+                    </button>
                 </div>
             </div>
+        </div>
 
         <!-- Contenido principal: Tabla de categorías -->
         <div class="container p-4 mt-5">
             <table class="table">
-                <thead class="text-center">
+                <thead>
                     <!-- Encabezados de la tabla -->
                     <tr class="table-warning">
                         <th scope="col">Imagen</th>
-                        <th scope="col">Categoria</th>
+                        <th scope="col">Categoría</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     <!-- Datos de ejemplo en la tabla -->
                     <tr>
                         <td class="align-middle"><img class="tamanio_imagen_tabla"
                                 src="../../resources/img/png/alimentacion_categoria.png" alt=""></td>
                         <td class="align-middle">Alimentación</td>
                         <td class="align-middle">Lorem LoremLoremLoremLoremLoremLorem...</td>
-                        <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt="">
-                        </td>
                         <td class="align-middle">
                             <!-- Botones de acciones (eliminar, editar) -->
                             <button type="button" class="btn btn-light"><img
                                     src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#agCateg"><img src="../../resources/img/svg/edit_icon.svg"
+                                data-bs-target="#editarCateg"><img src="../../resources/img/svg/edit_icon.svg"
                                     width="35px"></button>
                         </td>
                     </tr>
@@ -101,14 +94,12 @@
                                 src="../../resources/img/png/entretenimiento_categorias.png" alt=""></td>
                         <td class="align-middle">Entretenimiento</td>
                         <td class="align-middle">Lorem LoremLoremLoremLoremLoremLorem...</td>
-                        <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt="">
-                        </td>
                         <td class="align-middle">
                             <!-- Botones de acciones (eliminar, editar) -->
                             <button type="button" class="btn btn-light"><img
                                     src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#agCateg"><img src="../../resources/img/svg/edit_icon.svg"
+                                data-bs-target="#editarCateg"><img src="../../resources/img/svg/edit_icon.svg"
                                     width="35px"></button>
                         </td>
                     </tr>
@@ -118,14 +109,12 @@
                                 src="../../resources/img/png/salud_cuidado_categorias.png" alt=""></td>
                         <td class="align-middle">Salud y Cuidado</td>
                         <td class="align-middle">Lorem LoremLoremLoremLoremLoremLorem...</td>
-                        <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt="">
-                        </td>
                         <td class="align-middle">
                             <!-- Botones de acciones (eliminar, editar) -->
                             <button type="button" class="btn btn-light"><img
                                     src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
                             <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#agCateg"><img src="../../resources/img/svg/edit_icon.svg"
+                                data-bs-target="#editarCateg"><img src="../../resources/img/svg/edit_icon.svg"
                                     width="35px"></button>
                         </td>
                     </tr>
@@ -143,12 +132,12 @@
 
 <!-- Modal para agregar categoría -->
 <div class="modal fade" id="agCateg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header bg-orange-color">
                 <div class="container text-center">
                     <!-- Título del modal -->
-                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar categoria</h1>
+                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar categoría</h1>
                 </div>
                 <!-- Botón para cerrar el modal -->
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -164,17 +153,11 @@
                                     class="tamanio_imagen_agregar" alt="">
                             </div>
                         </div>
-                        <div class="col-4 d-flex align-items-center">
+                        <div class="col-sm-12 col-md-4 d-flex align-items-center">
                             <div>
                                 <!-- Botón para cargar imagen -->
-                                <button type="button" class="btn btn-red-color text-white btn-sm"> Cargar Imagen</button>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <!-- Interruptor para el estado de la categoría -->
-                            <div class="form-switch swicth_agregar">
-                                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                    id="flexSwitchCheckChecked" disabled>
+                                <button type="button" class="btn btn-red-color text-white btn-sm"> Cargar
+                                    Imagen</button>
                             </div>
                         </div>
                     </div>
@@ -182,12 +165,73 @@
                     <div class="row container d-flex align-items-center">
                         <div class="mb-3">
                             <!-- Nombre de la categoría -->
-                            <label for="nombre_categoria" class="fs-8 btn-orange-color"> Nombre</label>
-                            <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria" aria-label="codigo">
+                            <label for="nombre_categoria" class="fs-8 fw-bold"> Nombre</label>
+                            <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria"
+                                aria-label="codigo">
                             <br>
                             <div class="mb-3">
                                 <!-- Descripción de la categoría -->
-                                <label for="descripcion_categoria" class="form-label">Descripción</label>
+                                <label for="descripcion_categoria" class="form-label fw-bold">Descripción</label>
+                                <textarea class="form-control" name="descripcionCategoria" id="descripcion_categoria"
+                                    rows="3"></textarea>
+                            </div>
+                            <br>
+                            <div class="container text-center">
+                                <!-- Botón para agregar la categoría -->
+                                <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para editar categoría -->
+<div class="modal fade" id="editarCateg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header bg-orange-color">
+                <div class="container text-center">
+                    <!-- Título del modal -->
+                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Editar categoría</h1>
+                </div>
+                <!-- Botón para cerrar el modal -->
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <form action="" id="crear_categoria">
+                <div class="modal-body">
+                    <!-- Sección para cargar imagen y agregar categoría -->
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="container d-flex align-items-center">
+                                <img src="../../resources/img/png/entretenimiento_categorias.png"
+                                    class="tamanio_imagen_agregar" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 d-flex align-items-center">
+                            <div>
+                                <!-- Botón para cargar imagen -->
+                                <button type="button" class="btn btn-red-color text-white btn-sm"> Cargar
+                                    Imagen</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row container d-flex align-items-center">
+                        <div class="mb-3">
+                            <!-- Nombre de la categoría -->
+                            <label for="nombre_categoria" class="fs-8 fw-bold"> Nombre</label>
+                            <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria"
+                                aria-label="codigo">
+                            <br>
+                            <div class="mb-3">
+                                <!-- Descripción de la categoría -->
+                                <label for="descripcion_categoria" class="form-label fw-bold">Descripción</label>
                                 <textarea class="form-control" name="descripcionCategoria" id="descripcion_categoria"
                                     rows="3"></textarea>
                             </div>

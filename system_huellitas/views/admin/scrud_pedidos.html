@@ -44,7 +44,7 @@
                 <div class="col-md-6 col-lg-6">
                     <form class="d-flex" role="search" id="search_pedidos">
                         <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="search" placeholder="Buscar cliente o producto...">
+                            id="search" placeholder="Buscar...">
                     </form>
                 </div>
             </div>
@@ -52,9 +52,9 @@
 
         <!-- Empieza la programación de las tablas
       Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->¬
-        <div class="container p-4 mt-5">
+        <div class="container p-4 mt-2">
             <table class="table">
-                <thead class="text-center">
+                <thead>
                     <tr class="table">
                         <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
                         <th scope="col">Cliente</th>
@@ -64,7 +64,7 @@
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     <tr>
                         <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
                         <td>Julio López</td>
@@ -157,7 +157,7 @@
                 <!-- Encabezado del modal -->
                 <div class="modal-header bg-orange-color">
                     <div class="container text-center">
-                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Estado</h1>
+                        <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Estado</h1>
                     </div>
                     <!-- Botón de cerrar -->
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -211,7 +211,8 @@
                 <div class="modal-header bg-orange-color">
                     <!-- Título del modal -->
                     <div class="container text-center">
-                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Información del pedido</h1>
+                        <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Información del pedido
+                        </h1>
                     </div>
                     <!-- Botón para cerrar el modal -->
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"

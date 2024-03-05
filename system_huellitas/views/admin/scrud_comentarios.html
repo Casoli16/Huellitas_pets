@@ -9,14 +9,11 @@
 
     <!-- Icono de la pestaña del navegador -->
     <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
-
     <!-- Framework Bootstrap - CSS -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
-
     <!-- Estilos propios -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_categorias.css">
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_comentarios.css">
-
     <!-- Estilos del menú -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
 </head>
@@ -37,36 +34,36 @@
             </div>
         </div>
     </header>
-    
-        <main>
-            <!-- Barra de búsqueda -->
-            <div class="container mt-4">
-                <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
-                <div class="row align-items-center gy-4">
-                    <div class="col-md-6 col-lg-6">
-                        <form class="d-flex" role="search" id="search_Comentarios">
-                            <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                                id="busqueda_comentarios" name="busquedaComentarios" placeholder="Buscar...">
-                        </form>
-                    </div>
+
+    <main>
+        <!-- Barra de búsqueda -->
+        <div class="container mt-4">
+            <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 col-lg-6">
+                    <form class="d-flex" role="search" id="search_Comentarios">
+                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
+                            id="busqueda_comentarios" name="busquedaComentarios" placeholder="Buscar...">
+                    </form>
                 </div>
             </div>
+        </div>
 
         <!-- Contenido principal: Tabla de comentarios -->
-        <div class="container p-4 mt-5">
+        <div class="container p-4 mt-4">
             <table class="table">
-                <thead class="text-center">
+                <thead>
                     <!-- Encabezados de la tabla -->
                     <tr class="table-warning">
                         <th scope="col">Producto</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Fecha de Valoración</th>
+                        <th scope="col">Fecha de valoración</th>
                         <th scope="col">Valoración</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     <!-- Datos de ejemplo en la tabla -->
                     <tr>
                         <td class="align-middle">Comida Rufo Para Perro Cachorro - 44lbs</td>
@@ -121,12 +118,12 @@
 
 <!-- Modal para gestionar comentarios -->
 <div class="modal fade" id="agcoment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-orange-color">
                 <div class="container text-center">
                     <!-- Título del modal -->
-                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Comentarios/Detalles</h1>
+                    <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Comentarios - Detalles</h1>
                 </div>
                 <!-- Botón para cerrar el modal -->
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -137,7 +134,7 @@
                     <!-- Sección para cargar información del comentario -->
                     <div class="row">
                         <div class="col-4">
-                            <div class="container d-flex align-items-center">
+                            <div class="container d-flex align-items-center justify-content-center">
                                 <img src="../../resources/img/png/ejemplo_producto.png" class="tamanio_imagen_agregar"
                                     alt="">
                             </div>
@@ -145,15 +142,17 @@
                         <div class="col-4">
                             <div>
                                 <!-- Campos para nombre del producto y cliente -->
-                                <label class="fs-8 btn-orange-color" for="nombre_producto_comentario"> Producto</label>
-                                <input type="text" name="nombre_producto_comentario" id="nombreProductoComentario"
-                                    class="form-control" aria-label="codigo">
+                                <label class="fs-8 btn-orange-color fw-semibold" for="nombre_producto_comentario">
+                                    Producto</label>
+                                <input type="text" name="nombreProductoComentario" id="nombre_producto_comentario"
+                                    class="form-control" aria-label="codigo" disabled readonly>
                             </div>
                             <br>
                             <div>
-                                <label class="fs-8 btn-orange-color" for="nombre_cliente_comentario"> Cliente</label>
+                                <label class="fs-8 btn-orange-color fw-semibold" for="nombre_cliente_comentario">
+                                    Cliente</label>
                                 <input type="text" name="nombre_cliente_comentario" id="nombreClienteComentario"
-                                    class="form-control" aria-label="codigo">
+                                    class="form-control" aria-label="codigo" disabled readonly>
                             </div>
                         </div>
                         <div class="col-4 d-flex flex-column align-items-center justify-content-center">
@@ -184,15 +183,15 @@
                     <div class="row container d-flex align-items-center mensaje_margin">
                         <div class="mb-3">
                             <div class="mb-3">
-                                <label for="mensaje_comentario" class="form-label">Mensaje</label>
+                                <label for="mensaje_comentario" class="form-label fw-semibold">Mensaje</label>
                                 <!-- Área de texto para el mensaje del comentario -->
-                                <textarea class="form-control" id="mensaje_comentario" name="mensajeComentario"
-                                    rows="3"></textarea>
+                                <textarea class="form-control" id="mensaje_comentario" name="mensajeComentario" rows="3"
+                                    disabled></textarea>
                             </div>
                             <br>
                             <!-- Botones de acción (Agregar, Ocultar) -->
                             <div class="container text-center">
-                                <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                                <button type="button" class="btn btn-orange-color text-white mx-3"> Regresar</button>
                                 <button type="button" class="btn btn-red-color text-white"> Ocultar</button>
                             </div>
                             <br>
