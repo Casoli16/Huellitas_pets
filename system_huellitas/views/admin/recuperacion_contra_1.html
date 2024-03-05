@@ -17,20 +17,27 @@
     <main>
         <div class="container-fluid">
             <div class="row justify-content-center align-items-center">
+                <!--Se pone la imagen que acompañará el formulario, es importante observar que existirán 2 columnas que ocuparán 
+                6 y 6 espacios de la pantalla-->
                 <div class="col-6 d-flex align-items-center">
                     <img src="../../resources/img/svg/recovery_password.svg" class="img-fluid">
                 </div>
                 <div class="col-auto d-flex justify-content-center p-4">
                     <div>
+                        <!--Centramos el texto y lo ponemos en negrita-->
                         <h2 class="fw-semibold text-center">Recuperar contraseña</h2>
+                        <!--Ponemos el texto en menor tamaño y centrado respecto a su columna-->
                         <p class="fw-normal text-center">Ingresa tu correo electrónico asociado a tu cuenta.</p>
                         <div class="container p-5 ">
-                            <form action="" id="recuperacion_contra_1">
+                            <!--Le damos nombre con id y name al form para luego utilizarlo en el backend-->
+                            <form action="" id="recuperacion_contra_1" name="recuperacioncontra1">
+                                <!--En este div se encuentra el input, el tipo de contenido del input, el label que esta arriba del input y la longitud del input-->
                                 <div>
                                     <label for="email_recuperacion" class="form-label">Correo electrónico</label>
                                     <input type="email" class="form-control form-control-lg bg-white p-2 shadow rounded-3"
                                         id="email_recuperacion" name="emailRecuperacion">
                                 </div>
+                                <!--En este div se encuentra el boton de enviar código, la página adonde redirecciona y el texto que esta debajo del botón-->
                                 <div class="d-grid gap-2 mt-5">
                                     <a class="btn btn-orange-color text-light p-2 rounded-3"
                                         href="../admin/recuperacion_contra_2.html">Envíar código</a>
