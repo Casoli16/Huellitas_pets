@@ -21,7 +21,7 @@
     <header>
         <!-- Insertar nuestro navbar a esta pantalla usando js -->
         <div id="navbar"></div>
-        <div class="container p-2 mt-5">
+        <div class="container p-2 mt-4">
             <div class="row mt-5">
                 <!-- Automaticamente cada col se va distribuir en la row -->
                 <div class="col-auto">
@@ -61,62 +61,64 @@
         </div>
         <!-- Tabla -->
         <div class="container mt-5">
-            <table class="table align-middle">
-                <!-- Encabezado de las tablas -->
-                <thead class="table table-responsive">
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Permiso</th>
-                        <th>Detalle permiso</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <!-- Cuerpo de la tabla -->
-                <tbody>
-                    <!-- Fila 1 -->
-                    <tr>
-                        <td>
-                            <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
-                                height="70px">
-                        </td>
-                        <td>Mariana Campos</td>
-                        <td>Vendedor</td>
-                        <td>
-                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#editar_permiso_admin"><img src="../../resources/img/svg/info_icon.svg"
-                                    width="33px"></button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-light"><img
-                                    src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
-                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#editar_admin"><img src="../../resources/img/svg/edit_icon.svg"
-                                    width="35px"></button>
-                        </td>
-                    </tr>
-                    <!-- fila 2 -->
-                    <tr>
-                        <td>
-                            <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
-                                height="70px">
-                        </td>
-                        <td>Eduardo Castro</td>
-                        <td>Contador</td>
-                        <td>
-                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#editar_permiso_admin"><img src="../../resources/img/svg/info_icon.svg"
-                                    width="33px"></button>
-                        <td>
-                            <button type="button" class="btn btn-light"><img
-                                    src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
-                            <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#editar_admin"><img src="../../resources/img/svg/edit_icon.svg"
-                                    width="35px"></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <!-- Encabezado de las tablas -->
+                    <thead class="table table-responsive">
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Permiso</th>
+                            <th>Detalle permiso</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <!-- Cuerpo de la tabla -->
+                    <tbody>
+                        <!-- Fila 1 -->
+                        <tr>
+                            <td>
+                                <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
+                                    height="70px">
+                            </td>
+                            <td>Mariana Campos</td>
+                            <td>Vendedor</td>
+                            <td>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                    data-bs-target="#editar_permiso_admin"><img
+                                        src="../../resources/img/svg/info_icon.svg" width="33px"></button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-light"><img
+                                        src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                    data-bs-target="#editar_admin"><img src="../../resources/img/svg/edit_icon.svg"
+                                        width="35px"></button>
+                            </td>
+                        </tr>
+                        <!-- fila 2 -->
+                        <tr>
+                            <td>
+                                <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
+                                    height="70px">
+                            </td>
+                            <td>Eduardo Castro</td>
+                            <td>Contador</td>
+                            <td>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                    data-bs-target="#editar_permiso_admin"><img
+                                        src="../../resources/img/svg/info_icon.svg" width="33px"></button>
+                            <td>
+                                <button type="button" class="btn btn-light"><img
+                                        src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                    data-bs-target="#editar_admin"><img src="../../resources/img/svg/edit_icon.svg"
+                                        width="35px"></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
     <!-- Agregamos el framework de boostrap - js -->

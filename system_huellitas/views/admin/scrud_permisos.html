@@ -23,7 +23,7 @@
     <header>
         <!-- Insertar nuestro navbar a esta pantalla usando js -->
         <div id="navbar"></div>
-        <div class="container p-2 mt-5">
+        <div class="container p-2 mt-4">
             <div class="row mt-5">
                 <!-- Automaticamente cada col se va distribuir en la row -->
                 <div class="col-auto">
@@ -65,55 +65,57 @@
 
         <!-- Empieza la programación de las tablas
       Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->
-        <div class="container p-4 mt-4">
-            <table class="table">
-                <thead class="text-center">
-                    <tr class="table">
-                        <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    <tr>
-                        <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
-                        <td>Contador</td>
-                        <td>
-                            <button type="button" class="btn btn-light img-fluid" id="btnEliminar_Permisos"><img
-                                    src="../../resources/img/svg/delete_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#actPermiso" id="btnEditar_Permisos"><img
-                                    src="../../resources/img/svg/edit_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Administrador</td>
-                        <td>
-                            <button type="button" class="btn btn-light img-fluid"><img
-                                    src="../../resources/img/svg/delete_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#actPermiso"><img src="../../resources/img/svg/edit_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                            se pone arriba del </html pero fuera del body-->
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Vendedor</td>
-                        <td>
-                            <button type="button" class="btn btn-light img-fluid"><img
-                                    src="../../resources/img/svg/delete_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#actPermiso"><img src="../../resources/img/svg/edit_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="container p-3 mt-4">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="text-center">
+                        <tr class="table">
+                            <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
+                            <td>Contador</td>
+                            <td>
+                                <button type="button" class="btn btn-light img-fluid" id="btnEliminar_Permisos"><img
+                                        src="../../resources/img/svg/delete_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                    data-bs-target="#actPermiso" id="btnEditar_Permisos"><img
+                                        src="../../resources/img/svg/edit_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Administrador</td>
+                            <td>
+                                <button type="button" class="btn btn-light img-fluid"><img
+                                        src="../../resources/img/svg/delete_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                    data-bs-target="#actPermiso"><img src="../../resources/img/svg/edit_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                                se pone arriba del </html pero fuera del body-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vendedor</td>
+                            <td>
+                                <button type="button" class="btn btn-light img-fluid"><img
+                                        src="../../resources/img/svg/delete_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                    data-bs-target="#actPermiso"><img src="../../resources/img/svg/edit_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 

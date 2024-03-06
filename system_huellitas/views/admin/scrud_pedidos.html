@@ -23,7 +23,7 @@
     <header>
         <!-- Insertar nuestro navbar a esta pantalla usando js -->
         <div id="navbar"></div>
-        <div class="container p-2 mt-5">
+        <div class="container p-2 mt-4">
             <div class="row mt-5">
                 <!-- Automaticamente cada col se va distribuir en la row -->
                 <div class="col-auto">
@@ -52,91 +52,93 @@
 
         <!-- Empieza la programación de las tablas
       Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->¬
-        <div class="container p-4 mt-2">
-            <table class="table">
-                <thead>
-                    <tr class="table">
-                        <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Fecha registro</th>
-                        <th scope="col">Productos</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
-                        <td>Julio López</td>
-                        <td>2024-02-14</td>
-                        <td>3</td>
-                        <td>
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#EstadoPedido"><img
-                                    src="../../resources/img/png/eye.square.png"
-                                    class="tamanio_edicion_botones"></button>
-                            <!-- Aqui va el botón para ver el estado pedido-->
-                            <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                    se pone arriba del </html pero fuera del body-->
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-light img-fluid"><img
-                                    src="../../resources/img/svg/delete_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                    se pone arriba del </html pero fuera del body-->
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Rodolfo Baker</td>
-                        <td>2024-01-20</td>
-                        <td>6</td>
-                        <td>
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#EstadoPedido"><img
-                                    src="../../resources/img/png/eye.square.png"
-                                    class="tamanio_edicion_botones"></button>
-                            <!-- Aqui va el botón para ver el estado pedido-->
-                            <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                    se pone arriba del </html pero fuera del body-->
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-light img-fluid"><img
-                                    src="../../resources/img/svg/delete_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                                      se pone arriba del </html pero fuera del body-->
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Elena Morán</td>
-                        <td>2023-12-15</td>
-                        <td>5</td>
-                        <td>
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#EstadoPedido"><img
-                                    src="../../resources/img/png/eye.square.png"
-                                    class="tamanio_edicion_botones"></button>
-                            <!-- Aqui va el botón para ver el estado pedido-->
-                            <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                    se pone arriba del </html pero fuera del body-->
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-light img-fluid"><img
-                                    src="../../resources/img/svg/delete_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
-                                    class="tamanio_edicion_botones"></button>
-                            <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                    se pone arriba del </html pero fuera del body-->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="container p-3 mt-2">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="table">
+                            <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Fecha registro</th>
+                            <th scope="col">Productos</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
+                            <td>Julio López</td>
+                            <td>2024-02-14</td>
+                            <td>3</td>
+                            <td>
+                                <button type="button" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#EstadoPedido"><img src="../../resources/img/png/eye.square.png"
+                                        class="tamanio_edicion_botones"></button>
+                                <!-- Aqui va el botón para ver el estado pedido-->
+                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                        se pone arriba del </html pero fuera del body-->
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-light img-fluid"><img
+                                        src="../../resources/img/svg/delete_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                    data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                        se pone arriba del </html pero fuera del body-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rodolfo Baker</td>
+                            <td>2024-01-20</td>
+                            <td>6</td>
+                            <td>
+                                <button type="button" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#EstadoPedido"><img src="../../resources/img/png/eye.square.png"
+                                        class="tamanio_edicion_botones"></button>
+                                <!-- Aqui va el botón para ver el estado pedido-->
+                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                        se pone arriba del </html pero fuera del body-->
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-light img-fluid"><img
+                                        src="../../resources/img/svg/delete_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                    data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                                          se pone arriba del </html pero fuera del body-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Elena Morán</td>
+                            <td>2023-12-15</td>
+                            <td>5</td>
+                            <td>
+                                <button type="button" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#EstadoPedido"><img src="../../resources/img/png/eye.square.png"
+                                        class="tamanio_edicion_botones"></button>
+                                <!-- Aqui va el botón para ver el estado pedido-->
+                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                        se pone arriba del </html pero fuera del body-->
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-light img-fluid"><img
+                                        src="../../resources/img/svg/delete_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
+                                    data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
+                                        class="tamanio_edicion_botones"></button>
+                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
+                        se pone arriba del </html pero fuera del body-->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
