@@ -79,7 +79,8 @@
                             <td>Activo</td>
                             <td>
                                 <button type="button" class="btn btn-light"><img
-                                        src="../../resources/img/svg/delete_icon.svg" id="btn_eliminar" width="35px"></button>
+                                        src="../../resources/img/svg/delete_icon.svg" id="btn_eliminar"
+                                        width="35px"></button>
                                 <button type="button" class="btn btn-light" data-bs-toggle="modal"
                                     data-bs-target="#ver_cliente"><img src="../../resources/img/svg/info_icon.svg"
                                         width="35px"></button>
@@ -99,7 +100,8 @@
                             <td>Inactivo</td>
                             <td>
                                 <button type="button" class="btn btn-light"><img
-                                        src="../../resources/img/svg/delete_icon.svg" id="btn_eliminar" width="35px"></button>
+                                        src="../../resources/img/svg/delete_icon.svg" id="btn_eliminar"
+                                        width="35px"></button>
                                 <button type="button" class="btn btn-light" data-bs-toggle="modal"
                                     data-bs-target="#ver_cliente"><img src="../../resources/img/svg/info_icon.svg"
                                         width="35px"></button>
@@ -114,6 +116,7 @@
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/admin.js"></script>
+    <script src="../../controllers/admin/clientes.js"></script>
 </body>
 
 
@@ -136,10 +139,10 @@
             <div class="modal-body">
                 <form action="" id="ver_cliente">
                     <!-- Fila 1 -->
-                    <div class="container text-center text-md-start text-lg-start">
+                    <div class="container text-end text-md-start text-lg-start">
                         <div class="row align-items-center">
                             <div class="col-sm-12 col-md-auto">
-                                <img class="rounded-1" id="img_admin" src="../../resources/img/png/rectangulo.png"
+                                <img class="rounded-1" id="img_admin" src="../../resources/img/png/mujeeer.png"
                                     width="120px">
                             </div>
                         </div>
@@ -150,26 +153,69 @@
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="mb-3">
                                     <label for="nombre_cliente" class="form-label fw-semibold">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" disabled>
+                                    <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente"
+                                        disabled>
                                 </div>
                                 <div class="mb-3">
                                     <label for="apellido_cliente" class="form-label fw-semibold">Apellidos</label>
-                                    <input type="text" class="form-control" id="apellido_cliente" name="apellido_cliente" disabled>
+                                    <input type="text" class="form-control" id="apellido_cliente"
+                                        name="apellido_cliente" disabled>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="contra_cliente" class="form-label fw-semibold">Contraseña</label>
-                                    <input type="password" class="form-control" id="contra_cliente" name="contra_cliente" disabled>
+                                    <label for="contra_cliente" class="form-label fw-semibold">Telefono</label>
+                                    <input type="text" class="form-control" id="contra_cliente" name="correo_cliente"
+                                        disabled>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="contra_cliente" class="form-label fw-semibold">Dirección</label>
+                                    <input type="text" class="form-control" id="contra_cliente" name="correo_cliente"
+                                        disabled>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="contra_cliente" class="form-label fw-semibold">Estado actual del
+                                        cliente</label>
+                                    <!-- Dropdown para seleccionar el estado -->
+                                    <div class="dropdown" id="DropDown_ModificarPed" name="DropDown_ModificarPedN">
+                                        <br>
+                                        <button class="btn bg-gray-color dropdown-toggle form-control" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <span id="estadoSeleccionado1">Activo</span>
+                                        </button>
+
+                                        <!-- Opciones del dropdown -->
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#" id="Activoooption"> Activo</a>
+                                            <a class="dropdown-item" href="#" id="Pendienteeoption"> Inactivo</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="mb-3">
-                                    <label for="email_cliente" class="form-label fw-semibold">Correo electrónico</label>
-                                    <input type="email" class="form-control" id="email_cliente"
-                                        placeholder="cliente@gmail.com" name="email_cliente" disabled>
+                                    <label for="email_cliente" class="form-label fw-semibold">Correo</label>
+                                    <input type="email" class="form-control" id="email_cliente" name="email_cliente"
+                                        disabled>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="alias_cliente" class="form-label fw-semibold">Alías</label>
-                                    <input type="text" class="form-control" id="alias_cliente" name="alias_cliente" disabled>
+                                    <label for="alias_cliente" class="form-label fw-semibold">DUI</label>
+                                    <input type="text" class="form-control" id="alias_cliente" name="alias_cliente"
+                                        disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="alias_cliente" class="form-label fw-semibold">Fecha de
+                                        nacimiento</label>
+                                    <input type="text" class="form-control" id="alias_cliente" name="alias_cliente"
+                                        disabled>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="alias_cliente" class="form-label fw-semibold">Fecha registro
+                                        cliente</label>
+                                    <input type="text" class="form-control" id="contra_cliente"
+                                        name="fecha_registro_cliente" disabled>
                                 </div>
                             </div>
 
