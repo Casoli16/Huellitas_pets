@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas Pets - Clientes</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos su archivo css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/table_styles.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+    <!-- Agregamos el archivo css para estilizar los switch-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
+</head>
+
+<body>
+    <header>
+        <!-- Insertar nuestro navbar a esta pantalla usando js -->
+        <div id="navbar"></div>
+        <div class="container p-2 mt-4">
+            <div class="row mt-5">
+                <!-- Automaticamente cada col se va distribuir en la row -->
+                <div class="col-auto">
+                    <img src="../../resources/img/svg/clients.svg" width="60px">
+                </div>
+                <div class="col-auto">
+                    <h2 class="fw-bold">Clientes</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Buscador-->
+        <div class="container mt-4">
+            <!-- Buscador -->
+            <div class="row align-items-center ">
+                <div class="col-md-6 col-lg-6">
+                    <form class="d-flex" role="search" id="search_clientes">
+                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
+                            id="search" name="search" placeholder="Buscar...">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Tabla -->
+        <div class="container mt-5">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <!-- Encabezado de las tablas -->
+                    <thead class="table table-responsive">
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>DUI</th>
+                            <th>Correo electrónico</th>
+                            <th>Teléfono</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <!-- Cuerpo de la tabla -->
+                    <tbody>
+                        <!-- Fila 1 -->
+                        <tr>
+                            <td>
+                                <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
+                                    height="70px">
+                            </td>
+                            <td>Mariana</td>
+                            <td>Campos</td>
+                            <td>12345678-9</td>
+                            <td>mariana@gmail.com</td>
+                            <td>1232-4323</td>
+                            <td>Activo</td>
+                            <td>
+                                <button type="button" class="btn btn-light"><img
+                                        src="../../resources/img/svg/delete_icon.svg" id="btn_eliminar" width="35px"></button>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                    data-bs-target="#ver_cliente"><img src="../../resources/img/svg/info_icon.svg"
+                                        width="35px"></button>
+                            </td>
+                        </tr>
+                        <!-- fila 2 -->
+                        <tr>
+                            <td>
+                                <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
+                                    height="70px">
+                            </td>
+                            <td>Eduardo</td>
+                            <td>Castro</td>
+                            <td>12345678-9</td>
+                            <td>eduardo@gmail.com</td>
+                            <td>7823-0998</td>
+                            <td>Inactivo</td>
+                            <td>
+                                <button type="button" class="btn btn-light"><img
+                                        src="../../resources/img/svg/delete_icon.svg" id="btn_eliminar" width="35px"></button>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                    data-bs-target="#ver_cliente"><img src="../../resources/img/svg/info_icon.svg"
+                                        width="35px"></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <!-- Agregamos el framework de boostrap - js -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script src="../../controllers/utils/admin.js"></script>
+</body>
+
+
+
+
+
+<!-- Modals -->
+<!-- Ver admin -->
+<div class="modal fade" id="ver_cliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- El modal se centra con modal-dialog-center, cuando esta en pantallas pequeñas toma todo el espacio de las pantallas -->
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header bg-orange-color">
+                <div class="container text-center text-light">
+                    <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Información del cliente</h1>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="ver_cliente">
+                    <!-- Fila 1 -->
+                    <div class="container text-center text-md-start text-lg-start">
+                        <div class="row align-items-center">
+                            <div class="col-sm-12 col-md-auto">
+                                <img class="rounded-1" id="img_admin" src="../../resources/img/png/rectangulo.png"
+                                    width="120px">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fila 2 -->
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="nombre_cliente" class="form-label fw-semibold">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido_cliente" class="form-label fw-semibold">Apellidos</label>
+                                    <input type="text" class="form-control" id="apellido_cliente" name="apellido_cliente" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contra_cliente" class="form-label fw-semibold">Contraseña</label>
+                                    <input type="password" class="form-control" id="contra_cliente" name="contra_cliente" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="mb-3">
+                                    <label for="email_cliente" class="form-label fw-semibold">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email_cliente"
+                                        placeholder="cliente@gmail.com" name="email_cliente" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="alias_cliente" class="form-label fw-semibold">Alías</label>
+                                    <input type="text" class="form-control" id="alias_cliente" name="alias_cliente" disabled>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+            <div class="container text-center mb-4 mt-4">
+                <button type="button" class="btn btn-orange-color text-light me-3"
+                    data-bs-dismiss="modal">Regresar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>
