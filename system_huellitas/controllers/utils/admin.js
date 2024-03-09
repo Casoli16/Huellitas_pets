@@ -152,7 +152,7 @@ const navbar = `
                         <div class="col-auto">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page"
-                                    href="../../views/admin/index_admin.html">Cerrar sesión</a>
+                                    href="../../views/admin/index.html">Cerrar sesión</a>
                             </li>
                         </div>
                     </div>
