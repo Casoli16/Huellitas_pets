@@ -6,3 +6,7 @@ hr{
     color: rgb(218, 151, 28);
     border-width: 3px;
 }
+
+.btn {
+    background-image: none;
+ }

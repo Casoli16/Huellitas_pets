@@ -1,5 +1,5 @@
 const navbar = `
-<nav class="navbar navbar-expand-lg bg-beige-color fixed-top">
+<nav class="navbar navbar-expand-lg bg-beige-color fixed-top shadow">
 <div class="container-fluid">
     <a class="navbar-brand" href="../public/home.html">
         <img src="../../resources/img/png/huellitas_logo.png" width="50px">
@@ -26,7 +26,7 @@ const navbar = `
         </ul>
         <form class="d-flex me-md-5" role="search">
             <div class="search-input position-relative">
-                <input type="search" class="form-control bg-white ps-5" placeholder="Productos...">
+                <input type="search" class="search form-control bg-beige-color ps-5" placeholder="Productos...">
                 <img src="../../resources/img/svg/search_public.svg"
                     class="position-absolute top-50 translate-middle-y search-icon" width="25px" height="25px">
             </div>
