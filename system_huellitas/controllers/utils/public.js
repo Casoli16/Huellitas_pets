@@ -31,7 +31,7 @@ const navbar = `
                 </div>
             </form>
             <div class="py-md-0 py-4">
-                <a class="position-relative me-md-5" href="../../views/public/carrito.html">
+                <a class="position-relative me-md-5" href="../../views/public/carrito_1.html">
                     <img src="../../resources/img/png/carrito_naranja.png" width="40px">
                     <span
                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-orange-color">0</span>
