@@ -1,0 +1,34 @@
+/* MODIFICACION DEL INPUT NUMBER */
+
+/* Al input number le quitamos la barra que trae por defecto */
+.sin-barra::-webkit-inner-spin-button,
+.sin-barra::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Le quitamos el el box shadow y border que trae por defecto de boostrap */
+.sin-barra:focus, .sin-barra{
+    border: none;
+    box-shadow: none;   
+}
+
+/* Cambiar el color del btn-close que trae boostrap */
+.close {
+    color: #6b0000;
+    --bs-btn-close-bg: url("../../img/svg/x.svg");
+    background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
+    opacity:1;
+}
+
+/* Cuando se haga clic en el boton de cerrar se mostrara una sombra color roja */
+.close:focus{
+    --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(253, 73, 13, 0.25);
+    box-shadow: var(--bs-btn-close-focus-shadow);
+}
+
+/* Modificacmos el borde  de los botones de agregar y restar del contador de cada producto */
+.btn, .mas, .menos:focus{
+    border: none;
+    border-color: none;
+}
