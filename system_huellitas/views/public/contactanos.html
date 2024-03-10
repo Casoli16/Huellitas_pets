@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas pets - Contáctanos</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos su archivo css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/contáctanos.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/static_components/menu_public.css">
+</head>
+
+<body class="bg-beige-color">
+    <header>
+        <nav id="navbar"></nav>
+    </header>
+
+    <main class="p-5 mt-5">
+        <div class="container mt-5">
+            <!-- Creamos una fila que contiene tres columnas -->
+            <div class="row">
+                <!-- Columna 1, la imagen se ocultará en pantallas pequeñas -->
+                <div class="col-md-3 align-self-end">
+                    <img src="../../resources/img/svg/botton_dog.svg" class="img-fluid d-none d-sm-block">
+                </div>
+                <!-- Columna 2 -->
+                <div class="col-sm-12 col-md-6">
+                    <h2 class="fw-semibold text-center mb-5">Contáctanos</h2>
+                    <!-- Formulario -->
+                    <form action="" id="contactanos_form">
+                        <div class="mb-4">
+                            <label for="nombre_cliente" class="form-label fw-semibold">Nombre</label>
+                            <input type="text" id="nombre_cliente" name="nonmbreCliente"
+                                class="form-control form-control-lg shadow rounded-4 bg-white">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email_cliente" class="form-label fw-semibold">Correo electrónico</label>
+                            <input type="email" id="email_cliente" name="emailCliente"
+                                class="form-control form-control-lg shadow  rounded-4 bg-white">
+                        </div>
+                        <div class="mb-4">
+                            <label for="tel_cliente" class="form-label fw-semibold">Teléfono</label>
+                            <input type="email" id="tel_cliente" name="telCliente"
+                                class="form-control form-control-lg shadow  rounded-4 bg-white">
+                        </div>
+                        <div class="mb-4">
+                            <label for="comentario_cliente" class="form-label fw-semibold">Mensaje</label>
+                            <textarea class="form-control form-control-lg bg-white shadow rounded-4"
+                                id="comentario_cliente" name="comentarioCliente" rows="3"></textarea>
+                        </div>
+
+                        <a class="btn btn-orange-color btn-lg mb-2 text-light col-md-4" href=""
+                            id="btn_enviar">Envíar</a>
+                    </form>
+                </div>
+                <!-- Columna 3, la imagen se ocultará en pantallas pequeñas -->
+                <div class="col-md-3">
+                    <img src="../../resources/img/svg/top_cat.svg" class="img-fluid d-none d-sm-block">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Agregamos nuestro footer a la pantalla -->
+    <footer id="footer"></footer>
+
+    <!-- Agregamos el framework de boostrap - js -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script src="../../controllers/utils/public.js"></script>
+</body>
+
+</html>

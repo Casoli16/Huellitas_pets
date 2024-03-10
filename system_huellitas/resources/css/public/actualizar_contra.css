@@ -3,7 +3,7 @@ body{
     background-position: right center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-size: 45% 150vh;
+    background-attachment: fixed;
 }
 
 @media (max-width: 600px) {

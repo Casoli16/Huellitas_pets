@@ -32,10 +32,10 @@ const navbar = `
             </div>
         </form>
         <div class="py-md-0 py-4">
-            <a class="navbar-brand me-md-5" href="../public/home.html">
+            <a class="navbar-brand me-md-5" href="">
                 <img src="../../resources/img/png/carrito_naranja.png" width="40px">
             </a>
-            <a href="" class="btn btn-orange-color text-light me-md-5">Iniciar sesión</a>
+            <a href="../../views/public/index.html" class="btn btn-orange-color text-light me-md-5">Iniciar sesión</a>
         </div>
     </div>
 </div>
@@ -91,7 +91,7 @@ const footer = `
                 <a class="text-decoration-none text-dark fw-light" href="">¿Quiénes somos?</a>    
             </div>
             <div class="mt-2">
-                <a class="text-decoration-none text-dark fw-light" href="">Contáctanos</a>
+                <a class="text-decoration-none text-dark fw-light" href="../../views/public/contactanos.html">Contáctanos</a>
             </div>
         </div>
         <!-- Cuarta columna -->

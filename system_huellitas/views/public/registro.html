@@ -22,11 +22,12 @@
     <main>
         <div class="mt-5 p-5">
             <div class="container shadow p-4 mt-4 rounded-4">
+                <!-- Formulario -->
                 <form action="" id="registro_cliente">
                     <div class="row mt-4">
                         <div class="text-center">
                             <h1 class="fw-bold text-center">Regístrate</h1>
-                            <p>¡Bienvenido a Huellitas Pet’s!</p>
+                            <p class="fs-5">¡Bienvenido a Huellitas Pet’s!</p>
                             <img src="../../resources/img/png/mujeeer.png"
                                 class="picture rounded-circle mx-auto d-block img-fluid">
                             <!-- Escondemos como se muestra por defecto el input file y solo que aparezca nuestro boton -->
@@ -35,50 +36,54 @@
                             <label class="btn btn-brown-color mt-3 rounded-5" for="upload">Cargar imagen</label>
                         </div>
                     </div>
+                    <!-- Creamos una fila y dentro de ella dos columnas -->
                     <div class="row mt-5 d-flex justify-content-center">
+                        <!-- Primera col -->
                         <div class="col-sm-12 col-md-4">
                             <div class="mb-3">
                                 <label for="nombre_cliente" class="form-label fw-bold">Nombre</label>
                                 <input type="text" id="nombre_cliente" name="nonmbreCliente"
-                                    class="form-control shadow  rounded-3 bg-white">
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
                             </div>
                             <div class="mb-3">
                                 <label for="dui_cliente" class="form-label fw-bold">Dui</label>
                                 <input type="number" id="dui_cliente" name="duiCliente"
-                                    class="form-control shadow  rounded-3 bg-white">
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
                             </div>
                             <div class="mb-3">
                                 <label for="fecha_nacimiento_cliente" class="form-label fw-bold">Fecha de
                                     nacimiento</label>
                                 <input type="date" id="fecha_nacimiento_cliente" name="fechaNacimientoCliente"
-                                    class="form-control shadow  rounded-3 bg-white">
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
                             </div>
                             <div class="mb-3">
                                 <label for="direccion_cliente" class="form-label fw-bold">Dirección</label>
                                 <input type="text" id="direccion_cliente" name="direccionCliente"
-                                    class="form-control shadow  rounded-3 bg-white">
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
                             </div>
                         </div>
+                        <!-- Segunda col -->
                         <div class="col-sm-12 col-md-4">
                             <div class="mb-3">
                                 <label for="apellido_cliente" class="form-label fw-bold">Apellidos</label>
                                 <input type="text" id="apellido_cliente" name="apellidoCliente"
-                                    class="form-control shadow  rounded-3 bg-white">
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
                             </div>
                             <div class="mb-3">
                                 <label for="email_cliente" class="form-label fw-bold">Correo electrónico</label>
                                 <input type="email" id="email_cliente" name="emailCliente"
-                                    class="form-control shadow  rounded-3 bg-white">
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
                             </div>
                             <div class="mb-3">
                                 <label for="contrasenia_cliente" class="form-label fw-bold">Contraseña</label>
                                 <input type="password" id="cpntrasenia_cliente" name="contraseniaCliente"
-                                    class="form-control shadow  rounded-3 bg-white">
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
                             </div>
                         </div>
-                        <div class="text-center mt-4">
-                            <button
-                                class="btn btn-brown-color mb-2 d-grid gap-2 col-sm-12 col-md-4 mx-auto">Regístrarse</button>
+                        <!-- Boton y texto -->
+                        <div class="text-center mt-5">
+                            <a
+                                class="btn btn-brown-color btn-lg mb-2 d-grid gap-2 col-sm-12 col-md-4 mx-auto" href="">Regístrarse</a>
                             <div>
                                 ¿Ya tienes una cuenta?<a class="text-decoration-none text-dark fw-bold"
                                     href="../public/index.html"> Iniciar sesión</a>
@@ -90,6 +95,7 @@
         </div>
     </main>
 
+    <!-- Agregamos nuestro footer a la pantalla -->
     <footer id="footer"></footer>
 
     <!-- Agregamos el framework de boostrap - js -->
