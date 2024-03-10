@@ -1,0 +1,12 @@
+body{
+    background-image: url(../../img/png/recuperacion.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 45% 150vh;
+}
+
+@media (max-width: 600px) {
+    body {
+      background-image: none;
+  }}
