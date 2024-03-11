@@ -10,6 +10,11 @@ $font-family-sans-serif:  "Inter", sans-serif;
 
 // PALETA DE COLORES
 // Declaración de variables para asignación de colores
+
+$orange-cream-color: (
+  "orange-cream-color":   rgb(255, 191, 105)
+);
+
 $gray-color: (
   "gray-color": rgb(246, 243, 243) 
 
@@ -41,7 +46,9 @@ $brown-color: (
   "brown-color": rgb(72, 47, 36)
 );
 
+
 // Agregar variables al tema de colores de boostrap, mergearlas
+$theme-colors: map-merge($theme-colors, $orange-cream-color);
 $theme-colors: map-merge($theme-colors, $orange-color);
 $theme-colors: map-merge($theme-colors, $skin-color);
 $theme-colors: map-merge($theme-colors, $red-color);

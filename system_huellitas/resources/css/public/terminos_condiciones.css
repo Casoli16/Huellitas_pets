@@ -1,0 +1,8 @@
+h1 {
+    /* Agregamos un margen superior para separar el título del navbar */
+    margin-top: 35px;
+}
+/* Estilo para los párrafos */
+p {
+    text-align: justify;
+}

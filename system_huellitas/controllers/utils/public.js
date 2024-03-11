@@ -20,7 +20,7 @@ const navbar = `
                     <a class="nav-link active" aria-current="page" href="#">¿Quiénes somos?</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Términos y condiciones</a>
+                    <a class="nav-link active" aria-current="page" href="../../views/public/terminos_condiciones.html">Términos y condiciones</a>
                 </li>
             </ul>
             <form class="d-flex me-md-5" role="search">
