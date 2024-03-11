@@ -4,8 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas Pets sitio público</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos su archivo css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/index.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/static_components/menu_public.css">
 </head>
 <body>
+    <header>
+        <nav id="navbar"></nav>
+    </header>
+
+    <main>
+        <div class="mt-5 p-5">
+            <div class="container shadow p-4 mt-4 col-md-5 rounded-4">
+                <!-- Formulario -->
+                <form action="" id="login_cliente">
+                    <div class="row mt-4">
+                        <div class="text-center">
+                            <h1 class="fw-bold text-center">Inicia sesión</h1>
+                            <p class="fs-5"> Haz que hasta sus huellitas sean felices</p>
+                        </div>
+                    </div>
+                    <!-- Creamos una fila y dentro de ella dos columnas -->
+                    <div class="row mt-4 d-flex justify-content-center">
+                        <!-- Primera col -->
+                        <div class="col-sm-12 col-md-10">
+                            <div class="mb-8">
+                                <label for="email_cliente_login" class="form-label fw-bold">Correo electrónico</label>
+                                <input type="email" id="email_cliente_login" name="emailClienteLogin"
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                            </div>
+                            <br>
+                            <div class="mb-8">
+                                <label for="password_cliente_login" class="form-label fw-bold">Contraseña</label>
+                                <input type="password" id="password_cliente_login" name="passwordClienteLogin"
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                    <div class="olvidaste_contrasenia">
+                                        <a class="text-decoration-none text-dark fw-bold"
+                                            href="../public/recuperacion_contra_1.html"> ¿Olvidaste tú contraseña?</a>
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- Boton y texto -->
+                        <div class="text-center mt-5">
+                            <a
+                                class="btn btn-orange-color btn-lg mb-2 d-grid gap-2 col-sm-12 col-md-6 mx-auto text-white" href="">Iniciar sesión</a>
+                            <div>
+                                ¿No tienes una cuenta?<a class="text-decoration-none text-dark fw-bold"
+                                    href="../public/registro.html"> Registrate</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Agregamos nuestro footer a la pantalla -->
+    <footer id="footer"></footer>
     
+    <!-- Agregamos el framework de boostrap - js -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script src="../../controllers/utils/public.js"></script>
 </body>
 </html>
