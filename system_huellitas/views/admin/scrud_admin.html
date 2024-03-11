@@ -130,219 +130,227 @@
             </div>
         </div>
     </main>
+
+    <!-- Modals -->
+    <!-- Agregar admin -->
+    <div class="modal fade" id="agregar_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- El modal se centra con modal-dialog-center, cuando esta en pantallas pequeñas toma todo el espacio de las pantallas -->
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <div class="modal-header bg-orange-color">
+                    <div class="container text-center text-light">
+                        <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Crear administrador</h1>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="crear_admin">
+                        <!-- Fila 1 -->
+                        <div class="container text-center text-md-start text-lg-start">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm-12 col-md-auto">
+                                    <img class="rounded-1" id="img_admin" src="../../resources/img/png/rectangulo.png"
+                                        width="120px">
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-red-color text-light" id="btn_cargarImagen"
+                                        name="btCargarImg">Cargar
+                                        imagen</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fila 2 -->
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="apellido_admin" class="form-label fw-semibold">Apellidos</label>
+                                        <input type="text" class="form-control" id="apellido_admin"
+                                            name="apellido_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contra_admin" class="form-label fw-semibold">Contraseña</label>
+                                        <input type="password" class="form-control" id="contra_admin"
+                                            name="contra_admin">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="email_admin" class="form-label fw-semibold">Correo
+                                            electrónico</label>
+                                        <input type="email" class="form-control" id="email_admin"
+                                            placeholder="admin@gmail.com" name="email_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="alias_admin" class="form-label fw-semibold">Alías</label>
+                                        <input type="text" class="form-control" id="alias_admin" name="alias_admin">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                <div class="container text-center mb-4 mt-4">
+                    <button type="button" class="btn btn-orange-color text-light me-3"
+                        data-bs-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light">Cancelar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Editar admin -->
+    <div class="modal fade" id="editar_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <div class="modal-header bg-orange-color">
+                    <div class="container text-center text-light">
+                        <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Editar administrador
+                        </h1>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="editar_admin">
+                        <!-- Fila 1 -->
+                        <div class="container text-center text-md-start text-lg-start">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm-12 col-md-auto">
+                                    <img class="rounded-1" src="../../resources/img/png/rectangulo.png" width="120px">
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-red-color text-light" id="btn_cargarImagen"
+                                        name="btnCargarImg">Cargar
+                                        imagen</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fila 2 -->
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="apellido_admin" class="form-label fw-semibold">Apellidos</label>
+                                        <input type="text" class="form-control" id="apellido_admin"
+                                            name="apellido_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contra_admin" class="form-label fw-semibold">Contraseña</label>
+                                        <input type="password" class="form-control" id="contra_admin"
+                                            name="contra_admin">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="fecha_admin" class="form-label fw-semibold">Fecha de
+                                            registro</label>
+                                        <input type="date" class="form-control" aria-label="Disabled input example"
+                                            disabled name="fechaAdmin" id="fecha_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email_admin" class="form-label fw-semibold">Correo
+                                            electrónico</label>
+                                        <input type="email" class="form-control" id="email_admin" name="email_admin">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="alias_admin" class="form-label fw-semibold">Alías</label>
+                                        <input type="text" class="form-control" id="alias_admin" name="alias_admin">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                <div class="container text-center mb-4 mt-4">
+                    <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
+                        id="btn_guardar" name="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light" id="btnCancelar"
+                        name="btnCancelar">Cancelar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Editar permisos admin -->
+    <div class="modal fade" id="editar_permiso_admin" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-orange-color">
+                    <div class="container text-center text-light">
+                        <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Permisos asignados</h1>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="editar_permisos_admin">
+                        <!-- Fila -->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-check form-switch mb-3">
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Contador</label>
+                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                            id="switch1" name="switch1" checked>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <label class="form-check-label"
+                                            for="flexSwitchCheckChecked">Administrador</label>
+                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                            id="switch2" name="switch2" checked>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                            id="switch3" name="switch3" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Vendedor</label>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                            id="switch4" name="switch4" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Lectura</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="container text-center mb-4 mt-4">
+                    <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
+                        id="btn_guardar" name="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-red-color text-light" id="btn_cancelar"
+                        name="btnCancelar">Cancelar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/admin.js"></script>
 </body>
-
-
-
-
-
-<!-- Modals -->
-<!-- Agregar admin -->
-<div class="modal fade" id="agregar_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <!-- El modal se centra con modal-dialog-center, cuando esta en pantallas pequeñas toma todo el espacio de las pantallas -->
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
-        <div class="modal-content">
-            <div class="modal-header bg-orange-color">
-                <div class="container text-center text-light">
-                    <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Crear administrador</h1>
-                </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" id="crear_admin">
-                    <!-- Fila 1 -->
-                    <div class="container text-center text-md-start text-lg-start">
-                        <div class="row align-items-center gy-3">
-                            <div class="col-sm-12 col-md-auto">
-                                <img class="rounded-1" id="img_admin" src="../../resources/img/png/rectangulo.png"
-                                    width="120px">
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-red-color text-light" id="btn_cargarImagen"
-                                    name="btCargarImg">Cargar
-                                    imagen</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fila 2 -->
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="mb-3">
-                                    <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="apellido_admin" class="form-label fw-semibold">Apellidos</label>
-                                    <input type="text" class="form-control" id="apellido_admin" name="apellido_admin">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="contra_admin" class="form-label fw-semibold">Contraseña</label>
-                                    <input type="password" class="form-control" id="contra_admin" name="contra_admin">
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="mb-3">
-                                    <label for="email_admin" class="form-label fw-semibold">Correo electrónico</label>
-                                    <input type="email" class="form-control" id="email_admin"
-                                        placeholder="admin@gmail.com" name="email_admin">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="alias_admin" class="form-label fw-semibold">Alías</label>
-                                    <input type="text" class="form-control" id="alias_admin" name="alias_admin">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-            </div>
-            <div class="container text-center mb-4 mt-4">
-                <button type="button" class="btn btn-orange-color text-light me-3"
-                    data-bs-dismiss="modal">Guardar</button>
-                <button type="button" class="btn btn-red-color text-light">Cancelar</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
-
-<!-- Editar admin -->
-<div class="modal fade" id="editar_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
-        <div class="modal-content">
-            <div class="modal-header bg-orange-color">
-                <div class="container text-center text-light">
-                    <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Editar administrador</h1>
-                </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" id="editar_admin">
-                    <!-- Fila 1 -->
-                    <div class="container text-center text-md-start text-lg-start">
-                        <div class="row align-items-center gy-3">
-                            <div class="col-sm-12 col-md-auto">
-                                <img class="rounded-1" src="../../resources/img/png/rectangulo.png" width="120px">
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-red-color text-light" id="btn_cargarImagen"
-                                    name="btnCargarImg">Cargar
-                                    imagen</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fila 2 -->
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="mb-3">
-                                    <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre_admin" name="nombre_admin">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="apellido_admin" class="form-label fw-semibold">Apellidos</label>
-                                    <input type="text" class="form-control" id="apellido_admin" name="apellido_admin">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="contra_admin" class="form-label fw-semibold">Contraseña</label>
-                                    <input type="password" class="form-control" id="contra_admin" name="contra_admin">
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="mb-3">
-                                    <label for="fecha_admin" class="form-label fw-semibold">Fecha de registro</label>
-                                    <input type="date" class="form-control" aria-label="Disabled input example" disabled
-                                        name="fechaAdmin" id="fecha_admin">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email_admin" class="form-label fw-semibold">Correo electrónico</label>
-                                    <input type="email" class="form-control" id="email_admin" name="email_admin">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="alias_admin" class="form-label fw-semibold">Alías</label>
-                                    <input type="text" class="form-control" id="alias_admin" name="alias_admin">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-            </div>
-            <div class="container text-center mb-4 mt-4">
-                <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
-                    id="btn_guardar" name="btnGuardar">Guardar</button>
-                <button type="button" class="btn btn-red-color text-light" id="btnCancelar"
-                    name="btnCancelar">Cancelar</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<!-- Editar permisos admin -->
-<div class="modal fade" id="editar_permiso_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header bg-orange-color">
-                <div class="container text-center text-light">
-                    <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Permisos asignados</h1>
-                </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="" id="editar_permisos_admin">
-                    <!-- Fila -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-check form-switch mb-3">
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Contador</label>
-                                    <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                        id="switch1" name="switch1" checked>
-                                </div>
-                                <div class="form-check form-switch mb-3">
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Administrador</label>
-                                    <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                        id="switch2" name="switch2" checked>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-check form-switch mb-3">
-                                    <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                        id="switch3" name="switch3" checked>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Vendedor</label>
-                                </div>
-                                <div class="form-check form-switch mb-3">
-                                    <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                        id="switch4" name="switch4" checked>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Lectura</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <div class="container text-center mb-4 mt-4">
-                <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
-                    id="btn_guardar" name="btnGuardar">Guardar</button>
-                <button type="button" class="btn btn-red-color text-light" id="btn_cancelar"
-                    name="btnCancelar">Cancelar</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 </html>

@@ -123,132 +123,135 @@
                 </table>
             </div>
         </div>
+
+        <!-- Modal para agregar categoría -->
+        <div class="modal fade" id="agCateg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+                <div class="modal-content">
+                    <div class="modal-header bg-orange-color">
+                        <div class="container text-center">
+                            <!-- Título del modal -->
+                            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar categoría</h1>
+                        </div>
+                        <!-- Botón para cerrar el modal -->
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="" id="crear_categoria">
+                        <div class="modal-body">
+                            <!-- Sección para cargar imagen y agregar categoría -->
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="container d-flex align-items-center">
+                                        <img src="../../resources/img/png/entretenimiento_categorias.png"
+                                            class="tamanio_imagen_agregar" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 d-flex align-items-center">
+                                    <div>
+                                        <!-- Botón para cargar imagen -->
+                                        <button type="button" class="btn btn-red-color text-white btn-sm"> Cargar
+                                            Imagen</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row container d-flex align-items-center">
+                                <div class="mb-3">
+                                    <!-- Nombre de la categoría -->
+                                    <label for="nombre_categoria" class="fs-8 fw-bold"> Nombre</label>
+                                    <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria"
+                                        aria-label="codigo">
+                                    <br>
+                                    <div class="mb-3">
+                                        <!-- Descripción de la categoría -->
+                                        <label for="descripcion_categoria"
+                                            class="form-label fw-bold">Descripción</label>
+                                        <textarea class="form-control" name="descripcionCategoria"
+                                            id="descripcion_categoria" rows="3"></textarea>
+                                    </div>
+                                    <br>
+                                    <div class="container text-center">
+                                        <!-- Botón para agregar la categoría -->
+                                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal para editar categoría -->
+        <div class="modal fade" id="editarCateg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+                <div class="modal-content">
+                    <div class="modal-header bg-orange-color">
+                        <div class="container text-center">
+                            <!-- Título del modal -->
+                            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Editar categoría</h1>
+                        </div>
+                        <!-- Botón para cerrar el modal -->
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="" id="crear_categoria">
+                        <div class="modal-body">
+                            <!-- Sección para cargar imagen y agregar categoría -->
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="container d-flex align-items-center">
+                                        <img src="../../resources/img/png/entretenimiento_categorias.png"
+                                            class="tamanio_imagen_agregar" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 d-flex align-items-center">
+                                    <div>
+                                        <!-- Botón para cargar imagen -->
+                                        <button type="button" class="btn btn-red-color text-white btn-sm"> Cargar
+                                            Imagen</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row container d-flex align-items-center">
+                                <div class="mb-3">
+                                    <!-- Nombre de la categoría -->
+                                    <label for="nombre_categoria" class="fs-8 fw-bold"> Nombre</label>
+                                    <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria"
+                                        aria-label="codigo">
+                                    <br>
+                                    <div class="mb-3">
+                                        <!-- Descripción de la categoría -->
+                                        <label for="descripcion_categoria"
+                                            class="form-label fw-bold">Descripción</label>
+                                        <textarea class="form-control" name="descripcionCategoria"
+                                            id="descripcion_categoria" rows="3"></textarea>
+                                    </div>
+                                    <br>
+                                    <div class="container text-center">
+                                        <!-- Botón para agregar la categoría -->
+                                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Framework Bootstrap - JS -->
+        <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Script personalizado -->
+        <script src="../../controllers/utils/admin.js"></script>
     </main>
-
-    <!-- Framework Bootstrap - JS -->
-    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Script personalizado -->
-    <script src="../../controllers/utils/admin.js"></script>
 </body>
 
-<!-- Modal para agregar categoría -->
-<div class="modal fade" id="agCateg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-        <div class="modal-content">
-            <div class="modal-header bg-orange-color">
-                <div class="container text-center">
-                    <!-- Título del modal -->
-                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar categoría</h1>
-                </div>
-                <!-- Botón para cerrar el modal -->
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <form action="" id="crear_categoria">
-                <div class="modal-body">
-                    <!-- Sección para cargar imagen y agregar categoría -->
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="container d-flex align-items-center">
-                                <img src="../../resources/img/png/entretenimiento_categorias.png"
-                                    class="tamanio_imagen_agregar" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4 d-flex align-items-center">
-                            <div>
-                                <!-- Botón para cargar imagen -->
-                                <button type="button" class="btn btn-red-color text-white btn-sm"> Cargar
-                                    Imagen</button>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row container d-flex align-items-center">
-                        <div class="mb-3">
-                            <!-- Nombre de la categoría -->
-                            <label for="nombre_categoria" class="fs-8 fw-bold"> Nombre</label>
-                            <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria"
-                                aria-label="codigo">
-                            <br>
-                            <div class="mb-3">
-                                <!-- Descripción de la categoría -->
-                                <label for="descripcion_categoria" class="form-label fw-bold">Descripción</label>
-                                <textarea class="form-control" name="descripcionCategoria" id="descripcion_categoria"
-                                    rows="3"></textarea>
-                            </div>
-                            <br>
-                            <div class="container text-center">
-                                <!-- Botón para agregar la categoría -->
-                                <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
-                            </div>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal para editar categoría -->
-<div class="modal fade" id="editarCateg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-        <div class="modal-content">
-            <div class="modal-header bg-orange-color">
-                <div class="container text-center">
-                    <!-- Título del modal -->
-                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Editar categoría</h1>
-                </div>
-                <!-- Botón para cerrar el modal -->
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <form action="" id="crear_categoria">
-                <div class="modal-body">
-                    <!-- Sección para cargar imagen y agregar categoría -->
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="container d-flex align-items-center">
-                                <img src="../../resources/img/png/entretenimiento_categorias.png"
-                                    class="tamanio_imagen_agregar" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4 d-flex align-items-center">
-                            <div>
-                                <!-- Botón para cargar imagen -->
-                                <button type="button" class="btn btn-red-color text-white btn-sm"> Cargar
-                                    Imagen</button>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row container d-flex align-items-center">
-                        <div class="mb-3">
-                            <!-- Nombre de la categoría -->
-                            <label for="nombre_categoria" class="fs-8 fw-bold"> Nombre</label>
-                            <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria"
-                                aria-label="codigo">
-                            <br>
-                            <div class="mb-3">
-                                <!-- Descripción de la categoría -->
-                                <label for="descripcion_categoria" class="form-label fw-bold">Descripción</label>
-                                <textarea class="form-control" name="descripcionCategoria" id="descripcion_categoria"
-                                    rows="3"></textarea>
-                            </div>
-                            <br>
-                            <div class="container text-center">
-                                <!-- Botón para agregar la categoría -->
-                                <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
-                            </div>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 </html>
