@@ -1,3 +1,7 @@
+body
+{
+    background-image: url(../../img/png/fondoperrito.png);
+}
 h1 {
     /* Agregamos un margen superior para separar el título del navbar */
     margin-top: 35px;

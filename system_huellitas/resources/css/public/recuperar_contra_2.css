@@ -1,14 +1,19 @@
 body{
-    background-image: url(../../img/png/recuperacion.png);
+    background-image: url(../../img/svg/perritolindo.svg);
     background-position: right center;
     background-repeat: no-repeat;
     background-size: contain;
     background-attachment: fixed;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 764px) {
     body {
       background-image: none;
+  }}
+
+  @media (max-width: 1072px) {
+    body {
+      background-size:50%;
   }}
 
   .input-caracter {
@@ -21,6 +26,10 @@ body{
     padding: 5px; /* Ajusta este valor para controlar el espacio interno */
 }
 
+.q{
+    padding: 2px;
+    margin-top:5%;
+}
 
 .input-caracter:focus {
     border-color: #ccc;

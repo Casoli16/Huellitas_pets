@@ -27,3 +27,13 @@ body{
         margin-left: 15px; /* Ajustamos el margen derecho para separar la imagen del texto */
     }
 }
+
+ /* estilos.css */
+.input-caracter {
+    width: 20px; /* Ancho específico */
+    height: 40px; /* Alto específico */
+    text-align: center; /* Centrar texto en el input */
+    font-size: 20px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde del input */
+    border-radius: 8px; /* Radio de borde */
+}
