@@ -16,3 +16,14 @@ body{
 .btn {
     background-image: none;
 }
+@media (min-width: 992px) {
+    .perritolindo {
+        margin-right: 15px; /* Ajustamos el margen derecho para separar la imagen del texto */
+    }
+}
+
+@media (min-width: 992px) {
+    .perritolindo {
+        margin-left: 15px; /* Ajustamos el margen derecho para separar la imagen del texto */
+    }
+}
