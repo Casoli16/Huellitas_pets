@@ -152,110 +152,110 @@
                 </tbody>
             </table>
         </div>
-    </main>
 
-
-
-    <!--Modal para el boton de agregar cupon-->
-    <div class="modal" id="agCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <form id="AgregarCuponFormulario" name="AgregarCuponFormularioN">
-                <div class="modal-content">
-                    <div class="modal-header bg-orange-color">
-                        <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
-                        <div class="container text-center">
-                            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar cupón</h1>
-                        </div>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <!-- Aqui comienzan los inputs y el boton del formulario del modal -->
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <p class="fs-8 btn-orange-color fw-bold">Código</p>
-                                <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
-                                    id="Codigo_AgregarCuponFormulario" name="Codigo_AgregarCuponFormularioN">
+        <!--Modal para el boton de agregar cupon-->
+        <div class="modal" id="agCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form id="AgregarCuponFormulario" name="AgregarCuponFormularioN">
+                    <div class="modal-content">
+                        <div class="modal-header bg-orange-color">
+                            <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
+                            <div class="container text-center">
+                                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar cupón</h1>
                             </div>
-                            <!-- EL div que esta debajo donde se dice col-sm-12 y col-sm-6 es para que los input usen
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <!-- Aqui comienzan los inputs y el boton del formulario del modal -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <p class="fs-8 btn-orange-color fw-bold">Código</p>
+                                    <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
+                                        id="Codigo_AgregarCuponFormulario" name="Codigo_AgregarCuponFormularioN">
+                                </div>
+                                <!-- EL div que esta debajo donde se dice col-sm-12 y col-sm-6 es para que los input usen
             todo el espacio disponible y sino se ordenen 2 inputs a la par-->
-                            <div class="col-sm-12 col-md-6">
-                                <p class="fs-8 btn-orange-color fw-bold">Porcentaje</p>
-                                <input type="number" min="1" max="100" class="form-control" placeholder="100%"
-                                    aria-label="porcentaje" id="Porcentaje_AgregarCuponFormulario"
-                                    name="Porcentaje_AgregarCuponFormularioN">
+                                <div class="col-sm-12 col-md-6">
+                                    <p class="fs-8 btn-orange-color fw-bold">Porcentaje</p>
+                                    <input type="number" min="1" max="100" class="form-control" placeholder="100%"
+                                        aria-label="porcentaje" id="Porcentaje_AgregarCuponFormulario"
+                                        name="Porcentaje_AgregarCuponFormularioN">
+                                </div>
+                            </div>
+                            <br>
+                            <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
+                            <div class="form-check form-switch" id="check_AgregarCuponFormulario"
+                                name="check_AgregarCuponFormularioN">
+                                <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón
+                                    habilitado</label>
+                                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                    id="flexSwitchCheckChecked" checked>
                             </div>
                         </div>
-                        <br>
-                        <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                        <div class="form-check form-switch" id="check_AgregarCuponFormulario"
-                            name="check_AgregarCuponFormularioN">
-                            <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón
-                                habilitado</label>
-                            <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                id="flexSwitchCheckChecked" checked>
-                        </div>
-                    </div>
-                    <!-- Este Boton es para enviar los datos del formulario -->
-                    <div class="container text-center">
-                        <button type="button" class="btn btn-orange-color text-white"
-                            id="BotonAgregar_AgregarCuponFormulario">Agregar</button>
-                    </div>
-                    <br>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
-
-    <!--Modal para el boton de actualizar cupon-->
-    <div class="modal " id="actCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <form id="ActualizarCuponFormulario" name="ActualizarCuponFormularioN">
-                <div class="modal-content">
-                    <!-- El div que esta debajo del comentario indica el color de fondo del titulo del modal y el titulo -->
-                    <div class="modal-header bg-orange-color">
+                        <!-- Este Boton es para enviar los datos del formulario -->
                         <div class="container text-center">
-                            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar cupón</h1>
-                        </div>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <!-- Aqui comienzan las preguntas e inputs del formulario y el boton para enviar esta información -->
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <p class="fs-8 btn-orange-color fw-bold"> Código</p>
-                                <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
-                                    id="Codigo_ActualizarCupon" name="Codigo_ActualizarCuponN">
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <p class="fs-8 btn-orange-color fw-bold"> Porcentaje</p>
-                                <input type="number" min="1" max="100" class="form-control" placeholder="100%"
-                                    aria-label="porcentaje">
-                            </div>
+                            <button type="button" class="btn btn-orange-color text-white"
+                                id="BotonAgregar_AgregarCuponFormulario">Agregar</button>
                         </div>
                         <br>
-                        <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                        <div class="form-check form-switch" id="switch_ActualizarCupon" name="switch_ActualizarCuponN">
-                            <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón
-                                habilitado</label>
-                            <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                id="flexSwitchCheckChecked" checked>
-                        </div>
                     </div>
-                    <!-- Este botón servirá para enviar la información del formulario -->
-                    <div class="container text-center">
-                        <button type="button" class="btn btn-orange-color text-white"
-                            id="BotonAc_ActualizarCupon">Actualizar</button>
-                    </div>
-                    <br>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+
+
+
+
+        <!--Modal para el boton de actualizar cupon-->
+        <div class="modal " id="actCupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form id="ActualizarCuponFormulario" name="ActualizarCuponFormularioN">
+                    <div class="modal-content">
+                        <!-- El div que esta debajo del comentario indica el color de fondo del titulo del modal y el titulo -->
+                        <div class="modal-header bg-orange-color">
+                            <div class="container text-center">
+                                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Actualizar cupón</h1>
+                            </div>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <!-- Aqui comienzan las preguntas e inputs del formulario y el boton para enviar esta información -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <p class="fs-8 btn-orange-color fw-bold"> Código</p>
+                                    <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
+                                        id="Codigo_ActualizarCupon" name="Codigo_ActualizarCuponN">
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <p class="fs-8 btn-orange-color fw-bold"> Porcentaje</p>
+                                    <input type="number" min="1" max="100" class="form-control" placeholder="100%"
+                                        aria-label="porcentaje">
+                                </div>
+                            </div>
+                            <br>
+                            <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
+                            <div class="form-check form-switch" id="switch_ActualizarCupon"
+                                name="switch_ActualizarCuponN">
+                                <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón
+                                    habilitado</label>
+                                <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                    id="flexSwitchCheckChecked" checked>
+                            </div>
+                        </div>
+                        <!-- Este botón servirá para enviar la información del formulario -->
+                        <div class="container text-center">
+                            <button type="button" class="btn btn-orange-color text-white"
+                                id="BotonAc_ActualizarCupon">Actualizar</button>
+                        </div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
 
     <!-- Agregamos el framework de Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

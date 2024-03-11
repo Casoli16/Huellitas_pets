@@ -116,108 +116,108 @@
                 </table>
             </div>
         </div>
+
+        
+        <!-- Modal para agregar marca -->
+        <div class="modal fade" id="agmarc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-orange-color">
+                        <div class="container text-center">
+                            <!-- Título del modal -->
+                            <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Agregar marca</h1>
+                        </div>
+                        <!-- Botón para cerrar el modal -->
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="" id="crear_marca">
+                        <div class="modal-body">
+                            <!-- Sección para cargar imagen y agregar marca -->
+                            <div class="col">
+                                <div class="container d-flex align-items-center justify-content-center">
+                                    <img src="../../resources/img/png/fondo_img.png" class="img-fluid" alt="">
+                                </div>
+                                <br>
+                                <div class="container text-center">
+                                    <!-- Botón para cargar imagen -->
+                                    <input type="file" class="form-control" id="upload" hidden>
+                                    <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
+                                    <label class="btn btn-red-color text-light" for="upload">Cargar imagen</label>
+                                </div>
+                            </div>
+                            <!-- Sección para ingresar el nombre de la marca -->
+                            <div class="row container d-flex align-items-center">
+                                <div class="col">
+                                    <label for="nombre_marca" class="fs-8 btn-orange-color fw-semibold"> Nombre</label>
+                                    <input type="text" class="form-control" aria-label="codigo" name="nombreMarca"
+                                        id="nombre_marca">
+                                    <br>
+                                    <div class="container text-center">
+                                        <!-- Botón para agregar la marca -->
+                                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para editar marca -->
+        <div class="modal fade" id="editar_marc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-orange-color">
+                        <div class="container text-center">
+                            <!-- Título del modal -->
+                            <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Editar marca</h1>
+                        </div>
+                        <!-- Botón para cerrar el modal -->
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form action="" id="crear_marca">
+                        <div class="modal-body">
+                            <!-- Sección para cargar imagen y agregar marca -->
+                            <div class="col">
+                                <div class="container d-flex align-items-center justify-content-center">
+                                    <img src="../../resources/img/png/fondo_img.png" class="img-fluid" alt="">
+                                </div>
+                                <br>
+                                <div class="container text-center">
+                                    <!-- Botón para cargar imagen -->
+                                    <input type="file" class="form-control" id="upload" hidden>
+                                    <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
+                                    <label class="btn btn-red-color text-light" for="upload">Cargar imagen</label>
+                                </div>
+                            </div>
+                            <!-- Sección para ingresar el nombre de la marca -->
+                            <div class="row container d-flex align-items-center">
+                                <div class="col">
+                                    <label for="nombre_marca" class="fs-8 btn-orange-color fw-semibold"> Nombre</label>
+                                    <input type="text" class="form-control" aria-label="codigo" name="nombreMarca"
+                                        id="nombre_marca">
+                                    <br>
+                                    <div class="container text-center">
+                                        <!-- Botón para agregar la marca -->
+                                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
 
-    <!-- Modal para agregar marca -->
-    <div class="modal fade" id="agmarc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-orange-color">
-                    <div class="container text-center">
-                        <!-- Título del modal -->
-                        <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Agregar marca</h1>
-                    </div>
-                    <!-- Botón para cerrar el modal -->
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <form action="" id="crear_marca">
-                    <div class="modal-body">
-                        <!-- Sección para cargar imagen y agregar marca -->
-                        <div class="col">
-                            <div class="container d-flex align-items-center justify-content-center">
-                                <img src="../../resources/img/png/fondo_img.png" class="img-fluid" alt="">
-                            </div>
-                            <br>
-                            <div class="container text-center">
-                                    <!-- Botón para cargar imagen -->
-                                    <input type="file" class="form-control" id="upload" hidden>
-                                    <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                    <label class="btn btn-red-color text-light" for="upload">Cargar imagen</label>
-                            </div>
-                        </div>
-                        <!-- Sección para ingresar el nombre de la marca -->
-                        <div class="row container d-flex align-items-center">
-                            <div class="col">
-                                <label for="nombre_marca" class="fs-8 btn-orange-color fw-semibold"> Nombre</label>
-                                <input type="text" class="form-control" aria-label="codigo" name="nombreMarca"
-                                    id="nombre_marca">
-                                <br>
-                                <div class="container text-center">
-                                    <!-- Botón para agregar la marca -->
-                                    <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para editar marca -->
-    <div class="modal fade" id="editar_marc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-orange-color">
-                    <div class="container text-center">
-                        <!-- Título del modal -->
-                        <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Editar marca</h1>
-                    </div>
-                    <!-- Botón para cerrar el modal -->
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <form action="" id="crear_marca">
-                    <div class="modal-body">
-                        <!-- Sección para cargar imagen y agregar marca -->
-                        <div class="col">
-                            <div class="container d-flex align-items-center justify-content-center">
-                                <img src="../../resources/img/png/fondo_img.png" class="img-fluid" alt="">
-                            </div>
-                            <br>
-                            <div class="container text-center">
-                                    <!-- Botón para cargar imagen -->
-                                    <input type="file" class="form-control" id="upload" hidden>
-                                    <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                    <label class="btn btn-red-color text-light" for="upload">Cargar imagen</label>
-                            </div>
-                        </div>
-                        <!-- Sección para ingresar el nombre de la marca -->
-                        <div class="row container d-flex align-items-center">
-                            <div class="col">
-                                <label for="nombre_marca" class="fs-8 btn-orange-color fw-semibold"> Nombre</label>
-                                <input type="text" class="form-control" aria-label="codigo" name="nombreMarca"
-                                    id="nombre_marca">
-                                <br>
-                                <div class="container text-center">
-                                    <!-- Botón para agregar la marca -->
-                                    <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- Script personalizado -->
     <script src="../../controllers/utils/admin.js"></script>
 
