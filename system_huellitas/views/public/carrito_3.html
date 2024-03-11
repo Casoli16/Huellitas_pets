@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas pet's - Carrito</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos su archivo css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/carrito.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/static_components/menu_public.css">
+</head>
+
+<body class="bg-beige-color">
+
+    <header class="p-5 mt-4">
+        <nav id="navbar"></nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="d-flex justify-content-start">
+                <img src="../../resources/img/png/ok.png" width="60px" height="60px">
+                <p class="ms-3 mt-3 fs-5 fw-semibold">Compra realizada correctamente</p>
+            </div>
+            <hr>
+            <div>
+                <div class="row mb-5 mt-5 gx-5">
+                    <div class="col-md-8 col-sm-12">
+                        <div class="mb-5">
+                            <label for="nombre_cliente" class="form-label fw-semibold">Nombre del comprador</label>
+                            <p>Susan Abigail Castillo Oliva</p>
+                        </div>
+                        <p class="fw-semibold">Mis pedidos</p>
+                        <ul class="list-group">
+                            <!-- Primer tarjeta -->
+                            <li class="list-group-item mb-4 rounded-4 shadow">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/product1.png" width="80px">
+                                    </div>
+                                    <div class="col">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <small class="text-body-secondary mt-4">Maxi Chucho</small>
+                                        </div>
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <p class="mb-1 fw-semibold fs-6">Bolsa Maxxi Chucho - Perro adulto</p>
+                                            <p class="fw-bold">$40.50</p>
+                                        </div>
+                                        <div
+                                            class="contador d-flex justify-content-between col-md-2 col-sm-12 rounded-5 shadow mb-3">
+                                            <input type="number" value="1" id="cantidad" min="1"
+                                                class="form-control text-center sin-barra bg-white" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Segunda tarjeta -->
+                            <li class="list-group-item mb-4 rounded-4 shadow">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/product1.png" width="80px">
+                                    </div>
+                                    <div class="col">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <small class="text-body-secondary mt-4">Maxi Chucho</small>
+                                        </div>
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <p class="mb-1 fw-semibold fs-6">Bolsa Maxxi Chucho - Perro adulto</p>
+                                            <p class="fw-bold">$40.50</p>
+                                        </div>
+                                        <div
+                                            class="contador d-flex justify-content-between col-md-2 col-sm-12 rounded-5 shadow mb-3">
+                                            <input type="number" value="1" id="cantidad" min="1"
+                                                class="form-control text-center sin-barra bg-white" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-start mb-4">
+                                <img src="../../resources/img/png/calendar.png" width="25px" height="25px">
+                                <p class="fw-bold ms-2">Compra realizada el 14/02/23</p>
+                            </div>
+                            <div class="d-flex justify-content-start mb-4">
+                                <img src="../../resources/img/png/price.png" width="25px" height="25px">
+                                <p class="fw-bold ms-2">Total: $100.00</p>
+                            </div>
+                            <div class="bg-green-color fw-semibold d-grid grap-2 shadow rounded-4">
+                                <p class="text-center mt-3">En proceso</p>
+                            </div>
+                            <div class="d-flex justify-content-start mb-4 mt-3">
+                                <img src="../../resources/img/png/info.png" width="25px" height="25px">
+                                <p class="fw-light ms-2 small">Cuando tú pedido este listo se te enviará un correo
+                                    electrónico para que puedas recorgerlo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <!-- Agregamos el framework de boostrap - js -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script src="../../controllers/utils/public.js"></script>
+</body>
+
+</html>

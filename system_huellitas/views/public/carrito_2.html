@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +14,10 @@
     <!-- Agregamos el archivo css del menu -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/static_components/menu_public.css">
 </head>
+
 <body class="bg-beige-color">
 
-    <header class="p-5 mt-5">
+    <header class="p-5 mt-3">
         <nav id="navbar"></nav>
     </header>
 
@@ -23,26 +25,63 @@
         <div class="container ">
             <div class="d-flex justify-content-start">
                 <a href="../public/carrito_1.html"><img src="../../resources/img/png/row.png"></a>
-                <p class="ms-3 mt-1">Regresar a mi carrito</p>
+                <p class="ms-3 mt-2">Regresar a mi carrito</p>
             </div>
 
-           <div class="row">
-                <div class="col-8">
+            <div class="row gx-5 mb-5 gy-5">
+                <div class="col-sm-12 col-md-8">
                     <div class="d-flex justify-content-start mt-4">
                         <img src="../../resources/img/png/advertencia.png" width="50px" height="50px">
-                        <p class="ms-3 fw-bold">Para poder realizar tú compra es necesario que escribas correctamente la dirección donde sera envíado tu pedido</p>
+                        <p class="ms-3 fw-bold">Para poder realizar tú compra es necesario que escribas correctamente la
+                            dirección donde sera envíado tu pedido</p>
                     </div>
                     <hr>
+                    <form action="">
+                        <div class="mt-5 mb-4">
+                            <label for="direccion_cliente" class="form-label fw-semibold">Dirección</label>
+                            <select class="form-select bg-white shadow" id="direccion_cliente" name="direccionCliente"
+                                required>
+                                <option>Selecciona la dirección</option>
+                            </select>
+                            <div class="d-flex justify-content-start mt-3 form-text">
+                                <img src="../../resources/img/png/place_marker.png" class="me-2" width="23px"
+                                    height="23px">
+                                ¿Tienes una nueva dirección, no se encuentra tú dirección?
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="new_direccion_cliente" class="form-label fw-semibold">Agrega tu nueva
+                                dirección</label>
+                            <input type="text" id="new_direccion_cliente" name="newDireccionCliente"
+                                class="form-control shadow bg-white">
+                        </div>
+                        <a href="../../views/public/carrito_3.html"
+                            class="btn btn-orange-color text-light col-md-4 col-sm-12">Comprar ahora</a>
+                    </form>
                 </div>
-                <div class="col-4">
-
+                <div class="col-sm-12 col-md-4">
+                    <div class="bg-white p-4 shadow rounded-4">
+                        <p class="fw-semibold mb-5">Total productos</p>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-5">
+                            <p class="fw-bold fs-5">Subtotal</p>
+                            <p class="fw-bold fs-5">$100.00</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="../../resources/img/png/huellitas_logo.png" width="100px">
+                        </div>
+                    </div>
                 </div>
-           </div>
+            </div>
         </div>
     </main>
+
+    <footer id="footer"></footer>
+    
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
 </body>
+
 </html>

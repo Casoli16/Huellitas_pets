@@ -46,6 +46,11 @@ $brown-color: (
   "brown-color": rgb(72, 47, 36)
 );
 
+$green-color: (
+  "green-color": rgb(173, 240, 141)
+);
+
+
 
 // Agregar variables al tema de colores de boostrap, mergearlas
 $theme-colors: map-merge($theme-colors, $orange-cream-color);
@@ -56,6 +61,7 @@ $theme-colors: map-merge($theme-colors, $yellow-color);
 $theme-colors: map-merge($theme-colors, $gray-color);
 $theme-colors: map-merge($theme-colors, $beige-color);
 $theme-colors: map-merge($theme-colors, $brown-color);
+$theme-colors: map-merge($theme-colors, $green-color);
 
 
 //Cambio en el estilo de los input
