@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas pets - actualizar contraseña 3</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos su archivo css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/recuperar_contra_2.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/static_components/menu_public.css">
+</head>
+<body>
+    <header>
+        <nav id="navbar"></nav>
+    </header>
+
+    <main class="mt-5 p-5">
+        <div class="container mt-5">
+            <div class="col-sm-12 col-md-6">
+                <div class="text-center">
+                    <h2 class="fw-semibold">Recuperar Contraseña</h2>
+                    <p class="fw-normal fs-5">Ingresar la nueva contraseña</p>
+                </div>
+                <form action="" id="recuperacion_contrasenia" class="mt-5 p-4">
+                    <div class="mb-5">
+                        <label for="contrasenia_actual" class="form-label fw-semibold">Nueva contraseña</label>
+                        <input type="password" id="contrasenia_actual" name="contraseniaActual" class="form-control form-control-lg shadow rounded-4 bg-white">
+                    </div>
+                    <div class="mb-5">
+                        <label for="contrasenia_nueva" class="form-label fw-semibold">Confirmar nueva contraseña</label>
+                        <input type="password" id="contrasenia_nueva" name="contraseniaActual" class="form-control form-control-lg shadow rounded-4 bg-white">
+                    </div>
+                    <div class="text-center">
+                        <a class="btn btn-orange-color btn-lg text-light mb-2 d-grid gap-2 col-sm-12 col-md-12 mx-auto rounded-4" href="">Guardar</a>
+                        <p class="fw-semibold">Guarda tu contraseña en algun lugar seguro.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+     <!-- Agregamos nuestro footer a la pantalla -->
+    <footer id="footer"></footer>
+
+     <!-- Agregamos el framework de boostrap - js -->
+     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- Agregamos la ruta para agregar el menu -->
+     <script src="../../controllers/utils/public.js"></script>
+</body>
+</html>
