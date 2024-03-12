@@ -11,6 +11,8 @@
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Agregamos el archivo css del menu -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/static_components/menu_public.css">
+    <!-- Agregamos el archivo css de perfil -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/perfil.css">
 </head>
 
 <body>
@@ -25,45 +27,48 @@
                 <img src="../../resources/img/png/rectangulo_naranja.png">Perfil
             </h5>
         </div>
-        <div class="container shadow p-4 mt-4 rounded-4" style="background-color: #FEF6F0;">
+        <div class="container shadow p-4 mt-4 rounded-4 color_conteiner_central">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-7 p-5">
-                    <img src="../../resources/img/png/foto_perfil_publico.png" class="img-fluid">
-                    <br>
-                    <br>
-                    <div class="d-grid gap-2">
-                        <!-- Botón para cargar imagen -->
-                        <input type="file" class="form-control" id="upload_picture_profile" hidden>
-                        <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                        <label class="btn btn-outline-secondary btn-lg" for="upload_picture_profile">Cargar imagen</label>
-                    </div>
+                    <form action="perfil_editar_imagen">
+                        <img src="../../resources/img/png/foto_perfil_publico.png" class="img-fluid">
+                        <br>
+                        <br>
+
+                        <div class="d-grid gap-2">
+                            <!-- Botón para cargar imagen -->
+                            <input type="file" class="form-control" id="upload_picture_profile" hidden>
+                            <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
+                            <label class="btn btn-outline-secondary btn-lg" for="upload_picture_profile">Cargar
+                                imagen</label>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="col-lg-7 col-md-5 col-sm-8 p-5">
-                        <h5><b>Nombre</b></h5>
-                        <p style="color: grey;">Juan Velasquez</p>
-                        <br>
-                        <h5><b>Correo</b></h5>
-                        <p style="color: grey;">JuanVelasquez@gmai.com</p>
-                        <br>
-                        <h5><b>Teléfono</b></h5>
-                        <p style="color: grey;">7787-8635</p>
-                        <br>
-                        <h5><b>Dirección</b></h5>
-                        <p style="color: grey;">Los Planes de Rendero, Km 15</p>
-                        <br>
-                        <h5><b>DUI</b></h5>
-                        <p style="color: grey;">66763456-2</p>
-                        <br>
-                        <!-- Botones de acción (Agregar, Ocultar) -->
-                            <button type="button" class="btn btn-orange-color text-white">
-                                <img src="../../resources/img/" alt="">Editar</button>
-                            <button type="button" class="btn btn-red-color text-white"> Actualizar Contraseña</button>
-                        <br>
+                    <h5><b>Nombre</b></h5>
+                    <p class="text-grey">Juan Velasquez</p>
+                    <br>
+                    <h5><b>Correo</b></h5>
+                    <p class="text-grey">JuanVelasquez@gmai.com</p>
+                    <br>
+                    <h5><b>Teléfono</b></h5>
+                    <p class="text-grey">7787-8635</p>
+                    <br>
+                    <h5><b>Dirección</b></h5>
+                    <p class="text-grey">Los Planes de Rendero, Km 15</p>
+                    <br>
+                    <h5><b>DUI</b></h5>
+                    <p class="text-grey">66763456-2</p>
+                    <br>
+                    <!-- Botones de acción (Agregar, Ocultar) -->
+                    <a href="../../views/public/perfil_editar.html"><button type="button" class="btn btn-orange-color text-white"><img class="img_btn_perfil" src="../../resources/img/png/editar_btn_perfil.png" alt=""> Editar</button></a>
+                    <button type="button" class="btn btn-red-color text-white"><img class="img_btn_perfil" src="../../resources/img/png/actualizar_contrasenia_btn_img.png" alt=""> Actualizar Contraseña</button>
+                    <br>
                 </div>
             </div>
             <h5><b>Empezo</b></h5>
-            <p style="color: grey;">10 de enero, 2024</p>
+            <p class="text-grey">10 de enero, 2024</p>
         </div>
     </div>
 
