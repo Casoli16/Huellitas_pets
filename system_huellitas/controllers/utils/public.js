@@ -1,7 +1,7 @@
 const navbar = `
 <nav class="navbar navbar-expand-lg bg-beige-color fixed-top shadow">
     <div class="container-fluid">
-        <a class="navbar-brand" href="../public/home.html">
+        <a class="navbar-brand" href="../public/index.html">
             <img src="../../resources/img/png/huellitas_logo.png" width="50px">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -36,7 +36,7 @@ const navbar = `
                     <span
                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-orange-color">0</span>
                 </a>
-                <a href="../../views/public/index.html" class="btn btn-orange-color text-light me-md-5">Iniciar
+                <a href="../../views/public/login.html" class="btn btn-orange-color text-light me-md-5">Iniciar
                     sesión</a>
             </div>
         </div>
@@ -54,7 +54,7 @@ const footer = `
         <div class="row mx-auto gx-4">
             <!-- Primera columna -->
             <div class="col-sm-6 col-md-3 text-center">
-                <a href="../public/home.html">
+                <a href="../public/index.html">
                     <img src="../../resources/img/png/huellitas_logo.png" width="200px">
                 </a>
                 <div class="row d-flex justify-content-center">
