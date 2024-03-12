@@ -17,7 +17,7 @@ const navbar = `
                     <a class="nav-link active" aria-current="page" href="../../views/public/categorias_gatos.html">Gatos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">¿Quiénes somos?</a>
+                    <a class="nav-link active" aria-current="page" href="../../views/public/sobre_nosotros.html">¿Quiénes somos?</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="../../views/public/terminos_condiciones.html">Términos y condiciones</a>
@@ -90,7 +90,7 @@ const footer = `
             <div class="col-sm-6 col-md-2 mt-5">
                 <h3 class="fw-semibold">Sobre nosotros</h3>
                 <div class="mt-3">
-                    <a class="text-decoration-none text-dark fw-light" href="">¿Quiénes somos?</a>
+                    <a class="text-decoration-none text-dark fw-light" href="../../views/public/sobre_nosotros.html">¿Quiénes somos?</a>
                 </div>
                 <div class="mt-2">
                     <a class="text-decoration-none text-dark fw-light"
