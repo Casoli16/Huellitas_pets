@@ -9,9 +9,10 @@
     <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
     <!-- Agregamos el framework de boostrap - css -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
-
     <!-- Agregamos el archivo css del menu -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/static_components/menu_public.css">
+    <!-- Agregamos el archivo css de la página-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/productos.css">
 </head>
 
 <body>
@@ -20,12 +21,78 @@
     </header>
 
     <main class="mt-5 p-5">
+        <div class="container-fluid bg-orange-cream-color text-white">
+            <br>
+            <div class="row">
+                <div class="col-1 px-5 text-end">
+                    <img src="../../resources/img/png/dog_products.png" width="90px">
+                </div>
+                <div class="col-11">
+                    <h1 class="p-3 text-start">
+                        Perros
+                    </h1>
+                </div>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="fw-bold">Filtrar por marcas</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="dropdown d-grid grap-2" id="DropDown_ModificarPed" name="DropDown_ModificarPedN">
+                            <button class="btn bg-white dropdown-toggle shadow rounded-5 text-start" type="button"
+                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span id="MarcaS">Elige una marca</span>
+                            </button>
+
+                            <!-- Opciones del dropdown -->
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" id="pedigreeoption"> Pedigree</a>
+                                <a class="dropdown-item" href="#" id="Rufooption"> Rufo</a>
+                                <a class="dropdown-item" href="#" id="Doguioption"> Dogui</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="fw-bold">Filtrar por categorias</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="dropdown d-grid grap-2 " id="DropDown_ModificarPed" name="DropDown_ModificarPedN">
+                            <button class="btn bg-white dropdown-toggle shadow rounded-5 text-start" type="button"
+                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span id="CategoriaS">Elige una categoria</span>
+                            </button>
+
+                            <!-- Opciones del dropdown -->
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" id="comidaoption"> Comida</a>
+                                <a class="dropdown-item" href="#" id="saludoption"> Salud</a>
+                                <a class="dropdown-item" href="#" id="entretemientooption"> Entretenimiento</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
         <div class="container-fluid bg-white p-5 d-flex justify-content-center rounded-5">
             <div class="row d-flex gy-5">
                 <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="p-3 card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" class="p-3 img-fluid" alt="...">
+                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
+                                alt="...">
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -61,7 +128,8 @@
                 <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="p-3 card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" class="p-3 img-fluid" alt="...">
+                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
+                                alt="...">
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -97,7 +165,8 @@
                 <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="p-3 card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" class="p-3 img-fluid" alt="...">
+                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
+                                alt="...">
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -133,7 +202,8 @@
                 <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="p-3 card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" class="p-3 img-fluid" alt="...">
+                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
+                                alt="...">
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -169,7 +239,8 @@
                 <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="p-3 card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" class="p-3 img-fluid" alt="...">
+                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
+                                alt="...">
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -215,6 +286,8 @@
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
+    <!-- Agregamos el js de la página-->
+    <script src="../../controllers/public/productos.js"></script>
 </body>
 
 </html>
