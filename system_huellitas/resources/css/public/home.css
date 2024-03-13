@@ -1,0 +1,25 @@
+body{
+    background-image: url(../../img/png/fondos/huellitas_fondo.png);
+    background-repeat: repeat;
+}
+
+.contenedor_img1{
+    background-color: aquamarine;
+    background-image: url(../../img/svg/home1.svg);
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
+.contenedor_img2{
+    background-color: aquamarine;
+    background-image: url(../../img/svg/home2.svg);
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
