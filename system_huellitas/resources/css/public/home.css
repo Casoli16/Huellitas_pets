@@ -23,3 +23,22 @@ body{
     border-radius: 20px;
 }
 
+  
+  .carousel-control-prev, .carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: none;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .carousel-control-prev-icon {
+    background-image: url("../../img/png/row_prev.png");
+    height: 50px;
+  }
+  
+  .carousel-control-next-icon {
+    background-image: url("../../img/png/row_next.png");
+    height: 50px;
+  }
+  
