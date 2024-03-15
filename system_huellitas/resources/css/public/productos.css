@@ -2,3 +2,12 @@ body
 {
     background-image: url(../../img/png/fondos/huellitas_fondo.png);
 }
+
+a {
+    text-decoration: none;
+}
+@media (max-width: 429px) {
+.perro{
+    height: 200px;
+}
+}

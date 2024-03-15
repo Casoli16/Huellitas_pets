@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas pets - producto</title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/static_components/menu_public.css">
+    <!-- Agregamos el archivo css de la página en especifico-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/productos.css">
+</head>
+
+<body>
+    <header>
+        <nav id="navbar"></nav>
+    </header>
+
+    <main class="mt-5 p-5">
+        <div class="container bg-white p-5 d-flex rounded-5">
+            <div class="row">
+                <!--Aqui ira el código del producto-->
+                <div class="col-12 d-flex align-items-end">
+                    <div class="row">
+                        <!-- Utiliza d-flex y align-items-start para alinear el contenido a la izquierda -->
+                        <div class="col-1 text-end px-0"> <!-- Se ajusta el padding -->
+                            <img src="../../resources/img/png/flecha.png" class="img-fluid">
+                        </div>
+                        <div class="col-11 text-start">
+                            <!-- Utiliza text-start para alinear el texto a la izquierda -->
+                            <a class="opacity-100" href="../public/productos_perros_comida.html"
+                                id="productoEspecifico">
+                                <!-- No es necesario un div adicional aquí -->
+                                <p class="p-0 m-0 text-black font-smallest">
+                                    Regresar a los productos
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--Aqui ira el contenido de la imagen y la info del producto-->
+                <div class="col-12 align-items-center">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-3 px-2 align-items-center mb-6">
+                            <img class="perro image-fluid rounded-3" src="../../resources/img/png/product1.png" alt="">
+                        </div>
+                        <div class="div-sm-12 col-md-12 col-lg-9 py-3">
+                            <h2 class="fw-bold"> Bolsa Pedigree- Perro mayor.</h2>
+                            <p class="fs-6 fw-light">PEDIGREE</p>
+                            <h2 class="fw-bold py-2">$20.00</h2>
+                            <p class="fs-5 fw-semibold">Descripción</p>
+                            <p class="fs-5">Bolsa de comida de 6 libras, pedigree nutre el corazón y el cerebro de
+                                nuestros preciosos, para que lo alimentes como se lo merece.</p>
+                            <a href="../public/productos_perros_comida.html"
+                                class="btn btn-orange-color text-light me-md-5">Alimentación</a>
+                        </div>
+                        <div class="col-lg-2 col-sm-0 col-md-0"></div>
+                        <div class="col-lg-2 col-sm-0 col-md-0"></div>
+                        <div class="col-lg-2 col-sm-0 col-md-0"></div>
+                        <div class="col-lg-1 col-sm-0 col-md-0"></div>
+                        <div class="col-sm-12 col-md-4 col-lg-2 align-items-end">
+                            <div class="contador d-flex justify-content-between rounded-5 shadow mb-3">
+                                <button class="btn mas text-red-color fw-bolder" onclick="restar()">-</button>
+                                <input type="number" value="1" id="cantidad" min="1"
+                                    class="form-control text-center sin-barra bg-white">
+                                <button class="btn menos text-red-color fw-bolder" onclick="sumar()">+</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-3 px-2 align-items-start ">
+                            <a href="../public/carrito_1.html"
+                                class="btn btn-orange-color text-light me-md-5 font-smallest d-flex align-items-center py-2">
+                                <div class="col-auto">
+                                    <img src="../../resources/img/png/carro_redondo.png" class="img-fluid"
+                                        style="min-height: 40px;"> <!-- Ajusta el tamaño máximo del icono -->
+                                </div>
+                                <div class="col-auto">
+                                    Añadir al carrito
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-12">
+                            <div class="row align-items-center"> <!-- Agrega la clase align-items-center para alinear verticalmente -->
+                                <div class="col-1 text-end">
+                                    <img src="../../resources/img/png/icono_codigo.png" class="img-fluid"> <!-- Ajusta el tamaño máximo del icono -->
+                                </div>
+                                <div class="col-11 text-start">
+                                    <p class="font-smallest fw-semibold">
+                                        ¿Tienes un cupón de descuento?
+                                    </p>
+                                    <span class="fst-normal text-black">Podrás añadirlo en la parte de abajo</span> <!-- Usa un span para el texto secundario -->
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                
+
+                <!--Aquí ira el código de la valoración-->
+                <div class="col-12">
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Agregamos nuestro footer a la pantalla -->
+    <footer id="footer"></footer>
+
+    <!-- Agregamos el framework de boostrap - js -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script src="../../controllers/utils/public.js"></script>
+    <!-- Agregamos el js de la página-->
+    <script src="../../controllers/public/productos.js"></script>
+</body>
+
+</html>
