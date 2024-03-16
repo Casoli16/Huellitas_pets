@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,42 +14,58 @@
     <!-- Agregamos el archivo css del menu -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/public/static_components/menu_public.css">
 </head>
+
 <body>
+    <!-- Encabezado de la página -->
     <header>
+        <!-- Barra de navegación -->
         <nav id="navbar"></nav>
     </header>
 
+    <!-- Contenido principal -->
     <main class="mt-5 p-5">
-        <div class="container mt-5">
+        <!-- Contenedor principal -->
+        <div class="mt-5">
             <div class="col-sm-12 col-md-6">
+                <!-- Título y descripción del formulario -->
                 <div class="text-center">
                     <h2 class="fw-semibold">Recuperar Contraseña</h2>
                     <p class="fw-normal fs-5">Ingresar la nueva contraseña</p>
                 </div>
+                <!-- Formulario de recuperación de contraseña -->
                 <form action="" id="recuperacion_contrasenia" class="mt-5 p-4">
+                    <!-- Campo de nueva contraseña -->
                     <div class="mb-5">
                         <label for="contrasenia_actual" class="form-label fw-semibold">Nueva contraseña</label>
-                        <input type="password" id="contrasenia_actual" name="contraseniaActual" class="form-control form-control-lg shadow rounded-4 bg-white">
+                        <input type="password" id="contrasenia_actual" name="contraseniaActual"
+                            class="form-control form-control-lg shadow rounded-4 bg-white">
                     </div>
+                    <!-- Campo para confirmar nueva contraseña -->
                     <div class="mb-5">
                         <label for="contrasenia_nueva" class="form-label fw-semibold">Confirmar nueva contraseña</label>
-                        <input type="password" id="contrasenia_nueva" name="contraseniaActual" class="form-control form-control-lg shadow rounded-4 bg-white">
+                        <input type="password" id="contrasenia_nueva" name="contraseniaActual"
+                            class="form-control form-control-lg shadow rounded-4 bg-white">
                     </div>
+                    <!-- Botón para guardar la contraseña -->
                     <div class="text-center">
-                        <a class="btn btn-orange-color btn-lg text-light mb-2 d-grid gap-2 col-sm-12 col-md-12 mx-auto rounded-4" href="../public/login.html">Guardar</a>
-                        <p class="fw-semibold">Guarda tu contraseña en algun lugar seguro.</p>
+                        <a class="btn btn-orange-color btn-lg text-light mb-2 d-grid gap-2 col-sm-12 col-md-12 mx-auto rounded-4"
+                            href="../public/login.html">Guardar</a>
+                        <!-- Instrucciones adicionales -->
+                        <p class="fw-semibold">Guarda tu contraseña en algún lugar seguro.</p>
                     </div>
                 </form>
             </div>
         </div>
     </main>
 
-     <!-- Agregamos nuestro footer a la pantalla -->
+    <!-- Pie de página -->
     <footer id="footer"></footer>
 
-     <!-- Agregamos el framework de boostrap - js -->
-     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- Agregamos la ruta para agregar el menu -->
-     <script src="../../controllers/utils/public.js"></script>
+    <!-- Scripts de JavaScript -->
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Utilidades públicas -->
+    <script src="../../controllers/utils/public.js"></script>
 </body>
+
 </html>

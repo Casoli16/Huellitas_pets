@@ -16,17 +16,24 @@
 </head>
 
 <body>
+    <!-- Encabezado de la página -->
     <header>
+        <!-- Barra de navegación -->
         <nav id="navbar"></nav>
     </header>
 
+    <!-- Contenido principal -->
     <main class="mt-5 p-5">
+        <!-- Contenedor para la sección de productos de perros -->
         <div class="container-fluid bg-orange-cream-color text-white">
             <br>
+            <!-- Encabezado de la sección -->
             <div class="row">
+                <!-- Columna para la imagen del encabezado -->
                 <div class="col-1 px-5 text-end">
                     <img src="../../resources/img/png/dog_products.png" width="90px">
                 </div>
+                <!-- Columna para el título del encabezado -->
                 <div class="col-11">
                     <h1 class="p-3 text-start">
                         Perros
@@ -36,13 +43,19 @@
             <br>
         </div>
         <br>
+        <!-- Fila para el filtro de marcas -->
         <div class="row">
+            <!-- Columna para el filtro de marcas -->
             <div class="col-lg-4 col-sm-12 col-md-12">
+                <!-- Subcontenedor para el filtro -->
                 <div class="row">
+                    <!-- Columna para el título del filtro -->
                     <div class="col-12">
                         <p class="fw-bold">Filtrar por marcas</p>
                     </div>
+                    <!-- Columna para el dropdown de marcas -->
                     <div class="col-12">
+                        <!-- Dropdown para seleccionar la marca -->
                         <div class="dropdown d-grid grap-2" id="DropDown_ModificarPed" name="DropDown_ModificarPedN">
                             <button class="btn bg-white dropdown-toggle shadow rounded-5 text-start" type="button"
                                 id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -89,42 +102,59 @@
         <div class="container-fluid bg-white p-5 d-flex justify-content-center rounded-5">
             <div class="row d-flex gy-5">
                 <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="p-3 card rounded-4 shadow">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
-                                alt="...">
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h5 class="card-title fw-bold">$15</h5>
-                                </div>
-                                <div class="col-5">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                </div>
+                    <!-- Enlace para redireccionar a otra página cuando se hace clic en el contenedor -->
+                    <a href="../public/producto.html">
+                        <!-- Contenedor de la tarjeta del producto -->
+                        <div class="p-3 card rounded-4 shadow">
+                            <!-- Contenedor para la imagen del producto -->
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="../../resources/img/png/producto2.png" width="250px" height="290px"
+                                    class="p-3" alt="...">
                             </div>
-                            <p class="card-text small fw-light mb-0 mt-1">Maxi Chucho</p>
-                            <p class="fw-bold">Bolsa Maxxi Chucho - Perro adulto</p>
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="text-start">
-                                        <button type="button" class="btn btn-orange-color text-white .fs-6 text"
-                                            id="Ver_producto_perros">Ver producto</button>
+                            <!-- Cuerpo de la tarjeta -->
+                            <div class="card-body">
+                                <!-- Fila para el precio y las calificaciones -->
+                                <div class="row">
+                                    <!-- Columna para el precio -->
+                                    <div class="col-7">
+                                        <h5 class="card-title fw-bold">$50</h5>
+                                    </div>
+                                    <!-- Columna para las calificaciones -->
+                                    <div class="col-5">
+                                        <!-- Imágenes de las calificaciones -->
+                                        <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
+                                        <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
+                                        <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
+                                        <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
+                                        <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="container text-end">
-                                        <img src="../../resources/img/png/carrito_naranja.png" width="30px">
+                                <!-- Marca y nombre del producto -->
+                                <p class="card-text small fw-light mb-0 mt-1">PURINA</p>
+                                <p class="fw-bold">Bolsa Propac - Perro joven</p>
+                                <!-- Fila para los botones de acción -->
+                                <div class="row">
+                                    <!-- Columna para el botón "Ver producto" -->
+                                    <div class="col-9">
+                                        <div class="text-start">
+                                            <!-- Botón para ver más detalles del producto -->
+                                            <button type="button" class="btn btn-orange-color text-white .fs-6 text"
+                                                id="Ver_producto_perros">Ver producto</button>
+                                        </div>
+                                    </div>
+                                    <!-- Columna para el ícono del carrito de compras -->
+                                    <div class="col-3">
+                                        <div class="container text-end">
+                                            <!-- Ícono del carrito de compras -->
+                                            <img src="../../resources/img/png/carrito_naranja.png" width="30px">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
+
                 <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="p-3 card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
