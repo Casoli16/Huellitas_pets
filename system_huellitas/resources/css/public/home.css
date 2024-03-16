@@ -4,7 +4,6 @@ body{
 }
 
 .contenedor_img1{
-    background-color: aquamarine;
     background-image: url(../../img/svg/home1.svg);
     background-size: cover;
     background-position: center;
@@ -14,7 +13,6 @@ body{
 }
 
 .contenedor_img2{
-    background-color: aquamarine;
     background-image: url(../../img/svg/home2.svg);
     background-size: cover;
     background-position: center;
@@ -41,4 +39,7 @@ body{
     background-image: url("../../img/png/row_next.png");
     height: 50px;
   }
-  
+
+  .card:hover {
+    transform: scale(0.9, 0.9);
+  }

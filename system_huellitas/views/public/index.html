@@ -16,11 +16,13 @@
 </head>
 
 <body class="bg-beige-color">
+    <!-- Agregamos el navbar a nuestra pantalla -->
     <header>
         <nav id="navbar"></nav>
     </header>
 
     <div class="mt-5 p-5">
+        <!-- Row que contiene las dos imagenes -->
         <div class="row d-flex align-items-center">
             <div class="col-sm-12 col-md-8 py-4">
                 <div class="contenedor_img1 p-5">
@@ -39,81 +41,95 @@
             </div>
         </div>
 
+        <!-- Mascotas - En esta parte se coloco un row que contiene dos columna, una para la mascota de perro y el otro para gato -->
         <p class="fs-5 fw-semibold mt-4">Encuentra los mejores productos para tus mascotas</p>
 
-        <!-- Mascota -->
         <div class="bg-skin-color rounded-5 p-3">
             <div class="row d-flex justify-content-center align-items-center gx-5 gy-5">
                 <div class="col-auto">
                     <img src="../../resources/img/png/perro_home.png" alt="">
                     <div class="text-center mt-3">
-                        <a href="" class="btn btn-orange-color text-light d-grid grap-5">Gatos</a>
+                        <a href="../public/categorias_perro.html"
+                            class="btn btn-orange-color text-light d-grid grap-5">Gatos</a>
                     </div>
                 </div>
                 <div class="col-auto">
                     <img src="../../resources/img/png/cat_home.png" alt="">
                     <div class="text-center mt-3">
-                        <a href="" class="btn btn-orange-color text-light d-grid grap-5">Gatos</a>
+                        <a href="../public/categorias_gatos.html"
+                            class="btn btn-orange-color text-light d-grid grap-5">Gatos</a>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Carrusel que contiene las marcas -->
         <div class="p-3 mt-3">
+            <!-- Row que tiene dos columnas -->
             <div class="row d-flex justify-content-center align-items-center gy-4 ">
+                <!-- Col 1 / Tiene un imagen -->
                 <div class="col-md-2 col-sm-12 d-none d-md-block">
                     <img src="../../resources/img/png/dog_marcas.png">
                 </div>
+                <!-- Col 2 / Tiene el carrusel de imagen -->
                 <div class="col-md-10 col-sm-12">
                     <p class="fw-semibold mt-5 fs-5 mb-2">Todas tus marcas favoritas en un solo lugar</p>
 
+                    <!-- Declaramos nuestra clase de boostrap para el carrusel -->
                     <div id="carouselMarcas" class="carousel slide d-flex justify-content-center"
-                    data-bs-ride="carousel">
-                    <ul class="carousel-indicators">
-                        <li data-bs-target="#carouselMarcas" data-bs-slide-to="0" class="active"></li>
-                        <li data-bs-target="#carouselMarcas" data-bs-slide-to="1"></li>
-                    </ul>
-                    <div class="carousel-inner text-center p-5">
-                        <div class="carousel-item active">
-                            <div class="row d-flex justify-content-center gx-5 gy-4">
-                                <div class="col-auto">
-                                    <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
+                        data-bs-ride="carousel">
+
+                        <!-- Lista que contiene los indicadores para saber cuantas slides hay -->
+                        <ul class="carousel-indicators">
+                            <li data-bs-target="#carouselMarcas" data-bs-slide-to="0" class="active"></li>
+                            <li data-bs-target="#carouselMarcas" data-bs-slide-to="1"></li>
+                        </ul>
+                        <!-- Primer slide -->
+                        <!-- Carrusel que tiene una row y dentro cuatro columnas donde ira cada imagen -->
+                        <div class="carousel-inner text-center p-5">
+                            <div class="carousel-item active">
+                                <div class="row d-flex justify-content-center gx-5 gy-4">
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/doggi.png" class="rounded-circle">
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
+                                    </div>
                                 </div>
-                                <div class="col-auto">
-                                    <img src="../../resources/img/png/doggi.png" class="rounded-circle">
-                                </div>
-                                <div class="col-auto">
-                                    <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
-                                </div>
-                                <div class="col-auto">
-                                    <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
+                            </div>
+                            <!-- Segunda slide -->
+                            <!-- Carrusel que tiene una row y dentro cuatro columnas donde ira cada imagen -->
+                            <div class="carousel-item">
+                                <div class="row d-flex justify-content-center gx-5 gy-4">
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/doggi.png" class="rounded-circle">
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
+                                    </div>
+                                    <div class="col-auto">
+                                        <img src="../../resources/img/png/doggi.png" class="rounded-circle">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="row d-flex justify-content-center gx-5 gy-4">
-                                <div class="col-auto">
-                                    <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
-                                </div>
-                                <div class="col-auto">
-                                    <img src="../../resources/img/png/doggi.png" class="rounded-circle">
-                                </div>
-                                <div class="col-auto">
-                                    <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
-                                </div>
-                                <div class="col-auto">
-                                    <img src="../../resources/img/png/doggi.png" class="rounded-circle">
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Flechas para ver la slide anterior y siguiente -->
+                        <a class="carousel-control-prev" href="#carouselMarcas" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselMarcas" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselMarcas" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselMarcas" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </a>
-                </div>
                 </div>
             </div>
         </div>
@@ -121,22 +137,27 @@
         <!-- Titulo de productos -->
         <div class="text-center mt-4 mb-5">
             <h2 class="fw-bold">Productos</h2>
-            <p>Explora nuestros productos y conciente a tus peluditos</p>
+            <p>Explora nuestros productos y consciente a tus peluditos</p>
         </div>
 
         <div class="container-fluid bg-white d-flex justify-content-center rounded-5 p-5">
+            <!-- Row que contiene cuatro columnas para las cartas de productos -->
             <div class="row d-flex gy-5 d-flex justify-content-center">
-                <div class="col-sm-6 col-md-3">
+                <!-- Col 1 -->
+                <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
                             <img src="../../resources/img/png/product3.png" width="250px" height="290px" class="p-3"
                                 alt="...">
                         </div>
                         <div class="card-body">
+                            <!-- Row que contiene dos columnas -->
                             <div class="row">
+                                <!-- Primer columna - Precio del producto -->
                                 <div class="col-7">
                                     <h5 class="card-title fw-bold">$15</h5>
                                 </div>
+                                <!-- Segundo col - Cinco estrellas -->
                                 <div class="col-5">
                                     <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
                                     <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
@@ -147,10 +168,24 @@
                             </div>
                             <p class="card-text small fw-light mb-0 mt-1">Maxi Chucho</p>
                             <p class="fw-bold">Bolsa Maxxi Chucho - Perro adulto</p>
+                            <!-- Row que contiene dos col - Boton para ver el producto y el carrito de compra-->
+                            <div class="row d-flex align-items-center">
+                                <div class="col-8">
+                                    <a href="../../views/public/producto.html" class="btn btn-orange-color text-light">
+                                        Ver producto</a>
+                                </div>
+                                <div class="col-4">
+                                    <a href="../../views/public/carrito_1.html">
+                                        <img src="../../resources/img/png/carrito_naranja.png" class="float-end"
+                                            width="35px">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
+                <!-- Segunda col -->
+                <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
                             <img src="../../resources/img/png/product1.png" width="250px" height="290px" class="p-3"
@@ -171,10 +206,23 @@
                             </div>
                             <p class="card-text small fw-light mb-0 mt-1">Maxi Chucho</p>
                             <p class="fw-bold">Bolsa Maxxi Chucho - Perro adulto</p>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-8">
+                                    <a href="../../views/public/producto.html" class="btn btn-orange-color text-light">
+                                        Ver producto</a>
+                                </div>
+                                <div class="col-4">
+                                    <a href="../../views/public/carrito_1.html">
+                                        <img src="../../resources/img/png/carrito_naranja.png" class="float-end"
+                                            width="35px">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
+                <!-- Tercera col -->
+                <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
                             <img src="../../resources/img/png/product1.png" width="250px" height="290px" class="p-3"
@@ -195,10 +243,23 @@
                             </div>
                             <p class="card-text small fw-light mb-0 mt-1">Maxi Chucho</p>
                             <p class="fw-bold">Bolsa Maxxi Chucho - Perro adulto</p>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-8">
+                                    <a href="../../views/public/producto.html" class="btn btn-orange-color text-light">
+                                        Ver producto</a>
+                                </div>
+                                <div class="col-4">
+                                    <a href="../../views/public/carrito_1.html">
+                                        <img src="../../resources/img/png/carrito_naranja.png" class="float-end"
+                                            width="35px">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
+                <!-- Cuarta col -->
+                <div class="col-sm-12 col-md-6 col-lg-3">
                     <div class="card rounded-4 shadow">
                         <div class="d-flex justify-content-center align-items-center">
                             <img src="../../resources/img/png/product1.png" width="250px" height="290px" class="p-3"
@@ -219,6 +280,18 @@
                             </div>
                             <p class="card-text small fw-light mb-0 mt-1">Maxi Chucho</p>
                             <p class="fw-bold">Bolsa Maxxi Chucho - Perro adulto</p>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-8">
+                                    <a href="../../views/public/producto.html" class="btn btn-orange-color text-light">
+                                        Ver producto</a>
+                                </div>
+                                <div class="col-4">
+                                    <a href="../../views/public/carrito_1.html">
+                                        <img src="../../resources/img/png/carrito_naranja.png" class="float-end"
+                                            width="35px">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

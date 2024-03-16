@@ -74,16 +74,16 @@ const footer = `
             <div class="col-sm-6 col-md-2 mt-5">
                 <h3 class="fw-semibold">Servicios</h3>
                 <div class="mt-3">
-                    <a class="text-decoration-none text-dark fw-light" href="">Categorías</a>
+                    <a class="text-decoration-none text-dark fw-light" href="../../views/public/categorias_perro.html">Categorías</a>
                 </div>
                 <div class="mt-2">
-                    <a class="text-decoration-none text-dark fw-light" href="">Productos para perros</a>
+                    <a class="text-decoration-none text-dark fw-light" href="../../views/public/productos_perros_comida.html">Productos para perros</a>
                 </div>
                 <div class="mt-2">
-                    <a class="text-decoration-none text-dark fw-light" href="">Productos para gatos</a>
+                    <a class="text-decoration-none text-dark fw-light" href="../../views/public/productos_gatos_comida.html">Productos para gatos</a>
                 </div>
                 <div class="mt-2">
-                    <a class="text-decoration-none text-dark fw-light" href="">Cupones</a>
+                    <a class="text-decoration-none text-dark fw-light">Cupones</a>
                 </div>
             </div>
             <!-- Tercera columna -->
@@ -101,7 +101,7 @@ const footer = `
             <div class="col-sm-6 col-md-2 mt-5">
                 <h3 class="fw-semibold">Privacidad</h3>
                 <div class="mt-3">
-                    <a class="text-decoration-none text-dark fw-light" href="">Términos y condiciones</a>
+                    <a class="text-decoration-none text-dark fw-light" href="../../views/public/terminos_condiciones.html">Términos y condiciones</a>
                 </div>
             </div>
             <div class="col-sm-6 col-md-3 d-none d-sm-block">
