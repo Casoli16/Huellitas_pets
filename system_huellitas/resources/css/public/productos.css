@@ -1,11 +1,44 @@
 body
 {
     background-image: url(../../img/png/fondos/huellitas_fondo.png);
+    background-color: #FEF6F0;
 }
 
 a {
     text-decoration: none;
 }
+
+.star{
+    color: #bbb;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.star:hover,
+.star.checked{
+    color: gold;
+}
+
+.estrella_ejemplo{
+    color: gold;
+}
+
+.estrella_ejemplo_apagada{
+    color: #bbb;
+}
+
+.mensaje_input{
+    border-color: #FCA311;
+    background-color: white;
+    border-width: 3px;
+}
+
+.comentarios_clientes{
+    border-width: 3px; /* Ancho del borde */
+    border-style: solid; /* Estilo del borde (puede ser solid, dashed, dotted, double, etc.) */
+    border-color: #FCA311; /* Color del borde */
+}
+
 @media (max-width: 429px) {
 .perro{
     height: 200px;
