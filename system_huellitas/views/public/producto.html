@@ -73,7 +73,7 @@
                         <div class="col-sm-12 col-md-8 col-lg-3 px-2 align-items-start ">
                             <a href="../public/carrito_1.html"
                                 class="btn btn-orange-color text-light me-md-5 font-smallest d-flex align-items-center py-2">
-                                <div class="col-auto">
+                                <div class="col-auto d-none d-sm-block">
                                     <img src="../../resources/img/png/carro_redondo.png" class="img-fluid"
                                         style="min-height: 40px;"> <!-- Ajusta el tamaño máximo del icono -->
                                 </div>
@@ -83,46 +83,74 @@
                             </a>
                         </div>
                         <div class="col-sm-12 col-md-8 col-lg-12">
-                            <div class="row align-items-center"> <!-- Agrega la clase align-items-center para alinear verticalmente -->
-                                <div class="col-1 text-end">
-                                    <img src="../../resources/img/png/icono_codigo.png" class="img-fluid"> <!-- Ajusta el tamaño máximo del icono -->
+                            <div class="row align-items-center">
+                                <!-- Agrega la clase align-items-center para alinear verticalmente -->
+                                <div class="col-1 text-end d-none d-sm-block">
+                                    <!-- Utiliza las clases d-none y d-sm-block para ocultar la imagen en pantallas pequeñas -->
+                                    <img src="../../resources/img/png/icono_codigo.png" class="img-fluid">
+                                    <!-- Ajusta el tamaño máximo del icono -->
                                 </div>
                                 <div class="col-11 text-start">
                                     <p class="font-smallest fw-semibold">
                                         ¿Tienes un cupón de descuento?
                                     </p>
-                                    <span class="fst-normal text-black">Podrás añadirlo en la parte de abajo</span> <!-- Usa un span para el texto secundario -->
+                                    <span class="fst-normal text-black">Podrás añadirlo en la parte de abajo</span>
+                                    <!-- Usa un span para el texto secundario -->
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
+                        <div class="col-12 py-5">
+                            <div class="row align-items-start">
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <div class="mb-3">
+                                        <input type="text" id="nombre_cliente" name="nonmbreCliente"
+                                            placeholder="Escribe el código de tu cupón"
+                                            class="form-control form-control-lg shadow rounded-3 bg-white">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-5 col-sm-5 text-start d-flex">
+                                    <img src="../../resources/img/png/enviar_codigo.png" class="img-fluid" style="max-width: 35px;">
+                                    <!-- Ajusta el tamaño máximo del icono -->
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                     </div>
-                    <br>
-                    <hr class="py-3">
                 </div>
-                
+
 
                 <!--Aquí ira el código de la valoración-->
-                <div class="col-12">
+                <div class="col-12 py-5">
                     <h3 class=""><b>Valoración</b></h3>
                     <br>
                     <form action="" id="valoracion_producto_cliente">
                         <div class="text-center">
                             <p>Tu puntuación sobre este producto</p>
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor"
+                                    class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor"
+                                    class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor"
+                                    class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor"
+                                    class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" fill="currentColor"
+                                    class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
                             </div>
                         </div>
@@ -130,8 +158,9 @@
                         <br>
                         <h6><b>Dinos tu opinión acerca del producto</b></h6>
                         <div class="input-group py-1">
-                            <textarea class="form-control mensaje_input" id="mensaje_comentario_cliente" name="mensajeComentarioCliente"
-                            rows="5" aria-label="With textarea" placeholder="Escribe un comentario..."></textarea>
+                            <textarea class="form-control mensaje_input" id="mensaje_comentario_cliente"
+                                name="mensajeComentarioCliente" rows="5" aria-label="With textarea"
+                                placeholder="Escribe un comentario..."></textarea>
                         </div>
                         <div class="py-4">
                             <button type="button" class="btn btn-orange-color text-white">Envíar comentario</button>
@@ -144,29 +173,46 @@
                 <h5><b>Comentarios</b></h5>
                 <div class="row py-3">
                     <div class="col-1 py-2">
-                        <img class="image-fluid" width="75px" src="../../resources/img/png/img_pefil_comentario.png" alt="">
+                        <img class="image-fluid" width="75px" src="../../resources/img/png/img_pefil_comentario.png"
+                            alt="">
                     </div>
                     <div class="col-12 col-lg-10 comentarios_clientes">
                         <div class="row">
                             <div class="col-9 col-lg-12 py-2 px-4">
-                                <p class="fs-6">La comida le gustó mucho a mi perro, creo que es su favorita, la recomiendo 
+                                <p class="fs-6">La comida le gustó mucho a mi perro, creo que es su favorita, la
+                                    recomiendo
                                     mucho, espero a sus cachorros les guste tanto como al mio.</p>
                                 <div class="row">
                                     <div class="col-8 col-lg-8">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-star-fill estrella_ejemplo" viewBox="0 0 16 16">
-                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                            fill="currentColor" class="bi bi-star-fill estrella_ejemplo"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                         </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-star-fill estrella_ejemplo" viewBox="0 0 16 16">
-                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                            fill="currentColor" class="bi bi-star-fill estrella_ejemplo"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                         </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="28" fill="currentColor" class="bi bi-star-fill estrella_ejemplo" viewBox="0 0 16 16">
-                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="28"
+                                            fill="currentColor" class="bi bi-star-fill estrella_ejemplo"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                         </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-star-fill estrella_ejemplo" viewBox="0 0 16 16">
-                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                            fill="currentColor" class="bi bi-star-fill estrella_ejemplo"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                         </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-star-fill estrella_ejemplo_apagada" viewBox="0 0 16 16">
-                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                            fill="currentColor" class="bi bi-star-fill estrella_ejemplo_apagada"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                         </svg>
                                     </div>
                                     <div class="col-8 col-lg-4 ">
