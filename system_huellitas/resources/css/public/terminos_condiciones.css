@@ -7,6 +7,6 @@ h1 {
     margin-top: 35px;
 }
 /* Estilo para los párrafos */
-p {
+.text{
     text-align: justify;
 }
