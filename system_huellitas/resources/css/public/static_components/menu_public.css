@@ -15,3 +15,12 @@
     border-color: none ;
     border: none;
  }
+
+ .nav_colores_perfil{
+   background-color: #FCE9DB;
+}
+
+.nav_bto_perfil:hover{
+   background-color: rgba(0, 0, 0, 0.200) !important;
+   color: #000;
+}
