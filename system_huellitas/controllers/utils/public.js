@@ -179,6 +179,11 @@ const navbar_perfil=`
 </nav>
 `
 
+document.addEventListener('DOMContentLoaded', () => {
+document.getElementById('navbar_perfil').innerHTML = navbar_perfil;
+});
+
+/*
 // Función para cambiar el navbar al navbar original
 function restaurarNavbarOriginal() {
     document.getElementById('navbar').innerHTML = navbar;
@@ -201,4 +206,4 @@ window.addEventListener('load', function() {
     } else if (menuState === 'perfil') {
         restaurarNavbarOriginal();
     }
-});
+});*/
