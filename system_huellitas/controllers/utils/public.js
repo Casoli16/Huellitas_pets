@@ -59,10 +59,10 @@ const footer = `
                 </a>
                 <div class="row d-flex justify-content-center">
                     <div class="col-auto">
-                        <img src="../../resources/img/png/facebook.png" width="40px">
+                    <a href="https://www.facebook.com/?locale=es_LA target="_blank""><img src="../../resources/img/png/facebook.png" width="40px"></a>
                     </div>
                     <div class="col-auto">
-                        <img src="../../resources/img/png/instagram.png" width="40px">
+                    <a href="https://www.instagram.com/huellitas_pets2024/" target="_blank"><img src="../../resources/img/png/instagram.png" width="40px"></a>
                     </div>
                 </div>
                 <div class="mt-3">
