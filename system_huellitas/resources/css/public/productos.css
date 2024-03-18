@@ -41,13 +41,54 @@ a {
     /* Color del borde */
 }
 
+.buton {
+    border-radius: 1em;
+    box-shadow: none;
+    border: 0.1rem solid transparent;
+    background-color: rgb(238, 150, 75);
+    transition: 0.3s;
+    font-size: 1em;
+    outline: none;
+  }
+  
+  .buton:hover {
+    cursor: pointer;
+    transform: scale(1.05) rotate(3deg);
+    outline: none;
+  }
+  
+  .buton:active {
+    animation: borderMove 0.5s forwards;
+    transform: scale(0.9) rotate(-3deg);
+    color: rgb(238, 150, 75);
+    outline: none;
+  }
+  
+  @keyframes borderMove {
+    0% {
+      border-width: 0.1rem;
+      transform: scale(1) rotate(0deg);
+    }
+  
+    50% {
+      border-width: 0.4rem;
+      transform: scale(0.9) rotate(-3deg);
+    }
+  
+    100% {
+      border-width: 0.15rem;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+  
+
 @media (max-width: 429px) {
     .perro {
         height: 200px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 866px) {
     .imgcodigo {
         visibility: hidden !important;
     }
