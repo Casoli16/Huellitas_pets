@@ -47,6 +47,12 @@ a {
     }
 }
 
+@media (max-width: 768px) {
+    .imgcodigo {
+        visibility: hidden !important;
+    }
+}
+
 .buttonn {
     position: relative;
     padding: 10px 22px;
