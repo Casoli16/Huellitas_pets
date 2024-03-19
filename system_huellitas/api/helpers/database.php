@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.php')
+require_once('config.php');
 
 class Database
 {
@@ -13,9 +13,11 @@ class Database
         try{
             self::$connection = new PDO('mysql:host=' . SERVER . ';dbname' . DATABASE, USERNAME, PASSWORD);
             self::$statement = self::$connection->prepare($query);
-            return self::$statement->execute($values)
-        }catch(){
-
+            return self::$statement->execute($values);
+        } catch (PDOException $error) {
+            // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.
+            self::setException($error->getCode(), $error->getMessage());
+            return false;
         }
     }
 
@@ -28,7 +30,7 @@ class Database
         }
     }
 
-    public static function getRow($query, $values = null)
+    public static function getRows($query, $values = null)
     {
         if(self::executeRow($query, $values)){
             return self::$statement->fetchAll(PDO::FETCH_ASSOC);
