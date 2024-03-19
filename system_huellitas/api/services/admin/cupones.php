@@ -2,8 +2,6 @@
 // Se incluye la clase del modelo.
 require_once('../../models/data/cupones_data.php');
 
-// Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
-if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
@@ -99,9 +97,4 @@ if (isset($_GET['action'])) {
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
-    } else {
-        print(json_encode('Acceso denegado'));
-    }
-} else {
-    print(json_encode('Recurso no disponible'));
 }

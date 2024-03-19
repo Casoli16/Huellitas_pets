@@ -28,7 +28,7 @@ class cupones_data extends cupones_handler
         }
     }
 
-    public function setCodigoCupon($value, $min = 7, $max = 8)
+    public function setCodigoCupon($value, $min = 4, $max = 8)
     {
         if (!Validator::validateAlphanumeric($value)) {
             $this->data_error = 'El codigo debe ser un valor alfanumérico';
