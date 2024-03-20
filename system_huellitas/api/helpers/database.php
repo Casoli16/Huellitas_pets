@@ -11,7 +11,7 @@ class Database
     public static function executeRow($query, $values)
     {
         try{
-            self::$connection = new PDO('mysql:host=' . SERVER . ';dbname' . DATABASE, USERNAME, PASSWORD);
+            self::$connection = new PDO('mysql:host=' . SERVER . ';dbname=' . DATABASE, USERNAME, PASSWORD);
             self::$statement = self::$connection->prepare($query);
             return self::$statement->execute($values);
         } catch (PDOException $error) {
@@ -63,7 +63,7 @@ class Database
                     self::$error = 'Violación de restricción de integridad';
                     break;
                 default:
-                    self::$error = 'Ocurrió un problema en la base de datos';
+                    //self::$error = 'Ocurrió un problema en la base de datos';
         }
     }
 
