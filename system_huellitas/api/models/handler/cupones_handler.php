@@ -25,4 +25,12 @@ class cupones_handler
         $params = array($this->codigo_cupon, $this->porcentaje_cupon, $this->estado_cupon);
         return Database::executeRow($sql, $params);
     }
+
+    public function readAll()
+    {
+        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria, descripcion_categoria
+                FROM categoria
+                ORDER BY nombre_categoria';
+        return Database::getRows($sql);
+    }
 }

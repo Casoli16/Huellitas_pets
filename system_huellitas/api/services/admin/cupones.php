@@ -15,7 +15,7 @@ require_once('../../models/data/cupones_data.php');
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
-                } elseif ($result['dataset'] = $categoria->searchRows()) {  
+                } elseif ($result['dataset'] = $cupones->searchRows()) {  
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
                 } else {
@@ -38,17 +38,17 @@ require_once('../../models/data/cupones_data.php');
                 }
                 break;
             case 'readAll':
-                if ($result['dataset'] = $categoria->readAll()) {
+                if ($result['dataset'] = $cupones->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen categorías registradas';
+                    $result['error'] = 'No existen cupones registrados';
                 }
                 break;
             case 'readOne':
-                if (!$categoria->setId($_POST['idCategoria'])) {
-                    $result['error'] = $categoria->getDataError();
-                } elseif ($result['dataset'] = $categoria->readOne()) {
+                if (!$cupones->setId($_POST['idCategoria'])) {
+                    $result['error'] = $cupones->getDataError();
+                } elseif ($result['dataset'] = $cupones->readOne()) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Categoría inexistente';
@@ -57,29 +57,29 @@ require_once('../../models/data/cupones_data.php');
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$categoria->setId($_POST['idCategoria']) or
-                    !$categoria->setFilename() or
-                    !$categoria->setNombre($_POST['nombreCategoria']) or
-                    !$categoria->setDescripcion($_POST['descripcionCategoria']) or
-                    !$categoria->setImagen($_FILES['imagenCategoria'], $categoria->getFilename())
+                    !$cupones->setId($_POST['idCategoria']) or
+                    !$cupones->setFilename() or
+                    !$cupones->setNombre($_POST['nombreCategoria']) or
+                    !$cupones->setDescripcion($_POST['descripcionCategoria']) or
+                    !$cupones->setImagen($_FILES['imagenCategoria'], $cupones->getFilename())
                 ) {
-                    $result['error'] = $categoria->getDataError();
-                } elseif ($categoria->updateRow()) {
+                    $result['error'] = $cupones->getDataError();
+                } elseif ($cupones->updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Categoría modificada correctamente';
                     // Se asigna el estado del archivo después de actualizar.
-                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenCategoria'], $categoria::RUTA_IMAGEN, $categoria->getFilename());
+                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenCategoria'], $cupones::RUTA_IMAGEN, $cupones->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar la categoría';
                 }
                 break;
             case 'deleteRow':
                 if (
-                    !$categoria->setId($_POST['idCategoria']) or
-                    !$categoria->setFilename()
+                    !$cupones->setId($_POST['idCategoria']) or
+                    !$cupones->setFilename()
                 ) {
-                    $result['error'] = $categoria->getDataError();
-                } elseif ($categoria->deleteRow()) {
+                    $result['error'] =$cupones->getDataError();
+                } elseif ($cupones->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Categoría eliminada correctamente';
                     // Se asigna el estado del archivo después de eliminar.
