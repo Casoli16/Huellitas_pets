@@ -20,7 +20,7 @@ class cupones_data extends cupones_handler
     public function setIdCupon($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id = $value;
+            $this->id_cupon = $value;
             return true;
         } else {
             $this->data_error = 'El identificador es incorrecto';
@@ -62,6 +62,18 @@ class cupones_data extends cupones_handler
         } 
          else {
             $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+
+    public function setfecha_cupon($value)
+    {
+        if (Validator::validateDate($value)) {
+            $this->fecha_cupon = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Digite la fecha de correctamente';
             return false;
         }
     }

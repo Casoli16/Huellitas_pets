@@ -13,12 +13,25 @@ class cupones_handler
     protected $codigo_cupon = null;
     protected $porcentaje_cupon = null;
     protected $estado_cupon = null;
+    protected $fecha_cupon = null;
 
 
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
      * Aunque ahorita solo haré el de agregar cupones
      */
+
+     public function searchRows()
+    {
+        $value = '%' . Validator::getSearchValue() . '%';
+        $sql = 'SELECT id_cupon, codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon 
+                FROM cupones_oferta
+                WHERE codigo_cupon LIKE ? OR fecha_ingreso_cupon LIKE ?
+                ORDER BY fecha_ingreso_cupon DESC';
+        $params = array($value, $value);
+        return Database::getRows($sql, $params);
+    }
+
     public function createRow()
     {
         $sql = 'CALL agregar_cupon_PA (?, ?, ?);';
@@ -28,9 +41,24 @@ class cupones_handler
 
     public function readAll()
     {
-        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria, descripcion_categoria
-                FROM categoria
-                ORDER BY nombre_categoria';
+        $sql = 'SELECT id_cupon, codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon 
+                FROM cupones_oferta
+                ORDER BY fecha_ingreso_cupon DESC';
         return Database::getRows($sql);
     }
+
+    public function updateRow()
+    {
+        $sql = 'CALL actualizar_cupon_PA (?, ?, ?, ?);';
+        $params = array($this->codigo_cupon, $this->porcentaje_cupon, $this->estado_cupon, $this->id_cupon);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deleteRow()
+    {
+        $sql = 'DELETE FROM cupones_oferta  WHERE id_cupon = ?;';
+        $params = array($this->id_cupon);
+        return Database::executeRow($sql, $params);
+    }
+    
 }

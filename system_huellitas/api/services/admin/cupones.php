@@ -27,7 +27,7 @@ require_once('../../models/data/cupones_data.php');
                 if (
                     !$cupones->setCodigoCupon($_POST['codigoCupon']) or
                     !$cupones->setPorcentajeCupon($_POST['porcentajeCupon']) or
-                    !$cupones->setestado_cupon($_POST['esstadoCupon'])
+                    !$cupones->setestado_cupon($_POST['estadoCupon'])
                 ) {
                     $result['error'] = $cupones->getDataError();
                 } elseif ($cupones->createRow()) {
@@ -57,35 +57,29 @@ require_once('../../models/data/cupones_data.php');
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cupones->setId($_POST['idCategoria']) or
-                    !$cupones->setFilename() or
-                    !$cupones->setNombre($_POST['nombreCategoria']) or
-                    !$cupones->setDescripcion($_POST['descripcionCategoria']) or
-                    !$cupones->setImagen($_FILES['imagenCategoria'], $cupones->getFilename())
+                    !$cupones->setIdCupon($_POST['idCupon']) or
+                    !$cupones->setCodigoCupon($_POST['codigoCupon']) or
+                    !$cupones->setPorcentajeCupon($_POST['porcentajeCupon']) or
+                    !$cupones->setestado_cupon($_POST['estadoCupon'])
                 ) {
                     $result['error'] = $cupones->getDataError();
                 } elseif ($cupones->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Categoría modificada correctamente';
-                    // Se asigna el estado del archivo después de actualizar.
-                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenCategoria'], $cupones::RUTA_IMAGEN, $cupones->getFilename());
+                    $result['message'] = 'Cupon modificada correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar la categoría';
+                    $result['error'] = 'Ocurrió un problema al modificar el cupon';
                 }
                 break;
             case 'deleteRow':
                 if (
-                    !$cupones->setId($_POST['idCategoria']) or
-                    !$cupones->setFilename()
+                    !$cupones->setIdCupon($_POST['idCupon'])
                 ) {
                     $result['error'] =$cupones->getDataError();
                 } elseif ($cupones->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Categoría eliminada correctamente';
-                    // Se asigna el estado del archivo después de eliminar.
-                    $result['fileStatus'] = Validator::deleteFile($categoria::RUTA_IMAGEN, $categoria->getFilename());
+                    $result['message'] = 'Cupon eliminado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al eliminar la categoría';
+                    $result['error'] = 'Ocurrió un problema al eliminar el cupón';
                 }
                 break;
             default:
