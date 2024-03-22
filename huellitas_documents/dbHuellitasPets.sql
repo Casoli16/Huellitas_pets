@@ -137,3 +137,5 @@ CREATE TABLE IF NOT EXISTS valoraciones (
   id_detalle_pedido INT,
   CONSTRAINT fk_valoraciones_detalles_pedidos FOREIGN KEY (id_detalle_pedido) REFERENCES detalles_pedidos(id_detalle_pedido)
 );
+
+SELECT * FROM cupones_oferta;

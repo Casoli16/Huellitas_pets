@@ -18,6 +18,20 @@ DELIMITER ;
 
 CALL agregar_cupon_PA ('TREBOR', 30, 1);
 
+DELIMITER //
+
+CREATE PROCEDURE actualizar_cupon_PA(codigo VARCHAR(100), porcentaje INT, estado BOOL, id INT)
+BEGIN
+    -- Declaramos la variable que contendrá el día de ingreso del cupón
+    UPDATE cupones_oferta 
+	 SET codigo_cupon = codigo,  porcentaje_cupon = porcentaje, estado_cupon = estado
+	 WHERE id_cupon = id;  
+
+END //
+
+DELIMITER ;
+
+CALL actualizar_cupon_PA ('POPOTE', 35, 1, 2);
 -- Función para calcular precio total de varios productos
 DELIMITER //
 
@@ -52,5 +66,3 @@ END
 //
 DELIMITER ;
 
-SELECT * FROM productos;
-SELECT calcular_precio_total_producto(2, 5);	
