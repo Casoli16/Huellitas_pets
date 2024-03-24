@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS productos (
   precio_producto DECIMAL(5,2) NOT NULL,
   CONSTRAINT precio_producto_check CHECK(precio_producto > 0),
   imagen_producto VARCHAR(50) DEFAULT 'imagen_producto.png',
-  estado_producto ENUM('Disponible', 'No disponible'),
+  estado_producto ENUM('Disponible', 'No disponible') DEFAULT 'Disponible',
   existencia_producto INT,
   CONSTRAINT existencia_producto_check CHECK(existencia_producto > 0),
   fecha_registro_producto DATE DEFAULT NOW(),
@@ -139,3 +139,4 @@ CREATE TABLE IF NOT EXISTS valoraciones (
 );
 
 SELECT * FROM cupones_oferta;
+SELECT * FROM productos;

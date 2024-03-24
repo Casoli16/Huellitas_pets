@@ -72,7 +72,7 @@ require_once('../../models/data/cupones_data.php');
                 break;
             case 'deleteRow':
                 if (
-                    !$cupones->setIdCupon($_POST['idCupon'])
+                    !$cupones->setIdCupon($_POST['idCupon1'])
                 ) {
                     $result['error'] =$cupones->getDataError();
                 } elseif ($cupones->deleteRow()) {
