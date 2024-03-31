@@ -159,12 +159,12 @@ SELECT * FROM marcas;
 /*Inserts para la tabla de marcas*/
 INSERT INTO productos (nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, existencia_producto, fecha_registro_producto, mascotas, id_categoria, id_marca)
 VALUES 
-  ('Croquetas Premium', 'Nutritivas croquetas premium para perros y gatos.', 30.99, 'croquetas_premium.png', 'activo', 100, '2024-03-03', 'perro', 1, 1),
-  ('Juguete Pelota Interactiva', 'Pelota interactiva para perros, ideal para juegos divertidos.', 12.50, 'pelota_interactiva.png', 'activo', 150, '2024-03-03', 'perro', 3, 7),
-  ('Comedero Automático', 'Comedero automático programable para perros y gatos.', 45.75, 'comedero_automatico.png', 'activo', 50, '2024-03-03', 'perro', 6, 9),
-  ('Arena Aglomerante', 'Arena aglomerante para gatos, controla olores y facilita la limpieza.', 14.99, 'arena_aglomerante.png', 'activo', 80, '2024-03-03', 'gato', 20, 11),
-  ('Collar Ajustable', 'Collar ajustable para perros con diseño resistente y seguro.', 8.25, 'collar_ajustable.png', 'activo', 120, '2024-03-03', 'perro', 5, 4),
-  ('Juguete para Roedores', 'Juguete interactivo para roedores, promueve el ejercicio.', 6.99, 'juguete_roedores.png', 'activo', 200, '2024-03-03', 'gato', 10, 13),
+  ('Croquetas Premium', 'Nutritivas croquetas premium para perros y gatos.', 30.99, 'croquetas_premium.png', 'Disponible', 100, '2024-03-03', 'perro', 1, 1),
+  ('Juguete Pelota Interactiva', 'Pelota interactiva para perros, ideal para juegos divertidos.', 12.50, 'pelota_interactiva.png', 'No disponible', 150, '2024-03-03', 'perro', 3, 7),
+  ('Comedero Automático', 'Comedero automático programable para perros y gatos.', 45.75, 'comedero_automatico.png', 'Disponible', 50, '2024-03-03', 'perro', 6, 9),
+  ('Arena Aglomerante', 'Arena aglomerante para gatos, controla olores y facilita la limpieza.', 14.99, 'arena_aglomerante.png', 'No disponible', 80, '2024-03-03', 'gato', 20, 11),
+  ('Collar Ajustable', 'Collar ajustable para perros con diseño resistente y seguro.', 8.25, 'collar_ajustable.png', 'Disponible', 120, '2024-03-03', 'perro', 5, 4),
+  ('Juguete para Roedores', 'Juguete interactivo para roedores, promueve el ejercicio.', 6.99, 'juguete_roedores.png', 'No disponible', 200, '2024-03-03', 'gato', 10, 13),
   ('Cama Suave y Cálida', 'Cama suave y cálida para perros y gatos, ideal para descansar.', 22.50, 'cama_suave_calida.png', 'activo', 90, '2024-03-03', 'perro', 4, 8),
   ('Acuario Completo', 'Acuario completo con accesorios, perfecto para peces tropicales.', 99.95, 'acuario_completo.png', 'activo', 300, '2024-03-03', 'gato', 12, 22),
   ('Snacks Naturales', 'Snacks naturales para perros, sin aditivos artificiales.', 9.75, 'snacks_naturales.png', 'activo', 150, '2024-03-03', 'perro', 2, 14),
