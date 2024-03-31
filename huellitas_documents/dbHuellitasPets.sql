@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS administradores (
   alias_admin VARCHAR(50),
   CONSTRAINT alias_admin_unico UNIQUE(alias_admin),
   clave_admin VARCHAR(100),
-  fecha_registro_admin DATE DEFAULT NOW(),
-  imagen_admin VARCHAR(50) DEFAULT 'imagen_admin.png'
+  fecha_registro_admin DATE DEFAULT NOW() NOT NULL,
+  imagen_admin VARCHAR(50) DEFAULT 'imagen_admin.png' NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS asignacion_permisos (
@@ -139,4 +139,4 @@ CREATE TABLE IF NOT EXISTS valoraciones (
 );
 
 SELECT * FROM cupones_oferta;
-SELECT * FROM productos;
+SELECT * FROM administradores;

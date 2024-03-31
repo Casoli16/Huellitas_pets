@@ -62,13 +62,13 @@ if(isset($_SESSION['idAdministrador']) or true){
                 $result['status'] = 1;
                 $result['message'] = 'Producto actualizado correctamente';
             } else{
-                $result['error'] = 'Ocurrió un problema al actualiza el producto';
+                $result['error'] = 'Ocurrió un problema al actualizar el producto';
             }
             break;
         case 'readAll':
             if($result['dataset'] = $productos->readAll()){
                $result['status'] = 1;
-               $result['message'] = 'Exisrten' . count($result['dataset']) . 'registros'; 
+               $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
             } else{
                 $result['error'] = 'No existen productos registrados';
             }
@@ -87,7 +87,7 @@ if(isset($_SESSION['idAdministrador']) or true){
                 $result['error'] = $productos->getDataError();
             } elseif ($productos->deleteRow()){
                 $result['status'] = 1;
-                $result['message'] = 'Producto eliminados correctamente';
+                $result['message'] = 'Producto eliminado correctamente';
             } else{
                 $result['error'] = 'Ocurrio un problema al eliminar el producto';
             }
