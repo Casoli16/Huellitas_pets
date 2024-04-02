@@ -166,5 +166,7 @@ const navbar = `
 `;
 
 document.addEventListener('DOMContentLoaded', () => {
-document.getElementById('navbar').innerHTML = navbar;
+    if (!location.pathname.endsWith('index.html')) {
+        document.getElementById('navbar').innerHTML = navbar;
+    }
 });

@@ -101,7 +101,7 @@ class adminHandler
         //Verificamos que la contraseña $password coincida con la contraseña hasheada en la base de datos.
         if(password_verify($password, $data['clave_admin'])){
             // Si coincide entonces se le asigna el id_admin de la base al idAdministrador y lo mismo ocurre con el alias_admin, devolviendo un true
-            $_SESSION['idAdministrador'] = $data=['id_admin'];
+            $_SESSION['idAdministrador'] = $data['id_admin'];
             $_SESSION['aliasAdmin'] = $data['alias_admin'];
             return true;
         } else{
