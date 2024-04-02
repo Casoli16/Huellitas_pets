@@ -1,3 +1,5 @@
+const USER_API = 'services/admin/admins.php'
+
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top sticky-sm-top">
     <div class="container-fluid ">

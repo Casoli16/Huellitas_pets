@@ -11,8 +11,6 @@
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Hoja de estilos css -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/index.css">
-    <!-- Iconos de boostrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body class="bg-yellow-color">
@@ -24,7 +22,7 @@
             </div>
             <div class="col-sm-12 col-md-4 col-lg-4">
                 <!-- Formulario -->
-                <form action="" id="login_admin" name="loginAdmin">
+                <form action="" id="login" name="login">
                     <!-- Row que contiene el icono y el input -->
                     <div class="row align-items-center">
                         <div class="col-auto ">
@@ -53,7 +51,7 @@
                     </div>
                     <!-- Boton para ingresar, d-grid gap-2 toma todo el espacio horizontal de la col-->
                     <div class="d-grid gap-2 mt-5">
-                        <a id="loginButton" class="btn btn-orange-color text-light p-2 rounded-3" href="#">Ingresar</a>
+                        <a id="loginButton" type="submit" class="btn btn-orange-color text-light p-2 rounded-3" href="#">Ingresar</a>
                         <a class="fw-normal text-decoration-none text-dark fs-6 text-center" href="../admin/recuperacion_contra_1.html">¿Has olvidado tú contraseña?</a>
                     </div>
                 </form>
@@ -65,7 +63,7 @@
     </div>
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../../controllers/admin/login_admin.js"></script>
+    <script type="text/javascript" src="../../controllers/admin/index.js"></script>
 </body>
 
 </html>
