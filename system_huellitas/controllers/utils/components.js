@@ -1,6 +1,5 @@
 // CONTROLADOR GENERAL DE TODAS LAS PAGINAS WEB
 
-
 const SERVER_URL = 'http://localhost/Huellitas_pets/system_huellitas/api/';
 
 // Funcion para mostrar un mensaje de confirmacion.
