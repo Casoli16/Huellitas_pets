@@ -87,4 +87,91 @@ class adminHandler
         $params = array($this->idAdministrador);
         return Database::executeRow($sql, $params);
     }
+
+    //Manejo de la cuenta del admin.
+
+    // CHECK USER - Valida las credenciales del usuario en el inicio de sesion.
+    public function checkUser($username, $password)
+    {
+        $sql = 'SELECT id_admin, alias_admin, clave_admin
+                FROM administradores
+                WHERE alias_admin = ?';
+        $params = array($username);
+        $data = Database::getRow($sql, $params);
+        //Verificamos que la contraseña $password coincida con la contraseña hasheada en la base de datos.
+        if(password_verify($password, $data['clave_admin'])){
+            // Si coincide entonces se le asigna el id_admin de la base al idAdministrador y lo mismo ocurre con el alias_admin, devolviendo un true
+            $_SESSION['idAdministrador'] = $data=['id_admin'];
+            $_SESSION['aliasAdmin'] = $data['alias_admin'];
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    // CHECK PASSWORD - Valida que la contraseña del usuario coincida con la de la base de datos.
+
+    public function checkPassword($password)
+    {
+        $sql = 'SELECT clave_admin
+                FROM administradores
+                WHERE id_admin = ?';
+        $params = array($_SESSION['idAdministrador']);
+        $data = Database::getRow($sql, $params);
+        if (password_verify($password, $data['clave_admin'])){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    // UPDATE PASSWORD
+
+    public function updatePassword()
+    {
+        $sql = 'UPDATE administradores
+                SET clave_admin = ?
+                WHERE id_admin = ?';
+        $params = array($this->claveAdmin, $_SESSION['idAdministrador']);
+        return Database::executeRow($sql, $params);
+    }
+
+    // READ PROFILE
+
+    public function readProfile()
+    {
+        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, fecha_registro_admin, imagen_admin
+                FROM administradores
+                WHERE id_admin = ?';
+        $params = array(
+            $this->nombreAdmin,
+            $this->apellidoAdmin,
+            $this->correoAdmin,
+            $this->aliasAdmin,
+            $this->claveAdmin,
+            $this->fechaRegistroAdmin,
+            $this->imagenAdmin,
+            $_SESSION['idAdministrador']
+        );
+        return Database::executeRow($sql, $params);
+    }
+
+    // READ PROFILE
+    public function editProfile()
+    {
+        $sql = 'UPDATE administradores
+                SET nombre_admin = ?, apellido_admin = ?, correo_admin = ?, alias_admin = ?, clave_admin = ?, fecha_registro_admin = ?, imagen_admin = ?
+                WHERE id_Admin = ?';
+        $params = array(
+            $this->nombreAdmin,
+            $this->apellidoAdmin,
+            $this->correoAdmin,
+            $this->aliasAdmin,
+            $this->claveAdmin,
+            $this->fechaRegistroAdmin,
+            $this->imagenAdmin,
+            $_SESSION['idAdministrador']
+        );
+        return Database::executeRow($sql, $params);
+    }
 }
