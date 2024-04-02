@@ -27,18 +27,19 @@ class permisos_handler
      */
 
      public function searchRows()
-     {
-         $value = '%' . Validator::getSearchValue() . '%';
-         $sql = 'SELECT id_permiso, nombre_permiso 
-                 FROM permisos
-                 WHERE nombre_permiso LIKE ? 
-                 ORDER BY SUBSTRING(nombre_permiso, 1, 1), nombre_permiso;';
-         $params = array($value, $value);
-         return Database::getRows($sql, $params);
-     }
+    {
+    $value = '%' . Validator::getSearchValue() . '%';
+    $sql = 'SELECT id_permiso, nombre_permiso 
+            FROM permisos
+            WHERE nombre_permiso LIKE ? 
+            ORDER BY SUBSTRING(nombre_permiso, 1, 1), nombre_permiso;';
+    $params = array($value);
+    return Database::getRows($sql, $params);
+    }
+
  
      public function createRow()
-     {
+     {  
          $sql = 'INSERT INTO permisos(nombre_permiso, agregar_actualizar_usuario, 
          eliminar_usuario, agregar_actualizar_producto, eliminar_producto, borrar_comentario,
          agregar_actualizar_categoria, borrar_categoria, gestionar_cupon) VALUE (?,?,?,?,?,?,?,?,?);';
@@ -58,15 +59,24 @@ class permisos_handler
 
     public function updateRow()
     {
-        $sql = 'CALL actualizar_cupon_PA (?, ?, ?, ?);';
-        $params = array($this->codigo_cupon, $this->porcentaje_cupon, $this->estado_cupon, $this->id_cupon);
+        $sql = 'UPDATE permisos SET nombre_permiso = ?, agregar_actualizar_usuario = ?, 
+        eliminar_usuario = ?, agregar_actualizar_producto = ?, eliminar_producto = ?, borrar_comentario = ?,
+        agregar_actualizar_categoria = ?, borrar_categoria = ?, gestionar_cupon = ? WHERE id_permiso = ?;';
+        $params = array($this->nombre_permiso, $this->agac_usuario_permiso, $this->eliminar_usuario_permiso, $this->agac_producto_permiso, $this->eliminar_producto_permiso,
+       $this->borrar_comentario_permiso, $this-> agac_categoria_permiso, $this->eliminar_categoria_permiso, $this->gestionar_cupon_permiso, $this->id_permiso );
         return Database::executeRow($sql, $params);
+    }
+    public  function readOne()
+    {
+        $sql = 'SELECT * FROM permisos WHERE id_permiso = ?';
+        $params = array($this->id_permiso);
+        return Database::getRows($sql, $params);
     }
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM cupones_oferta  WHERE id_cupon = ?;';
-        $params = array($this->id_cupon);
+        $sql = 'DELETE FROM permisos  WHERE id_permiso = ?;';
+        $params = array($this->id_permiso);
         return Database::executeRow($sql, $params);
     }
     
