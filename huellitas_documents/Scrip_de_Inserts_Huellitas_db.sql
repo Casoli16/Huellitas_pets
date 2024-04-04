@@ -65,7 +65,7 @@ SELECT * FROM administradores;
 /*Inserts para la tabla de asignacion_permisos*/
 INSERT INTO asignacion_permisos (id_permiso, id_admin)
 VALUES 
-  (1, 1),
+  (2, 1),
   (2, 2),
   (3, 3),
   (4, 4),

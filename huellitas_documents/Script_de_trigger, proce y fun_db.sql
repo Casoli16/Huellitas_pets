@@ -67,8 +67,29 @@ END
 DELIMITER ;
 
 -- Vista para ver el GET de los pedidos, contiene nombre de los clientes, fecha en cadena de texto y cantidad de productos llevada --
-CREATE VIEW IF EXISTS pedidos_view AS
+CREATE VIEW pedidos_view AS
 SELECT c.nombre_cliente AS cliente, DATE_FORMAT(p.fecha_registro_pedido, '%e de %M del %Y') AS fecha, dp.cantidad_detalle_pedido AS cantidad
 FROM clientes c
 INNER JOIN pedidos p ON c.id_cliente = p.id_cliente
 INNER JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido;
+
+SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view;
+
+-- Vista para ver la parte 1 de los productos del detalle pedido, es del GET parte I
+CREATE VIEW pedido_view_one_I AS
+SELECT 
+    p.id_pedido,
+    dp.cantidad_detalle_pedido AS cantidad,
+    CONCAT('$', dp.precio_detalle_pedido) AS precio,
+    m.nombre_marca,
+    pr.nombre_producto,
+    pr.imagen_producto
+FROM 
+    pedidos p
+    INNER JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido
+    INNER JOIN productos pr ON dp.id_producto = pr.id_producto
+    INNER JOIN marcas m ON pr.id_marca = m.id_marca;
+
+SELECT * FROM pedido_view_one_I WHERE Id_pedido = 2;
+
+

@@ -123,8 +123,8 @@ CREATE TABLE IF NOT EXISTS detalles_pedidos (
   CONSTRAINT precio_detalle_pedido_check CHECK(precio_detalle_pedido > 0),
   id_producto INT,
   id_pedido INT,
-  CONSTRAINT fk_detalles_pedidos_productos FOREIGN KEY (id_producto) REFERENCES productos (id_producto),
-  CONSTRAINT fk_detalles_pedidos_pedidos FOREIGN KEY (id_pedido) REFERENCES pedidos (id_pedido)
+  CONSTRAINT fk_detalles_pedidos_productos FOREIGN KEY (id_producto) REFERENCES productos (id_producto) ON DELETE CASCADE,
+  CONSTRAINT fk_detalles_pedidos_pedidos FOREIGN KEY (id_pedido) REFERENCES pedidos (id_pedido) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS valoraciones (
@@ -135,5 +135,5 @@ CREATE TABLE IF NOT EXISTS valoraciones (
   fecha_valoracion DATE DEFAULT NOW(),
   estado_valoracion BOOL,
   id_detalle_pedido INT,
-  CONSTRAINT fk_valoraciones_detalles_pedidos FOREIGN KEY (id_detalle_pedido) REFERENCES detalles_pedidos(id_detalle_pedido)
+  CONSTRAINT fk_valoraciones_detalles_pedidos FOREIGN KEY (id_detalle_pedido) REFERENCES detalles_pedidos(id_detalle_pedido) ON DELETE CASCADE
 );
