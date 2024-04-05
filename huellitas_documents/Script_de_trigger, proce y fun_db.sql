@@ -74,6 +74,7 @@ INNER JOIN pedidos p ON c.id_cliente = p.id_cliente
 INNER JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido;
 
 SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view;
+SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view WHERE cliente LIKE '%Carlos%' OR fecha LIKE '$ $';
 
 -- Vista para ver la parte 1 de los productos del detalle pedido, es del GET parte I
 CREATE VIEW pedido_view_one_I AS
@@ -92,4 +93,38 @@ FROM
 
 SELECT * FROM pedido_view_one_I WHERE Id_pedido = 2;
 
+-- Vista para ver la paerte 1.2 de los productos del detalle pedido, este entrega el precio sin el signo $, solo eso cambia:
 
+CREATE VIEW pedido_view_two_I AS
+SELECT 
+    p.id_pedido,
+    dp.cantidad_detalle_pedido AS cantidad,
+    dp.precio_detalle_pedido AS precio,
+    m.nombre_marca,
+    pr.nombre_producto,
+    pr.imagen_producto
+FROM 
+    pedidos p
+    INNER JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido
+    INNER JOIN productos pr ON dp.id_producto = pr.id_producto
+    INNER JOIN marcas m ON pr.id_marca = m.id_marca;
+
+-- Vista para ver la parte 2 de los productos, este muestra información del pedido y el total a pagar:
+CREATE VIEW pedido_view_two_II AS
+SELECT 
+    p.id_pedido,
+    p.estado_pedido AS estado,
+    p.direccion_pedido AS direccion,
+    c.nombre_cliente,
+    CONCAT('$', (
+        SELECT SUM(precio) 
+        FROM pedido_view_two_I 
+        WHERE id_pedido = p.id_pedido
+    )) AS precio_total
+FROM 
+    pedidos p
+    INNER JOIN clientes c ON p.id_cliente = c.id_cliente;
+
+SELECT * FROM pedido_view_two_II WHERE id_pedido = 2;
+
+SELECT * FROM administradores;
