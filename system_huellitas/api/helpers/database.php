@@ -71,4 +71,22 @@ class Database
         
         return self::$error;
     }
+    public static function executeRow2($query, $values = null)
+{
+    try{
+        self::$connection = new PDO('mysql:host=' . SERVER . ';dbname=' . DATABASE, USERNAME, PASSWORD);
+        self::$statement = self::$connection->prepare($query);
+        // Verificamos si se proporcionaron valores antes de ejecutar la consulta
+        if ($values !== null) {
+            return self::$statement->execute($values);
+        } else {
+            return self::$statement->execute();
+        }
+    } catch (PDOException $error) {
+        // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.
+        self::setException($error->getCode(), $error->getMessage());
+        return false;
+    }
+}
+
 }

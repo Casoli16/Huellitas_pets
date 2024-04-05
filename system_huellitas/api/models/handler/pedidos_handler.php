@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla cupones.
  */
@@ -18,6 +18,7 @@ class pedidos_handler
     protected $total_unidad_P = null;
     protected $cantidad_p_unidad = null;
     protected $cantidad_p_total = null;
+    protected $imagen_p_unidad = null;
 
 
     /*
@@ -25,22 +26,25 @@ class pedidos_handler
      * Aunque ahorita solo haré el de agregar cupones
      */
 
-     public function searchRows()
+    public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SET lc_time_names = "es_ES"; SELECT *
-                FROM pedidos_view
-                WHERE cliente LIKE ? OR fecha LIKE ?';
+        $sql = 'SELECT *
+            FROM pedidos_view
+            WHERE cliente LIKE ? OR fecha LIKE ?';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SET lc_time_names = "es_ES"; SELECT *
-                FROM pedidos_view';
+        $ssql = 'SET lc_time_names = "es_ES";';
+        $sql ='SELECT *
+            FROM pedidos_view;';
         return Database::getRows($sql);
     }
+
+
 
     public function deleteRow()
     {
@@ -49,18 +53,27 @@ class pedidos_handler
         return Database::executeRow($sql, $params);
     }
 
-    public  function readOne1()
+    public function readOne1()
     {
         $sql = 'SELECT * FROM pedido_view_one_I WHERE Id_pedido = ?;';
         $params = array($this->id_pedido_p);
         return Database::getRows($sql, $params);
     }
-    public  function readOne2()
+    public function readOne2()
     {
-        $sql = 'SELECT * FROM pedido_view_one_II WHERE Id_pedido = ?;';
+        $sql = 'SELECT * FROM pedido_view_two_II WHERE id_pedido = ?;';
         $params = array($this->id_pedido_p);
         return Database::getRows($sql, $params);
     }
+    public function updateRow()
+    {
+        $sql = 'UPDATE pedidos SET estado_pedido = ? WHERE id_pedido = ?';
+        $params = array(
+            $this->estado_pedido_p,
+            $this->id_pedido_p
+        );
+        return Database::executeRow($sql, $params);
+    }
 
-    
+
 }
