@@ -60,10 +60,10 @@ const sweetAlert = async (type, text, timer, url = null) => {
     (url) ? location.href = url : undefined;
 }
 
-// Funcion para los graficos.
+//Funcion para los graficos.
 
 // const chart = document.getElementById('myChart');
-
+//
 // new Chart(chart, {
 //     type: 'bar',
 //     data: {

@@ -1,4 +1,10 @@
+// Controlador de uso general en las paginas web del sitio privador
+// Maneja la plantilla del encabezado del documento.
+
 const USER_API = 'services/admin/admins.php'
+const MAIN = document.querySelector('main');
+//Constante para estableces el elemento del titulo principal.
+const MAIN_TITLE = document.getElementById('mainTitle');
 
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top sticky-sm-top">
