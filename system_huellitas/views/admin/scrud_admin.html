@@ -52,7 +52,7 @@
                     <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-                        data-bs-toggle="modal" data-bs-target="#agregar_admin" type="button">
+                        data-bs-toggle="modal" onclick="openCreate()" type="button">
                         <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
                         Agregar administrador
                     </button>
@@ -65,9 +65,9 @@
                 <table class="table align-middle text-center">
                     <!-- Encabezado de las tablas -->
                     <thead class="table table-responsive">
-                    <tr>
-                        <td colspan="8" id="rowsFound" hidden></td>
-                    </tr>
+                        <tr>
+                            <td colspan="9" id="rowsFound" hidden></td>
+                        </tr>
                         <tr>
                             <th>Imagen</th>
                             <th>Nombre</th>
@@ -88,7 +88,7 @@
 
         <!-- Modals -->
         <!-- Agregar admin -->
-        <div class="modal fade" id="agregar_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <!-- El modal se centra con modal-dialog-center, cuando esta en pantallas pequeñas toma todo el espacio de las pantallas -->
             <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
                 <div class="modal-content">
@@ -99,32 +99,33 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form action="" id="saveForm">
+                    <form action="" id="saveForm">
+                        <div class="modal-body">
                             <!-- Fila 1 -->
+                            <input type="hidden" id="idAdministrador" name="idAdministrador">
                             <div class="container text-center text-md-start text-lg-start">
                                 <div class="row align-items-center gy-3">
                                     <div class="col-sm-12 col-md-auto">
-                                        <img class="rounded-1" id="imagen"
-                                            src="../../resources/img/png/rectangulo.png" width="120px">
+                                        <img class="rounded-1" id="imagen" src="../../resources/img/png/rectangulo.png"
+                                            width="120px">
                                     </div>
                                     <div class="col">
                                         <!-- Botón para cargar imagen -->
-                                        <input type="file" class="form-control" id="imagenAdmin" name="imagenAdmin" hidden>
+                                        <input type="file" class="form-control" id="imagenAdmin" name="imagenAdmin"
+                                            hidden>
                                         <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                        <label class="btn btn-red-color text-light" for="imagenAdmin">Cargar imagen</label>
+                                        <label class="btn btn-red-color text-light" for="imagenAdmin">Cargar
+                                            imagen</label>
                                     </div>
                                 </div>
                             </div>
                             <!-- Fila 2 -->
                             <div class="container mt-4">
                                 <div class="row">
-                                    <input type="hidden" id="idAdministrador" name="idAdministrador">
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
                                             <label for="nombreAdmin" class="form-label fw-semibold">Nombre</label>
-                                            <input type="text" class="form-control" id="nombreAdmin"
-                                                name="nombreAdmin">
+                                            <input type="text" class="form-control" id="nombreAdmin" name="nombreAdmin">
                                         </div>
                                         <div class="mb-3">
                                             <label for="apellidoAdmin" class="form-label fw-semibold">Apellidos</label>
@@ -149,112 +150,25 @@
                                             <input type="text" class="form-control" id="aliasAdmin" name="aliasAdmin">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="confirmarContraAdmin" class="form-label fw-semibold">Confirmar contraseña</label>
+                                            <label for="confirmarContraAdmin" class="form-label fw-semibold">Confirmar
+                                                contraseña</label>
                                             <input type="password" class="form-control" id="confirmarContraAdmin"
-                                                   name="confirmarContraAdmin">
+                                                name="confirmarContraAdmin">
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                    </div>
-                    <div class="container text-center mb-4 mt-4">
-                        <button type="submit" class="btn btn-orange-color text-light me-3"
-                            data-bs-dismiss="modal">Guardar</button>
-                        <button type="reset" class="btn btn-red-color text-light">Cancelar</button>
-                    </div>
+                            <div class="container text-center mb-4 mt-4">
+                                <button type="submit" class="btn btn-orange-color text-light me-3"
+                                    data-bs-dismiss="modal">Guardar</button>
+                                <button type="reset" class="btn btn-red-color text-light">Cancelar</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-
-
-
-
-        <!-- Editar admin -->
-<!--        <div class="modal fade" id="editar_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">-->
-<!--                <div class="modal-content">-->
-<!--                    <div class="modal-header bg-orange-color">-->
-<!--                        <div class="container text-center text-light">-->
-<!--                            <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Editar administrador-->
-<!--                            </h1>-->
-<!--                        </div>-->
-<!--                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"-->
-<!--                            aria-label="Close"></button>-->
-<!--                    </div>-->
-<!--                    <div class="modal-body">-->
-<!--                        <form action="" id="editar_admin">-->
-<!--                            &lt;!&ndash; Fila 1 &ndash;&gt;-->
-<!--                            <div class="container text-center text-md-start text-lg-start">-->
-<!--                                <div class="row align-items-center gy-3">-->
-<!--                                    <div class="col-sm-12 col-md-auto">-->
-<!--                                        <img class="rounded-1" src="../../resources/img/png/rectangulo.png"-->
-<!--                                            width="120px">-->
-<!--                                    </div>-->
-<!--                                    <div class="col">-->
-<!--                                        &lt;!&ndash; Botón para cargar imagen &ndash;&gt;-->
-<!--                                        <input type="file" class="form-control" id="upload" hidden>-->
-<!--                                        &lt;!&ndash; Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file &ndash;&gt;-->
-<!--                                        <label class="btn btn-red-color text-light" for="upload">Cargar imagen</label>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Fila 2 &ndash;&gt;-->
-<!--                            <div class="container mt-4">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-sm-12 col-md-6 col-lg-6">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label for="nombre_admin" class="form-label fw-semibold">Nombre</label>-->
-<!--                                            <input type="text" class="form-control" id="nombre_admin"-->
-<!--                                                name="nombre_admin">-->
-<!--                                        </div>-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label for="apellido_admin" class="form-label fw-semibold">Apellidos</label>-->
-<!--                                            <input type="text" class="form-control" id="apellido_admin"-->
-<!--                                                name="apellido_admin">-->
-<!--                                        </div>-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label for="contra_admin" class="form-label fw-semibold">Contraseña</label>-->
-<!--                                            <input type="password" class="form-control" id="contra_admin"-->
-<!--                                                name="contra_admin">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-sm-12 col-md-6 col-lg-6">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label for="fecha_admin" class="form-label fw-semibold">Fecha de-->
-<!--                                                registro</label>-->
-<!--                                            <input type="date" class="form-control" aria-label="Disabled input example"-->
-<!--                                                disabled name="fechaAdmin" id="fecha_admin">-->
-<!--                                        </div>-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label for="email_admin" class="form-label fw-semibold">Correo-->
-<!--                                                electrónico</label>-->
-<!--                                            <input type="email" class="form-control" id="email_admin"-->
-<!--                                                name="email_admin">-->
-<!--                                        </div>-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label for="alias_admin" class="form-label fw-semibold">Alías</label>-->
-<!--                                            <input type="text" class="form-control" id="alias_admin" name="alias_admin">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                    </div>-->
-<!--                    <div class="container text-center mb-4 mt-4">-->
-<!--                        <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"-->
-<!--                            id="btn_guardar" name="btnGuardar">Guardar</button>-->
-<!--                        <button type="button" class="btn btn-red-color text-light" id="btnCancelar"-->
-<!--                            name="btnCancelar">Cancelar</button>-->
-<!--                    </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-
-
 
 
         <!-- Editar permisos admin -->
@@ -326,7 +240,7 @@
     <!-- Agregamos la ruta para agregar el menu -->
     <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
     <!-- Agregamos el controlador de la pagina web -->
-    <script type="text/javascript" src="../../controllers/admin/admins.js"></script>
+    <script type="text/javascript" src="../../controllers/admin/administrador.js"></script>
 </body>
 
 </html>

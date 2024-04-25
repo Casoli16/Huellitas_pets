@@ -128,3 +128,5 @@ FROM
 SELECT * FROM pedido_view_two_II WHERE id_pedido = 2;
 
 SELECT * FROM administradores;
+
+SELECT * FROM asignacion_permisos
