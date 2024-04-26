@@ -93,12 +93,22 @@ class adminData extends adminHandler
         return true;
     }
 
-    public function setImagenAdmin($value)
+    public function setImagenAdmin($file, $filename = null)
     {
-        $this->imagenAdmin = $value;
-        return true;
+        if(Validator::validateImageFile($file, 1000)){
+            $this->imagenAdmin = Validator::getFilename();
+            return true;
+        } elseif (Validator::getFileError()){
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename){
+            $this->imagenAdmin = $filename;
+            return true;
+        } else{
+            $this->imagenAdmin = 'default.png';
+            return true;
+        }
     }
-
 
     public function getDataError()
     {

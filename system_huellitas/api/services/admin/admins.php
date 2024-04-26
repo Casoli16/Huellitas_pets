@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
                     !$administradores->setAliasAdmin($_POST['aliasAdmin'])or
                     !$administradores->setClaveAdmin($_POST['claveAdmin']) or
                     !$administradores->setFechaRegistro($_POST['fechaRegistroAdmin']) or
-                    !$administradores->setImagenAdmin($_POST['imagenAdmin'])
+                    !$administradores->setImagenAdmin($_FILES['imagenAdmin'])
                 ) {
                     $result['error'] = $administradores->getDataError();
                 } elseif ($_POST['claveAdmin'] != $_POST['confirmarClave']) {
@@ -38,6 +38,8 @@ if (isset($_GET['action'])) {
                 } elseif ($administradores->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador ingresado correctamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN);
                 } else{
                     $result['error'] = 'Ocurrio un problema al ingresar al administrador';
                 }
@@ -52,12 +54,13 @@ if (isset($_GET['action'])) {
                     !$administradores->setAliasAdmin($_POST['aliasAdmin'])or
                     !$administradores->setClaveAdmin($_POST['claveAdmin']) or
                     !$administradores->setFechaRegistro($_POST['fechaRegistroAdmin']) or
-                    !$administradores->setImagenAdmin($_POST['imagenAdmin'])
+                    !$administradores->setImagenAdmin($_FILES['imagenAdmin'], $administradores->getFilename())
                 ){
                     $result['error'] = $administradores->getDataError();
                 } elseif ($administradores -> updateRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador actualizado correctamente';
+                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN, $administradores->getFilename());
                 } else{
                     $result['error'] = 'Ocurrió un problema al actualizar el administrador';
                 }

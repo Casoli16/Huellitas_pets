@@ -16,6 +16,8 @@ class adminHandler
     protected $fechaRegistroAdmin = null;
     protected $imagenAdmin = null;
 
+    const RUTA_IMAGEN = '../../images/admins/';
+
     //Metodos para realizar las operaciones SCRUD
 
     // SEARCH

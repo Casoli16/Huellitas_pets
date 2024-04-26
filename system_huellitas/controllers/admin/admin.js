@@ -7,15 +7,36 @@ const TABLE_BODY = document.getElementById('tableBody'),
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 
+// Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
+const IMAGEN = document.getElementById('imagen');
+
 // Constante para estableces los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_ADMIN = document.getElementById('idAdministrador'),
+    IMAGEN_ADMIN = document.getElementById('imgAdmin')
     NOMBRE_ADMIN = document.getElementById('nombreAdmin'),
     APELLIDO_ADMIN = document.getElementById('apellidoAdmin'),
     CORREO_ADMIN = document.getElementById('correoAdmin'),
     ALIAS_ADMIN = document.getElementById('aliasAdmin'),
     CLAVE_ADMIN = document.getElementById('claveAdmin'),
     CONFIRMAR_CLAVE = document.getElementById('confirmarClave');
+
+
+// Agregamos el evento change al input de tipo file que selecciona la imagen
+IMAGEN_ADMIN.addEventListener('change', function(event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto FileReader lee de forma asincrona el archivo seleccionado
+          const reader = new FileReader();
+        // Luego de haber leido la imagen seleccionada se nos devuele un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen  
+        reader.onload = function(event) {
+            // finalmente la url creada se le asigna al atributo src de la etiqueta img
+            IMAGEN.src = event.target.result;
+          };
+          reader.readAsDataURL(event.target.files[0]);
+    }
+});
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
@@ -117,7 +138,7 @@ const fillTable = async (form = null) =>{
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
                <tr>
-                    <td>${row.imagen_admin}</td>
+                    <td><img class="rounded-circle" src="${SERVER_URL}images/admins/${row.imagen_admin}" height="70px" width="80px"></td>
                     <td>${row.nombre_admin}</td>
                     <td>${row.apellido_admin}</td>
                     <td>${row.correo_admin}</td>
