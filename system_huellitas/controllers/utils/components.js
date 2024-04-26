@@ -103,8 +103,10 @@ const logOut = async () => {
 //  Función asíncrona para intercambiar datos con el servidor.
 //  Parámetros: filename (nombre del archivo), action (accion a realizar) y form (objeto opcional con los datos que serán enviados al servidor).
 //  Retorno: constante tipo objeto con los datos en formato JSON.
-const fetchData = async(filename, action, form = null) => {
+const fetchData = async (filename, action, form = null) => {
+    // Se define una constante tipo objeto para establecer las opciones de la petición.
     const OPTIONS = {};
+    // Se determina el tipo de petición a realizar.
     if (form) {
         OPTIONS.method = 'post';
         OPTIONS.body = form;
@@ -112,11 +114,18 @@ const fetchData = async(filename, action, form = null) => {
         OPTIONS.method = 'get';
     }
     try {
+        // Se declara una constante tipo objeto con la ruta específica del servidor.
         const PATH = new URL(SERVER_URL + filename);
+        // Se agrega un parámetro a la ruta con el valor de la acción solicitada.
         PATH.searchParams.append('action', action);
+        // Se define una constante tipo objeto con la respuesta de la petición.
         const RESPONSE = await fetch(PATH.href, OPTIONS);
-        return await RESPONSE.json();
-    } catch (error){
+        // Se retorna el resultado en formato JSON.
+        const DATA = await RESPONSE.json();
+        console.log(DATA)
+        return DATA;
+    } catch (error) {
+        // Se muestra un mensaje en la consola del navegador web cuando ocurre un problema.
         console.log(error);
     }
 }

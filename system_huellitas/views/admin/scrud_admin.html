@@ -66,7 +66,7 @@
                     <!-- Encabezado de las tablas -->
                     <thead class="table table-responsive">
                         <tr>
-                            <td colspan="9" id="rowsFound" hidden></td>
+                            <td colspan="8" id="rowsFound" hidden></td>
                         </tr>
                         <tr>
                             <th>Imagen</th>
@@ -99,7 +99,7 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form action="" id="saveForm">
+                    <form id="saveForm">
                         <div class="modal-body">
                             <!-- Fila 1 -->
                             <input type="hidden" id="idAdministrador" name="idAdministrador">
@@ -111,8 +111,7 @@
                                     </div>
                                     <div class="col">
                                         <!-- Botón para cargar imagen -->
-                                        <input type="file" class="form-control" id="imagenAdmin" name="imagenAdmin"
-                                            hidden>
+                                        <input type="hidden" class="form-control" id="imagenAdmin" name="imagenAdmin">
                                         <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
                                         <label class="btn btn-red-color text-light" for="imagenAdmin">Cargar
                                             imagen</label>
@@ -152,11 +151,11 @@
                                         <div class="mb-3">
                                             <label for="confirmarContraAdmin" class="form-label fw-semibold">Confirmar
                                                 contraseña</label>
-                                            <input type="password" class="form-control" id="confirmarContraAdmin"
-                                                name="confirmarContraAdmin">
+                                            <input type="password" class="form-control" id="confirmarClave"
+                                                name="confirmarClave">
                                         </div>
+                                        <input type="hidden" id="fechaRegistroAdmin" name="fechaRegistroAdmin">
                                     </div>
-
                                 </div>
                             </div>
                             <div class="container text-center mb-4 mt-4">
@@ -240,7 +239,7 @@
     <!-- Agregamos la ruta para agregar el menu -->
     <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
     <!-- Agregamos el controlador de la pagina web -->
-    <script type="text/javascript" src="../../controllers/admin/administrador.js"></script>
+    <script type="text/javascript" src="../../controllers/admin/admin.js"></script>
 </body>
 
 </html>
