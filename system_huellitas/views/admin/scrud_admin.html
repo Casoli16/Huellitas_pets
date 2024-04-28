@@ -174,7 +174,7 @@
         <!-- Editar permisos admin -->
         <div class="modal fade" id="permisosAdminModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center text-light">
@@ -185,25 +185,28 @@
                     </div>
                     <form action="" id="permisosForm">
                         <div class="modal-body p-4">
-                            <!-- Fila -->
-                            <div class="row mb-3" id="tarjetas">
-                                <button class="btn btn-light" onclick="openDelete"> 
-        
-                                </button>
-                            </div>
-
+                            <!-- ID'S -->
                             <input type="hidden" id="idAdministrador2" name="idAdministrador">
-                            <div class="container">
+                            <input type="hidden" id="idAsignacionPermiso" name="idAsignacionPermiso">
+
+                            <!-- Muestra los permisos del usuario elegido -->
+                            <small>Estos son los permisos que tiene este usuario, recuerda que puedes actualizar o
+                                eliminar estos permisos</small>
+                            <div class="row mb-3 mt-4" id="tarjetas">
+
+                            </div>
+                            <div class="container border border-secondary-subtle p-4">
                                 <div class="mb-3">
                                     <label for="idPermiso" class="form-label fw-semibold">Asignación de permiso</label>
                                     <select class="form-select" id="idPermiso" name="idPermiso" required></select>
+                                    <div class="form-text" id="basic-addon4">Elige el permiso que tendrá este usuario</div>
                                 </div>
-                            </div>
-                            <div class="container text-center mb-4 mt-4">
-                                <button type="submit" class="btn btn-orange-color text-light me-3"
-                                    data-bs-dismiss="modal" id="btn_guardar" name="btnGuardar">Guardar</button>
-                                <button type="reset" class="btn btn-red-color text-light" id="btn_cancelar"
-                                    name="btnCancelar">Cancelar</button>
+                                <div class="container text-center mb-2 mt-4">
+                                    <button type="submit" class="btn btn-orange-color text-light me-3"
+                                        data-bs-dismiss="modal" id="btn_guardar" name="btnGuardar">Guardar</button>
+                                    <button type="reset" class="btn btn-red-color text-light" id="btn_cancelar"
+                                        name="btnCancelar">Cancelar</button>
+                                </div>
                             </div>
                         </div>
                     </form>

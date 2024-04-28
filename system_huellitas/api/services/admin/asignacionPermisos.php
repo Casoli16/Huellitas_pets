@@ -29,7 +29,7 @@ if(isset($_SESSION['idAdministrador']) or true){
             if (
                 !$asignacionPermisos->setIdAsignacionPermiso($_POST['idAsignacionPermiso']) or
                 !$asignacionPermisos->setIdPermiso($_POST['idPermiso']) or
-                !$asignacionPermisos->setIdAdmin($_POST['idAdmin'])
+                !$asignacionPermisos->setIdAdmin($_POST['idAdministrador'])
             ){
                 $result['error'] = $asignacionPermisos->getDataError();
             } elseif ($asignacionPermisos -> updateRow()) {
@@ -47,10 +47,19 @@ if(isset($_SESSION['idAdministrador']) or true){
                 $result['error'] = 'No existen asignaciones de permisos';
             }
             break;
-        case 'readOne':
+        case 'readOneByAdminId':
             if (!$asignacionPermisos->setIdAdmin($_POST['idAdministrador'])) {
                 $result['error'] = $asignacionPermisos->getDataError();
-            } elseif ($result['dataset'] = $asignacionPermisos->readOne()) {
+            } elseif ($result['dataset'] = $asignacionPermisos->readOneByAdminId()) {
+                $result['status'] = 1;
+            } else {
+                $result['error'] = 'Este usuario aún no tiene permisos';
+            }
+            break;
+        case 'readOneByPermisoId':
+            if (!$asignacionPermisos->setIdAsignacionPermiso($_POST['idAsignacionPermiso'])) {
+                $result['error'] = $asignacionPermisos->getDataError();
+            } elseif ($result['dataset'] = $asignacionPermisos->readOneByPermisoId()) {
                 $result['status'] = 1;
             } else {
                 $result['error'] = 'Este usuario aún no tiene permisos';

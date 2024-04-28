@@ -25,11 +25,19 @@ class asignacionPermisosHandler
         return DATABASE::getRows($sql);
     }
 
-    // READ ONE
-    public  function readOne()
+    // READ ONE BY ADMIN ID
+    public  function readOneByAdminId()
     {
         $sql = 'SELECT * FROM admin_permisos_view WHERE id_admin = ?';
         $params = array($this->idAdmin);
+        return Database::getRows($sql, $params);
+    }
+
+    // READ ONE BY ASIGNACION PERMISO ID
+    public  function readOneByPermisoId()
+    {
+        $sql = 'SELECT * FROM admin_permisos_view WHERE id_asignacion_permiso = ?';
+        $params = array($this->idAsignacionPermiso);
         return Database::getRows($sql, $params);
     }
 

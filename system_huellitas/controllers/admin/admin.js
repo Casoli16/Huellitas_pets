@@ -15,7 +15,9 @@ const SAVE_MODAL_PERMISO = new bootstrap.Modal('#permisosAdminModal'),
     MODAL_TITLE2 = document.getElementById('modalTitle2');
 
 const SAVE_FORM_PERMISOS = document.getElementById('permisosForm'),
-    ID_ADMIN_PERMISO = document.getElementById('idAdministrador2');
+    ID_ADMIN_PERMISO = document.getElementById('idAdministrador2'),
+    PERMISO_ADMIN = document.getElementById('idPermiso');
+    ID_ASIGNACION_PERMISO = document.getElementById('idAsignacionPermiso');
 
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
@@ -79,10 +81,12 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 SAVE_FORM_PERMISOS.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    (ID_ASIGNACION_PERMISO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM_PERMISOS);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(ASIGNACION_PERMISO_API, 'createRow', FORM);
+    const DATA = await fetchData(ASIGNACION_PERMISO_API, action, FORM);
+    console.log(DATA)
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
@@ -124,14 +128,29 @@ const openCreatePermission = async (id) => {
 }
 
 const openDeletePermission =  async (id) => {
+    const RESPONSE = await confirmAction('¿Desea eliminar el permiso del usuario de forma permanente?');
+    if (RESPONSE){
+        const FORM = new FormData();
+        FORM.append('idAsignacionPermiso', id);
+        const DATA = await fetchData(ASIGNACION_PERMISO_API, 'deleteRow', FORM);
+        if(DATA.status) {
+            await sweetAlert(1, DATA.message, true);
+            SAVE_MODAL_PERMISO.hide();
+        }else{
+            sweetAlert(2, DATA.message, false);
+        }
+    }
+}
+
+const openUpdatePermission = async  (id) => {
     const FORM = new FormData();
     FORM.append('idAsignacionPermiso', id);
-    const DATA = await fetchData(ASIGNACION_PERMISO_API, 'deleteRow', FORM);
-    if(DATA.status) {
-        await sweetAlert(1, DATA.message, true);
-        SAVE_MODAL_PERMISO.hide();
-    }else{
-        sweetAlert(2, DATA.message, false);
+    const DATA = await fetchData(ASIGNACION_PERMISO_API, 'readOneByPermisoId', FORM);
+    if (DATA.status){
+        SAVE_FORM_PERMISOS.reset();
+        const [ROW] = DATA.dataset;
+        ID_ASIGNACION_PERMISO.value = ROW.id_asignacion_permiso;
+        PERMISO_ADMIN.value = ROW.id_permiso;
     }
 }
 
@@ -227,7 +246,7 @@ const fillCards = async (form = null, id) => {
     CARDS.innerHTML = '';
     const FORM = new FormData();
     FORM.append('idAdministrador', id);
-    const DATA = await fetchData(ASIGNACION_PERMISO_API, 'readOne', FORM);
+    const DATA = await fetchData(ASIGNACION_PERMISO_API, 'readOneByAdminId', FORM);
 
     if (DATA.status) {
         DATA.dataset.forEach(row => {
@@ -238,10 +257,10 @@ const fillCards = async (form = null, id) => {
                             <p>${row.nombre_permiso}</p>
                         </div>
                         <div class="col-4">
-                            <button class="btn btn-light" onclick="openDelete"> 
+                            <button type="button" class="btn btn-light" onclick="openUpdatePermission(${row.id_asignacion_permiso})"> 
                                  <img src="../../resources/img/svg/edit_icon.svg" width="30px">
                             </button>
-                            <button class="btn btn-light" onclick="openDeletePermission(${row.id_asignacion_permiso})"> 
+                            <button type="button" class="btn btn-light" onclick="openDeletePermission(${row.id_asignacion_permiso})"> 
                                 <img src="../../resources/img/svg/delete_icon.svg" width="30px">
                             </button>
                         </div>
