@@ -127,6 +127,17 @@ FROM
 
 SELECT * FROM pedido_view_two_II WHERE id_pedido = 2;
 
-SELECT * FROM administradores;
+-- Vista para poder ver el tipo de permiso que tiene un usuario
+CREATE VIEW admin_permisos_view AS
+SELECT
+    ap.id_asignacion_permiso,
+    a.id_admin,
+    a.nombre_admin,
+    p.nombre_permiso,
+    ap.id_permiso
+FROM
+    administradores a
+    INNER JOIN asignacion_permisos ap ON a.id_admin = ap.id_admin
+    INNER JOIN permisos p ON p.id_permiso = ap.id_permiso;
 
-SELECT * FROM asignacion_permisos
+SELECT * FROM admin_permisos_view;

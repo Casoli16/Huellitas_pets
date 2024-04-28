@@ -66,7 +66,7 @@
                     <!-- Encabezado de las tablas -->
                     <thead class="table table-responsive">
                         <tr>
-                            <td colspan="8" id="rowsFound" hidden></td>
+                            <td colspan="7" id="rowsFound" hidden></td>
                         </tr>
                         <tr>
                             <th>Imagen</th>
@@ -74,7 +74,6 @@
                             <th>Apellidos</th>
                             <th>Correo electrónico</th>
                             <th>Fecha de registro</th>
-                            <th>Permiso</th>
                             <th>Permisos asignados</th>
                             <th>Acciones</th>
                         </tr>
@@ -107,7 +106,7 @@
                                 <div class="row align-items-center gy-3">
                                     <div class="col-sm-12 col-md-auto">
                                         <img class="rounded-1" id="imagen" src="../../resources/img/png/rectangulo.png"
-                                            width="120px" height="120px" >
+                                            width="120px" height="120px">
                                     </div>
                                     <div class="col">
                                         <!-- Botón para cargar imagen -->
@@ -124,17 +123,18 @@
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
                                             <label for="nombreAdmin" class="form-label fw-semibold">Nombre</label>
-                                            <input type="text" class="form-control" id="nombreAdmin" name="nombreAdmin">
+                                            <input type="text" class="form-control" id="nombreAdmin" name="nombreAdmin"
+                                                required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="apellidoAdmin" class="form-label fw-semibold">Apellidos</label>
                                             <input type="text" class="form-control" id="apellidoAdmin"
-                                                name="apellidoAdmin">
+                                                name="apellidoAdmin" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="claveadmin" class="form-label fw-semibold">Contraseña</label>
                                             <input type="password" class="form-control" id="claveAdmin"
-                                                name="claveAdmin">
+                                                name="claveAdmin" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -142,17 +142,18 @@
                                             <label for="correoAdmin" class="form-label fw-semibold">Correo
                                                 electrónico</label>
                                             <input type="email" class="form-control" id="correoAdmin"
-                                                placeholder="admin@gmail.com" name="correoAdmin">
+                                                placeholder="admin@gmail.com" name="correoAdmin" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="aliasAdmin" class="form-label fw-semibold">Alías</label>
-                                            <input type="text" class="form-control" id="aliasAdmin" name="aliasAdmin">
+                                            <input type="text" class="form-control" id="aliasAdmin" name="aliasAdmin"
+                                                required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="confirmarContraAdmin" class="form-label fw-semibold">Confirmar
+                                            <label for="confirmarClave" class="form-label fw-semibold">Confirmar
                                                 contraseña</label>
                                             <input type="password" class="form-control" id="confirmarClave"
-                                                name="confirmarClave">
+                                                name="confirmarClave" required>
                                         </div>
                                         <input type="hidden" id="fechaRegistroAdmin" name="fechaRegistroAdmin">
                                     </div>
@@ -171,59 +172,40 @@
 
 
         <!-- Editar permisos admin -->
-        <div class="modal fade" id="editar_permiso_admin" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="permisosAdminModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center text-light">
-                            <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Permisos asignados
-                            </h1>
+                            <h1 class="modal-title fs-5 text-center fw-bold" id="modalTitle2"></h1>
                         </div>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form action="" id="editar_permisos_admin">
+                    <form action="" id="permisosForm">
+                        <div class="modal-body p-4">
                             <!-- Fila -->
+                            <div class="row mb-3" id="tarjetas">
+                                <button class="btn btn-light" onclick="openDelete"> 
+        
+                                </button>
+                            </div>
+
+                            <input type="hidden" id="idAdministrador2" name="idAdministrador">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-check form-switch mb-3">
-                                            <label class="form-check-label"
-                                                for="flexSwitchCheckChecked">Contador</label>
-                                            <input class="form-check-input bg-orange-color" type="checkbox"
-                                                role="switch" id="switch1" name="switch1" checked>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <label class="form-check-label"
-                                                for="flexSwitchCheckChecked">Administrador</label>
-                                            <input class="form-check-input bg-orange-color" type="checkbox"
-                                                role="switch" id="switch2" name="switch2" checked>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input bg-orange-color" type="checkbox"
-                                                role="switch" id="switch3" name="switch3" checked>
-                                            <label class="form-check-label"
-                                                for="flexSwitchCheckChecked">Vendedor</label>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input bg-orange-color" type="checkbox"
-                                                role="switch" id="switch4" name="switch4" checked>
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Lectura</label>
-                                        </div>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="idPermiso" class="form-label fw-semibold">Asignación de permiso</label>
+                                    <select class="form-select" id="idPermiso" name="idPermiso" required></select>
                                 </div>
                             </div>
-                    </div>
-                    <div class="container text-center mb-4 mt-4">
-                        <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
-                            id="btn_guardar" name="btnGuardar">Guardar</button>
-                        <button type="button" class="btn btn-red-color text-light" id="btn_cancelar"
-                            name="btnCancelar">Cancelar</button>
-                    </div>
+                            <div class="container text-center mb-4 mt-4">
+                                <button type="submit" class="btn btn-orange-color text-light me-3"
+                                    data-bs-dismiss="modal" id="btn_guardar" name="btnGuardar">Guardar</button>
+                                <button type="reset" class="btn btn-red-color text-light" id="btn_cancelar"
+                                    name="btnCancelar">Cancelar</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

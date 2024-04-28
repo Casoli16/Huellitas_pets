@@ -60,6 +60,39 @@ const sweetAlert = async (type, text, timer, url = null) => {
     (url) ? location.href = url : undefined;
 }
 
+/*
+*   Función asíncrona para cargar las opciones en un select de formulario.
+*   Parámetros: filename (nombre del archivo), action (acción a realizar), select (identificador del select en el formulario) y selected (dato opcional con el valor seleccionado).
+*   Retorno: ninguno.
+*/
+const fillSelect = async (filename, action, select, selected = null) => {
+    // Petición para obtener los datos.
+    const DATA = await fetchData(filename, action);
+    let content = '';
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje.
+    if (DATA.status) {
+        content += '<option value="" selected>Seleccione una opción</option>';
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se obtiene el dato del primer campo.
+            value = Object.values(row)[0];
+            // Se obtiene el dato del segundo campo.
+            text = Object.values(row)[1];
+            // Se verifica cada valor para enlistar las opciones.
+            if (value != selected) {
+                content += `<option value="${value}">${text}</option>`;
+            } else {
+                content += `<option value="${value}" selected>${text}</option>`;
+            }
+        });
+    } else {
+        content += '<option>No hay opciones disponibles</option>';
+    }
+    // Se agregan las opciones a la etiqueta select mediante el id.
+    document.getElementById(select).innerHTML = content;
+}
+
+
 //Funcion para los graficos.
 
 // const chart = document.getElementById('myChart');
@@ -122,7 +155,6 @@ const fetchData = async (filename, action, form = null) => {
         const RESPONSE = await fetch(PATH.href, OPTIONS);
         // Se retorna el resultado en formato JSON.
         const DATA = await RESPONSE.json();
-        console.log(DATA)
         return DATA;
     } catch (error) {
         // Se muestra un mensaje en la consola del navegador web cuando ocurre un problema.

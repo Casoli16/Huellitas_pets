@@ -18,7 +18,7 @@ LOGIN_FORM.addEventListener('submit', async (event) => {
     if (DATA.status){
         sweetAlert(1, DATA.message, true, 'pantalla_carga.html');
     } else {
-        sweetAlert(2, DATA.message, false);
+        sweetAlert(2, DATA.error, false);
     }
 });
 

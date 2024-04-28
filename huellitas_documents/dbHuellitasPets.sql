@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS administradores (
   alias_admin VARCHAR(50),
   CONSTRAINT alias_admin_unico UNIQUE(alias_admin),
   clave_admin VARCHAR(100),
-  fecha_registro_admin DATE DEFAULT NOW() NOT NULL,
+  fecha_registro_admin DATE DEFAULT (CURRENT_DATE) NOT NULL,
   imagen_admin VARCHAR(50) DEFAULT 'imagen_admin.png' NOT NULL
 );
 
