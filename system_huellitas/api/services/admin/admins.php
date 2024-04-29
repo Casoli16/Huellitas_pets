@@ -120,6 +120,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if($administradores->checkUser($_POST['nameLogin'], $_POST['passwordLogin'])) {
                     $result['status'] = 1;
+                    $result['idadmin'] = $_SESSION['idAdministrador'];
                     $result['message'] = 'Autenticación correcta';
                 }else{
                     $result['error'] = 'Credenciales incorrectas';

@@ -8,6 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 1500); // 1500 milisegundos = 1 segundo con 30 milisegundos
     } else {
         // Si no se ha hecho clic en el botón de inicio de sesión, redirigir a otra página (por ejemplo, la página de inicio de sesión)
-        window.location.href = "index_admin.html";
+        window.location.href = "../../views/admin/index.html";
     }
 });

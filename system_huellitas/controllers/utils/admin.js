@@ -2,10 +2,15 @@
 // Maneja la plantilla del encabezado del documento.
 
 const USER_API = 'services/admin/admins.php'
+const PERMISOS_API = 'services/admin/permisos.php'
 const MAIN = document.querySelector('main');
 //Constante para estableces el elemento del titulo principal.
 const MAIN_TITLE = document.getElementById('mainTitle');
 
+const FORM = new FormData(localStorage.getItem('idadmin'));
+const DATA = await fetchData(PERMISOS_API, 'readOneAdmin', FORM)
+
+console.log(DATA);
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top sticky-sm-top">
     <div class="container-fluid ">

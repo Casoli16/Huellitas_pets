@@ -60,6 +60,15 @@ require_once('../../models/data/permisos_data.php');
                     $result['error'] = 'Permiso inexistente';
                 }
                 break;
+            case 'readOneAdmin':
+                    if (!$permisos->setIdAdmin($_POST['idAdmin'])) {
+                        $result['error'] = $permisos->getDataError();
+                    } elseif ($result['dataset'] = $permisos->readOneAdmin()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Este administrador no tiene permisos asignados';
+                    }
+                    break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (

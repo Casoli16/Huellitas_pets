@@ -29,7 +29,7 @@ VALUES
   ('Diseñador de Tienda Virtual', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
   ('Explorador de Ofertas', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE);
 
-SELECT * FROM permisos;
+SELECT * FROM permisos; 	
 
 /*Inserts para la tabla de administradores*/
 INSERT INTO administradores (nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, fecha_registro_admin)

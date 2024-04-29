@@ -1,30 +1,23 @@
 
 const LOGIN_FORM = document.getElementById('loginForm');
 
-// document.addEventListener('DOMContentLoaded', async () => {
-//     const DATA = await fetchData(USER_API, 'readUsers');
-//
-//     if(DATA.session) {
-//         location.href = 'dashboard.html';
-//     } else if (DATA.status) {
-//         MAIN_TITLE.textContent =
-//     }
-// })
 
 LOGIN_FORM.addEventListener('submit', async (event) => {
     event.preventDefault();
     const FORM = new FormData(LOGIN_FORM);
     const DATA = await fetchData(USER_API, 'logIn', FORM)
-    if (DATA.status){
+    if (DATA.status) {
+        console.log(DATA.idadmin);
+        localStorage.setItem("idadmin", DATA.idadmin);
+        localStorage.setItem("loginClicked", "true");
+
+        const PERMISOS_API = 'services/admin/permisos.php'
+        const FORM2 =new FormData(); 
+        FORM2.append('idAdmin', localStorage.getItem('idadmin'));
+        const DATA2 = await fetchData(PERMISOS_API, 'readOneAdmin', FORM2)
+        console.log(DATA2.dataset);
         sweetAlert(1, DATA.message, true, 'pantalla_carga.html');
     } else {
         sweetAlert(2, DATA.error, false);
     }
 });
-
-// document.getElementById("loginButton").addEventListener("click", function() {
-//     // Marcar que se ha hecho clic en el botón de inicio de sesión
-//     localStorage.setItem("loginClicked", "true");
-//     // Redirigir a la página de la pantalla de carga
-//     window.location.href = "../../views/admin/pantalla_carga.html";
-// });

@@ -28,6 +28,16 @@ class permisos_data extends permisos_handler
         }
     }
 
+    public function setIdAdmin($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_admin= $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador es incorrecto';
+            return false;
+        }
+    }
 
     public function setNombrePermiso($value, $min = 2, $max = 50)
     {

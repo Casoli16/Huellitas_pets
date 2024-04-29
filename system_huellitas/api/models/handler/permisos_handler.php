@@ -11,6 +11,7 @@ class permisos_handler
      */
     protected $id_permiso = null;
     protected $nombre_permiso = null;
+    protected $id_admin = null;
     protected $agac_usuario_permiso = null;
     protected $eliminar_usuario_permiso = null;
     protected $agac_producto_permiso = null;
@@ -70,6 +71,13 @@ class permisos_handler
     {
         $sql = 'SELECT * FROM permisos WHERE id_permiso = ?';
         $params = array($this->id_permiso);
+        return Database::getRows($sql, $params);
+    }
+
+    public  function readOneAdmin()
+    {
+        $sql = 'SELECT * FROM permisos_administrador_view WHERE id_admin = ?;';
+        $params = array($this->id_admin);
         return Database::getRows($sql, $params);
     }
 
