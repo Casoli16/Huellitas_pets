@@ -2,15 +2,57 @@
 // Maneja la plantilla del encabezado del documento.
 
 const USER_API = 'services/admin/admins.php'
-const PERMISOS_API = 'services/admin/permisos.php'
 const MAIN = document.querySelector('main');
 //Constante para estableces el elemento del titulo principal.
 const MAIN_TITLE = document.getElementById('mainTitle');
 
-const FORM = new FormData(localStorage.getItem('idadmin'));
-const DATA = await fetchData(PERMISOS_API, 'readOneAdmin', FORM)
+(async () => {
+    const FORM = new FormData(localStorage.getItem('idadmin'));
+    const DATA = await fetchData(PERMISOS_API, 'readOneAdmin', FORM)
 
-console.log(DATA);
+    //Crea una funcion que espere un valor y retorne un string
+    function switchMenu(opcion) {
+        let clase = '';
+        switch (opcion) {
+            case 'usuario':
+                clase = (localStorage.getItem('dataset').ver_usuario == 1) ? '' : '.disabled-link';
+                break;
+            case 'producto':
+                clase = (localStorage.getItem('dataset').ver_producto == 1) ? '' : '.disabled-link';
+                break;
+            case 'comentario':
+                clase = (localStorage.getItem('dataset').ver_comentario == 1) ? '' : '.disabled-link';
+                break;
+            case 'categoria':
+                clase = (localStorage.getItem('dataset').ver_categoria == 1) ? '' : '.disabled-link';
+                break;
+            case 'cupon':
+                clase = (localStorage.getItem('dataset').ver_cupon == 1) ? '' : '.disabled-link';
+                break;
+            default:
+                clase = '';
+                break;
+        }
+
+        // Agregar la clase al elemento div correspondiente
+        const rowId = `${opcion}`; 
+        const rowElement = document.getElementById(rowId);
+        if (rowElement) {
+            rowElement.classList.add(clase.substring(1)); // Quita el punto inicial
+        }
+
+        return clase;
+    }
+
+
+// Ejecutar la función switchMenu para aplicar las clases al cargar la página
+window.onload = function() {
+    switchMenu('usuario');
+    switchMenu('producto');
+    switchMenu('comentario');
+    switchMenu('categoria');
+    switchMenu('cupon');
+};
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top sticky-sm-top">
     <div class="container-fluid ">
@@ -46,7 +88,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id="usuario">
                         <div class="col-2">
                             <img src="../../resources/img/svg/admins.svg" alt="">
                         </div>
@@ -57,7 +99,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id="producto">
                         <div class="col-2">
                             <img src="../../resources/img/svg/products.svg" alt="">
                         </div>
@@ -68,7 +110,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id="categoria">
                         <div class="col-2">
                             <img src="../../resources/img/svg/categories.svg" alt="">
                         </div>
@@ -90,7 +132,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id="comentario">
                         <div class="col-2">
                             <img src="../../resources/img/svg/comments.svg" alt="">
                         </div>
@@ -112,7 +154,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id="cupon">
                         <div class="col-2">
                             <img src="../../resources/img/svg/voucher.svg" alt="">
                         </div>
@@ -180,4 +222,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!location.pathname.endsWith('index.html')) {
         document.getElementById('navbar').innerHTML = navbar;
     }
-});
+    });
+})();

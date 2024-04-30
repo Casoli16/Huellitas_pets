@@ -20,6 +20,11 @@ class permisos_handler
     protected $agac_categoria_permiso = null;
     protected $eliminar_categoria_permiso = null;
     protected $gestionar_cupon_permiso = null;
+    protected $ver_usuario = null;
+    protected $ver_producto = null;
+    protected $ver_comentario = null;
+    protected $ver_categoria = null;
+    protected $ver_cupon = null;
 
 
     /*
@@ -43,9 +48,10 @@ class permisos_handler
      {  
          $sql = 'INSERT INTO permisos(nombre_permiso, agregar_actualizar_usuario, 
          eliminar_usuario, agregar_actualizar_producto, eliminar_producto, borrar_comentario,
-         agregar_actualizar_categoria, borrar_categoria, gestionar_cupon) VALUE (?,?,?,?,?,?,?,?,?);';
+         agregar_actualizar_categoria, borrar_categoria, gestionar_cupon, ver_usuario, ver_producto, ver_comentario, ver_categoria, ver_cupon) VALUE (?,?,?,?,?,?,?,?,?);';
          $params = array($this->nombre_permiso, $this->agac_usuario_permiso, $this->eliminar_usuario_permiso, $this->agac_producto_permiso, $this->eliminar_producto_permiso,
-        $this->borrar_comentario_permiso, $this-> agac_categoria_permiso, $this->eliminar_categoria_permiso, $this->gestionar_cupon_permiso );
+        $this->borrar_comentario_permiso, $this-> agac_categoria_permiso, $this->eliminar_categoria_permiso, $this->gestionar_cupon_permiso, 
+        $this->ver_usuario, $this->ver_producto, $this->ver_comentario, $this->ver_categoria, $this->ver_cupon);
          return Database::executeRow($sql, $params);
      }
  
@@ -62,9 +68,10 @@ class permisos_handler
     {
         $sql = 'UPDATE permisos SET nombre_permiso = ?, agregar_actualizar_usuario = ?, 
         eliminar_usuario = ?, agregar_actualizar_producto = ?, eliminar_producto = ?, borrar_comentario = ?,
-        agregar_actualizar_categoria = ?, borrar_categoria = ?, gestionar_cupon = ? WHERE id_permiso = ?;';
+        agregar_actualizar_categoria = ?, borrar_categoria = ?, gestionar_cupon = ?, ver_usuario = ?, ver_producto = ?, ver_comentario = ?, ver_categoria = ?, ver_cupon = ? WHERE id_permiso = ?;';
         $params = array($this->nombre_permiso, $this->agac_usuario_permiso, $this->eliminar_usuario_permiso, $this->agac_producto_permiso, $this->eliminar_producto_permiso,
-       $this->borrar_comentario_permiso, $this-> agac_categoria_permiso, $this->eliminar_categoria_permiso, $this->gestionar_cupon_permiso, $this->id_permiso );
+       $this->borrar_comentario_permiso, $this-> agac_categoria_permiso, $this->eliminar_categoria_permiso, $this->gestionar_cupon_permiso, $this->ver_usuario, $this->ver_producto,
+        $this->ver_comentario, $this->ver_categoria, $this->ver_cupon,$this->id_permiso);
         return Database::executeRow($sql, $params);
     }
     public  function readOne()

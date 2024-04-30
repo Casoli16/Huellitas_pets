@@ -1,33 +1,34 @@
 USE db_huellitas_pets;
 
 /*Inserts para la tabla de permisos*/
-INSERT INTO permisos (nombre_permiso, agregar_actualizar_usuario, eliminar_usuario, agregar_actualizar_producto, eliminar_producto, borrar_comentario, agregar_actualizar_categoria, borrar_categoria, gestionar_cupon)
+INSERT INTO permisos (nombre_permiso, agregar_actualizar_usuario, eliminar_usuario, agregar_actualizar_producto, eliminar_producto, borrar_comentario, agregar_actualizar_categoria, borrar_categoria, gestionar_cupon,
+ver_usuario, ver_producto, ver_comentario, ver_categoria, ver_cupon)
 VALUES 
-  ('Administrador', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
-  ('Moderador', FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE),
-  ('Vendedor', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE),
-  ('Usuario Estándar', FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE),
-  ('Supervisor de Ventas', FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE),
-  ('Asistente de Almacén', FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  ('Experto en Productos', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE),
-  ('Soporte al Cliente', FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE),
-  ('Editor de Contenido', FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE),
-  ('Especialista en Cupones', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE),
-  ('Usuario VIP', FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  ('Analista de Datos', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  ('Asesor de Compras', FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
-  ('Gerente de Operaciones', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
-  ('Entrenador de Mascotas', FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE),
-  ('Diseñador de Productos', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE),
-  ('Especialista en Bienestar Animal', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  ('Aficionado a las Mascotas', FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
-  ('Influencer Pet-friendly', FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE),
-  ('Investigador de Tendencias', FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE),
-  ('Evaluador de Productos', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE),
-  ('Experto en Nutrición Animal', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE),
-  ('Planificador de Eventos Pet-friendly', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE),
-  ('Diseñador de Tienda Virtual', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  ('Explorador de Ofertas', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE);
+  ('Administrador', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Moderador', FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Vendedor', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Usuario Estándar', FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Supervisor de Ventas', FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Asistente de Almacén', FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Experto en Productos', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Soporte al Cliente', FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Editor de Contenido', FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Especialista en Cupones', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Usuario VIP', FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Analista de Datos', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Asesor de Compras', FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Gerente de Operaciones', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Entrenador de Mascotas', FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Diseñador de Productos', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Especialista en Bienestar Animal', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Aficionado a las Mascotas', FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Influencer Pet-friendly', FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Investigador de Tendencias', FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Evaluador de Productos', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Experto en Nutrición Animal', FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Planificador de Eventos Pet-friendly', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Diseñador de Tienda Virtual', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE),
+  ('Explorador de Ofertas', FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE);
 
 SELECT * FROM permisos; 	
 

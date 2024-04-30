@@ -144,25 +144,7 @@ SELECT * FROM admin_permisos_view;
 
 
 -- Vista para poder ver los permisos de un administrador
-CREATE VIEW permisos_administrador_view AS
-SELECT 
-    a.id_admin,
-    p.nombre_permiso,
-    IFNULL(p.agregar_actualizar_usuario, FALSE) AS agregar_actualizar_usuario,
-    IFNULL(p.eliminar_usuario, FALSE) AS eliminar_usuario,
-    IFNULL(p.agregar_actualizar_producto, FALSE) AS agregar_actualizar_producto,
-    IFNULL(p.eliminar_producto, FALSE) AS eliminar_producto,
-    IFNULL(p.borrar_comentario, FALSE) AS borrar_comentario,
-    IFNULL(p.agregar_actualizar_categoria, FALSE) AS agregar_actualizar_categoria,
-    IFNULL(p.borrar_categoria, FALSE) AS borrar_categoria,
-    IFNULL(p.gestionar_cupon, FALSE) AS gestionar_cupon
-FROM 
-    administradores a
-LEFT JOIN 
-    asignacion_permisos ap ON a.id_admin = ap.id_admin
-LEFT JOIN 
-    permisos p ON ap.id_permiso = p.id_permiso;
-    
+
 
 SELECT * FROM permisos_administrador_view WHERE id_admin = 2;
 

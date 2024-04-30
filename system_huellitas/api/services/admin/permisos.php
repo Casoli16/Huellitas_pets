@@ -33,7 +33,12 @@ require_once('../../models/data/permisos_data.php');
                     !$permisos->setBorrarComentarioPermiso($_POST['BorrarComentarioPermiso']) or
                     !$permisos->setAgacCategoriaPermiso($_POST['AgacCategoriaPermiso']) or
                     !$permisos->setEliminarCategoriaPermiso($_POST['EliminarCategoriaPermiso']) or
-                    !$permisos->setGestionarCuponPermiso($_POST['GestionarCuponPermiso'])
+                    !$permisos->setGestionarCuponPermiso($_POST['GestionarCuponPermiso']) or
+                    !$permisos->setVerUsuario($_POST['VerUsuario']) or
+                    !$permisos->setVerProducto($_POST['VerProducto']) or
+                    !$permisos->setVerComentario($_POST['VerComentario']) or
+                    !$permisos->setVerCategoria($_POST['VerCategoria']) or
+                    !$permisos->setVerCupon($_POST['VerCupon'])
                 ) {
                     $result['error'] = $permisos->getDataError();
                 } elseif ($permisos->createRow()) {
@@ -81,7 +86,12 @@ require_once('../../models/data/permisos_data.php');
                     !$permisos->setBorrarComentarioPermiso($_POST['BorrarComentarioPermiso']) or
                     !$permisos->setAgacCategoriaPermiso($_POST['AgacCategoriaPermiso']) or
                     !$permisos->setEliminarCategoriaPermiso($_POST['EliminarCategoriaPermiso']) or
-                    !$permisos->setGestionarCuponPermiso($_POST['GestionarCuponPermiso'])
+                    !$permisos->setGestionarCuponPermiso($_POST['GestionarCuponPermiso']) or
+                    !$permisos->setVerUsuario($_POST['VerUsuario']) or
+                    !$permisos->setVerProducto($_POST['VerProducto']) or
+                    !$permisos->setVerComentario($_POST['VerComentario']) or
+                    !$permisos->setVerCategoria($_POST['VerCategoria']) or
+                    !$permisos->setVerCupon($_POST['VerCupon'])
                 ) {
                     $result['error'] = $permisos->getDataError();
                 } elseif ($permisos->updateRow()) {

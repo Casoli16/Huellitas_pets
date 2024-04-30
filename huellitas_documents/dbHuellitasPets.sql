@@ -27,12 +27,17 @@ CREATE TABLE IF NOT EXISTS permisos (
   id_permiso INT AUTO_INCREMENT PRIMARY KEY,
   nombre_permiso VARCHAR(100),
   agregar_actualizar_usuario BOOL,
+  ver_usuario BOOL,
   eliminar_usuario BOOL,
   agregar_actualizar_producto BOOL,
+  ver_producto BOOL,
   eliminar_producto BOOL,
   borrar_comentario BOOL,
+  ver_comentario BOOL,
   agregar_actualizar_categoria BOOL,
+  ver_categoria BOOL,
   borrar_categoria BOOL,
+  ver_cupon BOOL,
   gestionar_cupon BOOL
 );
 

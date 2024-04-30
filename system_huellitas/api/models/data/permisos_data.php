@@ -140,6 +140,63 @@ class permisos_data extends permisos_handler
             return false;
         }
     }
+    public function setVerUsuario($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_usuario = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setVerProducto($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_producto = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setVerComentario($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_comentario = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setVerCategoria($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_categoria = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+
+    public function setVerCupon($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_cupon = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+
     /*
      *  Métodos para obtener los atributos adicionales.
      */
