@@ -24,12 +24,13 @@ if(isset($_SESSION['id_marcas']) or true){
             $_POST = Validator::validateForm($_POST);
             if(
                 !$marcas->setNombreMarca($_POST['nombre_marca']) or
-                !$marcas->setImagenMarca($_POST['imagen_marca'])
+                !$marcas->setImagenMarca($_FILES['imagen_marca'])
             ) {
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas->createRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto ingresado correctamente';
+                $result['fileStatus'] = Validator::saveFile($_FILES['imagen_marca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
                 $result['error'] = 'Ocurrio un problema al ingresar el producto';
             }
