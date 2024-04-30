@@ -52,7 +52,7 @@
                     <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-                        data-bs-toggle="modal" data-bs-target="#agmarc" type="button">
+                        data-bs-toggle="modal" data-bs-target="#saveModal" type="button">
                         <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
                         Agregar Marca
                     </button>
@@ -65,6 +65,9 @@
             <div class="table-responsive">
                 <table class="table">
                     <thead>
+                        <tr>
+                            <td colspan="8" id="rowsFound" hidden></td>
+                        </tr>
                         <!-- Encabezados de la tabla -->
                         <tr class="table-warning">
                             <th scope="col">Imagen</th>
@@ -72,60 +75,20 @@
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td><img class="" src="../../resources/img/png/marcas_img_ejemplo.png" alt=""></td>
-                            <td>Pedigree</td>
-                            <td>
-                                <!-- Botones de acciones (eliminar, editar) -->
-                                <button type="button" class="btn btn-light"><img
-                                        src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#editar_marc"><img src="../../resources/img/svg/edit_icon.svg"
-                                        width="35px"></button>
-                            </td>
-                        </tr>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td><img class="" src="../../resources/img/png/marcas_img_ejemplo.png" alt=""></td>
-                            <td>Pedigree</td>
-                            <td>
-                                <!-- Botones de acciones (eliminar, editar) -->
-                                <button type="button" class="btn btn-light"><img
-                                        src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#editar_marc"><img src="../../resources/img/svg/edit_icon.svg"
-                                        width="35px"></button>
-                            </td>
-                        </tr>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td><img class="" src="../../resources/img/png/marcas_img_ejemplo.png" alt=""></td>
-                            <td>Pedigree</td>
-                            <td>
-                                <!-- Botones de acciones (eliminar, editar) -->
-                                <button type="button" class="btn btn-light"><img
-                                        src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#editar_marc"><img src="../../resources/img/svg/edit_icon.svg"
-                                        width="35px"></button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
         </div>
 
         
         <!-- Modal para agregar marca -->
-        <div class="modal fade" id="agmarc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center">
                             <!-- Título del modal -->
-                            <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Agregar marca</h1>
+                            <h1 class="modal-title fs-5 text-white fw-bold" id="modalTitle"></h1>
                         </div>
                         <!-- Botón para cerrar el modal -->
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -133,29 +96,31 @@
                     </div>
                     <form action="" id="crear_marca">
                         <div class="modal-body">
+                            <input type="hidden" id="id_marca" name="id_marca">
                             <!-- Sección para cargar imagen y agregar marca -->
                             <div class="col">
                                 <div class="container d-flex align-items-center justify-content-center">
-                                    <img src="../../resources/img/png/fondo_img.png" class="img-fluid" alt="">
+                                    <img class="rounded-1" id="imagen" src="../../resources/img/png/rectangulo.png"
+                                            width="183px" height="179px">
                                 </div>
                                 <br>
                                 <div class="container text-center">
                                     <!-- Botón para cargar imagen -->
-                                    <input type="file" class="form-control" id="upload" hidden>
+                                    <input type="file" class="form-control" id="imagen_marca" name="imagen_marca" hidden>
                                     <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                    <label class="btn btn-red-color text-light" for="upload">Cargar imagen</label>
+                                    <label class="btn btn-red-color text-light" for="imagen_marca">Cargar imagen</label>
                                 </div>
                             </div>
                             <!-- Sección para ingresar el nombre de la marca -->
                             <div class="row container d-flex align-items-center">
                                 <div class="col">
                                     <label for="nombre_marca" class="fs-8 btn-orange-color fw-semibold"> Nombre</label>
-                                    <input type="text" class="form-control" aria-label="codigo" name="nombreMarca"
+                                    <input type="text" class="form-control" aria-label="codigo" name="nombre_marca"
                                         id="nombre_marca">
                                     <br>
                                     <div class="container text-center">
                                         <!-- Botón para agregar la marca -->
-                                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                                        <button type="submit" class="btn btn-orange-color text-white"> Agregar</button>
                                     </div>
                                     <br>
                                 </div>
@@ -166,60 +131,17 @@
             </div>
         </div>
 
-        <!-- Modal para editar marca -->
-        <div class="modal fade" id="editar_marc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-orange-color">
-                        <div class="container text-center">
-                            <!-- Título del modal -->
-                            <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Editar marca</h1>
-                        </div>
-                        <!-- Botón para cerrar el modal -->
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <form action="" id="crear_marca">
-                        <div class="modal-body">
-                            <!-- Sección para cargar imagen y agregar marca -->
-                            <div class="col">
-                                <div class="container d-flex align-items-center justify-content-center">
-                                    <img src="../../resources/img/png/fondo_img.png" class="img-fluid" alt="">
-                                </div>
-                                <br>
-                                <div class="container text-center">
-                                    <!-- Botón para cargar imagen -->
-                                    <input type="file" class="form-control" id="upload" hidden>
-                                    <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                    <label class="btn btn-red-color text-light" for="upload">Cargar imagen</label>
-                                </div>
-                            </div>
-                            <!-- Sección para ingresar el nombre de la marca -->
-                            <div class="row container d-flex align-items-center">
-                                <div class="col">
-                                    <label for="nombre_marca" class="fs-8 btn-orange-color fw-semibold"> Nombre</label>
-                                    <input type="text" class="form-control" aria-label="codigo" name="nombreMarca"
-                                        id="nombre_marca">
-                                    <br>
-                                    <div class="container text-center">
-                                        <!-- Botón para agregar la marca -->
-                                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </main>
 
 
     <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Script personalizado -->
-    <script src="../../controllers/utils/admin.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
+    <!-- Script funcionamiento -->
+    <script type="text/javascript" src="../../controllers/admin/marcas.js"></script>
+    <script type="text/javascript" type="text/javascript" src="../../controllers/utils/components.js"></script>
+    
 
 </body>
 

@@ -13,6 +13,8 @@ class marcas_handler
     protected $nombre_marca = null;
     protected $imagen_marca = null;
 
+    const RUTA_IMAGEN = '../../images/marcas/';
+
 
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).

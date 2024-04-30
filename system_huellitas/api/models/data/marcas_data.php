@@ -34,14 +34,20 @@ class marcasData extends marcas_handler{
         }
     }
 
-    public function setImagenMarca($value, $min = 2, $max = 50)
+    public function setImagenMarca($file, $filename = null)
     {
-        if (Validator::validateLength($value, $min, $max)) {
-            $this->imagen_marca = $value;
+        if(Validator::validateImageFile($file, 1000)){
+            $this->imagen_marca = Validator::getFilename();
             return true;
-        } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+        } elseif (Validator::getFileError()){
+            $this->data_error = Validator::getFileError();
             return false;
+        } elseif ($filename){
+            $this->imagen_marca = $filename;
+            return true;
+        } else{
+            $this->imagen_marca = 'default.png';
+            return true;
         }
     }
 
