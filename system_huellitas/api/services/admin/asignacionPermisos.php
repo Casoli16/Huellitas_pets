@@ -4,7 +4,7 @@ require_once ('../../models/data/asignacionPermisos_data.php');
 
 session_start();
 
-$asignacionPermisos = new asignacionPermisosData();
+$asignacionPermisos = new AsignacionPermisosData();
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 

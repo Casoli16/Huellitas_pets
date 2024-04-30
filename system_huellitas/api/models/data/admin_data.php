@@ -5,7 +5,7 @@ require_once ('../../helpers/validator.php');
 //Se incluye la clase padre
 require_once ('../../models/handler/admin_handler.php');
 
-class adminData extends adminHandler
+class AdminData extends AdminHandler
 {
     private $data_error = null;
     private $filename = null;

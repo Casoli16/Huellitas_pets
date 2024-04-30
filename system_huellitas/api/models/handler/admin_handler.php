@@ -4,7 +4,7 @@
 require_once('../../helpers/database.php');
 
 //Clase para manejar el comportamiento de los datos de la tabla administradores.
-class adminHandler
+class AdminHandler
 {
     // Declaracion de atributos para el manejo de datos de la tabla
     protected $idAdministrador = null;
@@ -24,7 +24,7 @@ class adminHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT nombre_admin, correo_admin
+        $sql = 'SELECT *
                 FROM administradores
                 WHERE nombre_admin LIKE ? OR correo_admin LIKE ?
                 ORDER BY nombre_admin';

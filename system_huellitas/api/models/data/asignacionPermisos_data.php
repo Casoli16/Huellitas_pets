@@ -5,7 +5,7 @@ require_once ('../../helpers/validator.php');
 //Se incluye la clase padre
 require_once ('../../models/handler/asignacionPermisos_handler.php');
 
-class asignacionPermisosData extends  asignacionPermisosHandler
+class AsignacionPermisosData extends  AsignacionPermisosHandler
 {
     private $data_error = null;
     private $filename = null;

@@ -38,11 +38,10 @@
         <div class="container mt-4">
             <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
             <div class="row align-items-center gy-4">
+                <!--Buscador-->
                 <div class="col-md-6 col-lg-6">
-                    <form class="d-flex" role="search" id="search_admin">
-                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="search" name="search" placeholder="Buscar...">
-                    </form>
+                <!--Ocupamos el evento oninput para que cuando se detecte que se esta escribiendo en el input llame a la funcion searchhRow-->
+                     <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search" id="searchInput" name="search" placeholder="Buscar...">
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
@@ -61,6 +60,7 @@
         </div>
         <!-- Tabla -->
         <div class="container mt-5">
+            <div></div>
             <div class="table-responsive">
                 <table class="table align-middle text-center">
                     <!-- Encabezado de las tablas -->
@@ -81,6 +81,8 @@
                     <!-- Cuerpo de la tabla -->
                     <tbody id="tableBody"></tbody>
                 </table>
+                <!--Aca aparecera el codigo para mostrar el mensaje cuando no se encuentren los registros-->
+                <div id="anyTable"></div>
             </div>
         </div>
 
