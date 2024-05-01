@@ -89,9 +89,10 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
 
-    // const currentDate = new Date().toISOString().split('T')[0];
+    // PARA REGISTRAR LA FECHA DEL REGISTRO
+    const currentDate = new Date().toISOString().split('T')[0];
 
-    // FORM.append('fechaRegistroAdmin', currentDate);
+    FORM.append('fechaRegistroAdmin', currentDate);
 
     // Petición para guardar los datos del formulario.
     const DATA = await fetchData(ADMINISTRADOR_API, action, FORM);
@@ -99,8 +100,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     if (DATA.status) {
         // Se cierra la caja de diálogo.
         SAVE_MODAL.hide();
-        //Inicializamos el valor del idAdmin 
-        ID_ADMIN.value = '';
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -113,6 +112,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 const openCreate = () => {
+    //Inicializamos el valor del idAdmin
+    ID_ADMIN.value = '';
     SAVE_MODAL.show()
     MODAL_TITLE.textContent = 'Crear administrador';
     SAVE_FORM.reset();
