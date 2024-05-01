@@ -145,7 +145,7 @@ SELECT * FROM admin_permisos_view;
 
 -- Vista para poder ver los permisos de un administrador
 
-ALTER VIEW vista_permisos_administrador AS
+CREATE VIEW vista_permisos_administrador AS
 SELECT 
     a.id_admin,
     GROUP_CONCAT(' ', p.nombre_permiso) AS nombre_permiso,

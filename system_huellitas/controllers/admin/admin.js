@@ -88,16 +88,25 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     (ID_ADMIN.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
+
+    // const currentDate = new Date().toISOString().split('T')[0];
+
+    // FORM.append('fechaRegistroAdmin', currentDate);
+
     // Petición para guardar los datos del formulario.
     const DATA = await fetchData(ADMINISTRADOR_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
         SAVE_MODAL.hide();
+        //Inicializamos el valor del idAdmin 
+        ID_ADMIN.value = '';
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
+        //Cargamos la imagen por defecto
+        IMAGEN.src = '../../resources/img/png/rectangulo.png'
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -107,6 +116,8 @@ const openCreate = () => {
     SAVE_MODAL.show()
     MODAL_TITLE.textContent = 'Crear administrador';
     SAVE_FORM.reset();
+    //Cargamos la imagen por defecto
+    IMAGEN.src = '../../resources/img/png/rectangulo.png'
     ALIAS_ADMIN.disabled = false;
     CLAVE_ADMIN.disabled = false;
     CONFIRMAR_CLAVE.disable = false;
@@ -135,7 +146,8 @@ const openUpdate = async (id) => {
         APELLIDO_ADMIN.value = ROW.apellido_admin;
         CORREO_ADMIN.value = ROW.correo_admin;
         ALIAS_ADMIN.value = ROW.alias_admin;
-        IMAGEN_ADMIN.value = ROW.imagen_admin;
+        //Cargamos la imagen del registro seleccionado
+        //IMAGEN.src = SERVER_URL + 'images/admins/' + ROW.imagen_admin;  
 
     } else {
         sweetAlert(2, DATA.error, false);
