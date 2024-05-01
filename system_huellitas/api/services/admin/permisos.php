@@ -27,18 +27,29 @@ require_once('../../models/data/permisos_data.php');
                 if (
                     !$permisos->setNombrePermiso($_POST['NombrePermiso']) or
                     !$permisos->setAgacUsuarioPermiso($_POST['AgacUsuarioPermiso']) or
-                    !$permisos->setEliminarUsuarioPermiso($_POST['EliminarUsuarioPermiso']) or
-                    !$permisos->setAgacProductoPermiso($_POST['AgacProductoPermiso']) or
-                    !$permisos->setEliminarProductoPermiso($_POST['EliminarProductoPermiso']) or
-                    !$permisos->setBorrarComentarioPermiso($_POST['BorrarComentarioPermiso']) or
-                    !$permisos->setAgacCategoriaPermiso($_POST['AgacCategoriaPermiso']) or
-                    !$permisos->setEliminarCategoriaPermiso($_POST['EliminarCategoriaPermiso']) or
-                    !$permisos->setGestionarCuponPermiso($_POST['GestionarCuponPermiso']) or
                     !$permisos->setVerUsuario($_POST['VerUsuario']) or
-                    !$permisos->setVerProducto($_POST['VerProducto']) or
+                    !$permisos->setEliminarUsuarioPermiso($_POST['EliminarUsuarioPermiso']) or
+                    !$permisos->setEliminarClientePermiso($_POST['EliminarClientePermiso']) or
+                    !$permisos->setVerCliente($_POST['VerCliente']) or
+                    !$permisos->setAgacMarcaPermiso($_POST['AgacMarcaPermiso']) or
+                    !$permisos->setEliminarMarcaPermiso($_POST['EliminarMarcaPermiso']) or
+                    !$permisos->setVerMarca($_POST['VerMarca']) or
+                    !$permisos->setEstadoPedidoPermiso($_POST['EstadoPedidoPermiso']) or
+                    !$permisos->setEliminarPedidoPermiso($_POST['EliminarPedidoPermiso']) or
+                    !$permisos->setVerPedido($_POST['VerPedido']) or
+                    !$permisos->setBorrarComentarioPermiso($_POST['BorrarComentarioPermiso']) or
                     !$permisos->setVerComentario($_POST['VerComentario']) or
+                    !$permisos->setAgacProductoPermiso($_POST['AgacProductoPermiso']) or
+                    !$permisos->setVerProducto($_POST['VerProducto']) or
+                    !$permisos->setEliminarProductoPermiso($_POST['EliminarProductoPermiso']) or
+                    !$permisos->setAgacCategoriaPermiso($_POST['AgacCategoriaPermiso']) or
                     !$permisos->setVerCategoria($_POST['VerCategoria']) or
-                    !$permisos->setVerCupon($_POST['VerCupon'])
+                    !$permisos->setEliminarCategoriaPermiso($_POST['EliminarCategoriaPermiso']) or
+                    !$permisos->setVerCupon($_POST['VerCupon']) or
+                    !$permisos->setGestionarCuponPermiso($_POST['GestionarCuponPermiso']) or
+                    !$permisos->setAgacPermisoPermiso($_POST['AgacPermisoPermiso']) or
+                    !$permisos->setEliminarPermisoPermiso($_POST['EliminarPermisoPermiso']) or
+                    !$permisos->setVerPermiso($_POST['VerPermiso'])
                 ) {
                     $result['error'] = $permisos->getDataError();
                 } elseif ($permisos->createRow()) {
@@ -77,21 +88,31 @@ require_once('../../models/data/permisos_data.php');
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$permisos->setIdPermiso($_POST['IdPermiso']) or
                     !$permisos->setNombrePermiso($_POST['NombrePermiso']) or
                     !$permisos->setAgacUsuarioPermiso($_POST['AgacUsuarioPermiso']) or
-                    !$permisos->setEliminarUsuarioPermiso($_POST['EliminarUsuarioPermiso']) or
-                    !$permisos->setAgacProductoPermiso($_POST['AgacProductoPermiso']) or
-                    !$permisos->setEliminarProductoPermiso($_POST['EliminarProductoPermiso']) or
-                    !$permisos->setBorrarComentarioPermiso($_POST['BorrarComentarioPermiso']) or
-                    !$permisos->setAgacCategoriaPermiso($_POST['AgacCategoriaPermiso']) or
-                    !$permisos->setEliminarCategoriaPermiso($_POST['EliminarCategoriaPermiso']) or
-                    !$permisos->setGestionarCuponPermiso($_POST['GestionarCuponPermiso']) or
                     !$permisos->setVerUsuario($_POST['VerUsuario']) or
-                    !$permisos->setVerProducto($_POST['VerProducto']) or
+                    !$permisos->setEliminarUsuarioPermiso($_POST['EliminarUsuarioPermiso']) or
+                    !$permisos->setEliminarClientePermiso($_POST['EliminarClientePermiso']) or
+                    !$permisos->setVerCliente($_POST['VerCliente']) or
+                    !$permisos->setAgacMarcaPermiso($_POST['AgacMarcaPermiso']) or
+                    !$permisos->setEliminarMarcaPermiso($_POST['EliminarMarcaPermiso']) or
+                    !$permisos->setVerMarca($_POST['VerMarca']) or
+                    !$permisos->setEstadoPedidoPermiso($_POST['EstadoPedidoPermiso']) or
+                    !$permisos->setEliminarPedidoPermiso($_POST['EliminarPedidoPermiso']) or
+                    !$permisos->setVerPedido($_POST['VerPedido']) or
+                    !$permisos->setBorrarComentarioPermiso($_POST['BorrarComentarioPermiso']) or
                     !$permisos->setVerComentario($_POST['VerComentario']) or
+                    !$permisos->setAgacProductoPermiso($_POST['AgacProductoPermiso']) or
+                    !$permisos->setVerProducto($_POST['VerProducto']) or
+                    !$permisos->setEliminarProductoPermiso($_POST['EliminarProductoPermiso']) or
+                    !$permisos->setAgacCategoriaPermiso($_POST['AgacCategoriaPermiso']) or
                     !$permisos->setVerCategoria($_POST['VerCategoria']) or
-                    !$permisos->setVerCupon($_POST['VerCupon'])
+                    !$permisos->setEliminarCategoriaPermiso($_POST['EliminarCategoriaPermiso']) or
+                    !$permisos->setVerCupon($_POST['VerCupon']) or
+                    !$permisos->setGestionarCuponPermiso($_POST['GestionarCuponPermiso']) or
+                    !$permisos->setAgacPermisoPermiso($_POST['AgacPermisoPermiso']) or
+                    !$permisos->setEliminarPermisoPermiso($_POST['EliminarPermisoPermiso']) or
+                    !$permisos->setVerPermiso($_POST['VerPermiso'])
                 ) {
                     $result['error'] = $permisos->getDataError();
                 } elseif ($permisos->updateRow()) {

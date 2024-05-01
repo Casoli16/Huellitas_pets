@@ -6,53 +6,19 @@ const MAIN = document.querySelector('main');
 //Constante para estableces el elemento del titulo principal.
 const MAIN_TITLE = document.getElementById('mainTitle');
 
-(async () => {
-    const FORM = new FormData(localStorage.getItem('idadmin'));
-    const DATA = await fetchData(PERMISOS_API, 'readOneAdmin', FORM)
-
-    //Crea una funcion que espere un valor y retorne un string
-    function switchMenu(opcion) {
-        let clase = '';
-        switch (opcion) {
-            case 'usuario':
-                clase = (localStorage.getItem('dataset').ver_usuario == 1) ? '' : '.disabled-link';
-                break;
-            case 'producto':
-                clase = (localStorage.getItem('dataset').ver_producto == 1) ? '' : '.disabled-link';
-                break;
-            case 'comentario':
-                clase = (localStorage.getItem('dataset').ver_comentario == 1) ? '' : '.disabled-link';
-                break;
-            case 'categoria':
-                clase = (localStorage.getItem('dataset').ver_categoria == 1) ? '' : '.disabled-link';
-                break;
-            case 'cupon':
-                clase = (localStorage.getItem('dataset').ver_cupon == 1) ? '' : '.disabled-link';
-                break;
-            default:
-                clase = '';
-                break;
-        }
-
-        // Agregar la clase al elemento div correspondiente
-        const rowId = `${opcion}`; 
-        const rowElement = document.getElementById(rowId);
-        if (rowElement) {
-            rowElement.classList.add(clase.substring(1)); // Quita el punto inicial
-        }
-
-        return clase;
+//Crea una funcion que espere un valor y retorne un string
+function switchMenu(opcion) {
+    const permisos =  JSON.parse(localStorage.getItem('dataset'));
+    const clase = (permisos[opcion] == 1) ? '' : 'd-none';
+    const rowId = opcion;
+    const rowElement = document.getElementById(rowId);
+    if (rowElement) {
+        rowElement.classList.add(clase); // Agrega la clase de visibilidad
     }
+}
 
 
-// Ejecutar la función switchMenu para aplicar las clases al cargar la página
-window.onload = function() {
-    switchMenu('usuario');
-    switchMenu('producto');
-    switchMenu('comentario');
-    switchMenu('categoria');
-    switchMenu('cupon');
-};
+
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top sticky-sm-top">
     <div class="container-fluid ">
@@ -88,7 +54,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id="usuario">
+                    <div class="row mt-2" id= "ver_usuario">
                         <div class="col-2">
                             <img src="../../resources/img/svg/admins.svg" alt="">
                         </div>
@@ -99,7 +65,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id="producto">
+                    <div class="row mt-2" id= "ver_producto">
                         <div class="col-2">
                             <img src="../../resources/img/svg/products.svg" alt="">
                         </div>
@@ -110,7 +76,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id="categoria">
+                    <div class="row mt-2" id= "ver_categoria">
                         <div class="col-2">
                             <img src="../../resources/img/svg/categories.svg" alt="">
                         </div>
@@ -121,7 +87,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id= "ver_pedido">
                         <div class="col-2">
                             <img src="../../resources/img/svg/orders.svg" alt="">
                         </div>
@@ -132,7 +98,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id="comentario">
+                    <div class="row mt-2" id= "ver_comentario">
                         <div class="col-2">
                             <img src="../../resources/img/svg/comments.svg" alt="">
                         </div>
@@ -143,7 +109,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id= "ver_marca">
                         <div class="col-2">
                             <img src="../../resources/img/svg/brand.svg" alt="">
                         </div>
@@ -154,7 +120,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id="cupon">
+                    <div class="row mt-2" id= "ver_cupon">
                         <div class="col-2">
                             <img src="../../resources/img/svg/voucher.svg" alt="">
                         </div>
@@ -165,7 +131,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2" id= "ver_cliente">
                         <div class="col-2">
                             <img src="../../resources/img/svg/clients.svg" alt="">
                         </div>
@@ -178,7 +144,7 @@ const navbar = `
                     </div>
                     <hr>
 
-                    <div class="row mt-3">
+                    <div class="row mt-3" id= "ver_permiso">
                         <div class="col-2">
                             <img src="../../resources/img/svg/permisos.svg" alt="">
                         </div>
@@ -221,6 +187,18 @@ const navbar = `
 document.addEventListener('DOMContentLoaded', () => {
     if (!location.pathname.endsWith('index.html')) {
         document.getElementById('navbar').innerHTML = navbar;
+        
+// Ejecutar la función switchMenu para aplicar las clases al cargar la página
+
+    switchMenu('ver_usuario');
+    switchMenu('ver_cliente');
+    switchMenu('ver_marca');
+    switchMenu('ver_pedido');
+    switchMenu('ver_comentario');
+    switchMenu('ver_producto');
+    switchMenu('ver_categoria');
+    switchMenu('ver_cupon');
+    switchMenu('ver_permiso');
+
     }
-    });
-})();
+});

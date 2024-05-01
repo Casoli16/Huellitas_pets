@@ -197,6 +197,130 @@ class permisos_data extends permisos_handler
         }
     }
 
+    public function setVerPermiso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_permiso = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+
+    public function setEliminarClientePermiso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->eliminar_cliente_permiso = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setVerCliente($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_cliente = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setAgacMarcaPermiso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->agac_marca_permiso = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setEliminarMarcaPermiso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->eliminar_marca_permiso = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setEstadoPedidoPermiso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->estado_pedido_permiso = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+
+    public function setEliminarPedidoPermiso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->eliminar_pedido_permiso = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+
+    public function setVerMarca($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_marca = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setVerPedido($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->ver_pedido = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setAgacPermisoPermiso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->agac_permiso_permiso = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
+    public function setEliminarPermisoPermiso($value)
+    {
+        if (Validator::validateBoolean($value)) {
+            $this->eliminar_permiso_permiso = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
+    }
     /*
      *  Métodos para obtener los atributos adicionales.
      */

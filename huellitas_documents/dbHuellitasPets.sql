@@ -29,16 +29,27 @@ CREATE TABLE IF NOT EXISTS permisos (
   agregar_actualizar_usuario BOOL,
   ver_usuario BOOL,
   eliminar_usuario BOOL,
+  borrar_cliente BOOL,
+  ver_cliente BOOL,
+  agregar_actualizar_marca BOOL,
+  borrar_marca BOOL,
+  ver_marca BOOL,
+  estado_pedido BOOL,
+  borrar_pedido BOOL,
+  ver_pedido BOOL,
+  ocultar_comentario BOOL,
+  ver_comentario BOOL,
   agregar_actualizar_producto BOOL,
   ver_producto BOOL,
   eliminar_producto BOOL,
-  borrar_comentario BOOL,
-  ver_comentario BOOL,
   agregar_actualizar_categoria BOOL,
   ver_categoria BOOL,
   borrar_categoria BOOL,
   ver_cupon BOOL,
-  gestionar_cupon BOOL
+  gestionar_cupon BOOL,
+  agregar_actualizar_permiso BOOL,
+  borrar_permiso BOOL,
+  ver_permiso BOOL
 );
 
 CREATE TABLE IF NOT EXISTS administradores (

@@ -12,9 +12,7 @@ hr{
  }
 
 
- .disabled-link {
-    color: gray; /* Cambiar el color del texto a gris */
-    pointer-events: none; /* Evitar que el enlace sea clickeable */
-    text-decoration: none; /* Quitar subrayado */
-    cursor: not-allowed; /* Cambiar el cursor */
-}
+
+
+
+
