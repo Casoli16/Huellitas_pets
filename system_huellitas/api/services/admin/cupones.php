@@ -3,6 +3,7 @@
 require_once('../../models/data/cupones_data.php');
 
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
+    if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $cupones = new cupones_data;
@@ -46,12 +47,12 @@ require_once('../../models/data/cupones_data.php');
                 }
                 break;
             case 'readOne':
-                if (!$cupones->setId($_POST['idCategoria'])) {
+                if (!$cupones->setIdCupon($_POST['idCupon'])) {
                     $result['error'] = $cupones->getDataError();
                 } elseif ($result['dataset'] = $cupones->readOne()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Categoría inexistente';
+                    $result['error'] = 'cupon inexistente';
                 }
                 break;
             case 'updateRow':
@@ -72,7 +73,7 @@ require_once('../../models/data/cupones_data.php');
                 break;
             case 'deleteRow':
                 if (
-                    !$cupones->setIdCupon($_POST['idCupon1'])
+                    !$cupones->setIdCupon($_POST['idCupon'])
                 ) {
                     $result['error'] =$cupones->getDataError();
                 } elseif ($cupones->deleteRow()) {
@@ -91,4 +92,7 @@ require_once('../../models/data/cupones_data.php');
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
+}
+}else {
+    print(json_encode('Recurso no disponible'));
 }

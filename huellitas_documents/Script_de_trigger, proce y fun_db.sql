@@ -183,10 +183,17 @@ GROUP BY
     a.id_admin;
 
 
+CREATE VIEW cupones_oferta_vista AS
+SELECT 
+    id_cupon,
+    codigo_cupon,
+    porcentaje_cupon,
+    estado_cupon,
+    DATE_FORMAT(fecha_ingreso_cupon, '%d de %M del %Y') AS fecha_ingreso_cupon_formato
+FROM 
+    cupones_oferta
+ORDER BY 
+    fecha_ingreso_cupon DESC;
 
 
-SELECT * FROM vista_permisos_administrador WHERE id_admin = 2;
-
-
-SELECT * FROM asignacion_permisos;
-
+SELECT * FROM cupones_oferta_vista;

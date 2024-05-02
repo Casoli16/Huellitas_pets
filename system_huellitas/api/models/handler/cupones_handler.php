@@ -24,10 +24,8 @@ class cupones_handler
      public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_cupon, codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon 
-                FROM cupones_oferta
-                WHERE codigo_cupon LIKE ? OR fecha_ingreso_cupon LIKE ?
-                ORDER BY fecha_ingreso_cupon DESC';
+        $sql = 'SELECT * FROM cupones_oferta_vista 
+                WHERE codigo_cupon LIKE ? OR fecha_ingreso_cupon_formato LIKE ?;';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
@@ -41,9 +39,10 @@ class cupones_handler
 
     public function readAll()
     {
-        $sql = 'SELECT id_cupon, codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon 
-                FROM cupones_oferta
-                ORDER BY fecha_ingreso_cupon DESC';
+        $sql2 ='SET lc_time_names = ?;';
+        $params = array('es_ES');
+        Database::executeRow($sql2, $params);
+        $sql = 'SELECT * FROM cupones_oferta_vista';
         return Database::getRows($sql);
     }
 
@@ -60,5 +59,13 @@ class cupones_handler
         $params = array($this->id_cupon);
         return Database::executeRow($sql, $params);
     }
+
+    public  function readOne()
+    {
+        $sql = 'SELECT * FROM cupones_oferta WHERE id_cupon = ?';
+        $params = array($this->id_cupon);
+        return Database::getRows($sql, $params);
+    }
+
     
 }

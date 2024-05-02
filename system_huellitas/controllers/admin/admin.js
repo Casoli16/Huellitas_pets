@@ -183,6 +183,9 @@ const fillTable = async (form = null) => {
     TABLE_BODY.innerHTML = '';
     // Evalua si viene con un paramentro, de ser asi entonces sera un searchRows pero si viene vacio entonces sera un readAll
     (form) ? action = 'searchRows' : action = 'readAll';
+    console.log(action);
+    console.log(form);
+    console.log(ADMINISTRADOR_API);
     const DATA = await fetchData(ADMINISTRADOR_API, action, form);
     if (DATA.status) {
         DATA.dataset.forEach(row => {
