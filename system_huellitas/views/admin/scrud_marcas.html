@@ -52,7 +52,7 @@
                     <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-                        data-bs-toggle="modal" data-bs-target="#saveModal" type="button">
+                        data-bs-toggle="modal" onclick="openCreate()" type="button">
                         <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
                         Agregar Marca
                     </button>
@@ -120,7 +120,7 @@
                                     <br>
                                     <div class="container text-center">
                                         <!-- Botón para agregar la marca -->
-                                        <button type="submit" class="btn btn-orange-color text-white"> Agregar</button>
+                                        <button type="submit" id="modalButton" class="btn btn-orange-color text-white"></button>
                                     </div>
                                     <br>
                                 </div>

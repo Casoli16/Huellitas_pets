@@ -6,7 +6,8 @@ const SEARCH_FORM = document.getElementById('searchForm');
 
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    MODAL_BUTTON = document.getElementById('modalButton');
 
 //Constantes para establecer contenido en la tabla
 const TABLE_BODY = document.getElementById('tableBody'),
@@ -65,6 +66,61 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+const openCreate = () => {
+    SAVE_MODAL.show()
+    MODAL_TITLE.textContent = 'Crear administrador';
+    MODAL_BUTTON.textContent = ' Agregar '
+    SAVE_FORM.reset();
+    NOMBRE_MARCA.disabled = false;
+}
+
+const openUpdate = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_marca', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(MARCAS_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        SAVE_MODAL.show();
+        MODAL_TITLE.textContent = 'Actualizar administrador';
+        MODAL_BUTTON.textContent = 'Actualizar '
+        // Se prepara el formulario.
+        SAVE_FORM.reset();
+        NOMBRE_MARCA.disabled = false;
+        // Se inicializan los campos con los datos.
+        const [ROW] = DATA.dataset;
+        ID_MARCA.value = ROW.id_marca;
+        NOMBRE_MARCA.value = ROW.nombre_marca;
+
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
+const openDelete = async (id) => {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Desea eliminar el administrador de forma permanente?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define una constante tipo objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_marca', id);
+        // Petición para eliminar el registro seleccionado.
+        const DATA = await fetchData(MARCAS_API, 'deleteRow', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, DATA.message, true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
+    }
+}
+
 const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
@@ -75,7 +131,7 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
                 <tr>
-                    <td><img class="rounded-circle" src="${SERVER_URL}images/marcas/${row.imagen_marca}" height="70px" width="80px"></td>
+                    <td><img src="${SERVER_URL}images/marcas/${row.imagen_marca}" height="70px" width="80px"></td>
                     <td>${row.nombre_marca}</td>  
                     <td>
                         <button type="button" class="btn btn-light" onclick="openDelete(${row.id_marca})">

@@ -40,12 +40,13 @@ if(isset($_SESSION['id_marcas']) or true){
             if (
                 !$marcas->setIdMarca($_POST['id_marca']) or
                 !$marcas->setNombreMarca($_POST['nombre_marca']) or
-                !$marcas->setImagenMarca($_POST['imagen_marca'])
+                !$marcas->setImagenMarca($_FILES['imagen_marca'])
             ){
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas -> updateRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto actualizado correctamente';
+                $result['fileStatus'] = Validator::saveFile($_FILES['imagen_marca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar el producto';
             }
