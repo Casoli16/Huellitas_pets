@@ -13,11 +13,11 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 
 // Constantes para establecer los elementos del formulario de guardar.
-const SAVE_FORM = document.getElementById('crear_cupon'),
+const SAVE_FORM = document.getElementById('saveForm'),
     ID_CUPON = document.getElementById('idCupon'),
-    ESTADO_CUPON = document.getElementById('flexSwitchCheckChecked'),
-    NOMBRE_CUPON = document.getElementById('Codigo_ActualizarCupon'),
-    PORCENTAJE_CUPON = document.getElementById('Porcentaje_ActualizarCupon')
+    ESTADO_CUPON = document.getElementById('estadoCupon'),
+    NOMBRE_CUPON = document.getElementById('codigoCupon'),
+    PORCENTAJE_CUPON = document.getElementById('porcentajeCupon')
 
 // LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
 const HIDDEN_ELEMENT = document.getElementById('anyTable');
@@ -43,27 +43,43 @@ const searchRow = async () => {
     }
 }
 
+// Escuchamos el evento 'submit' del formulario
 SAVE_FORM.addEventListener('submit', async (event) => {
-    // Se evita recargar la página web después de enviar el formulario.
+    // Evitar que el formulario se envíe y la página se recargue
     event.preventDefault();
-    // Se verifica la acción a realizar.
+    
+    // Determinar la acción a realizar (actualización o creación de un cupón)
     (ID_CUPON.value) ? action = 'updateRow' : action = 'createRow';
-    // Constante tipo objeto con los datos del formulario.
+    
+    // Obtener los datos del formulario
     const FORM = new FormData(SAVE_FORM);
-    // Petición para guardar los datos del formulario.
+    
+    // Modificar el valor del checkbox 'estadoCupon' antes de enviarlo
+    const estadoCupon = ESTADO_CUPON.checked ? '1' : '0';
+    FORM.set('estadoCupon', estadoCupon);
+    
+    // Enviar los datos del formulario al servidor y manejar la respuesta
     const DATA = await fetchData(CUPONES_API, action, FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    
+    console.log(DATA);
+    // Verificar si la respuesta del servidor fue satisfactoria
     if (DATA.status) {
-        // Se cierra la caja de diálogo.
+        // Ocultar el modal
         SAVE_MODAL.hide();
-        // Se muestra un mensaje de éxito.
+        
+        // Mostrar mensaje de éxito
         sweetAlert(1, DATA.message, true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
+        
+        // Volver a llenar la tabla para mostrar los cambios
         fillTable();
     } else {
+        // Mostrar mensaje de error
+        console.log(DATA.error);
         sweetAlert(2, DATA.error, false);
     }
 });
+
+
 
 const openCreate = () => {
     SAVE_MODAL.show()
@@ -86,10 +102,11 @@ const openUpdate = async (id) => {
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
         const [ROW] = DATA.dataset;
+        const switchChecked = (ROW.estado_cupon === 1) ? 'checked' : '';
         ID_CUPON.value = ROW.id_cupon;
-        NOMBRE_CUPON.value = ROW.nombre_cupon;
-        PORCENTAJE_CUPON.value = ROW.PORCENTAJE_CUPON;
-        ESTADO_CUPON.value = ROW.estado_cupon;
+        NOMBRE_CUPON.value = ROW.codigo_cupon;
+        PORCENTAJE_CUPON.value = ROW.porcentaje_cupon;
+        ESTADO_CUPON.checked = switchChecked;
 
     } else {
         sweetAlert(2, DATA.error, false);
@@ -103,6 +120,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
+        console.log(id);
         FORM.append('idCupon', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(CUPONES_API, 'deleteRow', FORM);
@@ -126,13 +144,9 @@ const fillTable = async (form = null) => {
         TABLE_BODY.innerHTML = '';
         // Evalua si viene con un paramentro, de ser asi entonces sera un searchRows pero si viene vacio entonces sera un readAll
         (form) ? action = 'searchRows' : action = 'readAll';
-        console.log(action);
-        console.log(form);
-        console.log(CUPONES_API);
         const DATA = await fetchData(CUPONES_API, action, form);
         if (DATA.status) {
             DATA.dataset.forEach(row => {
-                console.log(DATA.dataset);
                 const switchChecked = (row.estado_cupon === 1) ? 'checked' : '';
                 TABLE_BODY.innerHTML += `
                 <tr>

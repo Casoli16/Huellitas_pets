@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
 // Ejecutar la función switchMenu para aplicar las clases al cargar la página
 
-    switchMenu('ver_usuario');
+    
     switchMenu('ver_cliente');
     switchMenu('ver_marca');
     switchMenu('ver_pedido');
@@ -199,6 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     switchMenu('ver_categoria');
     switchMenu('ver_cupon');
     switchMenu('ver_permiso');
-
+    switchMenu('ver_usuario');
     }
 });

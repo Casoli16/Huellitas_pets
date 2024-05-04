@@ -44,8 +44,9 @@
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
                     <!--Ocupamos el evento oninput para que cuando se detecte que se esta escribiendo en el input llame a la funcion searchhRow-->
-                         <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search" id="searchInput" name="search" placeholder="Buscar...">
-                    </div>
+                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search"
+                        id="searchInput" name="search" placeholder="Buscar...">
+                </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
                     <div class="d-md-none d-lg-none">
@@ -64,29 +65,29 @@
 
         <!-- Empieza la programación de las tablas
       Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->
-      <div class="container mt-5">
-        <div class="table-responsive">
-            <table class="table align-middle text-center">
-                <!-- Encabezado de las tablas -->
-                <thead class="table table-responsive">
-                    <tr>
-                        <td colspan="7" id="rowsFound" hidden></td>
-                    </tr>
-                    <tr class="table-warning">
-                        <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
-                        <th>Nombre del código</th>
-                        <th>Fecha registro</th>
-                        <th>Porcentaje %</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <!-- Cuerpo de la tabla -->
-                <tbody id="tableBody"></tbody>
-            </table>
-            <div id="anyTable"></div>
+        <div class="container mt-5">
+            <div class="table-responsive">
+                <table class="table align-middle text-center">
+                    <!-- Encabezado de las tablas -->
+                    <thead class="table table-responsive">
+                        <tr>
+                            <td colspan="7" id="rowsFound" hidden></td>
+                        </tr>
+                        <tr class="table-warning">
+                            <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
+                            <th>Nombre del código</th>
+                            <th>Fecha registro</th>
+                            <th>Porcentaje %</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <!-- Cuerpo de la tabla -->
+                    <tbody id="tableBody"></tbody>
+                </table>
+                <div id="anyTable"></div>
+            </div>
         </div>
-    </div>
 
 
 
@@ -103,50 +104,47 @@
                             aria-label="Close"></button>
                     </div>
                     <!-- Aqui comienzan las preguntas e inputs del formulario y el boton para enviar esta información -->
-                    <form id="crear_cupon" name="crear_cupon">
+                    <form id="saveForm" name="saveForm">
                         <div class="modal-body">
                             <input type="hidden" id="idCupon" name="idCupon">
-                            <div class="row">
+                            <div class="row mt-3">
                                 <div class="col-sm-12 col-md-6">
                                     <p class="fs-8 btn-orange-color fw-bold"> Código</p>
                                     <input type="text" class="form-control" placeholder="#####" aria-label="codigo"
-                                        id="Codigo_ActualizarCupon" name="Codigo_ActualizarCuponN">
+                                        id="codigoCupon" name="codigoCupon" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <p class="fs-8 btn-orange-color fw-bold"> Porcentaje</p>
                                     <input type="number" min="1" max="100" class="form-control" placeholder="100%"
-                                        aria-label="porcentaje">
+                                        aria-label="porcentajeCupon" id="porcentajeCupon" name="porcentajeCupon" required>
                                 </div>
                             </div>
-                            <br>
                             <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                            <div class="form-check form-switch" id="switch_ActualizarCupon"
+                            <div class="form-check form-switch mt-3" id="switch_ActualizarCupon"
                                 name="switch_ActualizarCuponN">
-                                <label class="form-check-label fw-bold" for="flexSwitchCheckChecked">Cupón
+                                <label class="form-check-label fw-bold" for="estadoCupon">Cupón
                                     habilitado</label>
                                 <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                    id="flexSwitchCheckChecked" checked>
+                                    id="estadoCupon" name="estadoCupon" checked>
                             </div>
                         </div>
                         <!-- Este botón servirá para enviar la información del formulario -->
-                        <div class="container text-center">
-                            <button type="button" class="btn btn-orange-color text-white"
-                                id="BotonAc_ActualizarCupon">Agregar</button>
+                        <div class="container text-center mb-3">
+                            <button type="submit" class="btn btn-orange-color text-light me-3">
+                                Guardar</button>
                         </div>
-                        <br>
                 </div>
                 </form>
             </div>
         </div>
     </main>
-
     <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Agregamos el framework de Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Agregamos el controlador general de la aplicacion-->
-        <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos el controlador general de la aplicacion-->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos el script del menu-->
     <script src="../../controllers/utils/admin.js"></script>
     <!-- Script funcionamiento -->
