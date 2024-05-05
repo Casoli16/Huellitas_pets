@@ -2,6 +2,7 @@
 
 require_once ('../../models/data/asignacionPermisos_data.php');
 
+if (isset($_GET['action'])) {
 session_start();
 
 $asignacionPermisos = new AsignacionPermisosData();
@@ -82,4 +83,7 @@ if(isset($_SESSION['idAdministrador'])){
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print(json_encode($result));    $result['Exception'] = Database::getException();
+    } 
+}else {
+    print(json_encode('Recurso no disponible'));
 }

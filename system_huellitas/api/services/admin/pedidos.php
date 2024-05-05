@@ -2,6 +2,8 @@
 
 require_once ('../../models/data/pedidos_data.php');
 
+
+if (isset($_GET['action'])) {
 session_start();
 
 $pedidos = new pedidos_data;
@@ -78,4 +80,8 @@ if (isset($_SESSION['idAdministrador'])) {
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print (json_encode($result));
     $result['Exception'] = Database::getException();
+    } 
+}else {
+    print(json_encode('Recurso no disponible'));
 }
+

@@ -24,10 +24,10 @@ const IMAGEN = document.getElementById('imagen');
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
-    //Carga el menu en las pantalla
-    loadTemplate();
     //Muestra los registros que hay en la tabla
     fillTable();
+    //Carga el menu en las pantalla
+    loadTemplate();
 });
 
 // Agregamos el evento change al input de tipo file que selecciona la imagen
