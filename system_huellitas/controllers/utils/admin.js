@@ -17,8 +17,6 @@ function switchMenu(opcion) {
     }
 }
 
-
-
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top sticky-sm-top">
     <div class="container-fluid ">
@@ -172,8 +170,7 @@ const navbar = `
                         </div>
                         <div class="col-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page"
-                                    href="../../views/admin/index.html">Cerrar sesión</a>
+                                <a class="nav-link active" aria-current="page" onclick="logOut()">Cerrar sesión</a>
                             </li>
                         </div>
                     </div>
@@ -184,21 +181,37 @@ const navbar = `
 </nav>
 `;
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (!location.pathname.endsWith('index.html')) {
-        document.getElementById('navbar').innerHTML = navbar;
-        
-// Ejecutar la función switchMenu para aplicar las clases al cargar la página
+/*  Función asíncrona para cargar el encabezado y pie del documento.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const loadTemplate = async () => {
+    // Petición para obtener en nombre del usuario que ha iniciado sesión.
+    const DATA = await fetchData(USER_API, 'getUser');
+    // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
+    if (DATA.session) {
+        // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
+        if(DATA.status){
+            document.getElementById('navbar').innerHTML = navbar;
 
-    
-    switchMenu('ver_cliente');
-    switchMenu('ver_marca');
-    switchMenu('ver_pedido');
-    switchMenu('ver_comentario');
-    switchMenu('ver_producto');
-    switchMenu('ver_categoria');
-    switchMenu('ver_cupon');
-    switchMenu('ver_permiso');
-    switchMenu('ver_usuario');
+            // Ejecutar la función switchMenu para aplicar las clases al cargar la página
+            switchMenu('ver_cliente');
+            switchMenu('ver_marca');
+            switchMenu('ver_pedido');
+            switchMenu('ver_comentario');
+            switchMenu('ver_producto');
+            switchMenu('ver_categoria');
+            switchMenu('ver_cupon');
+            switchMenu('ver_permiso');
+            switchMenu('ver_usuario');
+        } else {
+            sweetAlert(3, DATA.error, false, 'index.html');
+        }
+    }else {
+        if (location.pathname.endsWith('index.html')){
+            console.log('Estamos donde queremos')
+        } else {
+            location.href = 'index.html'
+        }
     }
-});
+}

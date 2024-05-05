@@ -24,7 +24,9 @@ const IMAGEN = document.getElementById('imagen');
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
-    //MAIN_TITLE.textContent = 'Administradores';
+    //Carga el menu en las pantalla
+    loadTemplate();
+    //Muestra los registros que hay en la tabla
     fillTable();
 });
 

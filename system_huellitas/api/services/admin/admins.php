@@ -1,16 +1,20 @@
 <?php
-
+// Se incluye la clase del modelo.
 require_once ('../../models/data/admin_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     session_start();
-
+// Se instancia la clase correspondiente.
     $administradores = new AdminData();
 
-    $result = array('status' => 0, 'message => null', 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
+    // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
+    $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
 
-    if (isset($_SESSION['idAdministrador']) or true) {
+    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
+    if (isset($_SESSION['idAdministrador'])) {
+        $result['session'] = 1;
+        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
@@ -117,16 +121,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
-            case 'logIn':
-                $_POST = Validator::validateForm($_POST);
-                if ($administradores->checkUser($_POST['nameLogin'], $_POST['passwordLogin'])) {
-                    $result['status'] = 1;
-                    $result['idadmin'] = $_SESSION['idAdministrador'];
-                    $result['message'] = 'Autenticación correcta';
-                } else {
-                    $result['error'] = 'Credenciales incorrectas';
-                }
-                break;
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -162,6 +156,11 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                 }
                 break;
+            default:
+                $result['error'] = 'Acción no disponible dentro de la sesión';
+}
+    } else{
+        switch ($_GET['action']) {
             case 'readUsers':
                 if ($administradores->readAll()) {
                     $result['status'] = 1;
@@ -179,7 +178,7 @@ if (isset($_GET['action'])) {
                     !$administradores->setAliasAdmin($_POST['aliasAdmin']) or
                     !$administradores->setClaveAdmin($_POST['claveAdmin']) or
                     !$administradores->setFechaRegistro($_POST['fechaRegistroAdmin']) or
-                    !$administradores->setImagenAdmin($_POST['imagenAdmin'])
+                    !$administradores->setImagenAdmin($_FILES['imagenAdmin'])
                 ) {
                     $result['error'] = $administradores->getDataError();
                 } elseif ($_POST['claveAdmin'] != $_POST['confirmarClave']) {
@@ -187,13 +186,25 @@ if (isset($_GET['action'])) {
                 } elseif ($administradores->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador registrado exitosamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN);
                 } else {
                     $result['error'] = 'Ocurrió un problema al registrar el administrador';
                 }
                 break;
+            case 'logIn':
+                $_POST = Validator::validateForm($_POST);
+                if ($administradores->checkUser($_POST['nameLogin'], $_POST['passwordLogin'])) {
+                    $result['status'] = 1;
+                    $result['idadmin'] = $_SESSION['idAdministrador'];
+                    $result['message'] = 'Autenticación correcta';
+                } else {
+                    $result['error'] = 'Credenciales incorrectas';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión';
-}
+        }
     }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
     $result['exception'] = Database::getException();

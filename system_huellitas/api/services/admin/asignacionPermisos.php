@@ -8,7 +8,7 @@ $asignacionPermisos = new AsignacionPermisosData();
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
-if(isset($_SESSION['idAdministrador']) or true){
+if(isset($_SESSION['idAdministrador'])){
     switch($_GET['action']){
         case 'createRow':
             $_POST = Validator::validateForm($_POST);

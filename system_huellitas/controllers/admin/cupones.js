@@ -24,6 +24,9 @@ const HIDDEN_ELEMENT = document.getElementById('anyTable');
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
+    //Carga el menu en las pantalla
+    loadTemplate();
+    //Muestra los registros que hay en la tabla
     fillTable();
 });
 
@@ -66,12 +69,12 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     if (DATA.status) {
         // Ocultar el modal
         SAVE_MODAL.hide();
-        
         // Mostrar mensaje de éxito
         sweetAlert(1, DATA.message, true);
-        
         // Volver a llenar la tabla para mostrar los cambios
         fillTable();
+        //Cargamos la imagen por defecto
+        IMAGEN.src = '../../resources/img/png/rectangulo.png'
     } else {
         // Mostrar mensaje de error
         console.log(DATA.error);
@@ -82,9 +85,12 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 
 
 const openCreate = () => {
+    ID_CUPON.value = '';
     SAVE_MODAL.show()
     MODAL_TITLE.textContent = 'Crear cupón';
     SAVE_FORM.reset();
+    //Cargamos la imagen por defecto
+    IMAGEN.src = '../../resources/img/png/rectangulo.png'
 }
 
 const openUpdate = async (id) => {

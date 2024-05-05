@@ -8,7 +8,7 @@ $pedidos = new pedidos_data;
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
-if (isset($_SESSION['idAdministrador']) or true) {
+if (isset($_SESSION['idAdministrador'])) {
     switch ($_GET['action']) {
         case 'searchRows':
             if (!Validator::validateSearch($_POST['search'])) {

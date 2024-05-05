@@ -62,6 +62,9 @@ IMAGEN_ADMIN.addEventListener('change', function (event) {
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
+    //Carga el menu en las pantalla
+    loadTemplate();
+    //Muestra los registros que hay en la tabla
     fillTable();
 });
 
@@ -88,7 +91,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     (ID_ADMIN.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
-    console.log(FORM);
     // PARA REGISTRAR LA FECHA DEL REGISTRO
     const currentDate = new Date().toISOString().split('T')[0];
 
@@ -99,7 +101,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
-        //SAVE_MODAL.hide();
+        SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.

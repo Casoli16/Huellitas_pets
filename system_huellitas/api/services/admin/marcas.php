@@ -8,7 +8,7 @@ $marcas = new marcasData;
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
-if(isset($_SESSION['id_marcas']) or true){
+if(isset($_SESSION['id_marcas'])){
     switch($_GET['action']){
         case 'searchRows':
             if (!Validator::validateSearch($_POST['search'])){
