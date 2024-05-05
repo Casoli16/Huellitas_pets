@@ -145,17 +145,8 @@ class AdminHandler
         $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, fecha_registro_admin, imagen_admin
                 FROM administradores
                 WHERE id_admin = ?';
-        $params = array(
-            $this->nombreAdmin,
-            $this->apellidoAdmin,
-            $this->correoAdmin,
-            $this->aliasAdmin,
-            $this->claveAdmin,
-            $this->fechaRegistroAdmin,
-            $this->imagenAdmin,
-            $_SESSION['idAdministrador']
-        );
-        return Database::executeRow($sql, $params);
+        $params = array($_SESSION['idAdministrador']);
+        return Database::getRow($sql, $params);
     }
 
     // READ PROFILE
