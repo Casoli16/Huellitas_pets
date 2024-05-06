@@ -1,5 +1,5 @@
 // API'S UTILIZADAS EN LA PANTALLA
-const CUPONES_API = 'services/admin/permisos.php';
+const PERMISOS_API = 'services/admin/permisos.php';
 
 // BUSCADOR
 const SEARCH_INPUT = document.getElementById('searchInput');
@@ -56,43 +56,34 @@ const searchRow = async () => {
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Evitar que el formulario se envíe y la página se recargue
     event.preventDefault();
-    
+
     // Determinar la acción a realizar (actualización o creación de un cupón)
     (ID_CUPON.value) ? action = 'updateRow' : action = 'createRow';
-    
+
     // Obtener los datos del formulario
     const FORM = new FormData(SAVE_FORM);
-    
-    // Modificar el valor del checkbox 'estadoCupon' antes de enviarlo
-    const estado_ver_cliente = VER_CLIENTE.checked ? '1' : '0';
-    FORM.set('ver_cliente', estado_ver_cliente);
 
-    const estado_ver_marca = VER_MARCA.checked ? '1' : '0';
-    FORM.set('ver_marca', estado_ver_marca);
+    // Modificar el valor de los checkboxs antes de enviarlo
+    const checkIds = [
+        'ver_cliente',
+        'ver_marca',
+        'ver_pedido',
+        'ver_comentario',
+        'ver_producto',
+        'ver_categoria',
+        'ver_cupon',
+        'ver_permiso',
+        'ver_usuario'
+    ];
 
-    const estado_ver_pedido = VER_PEDIDO.checked ? '1' : '0';
-    FORM.set('ver_pedido', estado_ver_pedido);
-
-    const estado_ver_comentario = VER_COMENTARIO.checked ? '1' : '0';
-    FORM.set('ver_comentario', estado_ver_comentario);
-
-    const estado_ver_producto = VER_PRODUCTO.checked ? '1' : '0';
-    FORM.set('ver_producto', estado_ver_producto);
-
-    const estado_ver_categoria = VER_CATEGORIA.checked ? '1' : '0';
-    FORM.set('ver_categoria', estado_ver_categoria);
-
-    const estado_ver_cupon = VER_CUPON.checked ? '1' : '0';
-    FORM.set('ver_cupon', estado_ver_cupon);
-
-    const estado_ver_permiso = VER_PERMISO.checked ? '1' : '0';
-    FORM.set('ver_permiso', estado_ver_permiso);
-    
-    const estado_ver_usuario = VER_USUARIO.checked ? '1' : '0';
-    FORM.set('ver_usuario', estado_ver_usuario);
+    // Modificar los valores de 'estado' para cada check usando un ciclo for
+    for (const checkId of checkIds) {
+        const estado = document.getElementById(checkId).checked ? '1' : '0';
+        FORM.set(checkId, estado);
+    }
     // Enviar los datos del formulario al servidor y manejar la respuesta
-    const DATA = await fetchData(CUPONES_API, action, FORM);
-    
+    const DATA = await fetchData(PERMISOS_API, action, FORM);
+
     console.log(DATA);
     // Verificar si la respuesta del servidor fue satisfactoria
     if (DATA.status) {
@@ -127,7 +118,7 @@ const openUpdate = async (id) => {
     const FORM = new FormData();
     FORM.append('idPermiso', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(CUPONES_API, 'readOne', FORM);
+    const DATA = await fetchData(PERMISOS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
@@ -137,8 +128,24 @@ const openUpdate = async (id) => {
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
         const [ROW] = DATA.dataset;
-        const ver_cliente_sw = (ROW.ver_Cliente === 1) ? 'checked' : '';
-        ESTADO_CUPON.checked = switchChecked;
+
+        const checkIds = [
+            'ver_cliente',
+            'ver_marca',
+            'ver_pedido',
+            'ver_comentario',
+            'ver_producto',
+            'ver_categoria',
+            'ver_cupon',
+            'ver_permiso',
+            'ver_usuario'
+        ];
+
+        for (const checkId of checkIds) {
+            const checkElement = document.getElementById(checkId);
+            const checkValue = (ROW[checkId] === 1) ? 'checked' : '';
+            checkElement.checked = checkValue;
+        }
 
     } else {
         sweetAlert(2, DATA.error, false);
@@ -147,15 +154,15 @@ const openUpdate = async (id) => {
 
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar el cupón de forma permanente?');
+    const RESPONSE = await confirmAction('¿Desea eliminar el permiso de forma permanente?');
     // Se verifica la respuesta del mensaje.
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
         console.log(id);
-        FORM.append('idCupon', id);
+        FORM.append('idPermiso', id);
         // Petición para eliminar el registro seleccionado.
-        const DATA = await fetchData(CUPONES_API, 'deleteRow', FORM);
+        const DATA = await fetchData(PERMISOS_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (DATA.status) {
             // Se muestra un mensaje de éxito.
@@ -176,26 +183,17 @@ const fillTable = async (form = null) => {
         TABLE_BODY.innerHTML = '';
         // Evalua si viene con un paramentro, de ser asi entonces sera un searchRows pero si viene vacio entonces sera un readAll
         (form) ? action = 'searchRows' : action = 'readAll';
-        const DATA = await fetchData(CUPONES_API, action, form);
+        const DATA = await fetchData(PERMISOS_API, action, form);
         if (DATA.status) {
             DATA.dataset.forEach(row => {
-                const switchChecked = (row.estado_cupon === 1) ? 'checked' : '';
                 TABLE_BODY.innerHTML += `
                 <tr>
-                <td>${row.codigo_cupon}</td>
-                <td>${row.fecha_ingreso_cupon_formato}</td>
-                <td>${row.porcentaje_cupon}</td>
+                <td>${row.nombre_permiso}</td>
                 <td>
-                    <div class="form-switch">
-                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                            id="flexSwitchCheckChecked" ${switchChecked} disabled>
-                    </div> 
-                </td>  
-                <td>
-                    <button type="button" class="btn btn-light" onclick="openDelete(${row.id_cupon})">
+                    <button type="button" class="btn btn-light" onclick="openDelete(${row.id_permiso})">
                         <img src="../../resources/img/svg/delete_icon.svg" width="35px">
                     </button>
-                    <button type="button" class="btn btn-light" onclick="openUpdate(${row.id_cupon})">
+                    <button type="button" class="btn btn-light" onclick="openUpdate(${row.id_permiso})">
                         <img src="../../resources/img/svg/edit_icon.svg" width="35px">
                     </button>
                 </td>        
