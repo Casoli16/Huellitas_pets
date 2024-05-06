@@ -9,9 +9,9 @@ class marcas_handler
     /*
      *  Declaración de atributos para el manejo de datos.
      */
-    protected $id_marca = null;
-    protected $nombre_marca = null;
-    protected $imagen_marca = null;
+    protected $idMarca = null;
+    protected $nombreMarca = null;
+    protected $imagenMarca = null;
 
     const RUTA_IMAGEN = '../../images/marcas/';
 
@@ -37,8 +37,8 @@ class marcas_handler
         $sql = 'INSERT INTO marcas (nombre_marca, imagen_marca) 
         VALUES (?, ?)';
         $params = array(
-            $this->nombre_marca,
-            $this->imagen_marca
+            $this->nombreMarca,
+            $this->imagenMarca
         );
         return Database::executeRow($sql, $params);
     }
@@ -55,7 +55,7 @@ class marcas_handler
     //    Leer un registro de un producto
     public function readOne(){
         $sql = 'SELECT * FROM marcas WHERE id_marca = ?';
-        $params = array($this->id_marca);
+        $params = array($this->idMarca);
         return Database::getRows($sql, $params);
     }
 
@@ -65,9 +65,9 @@ class marcas_handler
                 SET nombre_marca = ?, imagen_marca = ? 
                 WHERE id_marca = ?';
         $params = array(
-            $this->nombre_marca,
-            $this->imagen_marca,
-            $this->id_marca
+            $this->nombreMarca,
+            $this->imagenMarca,
+            $this->idMarca
         );
         return Database::executeRow($sql, $params);
     }
@@ -75,7 +75,7 @@ class marcas_handler
     //    Eliminar producto
     public function deleteRow(){
         $sql = 'DELETE FROM marcas WHERE id_marca = ?';
-        $params = array($this->id_marca);
+        $params = array($this->idMarca);
         return Database::executeRow($sql, $params);
     }
 }

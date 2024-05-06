@@ -12,7 +12,7 @@ class marcasData extends marcas_handler{
     public function setIdMarca($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_marca = $value;
+            $this->idMarca = $value;
             return true;
         } else {
             $this->data_error = 'El identificador es incorrecto';
@@ -26,7 +26,7 @@ class marcasData extends marcas_handler{
             $this->data_error = 'El nombre debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombre_marca = $value;
+            $this->nombreMarca = $value;
             return true;
         } else {
             $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -37,16 +37,16 @@ class marcasData extends marcas_handler{
     public function setImagenMarca($file, $filename = null)
     {
         if(Validator::validateImageFile($file, 1000)){
-            $this->imagen_marca = Validator::getFilename();
+            $this->imagenMarca = Validator::getFilename();
             return true;
         } elseif (Validator::getFileError()){
             $this->data_error = Validator::getFileError();
             return false;
         } elseif ($filename){
-            $this->imagen_marca = $filename;
+            $this->imagenMarca = $filename;
             return true;
         } else{
-            $this->imagen_marca = 'default.png';
+            $this->imagenMarca = 'default.png';
             return true;
         }
     }

@@ -25,14 +25,14 @@ if(isset($_SESSION['idAdministrador'])){
         case 'createRow':
             $_POST = Validator::validateForm($_POST);
             if(
-                !$marcas->setNombreMarca($_POST['nombre_marca']) or
-                !$marcas->setImagenMarca($_FILES['imagen_marca'])
+                !$marcas->setNombreMarca($_POST['nombreMarca']) or
+                !$marcas->setImagenMarca($_FILES['imagenMarca'])
             ) {
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas->createRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto ingresado correctamente';
-                $result['fileStatus'] = Validator::saveFile($_FILES['imagen_marca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
+                $result['fileStatus'] = Validator::saveFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
                 $result['error'] = 'Ocurrio un problema al ingresar el producto';
             }
@@ -40,29 +40,29 @@ if(isset($_SESSION['idAdministrador'])){
         case 'updateRow':
             $_POST = Validator::validateForm($_POST);
             if (
-                !$marcas->setIdMarca($_POST['id_marca']) or
-                !$marcas->setNombreMarca($_POST['nombre_marca']) or
-                !$marcas->setImagenMarca($_FILES['imagen_marca'])
+                !$marcas->setIdMarca($_POST['idMarca']) or
+                !$marcas->setNombreMarca($_POST['nombreMarca']) or
+                !$marcas->setImagenMarca($_FILES['imagenMarca'])
             ){
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas -> updateRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto actualizado correctamente';
-                $result['fileStatus'] = Validator::saveFile($_FILES['imagen_marca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
+                $result['fileStatus'] = Validator::saveFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar el producto';
             }
             break;
         case 'readAll':
             if($result['dataset'] = $marcas->readAll()){
-               $result['status'] = 1;
-               $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
+                $result['status'] = 1;
+                $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
             } else{
                 $result['error'] = 'No existen marcas registrados';
             }
             break;
         case 'readOne':
-            if (!$marcas->setIdMarca($_POST['id_marca'])) {
+            if (!$marcas->setIdMarca($_POST['idMarca'])) {
                 $result['error'] = $marcas->getDataError();
             } elseif ($result['dataset'] = $marcas->readOne()) {
                 $result['status'] = 1;
@@ -71,7 +71,7 @@ if(isset($_SESSION['idAdministrador'])){
             }
             break;
         case 'deleteRow':
-            if(!$marcas->setIdMarca($_POST['id_marca'])){
+            if(!$marcas->setIdMarca($_POST['idMarca'])){
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas->deleteRow()){
                 $result['status'] = 1;
