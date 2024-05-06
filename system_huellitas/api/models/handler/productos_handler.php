@@ -28,6 +28,14 @@ class productosHandler{
         return Database::getRows($sql, $params);
     }
 
+// Selecciona los productos de perros
+    public function readEspecificProducts()
+    {
+        $sql = 'SELECT * FROM productosView WHERE mascotas = ?';
+        $params = array($this->mascotas);
+        return Database::getRows($sql, $params);
+    }
+
 //    Crear producto
     public function createRow(){
         $sql = 'INSERT INTO productos (nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, existencia_producto, fecha_registro_producto, mascotas, id_categoria, id_marca) 

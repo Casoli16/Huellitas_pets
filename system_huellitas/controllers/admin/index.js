@@ -1,6 +1,8 @@
 const LOGIN_FORM = document.getElementById('loginForm');
 const SIGNUP_FORM = document.getElementById('signUpForm'),
         IMAGEN_ADMIN = document.getElementById('imgAdmin');
+const CONTAINER_ONE = document.getElementById('containerOne');
+const CONTAINER_SECOND = document.getElementById('containerSecond');
 
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
@@ -31,10 +33,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(DATA.session) {
         location.href = 'dashboard.html'
     } else if (DATA.status) {
-        LOGIN_FORM.classList.remove('d-none');
+        CONTAINER_ONE.classList.remove('d-none');
         sweetAlert(4, DATA.message, true);
     } else {
-        SIGNUP_FORM.classList.remove('d-none');
+        CONTAINER_SECOND.classList.remove('d-none');
         sweetAlert(4, DATA.error, true);
     }
 });

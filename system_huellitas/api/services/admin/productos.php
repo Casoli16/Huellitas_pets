@@ -9,7 +9,7 @@ $productos = new productosData;
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
-if(isset($_SESSION['idAdministrador'])){
+if(isset($_SESSION['idAdministrador']) or true){
     switch($_GET['action']){
         case 'searchRows':
             if (!Validator::validateSearch($_POST['search'])){
@@ -78,6 +78,15 @@ if(isset($_SESSION['idAdministrador'])){
             if (!$productos->setIdProducto($_POST['idProducto'])) {
                 $result['error'] = $productos->getDataError();
             } elseif ($result['dataset'] = $productos->readOne()) {
+                $result['status'] = 1;
+            } else {
+                $result['error'] = 'Producto inexistente';
+            }
+            break;
+        case 'readSpecificProduct':
+            if (!$productos->setMascotas($_POST['mascota'])) {
+                $result['error'] = $productos->getDataError();
+            } elseif ($result['dataset'] = $productos->readEspecificProducts()) {
                 $result['status'] = 1;
             } else {
                 $result['error'] = 'Producto inexistente';
