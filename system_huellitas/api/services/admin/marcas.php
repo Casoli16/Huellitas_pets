@@ -31,7 +31,7 @@ if(isset($_SESSION['idAdministrador'])){
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas->createRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Producto ingresado correctamente';
+                $result['message'] = 'Marca ingresado correctamente';
                 $result['fileStatus'] = Validator::saveFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
                 $result['error'] = 'Ocurrio un problema al ingresar el producto';
@@ -47,7 +47,7 @@ if(isset($_SESSION['idAdministrador'])){
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas -> updateRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Producto actualizado correctamente';
+                $result['message'] = 'Marca actualizado correctamente';
                 $result['fileStatus'] = Validator::saveFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar el producto';
@@ -67,7 +67,7 @@ if(isset($_SESSION['idAdministrador'])){
             } elseif ($result['dataset'] = $marcas->readOne()) {
                 $result['status'] = 1;
             } else {
-                $result['error'] = 'Producto inexistente';
+                $result['error'] = 'Marca inexistente';
             }
             break;
         case 'deleteRow':
@@ -75,7 +75,7 @@ if(isset($_SESSION['idAdministrador'])){
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas->deleteRow()){
                 $result['status'] = 1;
-                $result['message'] = 'Producto eliminado correctamente';
+                $result['message'] = 'Marca eliminado correctamente';
             } else{
                 $result['error'] = 'Ocurrio un problema al eliminar el producto';
             }

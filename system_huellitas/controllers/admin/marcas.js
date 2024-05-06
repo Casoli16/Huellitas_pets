@@ -57,6 +57,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     const DATA = await fetchData(MARCAS_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
+        IMAGEN.src = '../../resources/img/png/rectangulo.png'
         // Se cierra la caja de diálogo.
         SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
@@ -73,7 +74,7 @@ const openCreate = () => {
     SAVE_MODAL.show()
     MODAL_TITLE.textContent = 'Crear administrador';
     MODAL_BUTTON.textContent = ' Agregar '
-    IMAGEN_MARCA.src = '../../resources/img/png/rectangulo.png'
+    IMAGEN.src = '../../resources/img/png/rectangulo.png'
     SAVE_FORM.reset();
     NOMBRE_MARCA.disabled = false;
 }
@@ -97,6 +98,8 @@ const openUpdate = async (id) => {
         const [ROW] = DATA.dataset;
         ID_MARCA.value = ROW.id_marca;
         NOMBRE_MARCA.value = ROW.nombre_marca;
+        //Cargamos la imagen del registro seleccionado
+        //IMAGEN.src = SERVER_URL + 'images/marcas/' + ROW.imagen_marca; 
 
     } else {
         sweetAlert(2, DATA.error, false);
