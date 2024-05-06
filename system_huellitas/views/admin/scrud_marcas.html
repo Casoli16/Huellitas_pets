@@ -96,7 +96,7 @@
                     </div>
                     <form action="" id="crear_marca">
                         <div class="modal-body">
-                            <input type="hidden" id="id_marca" name="id_marca">
+                            <input type="hidden" id="idMarca" name="idMarca">
                             <!-- Sección para cargar imagen y agregar marca -->
                             <div class="col">
                                 <div class="container d-flex align-items-center justify-content-center">
@@ -106,17 +106,17 @@
                                 <br>
                                 <div class="container text-center">
                                     <!-- Botón para cargar imagen -->
-                                    <input type="file" class="form-control" id="imagen_marca" name="imagen_marca" hidden>
+                                    <input type="file" class="form-control" id="imagenMarca" name="imagenMarca" hidden required>
                                     <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                    <label class="btn btn-red-color text-light" for="imagen_marca">Cargar imagen</label>
+                                    <label class="btn btn-red-color text-light" for="imagenMarca">Cargar imagen</label>
                                 </div>
                             </div>
                             <!-- Sección para ingresar el nombre de la marca -->
                             <div class="row container d-flex align-items-center">
                                 <div class="col">
-                                    <label for="nombre_marca" class="fs-8 btn-orange-color fw-semibold"> Nombre</label>
-                                    <input type="text" class="form-control" aria-label="codigo" name="nombre_marca"
-                                        id="nombre_marca">
+                                    <label for="nombreMarca" class="fs-8 btn-orange-color fw-semibold"> Nombre</label>
+                                    <input type="text" class="form-control" aria-label="codigo" name="nombreMarca"
+                                        id="nombreMarca">
                                     <br>
                                     <div class="container text-center">
                                         <!-- Botón para agregar la marca -->

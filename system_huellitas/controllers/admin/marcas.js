@@ -15,9 +15,9 @@ const TABLE_BODY = document.getElementById('tableBody'),
 
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('crear_marca'),
-    ID_MARCA = document.getElementById('id_marca'),
-    IMAGEN_MARCA = document.getElementById('imagen_marca'),
-    NOMBRE_MARCA = document.getElementById('nombre_marca')
+    ID_MARCA = document.getElementById('idMarca'),
+    IMAGEN_MARCA = document.getElementById('imagenMarca'),
+    NOMBRE_MARCA = document.getElementById('nombreMarca')
 
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
@@ -69,9 +69,11 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 const openCreate = () => {
+    ID_MARCA.value = '';
     SAVE_MODAL.show()
     MODAL_TITLE.textContent = 'Crear administrador';
     MODAL_BUTTON.textContent = ' Agregar '
+    IMAGEN_MARCA.src = '../../resources/img/png/rectangulo.png'
     SAVE_FORM.reset();
     NOMBRE_MARCA.disabled = false;
 }
@@ -79,7 +81,7 @@ const openCreate = () => {
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_marca', id);
+    FORM.append('idMarca', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(MARCAS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -108,7 +110,7 @@ const openDelete = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_marca', id);
+        FORM.append('idMarca', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(MARCAS_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
