@@ -39,10 +39,7 @@
             <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
-                    <form class="d-flex" role="search" id="search_marcas">
-                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="busqueda_marca" name="busquedaMarca" placeholder="Buscar...">
-                    </form>
+                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search" id="searchInput" name="search" placeholder="Buscar...">
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
@@ -77,6 +74,7 @@
                     </thead>
                     <tbody id="tableBody"></tbody>
                 </table>
+                <div id="anyTable"></div>
             </div>
         </div>
 

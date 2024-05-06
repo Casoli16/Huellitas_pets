@@ -2,7 +2,7 @@
 const MARCAS_API = 'services/admin/marcas.php';
 
 // Constante para establecer el formulario de buscar.
-const SEARCH_FORM = document.getElementById('searchForm');
+const SEARCH_INPUT = document.getElementById('searchInput');
 
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
@@ -21,6 +21,9 @@ const SAVE_FORM = document.getElementById('crear_marca'),
 
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
+
+// LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
+const HIDDEN_ELEMENT = document.getElementById('anyTable');
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
@@ -45,6 +48,22 @@ IMAGEN_MARCA.addEventListener('change', function (event) {
         reader.readAsDataURL(event.target.files[0]);
     }
 });
+
+//Metodo para el buscador
+const searchRow = async () => {
+    //Obtenemos lo que se ha escrito en el input
+    const inputValue = SEARCH_INPUT.value;
+    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
+    const FORM = new FormData();
+    FORM.append('search', inputValue);
+    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
+    if (inputValue === '') {
+        fillTable();
+    } else {
+        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
+        fillTable(FORM);
+    }
+}
 
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
