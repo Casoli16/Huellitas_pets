@@ -195,5 +195,28 @@ FROM
 ORDER BY 
     fecha_ingreso_cupon DESC;
 
-
 SELECT * FROM cupones_oferta_vista;
+
+CREATE VIEW  productosView AS
+    SELECT
+        p.id_producto,
+        p.nombre_producto,
+        p.descripcion_producto,
+        p.precio_producto,
+        p.imagen_producto,
+        p.estado_producto,
+        p.existencia_producto,
+        p.fecha_registro_producto,
+        p.mascotas,
+        p.id_categoria,
+        m.nombre_marca,
+        p.id_marca,
+        c.nombre_categoria
+
+FROM
+    productos p
+    INNER JOIN marcas m ON m.id_marca = p.id_marca
+    INNER JOIN categorias c ON c.id_categoria = p.id_categoria;
+
+SELECT * FROM productosView WHERE mascotas = 'perro';
+

@@ -158,7 +158,7 @@ SELECT * FROM marcas;
 /*Inserts para la tabla de marcas*/
 INSERT INTO productos (nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, existencia_producto, fecha_registro_producto, mascotas, id_categoria, id_marca)
 VALUES 
-  ('Croquetas Premium', 'Nutritivas croquetas premium para perros y gatos.', 30.99, 'croquetas_premium.png', 'Disponible', 100, '2024-03-03', 'perro', 1, 1),
+  ('Croquetas Premium', 'Nutritivas croquetas premium para perros y gatos.', 30.99, 'croquetas_premium.png', 'Disponible', 100, '2024-03-03', 'perro', 1, 3),
   ('Juguete Pelota Interactiva', 'Pelota interactiva para perros, ideal para juegos divertidos.', 12.50, 'pelota_interactiva.png', 'activo', 150, '2024-03-03', 'perro', 3, 7),
   ('Comedero Automático', 'Comedero automático programable para perros y gatos.', 45.75, 'comedero_automatico.png', 'activo', 50, '2024-03-03', 'perro', 6, 9),
   ('Arena Aglomerante', 'Arena aglomerante para gatos, controla olores y facilita la limpieza.', 14.99, 'arena_aglomerante.png', 'activo', 80, '2024-03-03', 'gato', 20, 11),
@@ -174,7 +174,7 @@ VALUES
   ('Caja de Arena para Roedores', 'Caja de arena para roedores, fácil de limpiar y mantener.', 11.99, 'caja_arena_roedores.png', 'activo', 120, '2024-03-03', 'gato', 10, 14),
   ('Cepillo de Dientes para Perros', 'Cepillo de dientes para perros, cuida la salud dental.', 6.25, 'cepillo_dientes_perros.png', 'activo', 100, '2024-03-03', 'perro', 14, 17),
   ('Alimento Húmedo para Gatos', 'Alimento húmedo para gatos, variedad de sabores y nutrientes.', 2.99, 'alimento_humedo_gatos.png', 'activo', 120, '2024-03-03', 'gato', 22, 5),
-  ('Juguete Peluche para Cachorros', 'Peluche suave y seguro para cachorros, ideal para masticar.', 9.50, 'peluche_cachorros.png', 'activo', 80, '2024-03-03', 'perro', 3, 2),
+  ('Juguete Peluche para Cachorros', 'Peluche suave y seguro para cachorros, ideal para masticar.', 9.50, 'peluche_cachorros.png', 'activo', 80, '2024-03-03', 'perro', 3, 3),
   ('Caja Transportadora', 'Caja transportadora para gatos y perros pequeños, resistente y cómoda.', 34.99, 'caja_transportadora.png', 'activo', 40, '2024-03-03', 'gato', 8, 19),
   ('Juguete para Pájaros', 'Juguete colorido y divertido para entretener a pájaros.', 7.50, 'juguete_pajaros.png', 'activo', 60, '2024-03-03', 'gato', 18, 20),
   ('Set de Juguetes para Cachorros', 'Set variado de juguetes para cachorros, estimula el juego.', 19.99, 'set_juguetes_cachorros.png', 'activo', 100, '2024-03-03', 'perro', 3, 12),
