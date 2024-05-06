@@ -25,21 +25,22 @@ class CategoriasHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT nombre_marca, imagen_marca
-                FROM marcas
-                WHERE nombre_marca LIKE ?
-                ORDER BY nombre_marca';
+        $sql = 'SELECT *
+                FROM categorias
+                WHERE nombre_categoria LIKE ?
+                ORDER BY nombre_categoria';
         $params = array($value);
         return Database::getRows($sql, $params);
     }
 
     //    Crear producto
     public function createRow(){
-        $sql = 'INSERT INTO marcas (nombre_marca, imagen_marca) 
-        VALUES (?, ?)';
+        $sql = 'INSERT INTO categorias (nombre_categoria, descripcion_categoria, imagen_categoria) 
+        VALUES (?, ?, ?)';
         $params = array(
-            $this->nombreMarca,
-            $this->imagenMarca
+            $this->nombreCategoria,
+            $this->descripcionCategoria,
+            $this->imagenCategoria
         );
         return Database::executeRow($sql, $params);
     }
@@ -47,36 +48,37 @@ class CategoriasHandler
     // READ ALL
     public function readAll()
     {
-        $sql = 'SELECT id_marca, imagen_marca, nombre_marca 
-                FROM marcas
-                ORDER BY nombre_marca';
+        $sql = 'SELECT *
+                FROM categorias
+                ORDER BY nombre_categoria';
         return Database::getRows($sql);
     }
 
     //    Leer un registro de un producto
     public function readOne(){
         $sql = 'SELECT * FROM marcas WHERE id_marca = ?';
-        $params = array($this->idMarca);
+        $params = array($this->idCategoria);
         return Database::getRows($sql, $params);
     }
 
     //    Actualizar un producto
     public function updateRow(){
-        $sql = 'UPDATE marcas 
-                SET nombre_marca = ?, imagen_marca = ? 
-                WHERE id_marca = ?';
+        $sql = 'UPDATE categorias 
+                SET nombre_categoria = ?, descripcion_categoria = ?, imagen_categoria = ? 
+                WHERE id_categoria = ?';
         $params = array(
-            $this->nombreMarca,
-            $this->imagenMarca,
-            $this->idMarca
+            $this->nombreCategoria,
+            $this->descripcionCategoria,
+            $this->imagenCategoria,
+            $this->idCategoria,
         );
         return Database::executeRow($sql, $params);
     }
 
     //    Eliminar producto
     public function deleteRow(){
-        $sql = 'DELETE FROM marcas WHERE id_marca = ?';
-        $params = array($this->idMarca);
+        $sql = 'DELETE FROM categorias WHERE id_categoria = ?';
+        $params = array($this->idCategoria);
         return Database::executeRow($sql, $params);
     }
 }
