@@ -41,10 +41,9 @@
             <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
-                    <form class="d-flex" role="search" id="search_permisos">
-                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="search" placeholder="Buscar nombre del permiso...">
-                    </form>
+                    <!--Ocupamos el evento oninput para que cuando se detecte que se esta escribiendo en el input llame a la funcion searchhRow-->
+                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search"
+                        id="searchInput" name="search" placeholder="Buscar...">
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
@@ -54,92 +53,58 @@
                     <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-                        data-bs-toggle="modal" data-bs-target="#agPermiso" type="button" id="btnAgregar_Permisos">
+                        data-bs-toggle="modal" onclick="openCreate()" type="button">
                         <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
                         Agregar permiso
                     </button>
-                    <!--  Lo de arriba crea un botón y lo conecta con un modal por medio de la palabra data-bs-target y se conecta con el id del modal-->
                 </div>
             </div>
         </div>
-
         <!-- Empieza la programación de las tablas
       Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->
-        <div class="container p-3 mt-4">
+        <div class="container mt-5">
             <div class="table-responsive">
-                <table class="table">
-                    <thead class="text-center">
-                        <tr class="table">
+                <table class="table align-middle text-center">
+                    <!-- Encabezado de las tablas -->
+                    <thead class="table table-responsive">
+                        <tr>
+                            <td colspan="7" id="rowsFound" hidden></td>
+                        </tr>
+                        <tr class="table-warning">
                             <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Acciones</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">
-                        <tr>
-                            <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
-                            <td>Contador</td>
-                            <td>
-                                <button type="button" class="btn btn-light img-fluid" id="btnEliminar_Permisos"><img
-                                        src="../../resources/img/svg/delete_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#actPermiso" id="btnEditar_Permisos"><img
-                                        src="../../resources/img/svg/edit_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Administrador</td>
-                            <td>
-                                <button type="button" class="btn btn-light img-fluid"><img
-                                        src="../../resources/img/svg/delete_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#actPermiso"><img src="../../resources/img/svg/edit_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                                se pone arriba del </html pero fuera del body-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Vendedor</td>
-                            <td>
-                                <button type="button" class="btn btn-light img-fluid"><img
-                                        src="../../resources/img/svg/delete_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#actPermiso"><img src="../../resources/img/svg/edit_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <!-- Cuerpo de la tabla -->
+                    <tbody id="tableBody"></tbody>
                 </table>
+                <div id="anyTable"></div>
             </div>
         </div>
 
         <!--Modal para el boton de agregar permiso-->
-        <div class="modal" id="agPermiso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <form id="Formulario_AgregarPermisos" name="Formulario_AgregarPermisosN">
-                    <div class="modal-content">
-                        <div class="modal-header bg-orange-color">
-                            <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
-                            <div class="container text-center">
-                                <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Agregar permiso
-                                </h1>
-                            </div>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header bg-orange-color">
+                        <!-- Esto define el titiulo del modal que aparece en la franja naranja -->
+                        <div class="container text-center">
+                            <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Agregar permiso
+                            </h1>
                         </div>
-                        <!-- Aqui comienzan los inputs y el boton del formulario del modal -->
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <!-- Aqui comienzan los inputs y el boton del formulario del modal -->
+                    <form id="saveForm" name="saveForm">
                         <div class="modal-body">
+                            <input type="hidden" id="idPermiso" name="idPermiso">
                             <div class="row">
                                 <div class="col-12">
                                     <p class="fs-8 btn-orange-color fw-bold">Nombre del permiso</p>
                                     <input type="text" class="form-control shadow bg-white" placeholder="Ej. Analista"
-                                        aria-label="codigo" id="NombreP_AgregarPermisos"
-                                        name="NombreP_AgregarPermisosN">
+                                        aria-label="codigo" id="NombreP_AgregarPermisos" name="NombrePermiso">
                                     <br>
                                 </div>
                                 <div class="col-12">
@@ -148,228 +113,110 @@
                                     </p>
                                 </div>
                                 <!-- EL div que esta debajo donde se dice col-sm-12 y col-sm-6 es para que los input usen
-                        todo el espacio disponible y sino se ordenen 2 inputs a la par-->
+                         todo el espacio disponible y sino se ordenen 2 inputs a la par-->
                                 <div class="col-sm-12 col-md-6">
-                                    <div class="form-switch form-check" id="SwCrearUsuarios_AgregarPermisos"
-                                        name="SwCrearUsuarios_AgregarPermisosN">
+                                    <div class="form-switch form-check" id="SwCrearUsuarios_AgregarPermisos">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar
-                                            usuarios</label>
+                                            id="ver_cliente" name="ver_cliente" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
+                                            clientes</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwEliminarUsuarios_AgregarPermisos"
-                                        name="SwEliminarUsuarios_AgregarPermisosN">
+                                    <div class="form-switch form-check" id="SwEliminarUsuarios_AgregarPermisos">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar
-                                            usuarios</label>
+                                            id="ver_marca" name="ver_marca" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
+                                            marcas</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwCrearProductos_AgregarPermisos"
-                                        name="SwCrearProductos_AgregarPermisosN">
+                                    <div class="form-switch form-check" id="SwCrearProductos_AgregarPermisos">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar
-                                            productos</label>
+                                            id="ver_pedido" name="ver_pedido" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
+                                            pedidos</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwEliminarProducto_AgregarPermisos"
-                                        name="SwEliminarProducto_AgregarPermisosN">
+                                    <div class="form-switch form-check" id="SwEliminarProducto_AgregarPermisos">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar
-                                            productos</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwBorrarComentario_AgregarPermisos"
-                                        name="SwBorrarComentario_AgregarPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Borrar
+                                            id="ver_comentario" name="ver_comentario" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
                                             comentarios</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwCrearCategorias_AgregarPermisos"
-                                        name="SwCrearCategorias_AgregarPermisosN">
+                                    <div class="form-switch form-check" id="SwBorrarComentario_AgregarPermisos">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar
-                                            categorías</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwBorrarCategorias_AgregarPermisos"
-                                        name="SwBorrarCategorias_AgregarPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Borrar
-                                            categorías</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwGestionarCupones_AgregarPermisos"
-                                        name="SwGestionarCupones_AgregarPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
+                                            id="ver_producto" name="ver_producto" checked>
                                         <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
-                                            cupones</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                        <!-- Este Boton es para enviar los datos del formulario -->
-                        <div class="container text-center">
-                            <button type="button" class="btn btn-orange-color text-white"
-                                id="BtnAgregar_AgregarPermisos" name="BtnAgregar_AgregarPermisosN">Agregar</button>
-                        </div>
-                        <br>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-
-
-        <!--Modal para el boton de actualizar permiso-->
-        <div class="modal " id="actPermiso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <form id="Formulario_ActPermisos" name="Formulario_ActPermisosN">
-                    <div class="modal-content">
-                        <!-- El div que esta debajo del comentario indica el color de fondo del titulo del modal y el titulo -->
-                        <div class="modal-header bg-orange-color">
-                            <div class="container text-center">
-                                <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Editar permiso
-                                </h1>
-                            </div>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="fs-8 btn-orange-color fw-bold">Nombre del permiso</p>
-                                    <input type="text" class="form-control shadow bg-white" placeholder="Ej. Analista"
-                                        aria-label="codigo" id="Nombre_ActPermisos" name="Nombre_ActPermisosN">
-                                    <br>
-                                </div>
-                                <div class="col-12">
-                                    <p class="fs-8 btn-orange-color fw-bold">Asigna los permisos que tendrá este tipo de
-                                        permiso
-                                    </p>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwCrearUsuario_ActPermisos"
-                                        name="SwCrearUsuario_ActPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar
-                                            usuarios</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwEliminarUsuario_ActPermisos"
-                                        name="SwEliminarUsuario_ActPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar
-                                            usuarios</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwCrearProductos_ActPermisos"
-                                        name="SwCrearProductos_ActPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar
                                             productos</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwEliminarProductos_ActPermisos"
-                                        name="SwEliminarProductos_ActPermisosN">
+                                    <div class="form-switch form-check" id="SwCrearCategorias_AgregarPermisos">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Eliminar
-                                            productos</label>
+                                            id="ver_categoria" name="ver_categoria" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
+                                            categorias</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwBorrarComentarios_ActPermisos"
-                                        name="SwBorrarComentarios_ActPermisosN">
+                                    <div class="form-switch form-check" id="SwBorrarCategorias_AgregarPermisos">
                                         <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Borrar
-                                            comentarios</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwCrearCategorias_ActPermisos"
-                                        name="SwCrearCategorias_ActPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Crear, editar
-                                            categorías</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwBorrarCategorias_ActPermisos"
-                                        name="SwBorrarCategorias_ActPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Borrar
-                                            categorías</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
-                                    <div class="form-switch form-check" id="SwGestionarCupones_ActPermisos"
-                                        name="SwGestionarCupones_ActPermisosN">
-                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                                            id="flexSwitchCheckChecked" checked>
+                                            id="ver_cupon" name="ver_cupon" checked>
                                         <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
                                             cupones</label>
                                     </div>
                                 </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
+                                    <div class="form-switch form-check" id="SwGestionarCupones_AgregarPermisos">
+                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                            id="ver_permiso" name="ver_permiso" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
+                                            permisos</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <!-- Este div indica que usaremos un swtich que tiene 2 modos, true o false -->
+                                    <div class="form-switch form-check" id="SwGestionarCupones_AgregarPermisos">
+                                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                                            id="ver_usuario" name="ver_usuario" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Gestionar
+                                            empleados</label>
+                                    </div>
+                                </div>
                             </div>
-                            <br>
+                            <!-- Este botón servirá para enviar la información del formulario -->
+                            <div class="container text-center mb-3">
+                                <button type="submit" class="btn btn-orange-color text-light me-3">
+                                    Guardar</button>
+                            </div>
                         </div>
-                        <!-- Este botón servirá para enviar la información del formulario -->
-                        <div class="container text-center">
-                            <button type="button" class="btn btn-orange-color text-white" id="BtnAgregar_ActPermisos"
-                                name="BtnAgregar_ActPermisosN">Actualizar</button>
-                        </div>
-                        <br>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
-
+    <!-- Framework Bootstrap - JS -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Agregamos el framework de Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos el controlador general de la aplicacion-->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos el script del menu-->
     <script src="../../controllers/utils/admin.js"></script>
+    <!-- Script funcionamiento -->
+    <script type="text/javascript" src="../../controllers/admin/permisos.js"></script>
 </body>
 
 </html>
