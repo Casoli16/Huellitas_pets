@@ -39,10 +39,7 @@
             <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
-                    <form class="d-flex" role="search" id="search_categoria">
-                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            name="busquedaCategorias" id="busqueda_categorias" placeholder="Buscar...">
-                    </form>
+                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search" id="searchInput" name="search" placeholder="Buscar...">
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
@@ -65,94 +62,52 @@
             <div class="table-responsive">
                 <table class="table">
                     <thead>
+                        <tr>
+                            <td colspan="8" id="rowsFound" hidden></td>
+                        </tr>
                         <!-- Encabezados de la tabla -->
                         <tr class="table-warning">
                             <th scope="col">Imagen</th>
-                            <th scope="col">Categoría</th>
-                            <th scope="col">Descripción</th>
+                            <th scope="col">Nombre</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td class="align-middle"><img class="tamanio_imagen_tabla"
-                                    src="../../resources/img/png/alimentacion_categoria.png" alt=""></td>
-                            <td class="align-middle">Alimentación</td>
-                            <td class="align-middle">Lorem LoremLoremLoremLoremLoremLorem...</td>
-                            <td class="align-middle">
-                                <!-- Botones de acciones (eliminar, editar) -->
-                                <button type="button" class="btn btn-light"><img
-                                        src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#editarCateg"><img src="../../resources/img/svg/edit_icon.svg"
-                                        width="35px"></button>
-                            </td>
-                        </tr>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td class="align-middle"><img class="tamanio_imagen_tabla"
-                                    src="../../resources/img/png/entretenimiento_categorias.png" alt=""></td>
-                            <td class="align-middle">Entretenimiento</td>
-                            <td class="align-middle">Lorem LoremLoremLoremLoremLoremLorem...</td>
-                            <td class="align-middle">
-                                <!-- Botones de acciones (eliminar, editar) -->
-                                <button type="button" class="btn btn-light"><img
-                                        src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#editarCateg"><img src="../../resources/img/svg/edit_icon.svg"
-                                        width="35px"></button>
-                            </td>
-                        </tr>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td class="align-middle"><img class="tamanio_imagen_tabla"
-                                    src="../../resources/img/png/salud_cuidado_categorias.png" alt=""></td>
-                            <td class="align-middle">Salud y Cuidado</td>
-                            <td class="align-middle">Lorem LoremLoremLoremLoremLoremLorem...</td>
-                            <td class="align-middle">
-                                <!-- Botones de acciones (eliminar, editar) -->
-                                <button type="button" class="btn btn-light"><img
-                                        src="../../resources/img/svg/delete_icon.svg" width="35px"></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#editarCateg"><img src="../../resources/img/svg/edit_icon.svg"
-                                        width="35px"></button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
+                <div id="anyTable"></div>
             </div>
         </div>
 
         <!-- Modal para agregar categoría -->
-        <div class="modal fade" id="agCateg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center">
                             <!-- Título del modal -->
-                            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Agregar categoría</h1>
+                            <h1 class="modal-title fs-5 text-white fw-bold" id="modalTitle"></h1>
                         </div>
                         <!-- Botón para cerrar el modal -->
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <form action="" id="crear_categoria">
+                    <form action="" id="saveForm">
                         <div class="modal-body">
+                            <input type="hidden" id="idCategoria" name="idCategoria">
                             <!-- Sección para cargar imagen y agregar categoría -->
                             <div class="row">
                                 <div class="col-4">
                                     <div class="container d-flex align-items-center">
                                         <img src="../../resources/img/png/entretenimiento_categorias.png"
-                                            class="tamanio_imagen_agregar" alt="">
+                                            class="tamanio_imagen_agregar" id="imagen" alt="">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-4 d-flex align-items-center">
                                     <div>
                                         <!-- Botón para cargar imagen -->
-                                        <input type="file" class="form-control" id="upload" hidden>
+                                        <input type="file" class="form-control" id="imagenCategoria" name="imagenCategoria" hidden required>
                                         <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                        <label class="btn btn-red-color text-light btn-sm" for="upload">Cargar
+                                        <label class="btn btn-red-color text-light btn-sm" for="imagenCategoria">Cargar
                                             imagen</label>
                                     </div>
                                 </div>
@@ -161,84 +116,21 @@
                             <div class="row container d-flex align-items-center">
                                 <div class="mb-3">
                                     <!-- Nombre de la categoría -->
-                                    <label for="nombre_categoria" class="fs-8 fw-bold"> Nombre</label>
-                                    <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria"
+                                    <label for="nombreCategoria" class="fs-8 fw-bold"> Nombre</label>
+                                    <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria"
                                         aria-label="codigo">
                                     <br>
                                     <div class="mb-3">
                                         <!-- Descripción de la categoría -->
-                                        <label for="descripcion_categoria"
+                                        <label for="descripcionCategoria"
                                             class="form-label fw-bold">Descripción</label>
                                         <textarea class="form-control" name="descripcionCategoria"
-                                            id="descripcion_categoria" rows="3"></textarea>
+                                            id="descripcionCategoria" rows="3"></textarea>
                                     </div>
                                     <br>
                                     <div class="container text-center">
                                         <!-- Botón para agregar la categoría -->
-                                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Modal para editar categoría -->
-        <div class="modal fade" id="editarCateg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-                <div class="modal-content">
-                    <div class="modal-header bg-orange-color">
-                        <div class="container text-center">
-                            <!-- Título del modal -->
-                            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Editar categoría</h1>
-                        </div>
-                        <!-- Botón para cerrar el modal -->
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <form action="" id="crear_categoria">
-                        <div class="modal-body">
-                            <!-- Sección para cargar imagen y agregar categoría -->
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="container d-flex align-items-center">
-                                        <img src="../../resources/img/png/entretenimiento_categorias.png"
-                                            class="tamanio_imagen_agregar" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 d-flex align-items-center">
-                                    <div>
-                                        <!-- Botón para cargar imagen -->
-                                        <input type="file" class="form-control" id="upload" hidden>
-                                        <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                        <label class="btn btn-red-color text-light btn-sm" for="upload">Cargar
-                                            imagen</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row container d-flex align-items-center">
-                                <div class="mb-3">
-                                    <!-- Nombre de la categoría -->
-                                    <label for="nombre_categoria" class="fs-8 fw-bold"> Nombre</label>
-                                    <input type="text" class="form-control" id="nombre_categoria" name="nombreCategoria"
-                                        aria-label="codigo">
-                                    <br>
-                                    <div class="mb-3">
-                                        <!-- Descripción de la categoría -->
-                                        <label for="descripcion_categoria"
-                                            class="form-label fw-bold">Descripción</label>
-                                        <textarea class="form-control" name="descripcionCategoria"
-                                            id="descripcion_categoria" rows="3"></textarea>
-                                    </div>
-                                    <br>
-                                    <div class="container text-center">
-                                        <!-- Botón para agregar la categoría -->
-                                        <button type="button" class="btn btn-orange-color text-white"> Agregar</button>
+                                        <button type="button" id="modalButton" class="btn btn-orange-color text-white"></button>
                                     </div>
                                     <br>
                                 </div>
@@ -254,6 +146,9 @@
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Script personalizado -->
     <script src="../../controllers/utils/admin.js"></script>
+    <script type="text/javascript" src="../../controllers/admin/categorias.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" type="text/javascript" src="../../controllers/utils/components.js"></script>
 </body>
 
 </html>
