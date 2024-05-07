@@ -49,9 +49,9 @@
                     <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-                        data-bs-toggle="modal" data-bs-target="#agCateg" type="button">
+                        data-bs-toggle="modal" onclick="openCreate()" type="button">
                         <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="20px">
-                        Agregar categoría
+                        Agregar Marca
                     </button>
                 </div>
             </div>
@@ -68,7 +68,8 @@
                         <!-- Encabezados de la tabla -->
                         <tr class="table-warning">
                             <th scope="col">Imagen</th>
-                            <th scope="col">Nombre</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Descripción</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -130,7 +131,7 @@
                                     <br>
                                     <div class="container text-center">
                                         <!-- Botón para agregar la categoría -->
-                                        <button type="button" id="modalButton" class="btn btn-orange-color text-white"></button>
+                                        <button type="submit" id="modalButton" class="btn btn-orange-color text-white"></button>
                                     </div>
                                     <br>
                                 </div>

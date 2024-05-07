@@ -4,8 +4,9 @@
 require_once('../../helpers/database.php');
 
 // Declaración de atributos para el manejo de los datos
-class productosHandler{
-    protected $idProducto = null; 
+class productosHandler
+{
+    protected $idProducto = null;
     protected $nombreProducto = null;
     protected $descripcionProducto = null;
     protected $precioProducto = null;
@@ -17,8 +18,9 @@ class productosHandler{
     protected $idCategoria = null;
     protected $idMarca = null;
 
-//    Buscar un producto
-    public function searchRows(){
+    //    Buscar un producto
+    public function searchRows()
+    {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT nombre_producto, mascotas
                 FROM productos
@@ -28,7 +30,7 @@ class productosHandler{
         return Database::getRows($sql, $params);
     }
 
-// Selecciona los productos de perros
+    // Selecciona los productos de perros
     public function readEspecificProducts()
     {
         $sql = 'SELECT * FROM productosView WHERE mascotas = ?';
@@ -36,8 +38,9 @@ class productosHandler{
         return Database::getRows($sql, $params);
     }
 
-//    Crear producto
-    public function createRow(){
+    //    Crear producto
+    public function createRow()
+    {
         $sql = 'INSERT INTO productos (nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, existencia_producto, fecha_registro_producto, mascotas, id_categoria, id_marca) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array(
@@ -55,21 +58,24 @@ class productosHandler{
         return Database::executeRow($sql, $params);
     }
 
-//    Leer todos los productos
-    public function readAll(){
+    //    Leer todos los productos
+    public function readAll()
+    {
         $sql = 'SELECT * FROM productos ORDER BY fecha_registro_producto DESC';
         return Database::getRows($sql);
     }
 
-//    Leer un registro de un producto
-    public function readOne(){
+    //    Leer un registro de un producto
+    public function readOne()
+    {
         $sql = 'SELECT * FROM productos WHERE id_producto = ?';
         $params = array($this->idProducto);
         return Database::getRows($sql, $params);
     }
 
-//    Actualizar un producto
-    public function updateRow(){
+    //    Actualizar un producto
+    public function updateRow()
+    {
         $sql = 'UPDATE productos
                 SET nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, imagen_producto = ?,
                 estado_producto = ?, existencia_producto = ?, fecha_registro_producto = ?, mascotas = ?, id_categoria = ?, id_marca = ?
@@ -90,12 +96,12 @@ class productosHandler{
         return Database::executeRow($sql, $params);
     }
 
-//    Eliminar producto
-    public function deleteRow(){
+    //    Eliminar producto
+    public function deleteRow()
+    {
         $sql = 'DELETE FROM productos WHERE id_producto = ?';
         $params = array($this->idProducto);
         return Database::executeRow($sql, $params);
     }
+
 }
-
-

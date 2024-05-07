@@ -92,32 +92,35 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 const openCreate = () => {
     ID_CATEGORIA.value = '';
     SAVE_MODAL.show()
-    MODAL_TITLE.textContent = 'Crear administrador';
+    MODAL_TITLE.textContent = 'Crear Marca';
     MODAL_BUTTON.textContent = ' Agregar '
     IMAGEN.src = '../../resources/img/png/rectangulo.png'
     SAVE_FORM.reset();
-    NOMBRE_MARCA.disabled = false;
+    NOMBRE_CATEGORIA.disabled = false;
+    DESCRIPCION_CATEGORIA.disabled = false;
 }
 
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idMarca', id);
+    FORM.append('idCategoria', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(CATEGORIA_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar administrador';
+        MODAL_TITLE.textContent = 'Actualizar categoria';
         MODAL_BUTTON.textContent = 'Actualizar '
         // Se prepara el formulario.
         SAVE_FORM.reset();
-        NOMBRE_MARCA.disabled = false;
+        NOMBRE_CATEGORIA.disabled = false;
+        DESCRIPCION_CATEGORIA.disabled = false;
         // Se inicializan los campos con los datos.
         const [ROW] = DATA.dataset;
         ID_CATEGORIA.value = ROW.id_categoria;
-        NOMBRE_MARCA.value = ROW.nombre_marca;
+        NOMBRE_CATEGORIA.value = ROW.nombre_categoria;
+        DESCRIPCION_CATEGORIA.value = ROW.descripcion_categoria;
         //Cargamos la imagen del registro seleccionado
         //IMAGEN.src = SERVER_URL + 'images/marcas/' + ROW.imagen_marca; 
 
@@ -128,12 +131,12 @@ const openUpdate = async (id) => {
 
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar el administrador de forma permanente?');
+    const RESPONSE = await confirmAction('¿Desea eliminar la categoria de forma permanente?');
     // Se verifica la respuesta del mensaje.
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('idMarca', id);
+        FORM.append('idCategoria', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(CATEGORIA_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -158,7 +161,7 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `       
                     <tr>
-                        <td><img src="${SERVER_URL}images/categorias/${row.imagen_marca}" height="70px" width="80px"></td>
+                        <td><img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" height="70px" width="80px"></td>
                         <td>${row.nombre_categoria}</td>
                         <td>${row.descripcion_categoria}</td>  
                         <td class="align-middle">

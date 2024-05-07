@@ -204,4 +204,3 @@ FROM
     INNER JOIN categorias c ON c.id_categoria = p.id_categoria;
 
 SELECT * FROM productosView WHERE mascotas = 'perro';
-
