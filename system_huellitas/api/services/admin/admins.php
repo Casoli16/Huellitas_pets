@@ -192,8 +192,8 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Administrador registrado exitosamente';
                     // Se asigna el estado del archivo después de insertar.
                     $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN);
+                    
                     $permisos->setNombrePermiso('Administrador por defecto');
-
                     $permisos->setVerUsuario(1);
                     $permisos->setVerCliente(1);
                     $permisos->setVerMarca(1);
