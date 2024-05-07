@@ -34,7 +34,7 @@ class CategoriasData extends CategoriasHandler{
         }
     }
 
-    public function setDescripcioCategoria($value, $min = 2, $max = 250)
+    public function setDescripcionCategoria($value, $min = 2, $max = 250)
     {
         if (Validator::validateLength($value, $min, $max)) {
             $this->descripcionCategoria = $value;
