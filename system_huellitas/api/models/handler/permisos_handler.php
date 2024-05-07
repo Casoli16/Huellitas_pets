@@ -20,6 +20,7 @@ class permisos_handler
     protected $ver_producto = null;
     protected $ver_categoria = null;
     protected $ver_cupon = null;
+    protected $ver_permiso = null;
 
 
 
@@ -42,7 +43,7 @@ class permisos_handler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO permisos (nombre_permiso, ver_usuario, ver_cliente, ver_marca, ver_pedido, ver_comentario, ver_producto, ver_categoria, ver_cupon) VALUES (?,?,?,?,?,?,?,?,?);';
+        $sql = 'INSERT INTO permisos (nombre_permiso, ver_usuario, ver_cliente, ver_marca, ver_pedido, ver_comentario, ver_producto, ver_categoria, ver_cupon, ver_permiso) VALUES (?,?,?,?,?,?,?,?,?);';
         $params = array(
             $this->nombre_permiso,
             $this->ver_usuario,
@@ -52,7 +53,8 @@ class permisos_handler
             $this->ver_comentario,
             $this->ver_producto,
             $this->ver_categoria,
-            $this->ver_cupon
+            $this->ver_cupon,
+            $this->ver_permiso
         );
         return Database::executeRow($sql, $params);
     }
@@ -78,7 +80,8 @@ class permisos_handler
                     ver_comentario = ?,
                     ver_producto = ?,
                     ver_categoria = ?,
-                    ver_cupon = ?
+                    ver_cupon = ?,
+                    ver_permiso = ?
                 WHERE id_permiso = ?';
 
         // Se crea el arreglo con los parámetros para la consulta
@@ -92,6 +95,7 @@ class permisos_handler
             $this->ver_producto,
             $this->ver_categoria,
             $this->ver_cupon,
+            $this->ver_permiso,
             $this->id_permiso
         );
 
