@@ -66,15 +66,15 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 
     console.log(FORM);
 
-    const swver_cliente = VER_CLIENTE.checked ? '1' : '0';
-    const swver_marca = VER_MARCA.checked ? '1' : '0';
-    const swver_pedido = VER_PEDIDO.checked ? '1' : '0';
-    const swver_comentario = VER_COMENTARIO.checked ? '1' : '0';
-    const swver_producto = VER_PRODUCTO.checked ? '1' : '0';
-    const swver_categoria = VER_CATEGORIA.checked ? '1' : '0';
-    const swver_cupon = VER_CUPON.checked ? '1' : '0';
-    const swver_permiso = VER_PERMISO.checked ? '1' : '0';
-    const swver_usuario = VER_USUARIO.checked ? '1' : '0';
+    const swver_cliente = VER_CLIENTE.checked ? 1 : 0;
+    const swver_marca = VER_MARCA.checked ? 1 : 0;
+    const swver_pedido = VER_PEDIDO.checked ? 1 : 0;
+    const swver_comentario = VER_COMENTARIO.checked ? 1 : 0;
+    const swver_producto = VER_PRODUCTO.checked ? 1 : 0;
+    const swver_categoria = VER_CATEGORIA.checked ? 1 : 0;
+    const swver_cupon = VER_CUPON.checked ? 1 : 0;
+    const swver_permiso = VER_PERMISO.checked ? 1 : 0;
+    const swver_usuario = VER_USUARIO.checked ? 1 : 0;
 
     FORM.set('ver_cliente', swver_cliente);
     FORM.set('ver_marca', swver_marca);
