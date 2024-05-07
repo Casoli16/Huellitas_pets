@@ -69,11 +69,7 @@ if(isset($_SESSION['idAdministrador']) or true){
             } elseif ($result['dataset'] = $categorias->readOne()) {
                 $result['status'] = 1;
             } else {
-<<<<<<< HEAD
                 $result['error'] = 'Categoría inexistente';
-=======
-                $result['error'] = 'Categoria inexistente';
->>>>>>> 8178d386f2ad8c00e20889d9b1e35cf33d66a7e8
             }
             break;
         case 'deleteRow':
