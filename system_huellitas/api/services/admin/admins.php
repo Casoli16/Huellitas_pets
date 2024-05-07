@@ -1,12 +1,16 @@
 <?php
 // Se incluye la clase del modelo.
 require_once ('../../models/data/admin_data.php');
+require_once ('../../models/data/permisos_data.php');
+require_once ('../../models/data/asignacionPermisos_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     session_start();
-// Se instancia la clase correspondiente.
+    // Se instancia la clase correspondiente.
     $administradores = new AdminData();
+    $permisos = new permisos_data;
+    $asignacionPermisos = new AsignacionPermisosData;
 
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
@@ -158,8 +162,8 @@ if (isset($_GET['action'])) {
                 break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
-}
-    } else{
+        }
+    } else {
         switch ($_GET['action']) {
             case 'readUsers':
                 if ($administradores->readAll()) {
@@ -184,6 +188,22 @@ if (isset($_GET['action'])) {
                 } elseif ($_POST['claveAdmin'] != $_POST['confirmarClave']) {
                     $result['error'] = 'Contraseñas diferentes';
                 } elseif ($administradores->createRow()) {
+                    $permisos->setNombrePermiso('Administrador por defecto');
+                    $permisos->setVerUsuario(1);
+                    $permisos->setVerCliente(1);
+                    $permisos->setVerMarca(1);
+                    $permisos->setVerPedido(1);
+                    $permisos->setVerComentario(1);
+                    $permisos->setVerProducto(1);
+                    $permisos->setVerCategoria(1);
+                    $permisos->setVerCupon(1);
+                    $permisos->setVerPermiso(1);
+                    $permisos->createRow();
+
+                    $asignacionPermisos->setIdAdmin(1);
+                    $asignacionPermisos->setIdPermiso(1);
+                    $asignacionPermisos->createRow();
+
                     $result['status'] = 1;
                     $result['message'] = 'Administrador registrado exitosamente';
                     // Se asigna el estado del archivo después de insertar.
@@ -211,7 +231,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
-}else {
-        print(json_encode('Recurso no disponible'));
-    }
+    print (json_encode($result));
+} else {
+    print (json_encode('Recurso no disponible'));
+}
