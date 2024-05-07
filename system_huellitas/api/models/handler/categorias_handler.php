@@ -56,7 +56,7 @@ class CategoriasHandler
 
     //    Leer un registro de un producto
     public function readOne(){
-        $sql = 'SELECT * FROM marcas WHERE id_marca = ?';
+        $sql = 'SELECT * FROM categorias WHERE id_categoria = ?';
         $params = array($this->idCategoria);
         return Database::getRows($sql, $params);
     }

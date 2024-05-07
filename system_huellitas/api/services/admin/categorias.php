@@ -26,7 +26,7 @@ if(isset($_SESSION['idAdministrador']) or true){
             $_POST = Validator::validateForm($_POST);
             if(
                 !$categorias->setNombreCategoria($_POST['nombreCategoria']) or
-                !$categorias->setDescripcioCategoria($_POST['descripcionCategoria']) or
+                !$categorias->setDescripcionCategoria($_POST['descripcionCategoria']) or
                 !$categorias->setImagenCategoria($_FILES['imagenCategoria'])
             ) {
                 $result['error'] = $categorias->getDataError();
@@ -43,7 +43,7 @@ if(isset($_SESSION['idAdministrador']) or true){
             if (
                 !$categorias->setIdCategoria($_POST['idCategoria']) or
                 !$categorias->setNombreCategoria($_POST['nombreCategoria']) or
-                !$categorias->setDescripcioCategoria($_POST['descripcionCategoria']) or
+                !$categorias->setDescripcionCategoria($_POST['descripcionCategoria']) or
                 !$categorias->setImagenCategoria($_FILES['imagenCategoria'])
             ){
                 $result['error'] = $categorias->getDataError();
@@ -69,7 +69,11 @@ if(isset($_SESSION['idAdministrador']) or true){
             } elseif ($result['dataset'] = $categorias->readOne()) {
                 $result['status'] = 1;
             } else {
+<<<<<<< HEAD
                 $result['error'] = 'Categoría inexistente';
+=======
+                $result['error'] = 'Categoria inexistente';
+>>>>>>> 8178d386f2ad8c00e20889d9b1e35cf33d66a7e8
             }
             break;
         case 'deleteRow':
