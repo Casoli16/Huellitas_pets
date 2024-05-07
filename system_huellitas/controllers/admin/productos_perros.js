@@ -1,5 +1,6 @@
 // API'S UTILIZADAS EN LA PANTALLA
 const PRODUCTOS_API = 'services/admin/productos.php';
+const CATEGORIAS_API = 'services/admin/categoria.php';
 
 const TABLE_BODY = document.getElementById('tableBody');
     ROWS_FOUND = document.getElementById('rowsFound');
@@ -26,7 +27,6 @@ document.addEventListener('DOMContentLoaded', async  => {
 
 const openCreate = async () => {
     ID_PRODUCTO = '';
-    await fillSelect(PRODUCTOS_API, 'readPets', 'mascotaSelect')
     SAVE_MODAL.show();
     MODAL_TITLE.textContent = 'Crear producto';
 }

@@ -104,10 +104,4 @@ class productosHandler
         return Database::executeRow($sql, $params);
     }
 
-    // Leer el enum del campo mascotas
-    public function readPets()
-    {
-        $sql = 'SELECT DISTINCT mascotas FROM productos;';
-        return Database::getRows($sql);
-    }
 }

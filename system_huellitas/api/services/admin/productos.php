@@ -73,15 +73,7 @@ if(isset($_SESSION['idAdministrador']) or true){
             } else{
                 $result['error'] = 'No existen productos registrados';
             }
-            break;
-        case 'readPets':
-            if($result['dataset'] = $productos->readPets()){
-               $result['status'] = 1;
-               $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
-            } else{
-                $result['error'] = 'No existen productos registrados';
-            }
-            break;    
+            break; 
         case 'readOne':
             if (!$productos->setIdProducto($_POST['idProducto'])) {
                 $result['error'] = $productos->getDataError();
@@ -97,7 +89,7 @@ if(isset($_SESSION['idAdministrador']) or true){
             } elseif ($result['dataset'] = $productos->readEspecificProducts()) {
                 $result['status'] = 1;
             } else {
-                $result['error'] = 'Producto inexistente';
+                $result['error'] = 'Aún no hay productos registrados';
             }
             break;
         case 'deleteRow':
