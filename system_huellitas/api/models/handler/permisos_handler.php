@@ -43,7 +43,7 @@ class permisos_handler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO permisos (nombre_permiso, ver_usuario, ver_cliente, ver_marca, ver_pedido, ver_comentario, ver_producto, ver_categoria, ver_cupon, ver_permiso) VALUES (?,?,?,?,?,?,?,?,?);';
+        $sql = 'INSERT INTO permisos (nombre_permiso, ver_usuario, ver_cliente, ver_marca, ver_pedido, ver_comentario, ver_producto, ver_categoria, ver_cupon, ver_permiso) VALUES (?,?,?,?,?,?,?,?,?,?);';
         $params = array(
             $this->nombre_permiso,
             $this->ver_usuario,
