@@ -192,7 +192,7 @@ CREATE VIEW  productosView AS
         p.estado_producto,
         p.existencia_producto,
         p.fecha_registro_producto,
-        p.mascotas,
+        p.mascotas,	
         p.id_categoria,
         m.nombre_marca,
         p.id_marca,

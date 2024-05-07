@@ -88,7 +88,7 @@ VALUES
   (22, 22),
   (23, 23),
   (24, 24),
-  (25, 25);
+  (25, 25);  
 
 SELECT * FROM asignacion_permisos;
 
@@ -367,3 +367,4 @@ VALUES
 SELECT * FROM cupones_utilizados;
 
 
+SELECT * FROM permisos WHERE id_permiso = 4;

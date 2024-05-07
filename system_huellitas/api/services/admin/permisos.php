@@ -11,6 +11,7 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador'])) {
+        $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRows':
@@ -27,15 +28,15 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$permisos->setNombrePermiso($_POST['NombrePermiso']) or
-                    !$permisos->setVerUsuario($_POST['verUsuario']) or
-                    !$permisos->setVerCliente($_POST['verCliente']) or
-                    !$permisos->setVerMarca($_POST['verMarca']) or
-                    !$permisos->setVerPedido($_POST['verPedido']) or
-                    !$permisos->setVerComentario($_POST['verComentario']) or
-                    !$permisos->setVerProducto($_POST['verProducto']) or
-                    !$permisos->setVerCategoria($_POST['verCategoria']) or
-                    !$permisos->setVerCupon($_POST['verCupon']) or
-                    !$permisos->setVerPermiso($_POST['verPermiso'])
+                    !$permisos->setVerUsuario($_POST['ver_Usuario']) or
+                    !$permisos->setVerCliente($_POST['ver_Cliente']) or
+                    !$permisos->setVerMarca($_POST['ver_Marca']) or
+                    !$permisos->setVerPedido($_POST['ver_Pedido']) or
+                    !$permisos->setVerComentario($_POST['ver_Comentario']) or
+                    !$permisos->setVerProducto($_POST['ver_Producto']) or
+                    !$permisos->setVerCategoria($_POST['ver_Categoria']) or
+                    !$permisos->setVerCupon($_POST['ver_Cupon']) or
+                    !$permisos->setVerPermiso($_POST['ver_Permiso'])
                 ) {
                     $result['error'] = $permisos->getDataError();
                 } elseif ($permisos->createRow()) {
@@ -76,15 +77,15 @@ if (isset($_GET['action'])) {
                 if (
                     !$permisos->setIdPermiso($_POST['idPermiso']) or
                     !$permisos->setNombrePermiso($_POST['NombrePermiso']) or
-                    !$permisos->setVerUsuario($_POST['verUsuario']) or
-                    !$permisos->setVerCliente($_POST['verCliente']) or
-                    !$permisos->setVerMarca($_POST['verMarca']) or
-                    !$permisos->setVerPedido($_POST['verPedido']) or
-                    !$permisos->setVerComentario($_POST['verComentario']) or
-                    !$permisos->setVerProducto($_POST['verProducto']) or
-                    !$permisos->setVerCategoria($_POST['verCategoria']) or
-                    !$permisos->setVerCupon($_POST['verCupon']) or
-                    !$permisos->setVerPermiso($_POST['verPermiso'])
+                    !$permisos->setVerUsuario($_POST['ver_Usuario']) or
+                    !$permisos->setVerCliente($_POST['ver_Cliente']) or
+                    !$permisos->setVerMarca($_POST['ver_Marca']) or
+                    !$permisos->setVerPedido($_POST['ver_Pedido']) or
+                    !$permisos->setVerComentario($_POST['ver_Comentario']) or
+                    !$permisos->setVerProducto($_POST['ver_Producto']) or
+                    !$permisos->setVerCategoria($_POST['ver_Categoria']) or
+                    !$permisos->setVerCupon($_POST['ver_Cupon']) or
+                    !$permisos->setVerPermiso($_POST['ver_Permiso'])
                 ) {
                     $result['error'] = $permisos->getDataError();
                 } elseif ($permisos->updateRow()) {

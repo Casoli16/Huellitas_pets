@@ -14,6 +14,7 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
 
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
+    NOMBRE_PERMISO = document.getElementById('NombrePermiso'),
     ID_PERMISO = document.getElementById('idPermiso'),
     VER_CLIENTE = document.getElementById('ver_cliente'),
     VER_MARCA = document.getElementById('ver_marca'),
@@ -58,43 +59,47 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     // Determinar la acción a realizar (actualización o creación de un cupón)
-    (ID_CUPON.value) ? action = 'updateRow' : action = 'createRow';
+    (ID_PERMISO.value) ? action = 'updateRow' : action = 'createRow';
 
     // Obtener los datos del formulario
     const FORM = new FormData(SAVE_FORM);
 
-    // Modificar el valor de los checkboxs antes de enviarlo
-    const checkIds = [
-        'ver_cliente',
-        'ver_marca',
-        'ver_pedido',
-        'ver_comentario',
-        'ver_producto',
-        'ver_categoria',
-        'ver_cupon',
-        'ver_permiso',
-        'ver_usuario'
-    ];
+    console.log(FORM);
 
-    // Modificar los valores de 'estado' para cada check usando un ciclo for
-    for (const checkId of checkIds) {
-        const estado = document.getElementById(checkId).checked ? '1' : '0';
-        FORM.set(checkId, estado);
-    }
+    const swver_cliente = VER_CLIENTE.checked ? '1' : '0';
+    const swver_marca = VER_MARCA.checked ? '1' : '0';
+    const swver_pedido = VER_PEDIDO.checked ? '1' : '0';
+    const swver_comentario = VER_COMENTARIO.checked ? '1' : '0';
+    const swver_producto = VER_PRODUCTO.checked ? '1' : '0';
+    const swver_categoria = VER_CATEGORIA.checked ? '1' : '0';
+    const swver_cupon = VER_CUPON.checked ? '1' : '0';
+    const swver_permiso = VER_PERMISO.checked ? '1' : '0';
+    const swver_usuario = VER_USUARIO.checked ? '1' : '0';
+
+    FORM.set('ver_cliente', swver_cliente);
+    FORM.set('ver_marca', swver_marca);
+    FORM.set('ver_pedido', swver_pedido);
+    FORM.set('ver_comentario', swver_comentario);
+    FORM.set('ver_producto', swver_producto);
+    FORM.set('ver_categoria', swver_categoria);
+    FORM.set('ver_cupon', swver_cupon);
+    FORM.set('ver_permiso', swver_permiso);
+    FORM.set('ver_usuario', swver_usuario);
+
+    console.log(FORM);
     // Enviar los datos del formulario al servidor y manejar la respuesta
     const DATA = await fetchData(PERMISOS_API, action, FORM);
 
     console.log(DATA);
     // Verificar si la respuesta del servidor fue satisfactoria
     if (DATA.status) {
+        console.log('Si pase');
         // Ocultar el modal
         SAVE_MODAL.hide();
         // Mostrar mensaje de éxito
         sweetAlert(1, DATA.message, true);
         // Volver a llenar la tabla para mostrar los cambios
         fillTable();
-        //Cargamos la imagen por defecto
-        IMAGEN.src = '../../resources/img/png/rectangulo.png'
     } else {
         // Mostrar mensaje de error
         console.log(DATA.error);
@@ -105,12 +110,10 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 
 
 const openCreate = () => {
-    ID_CUPON.value = '';
+    ID_PERMISO.value = '';
     SAVE_MODAL.show()
     MODAL_TITLE.textContent = 'Crear permsio';
     SAVE_FORM.reset();
-    //Cargamos la imagen por defecto
-    IMAGEN.src = '../../resources/img/png/rectangulo.png'
 }
 
 const openUpdate = async (id) => {
@@ -128,25 +131,27 @@ const openUpdate = async (id) => {
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
         const [ROW] = DATA.dataset;
+        NOMBRE_PERMISO.value = ROW.nombre_permiso;
+        ID_PERMISO.value = ROW.id_permiso;
+        const sch_ver_cliente = (ROW.ver_cliente === 1) ? 'checked' : '';
+        const sch_ver_marca = (ROW.ver_marca === 1) ? 'checked' : '';
+        const sch_ver_pedido = (ROW.ver_pedido === 1) ? 'checked' : '';
+        const sch_ver_comentario = (ROW.ver_comentario === 1) ? 'checked' : '';
+        const sch_ver_producto = (ROW.ver_producto === 1) ? 'checked' : '';
+        const sch_ver_categoria = (ROW.ver_categoria === 1) ? 'checked' : '';
+        const sch_ver_cupon = (ROW.ver_cupon === 1) ? 'checked' : '';
+        const sch_ver_permiso = (ROW.ver_permiso === 1) ? 'checked' : '';
+        const sch_ver_usuario = (ROW.ver_usuario === 1) ? 'checked' : '';
 
-        const checkIds = [
-            'ver_cliente',
-            'ver_marca',
-            'ver_pedido',
-            'ver_comentario',
-            'ver_producto',
-            'ver_categoria',
-            'ver_cupon',
-            'ver_permiso',
-            'ver_usuario'
-        ];
-
-        for (const checkId of checkIds) {
-            const checkElement = document.getElementById(checkId);
-            const checkValue = (ROW[checkId] === 1) ? 'checked' : '';
-            checkElement.checked = checkValue;
-        }
-
+        VER_CLIENTE.checked = sch_ver_cliente;
+        VER_MARCA.checked = sch_ver_marca;
+        VER_PEDIDO.checked = sch_ver_pedido;
+        VER_COMENTARIO.checked = sch_ver_comentario;
+        VER_PRODUCTO.checked = sch_ver_producto;
+        VER_CATEGORIA.checked = sch_ver_categoria;
+        VER_CUPON.checked = sch_ver_cupon;
+        VER_PERMISO.checked = sch_ver_permiso;
+        VER_USUARIO.checked = sch_ver_usuario;
     } else {
         sweetAlert(2, DATA.error, false);
     }
