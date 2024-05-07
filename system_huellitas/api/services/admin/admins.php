@@ -188,7 +188,12 @@ if (isset($_GET['action'])) {
                 } elseif ($_POST['claveAdmin'] != $_POST['confirmarClave']) {
                     $result['error'] = 'Contraseñas diferentes';
                 } elseif ($administradores->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Administrador registrado exitosamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN);
                     $permisos->setNombrePermiso('Administrador por defecto');
+
                     $permisos->setVerUsuario(1);
                     $permisos->setVerCliente(1);
                     $permisos->setVerMarca(1);
@@ -203,11 +208,6 @@ if (isset($_GET['action'])) {
                     $asignacionPermisos->setIdAdmin(1);
                     $asignacionPermisos->setIdPermiso(1);
                     $asignacionPermisos->createRow();
-
-                    $result['status'] = 1;
-                    $result['message'] = 'Administrador registrado exitosamente';
-                    // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN);
                 } else {
                     $result['error'] = 'Ocurrió un problema al registrar el administrador';
                 }
