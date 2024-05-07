@@ -53,7 +53,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
-                        data-bs-toggle="modal" data-bs-target="#agregar_producto" onclick="openCreate()" type="button">
+                        data-bs-toggle="modal" onclick="openCreate()" type="button">
                         <img class="me-2" src="../../resources/img/png/boton_agregar.png" width="25px">
                         Agregar producto
                     </button>
@@ -76,45 +76,46 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <div id="anyTable"></div>
-                </tbody>
+                <tbody id="tableBody"></tbody>
             </table>
+            <div id="anyTable"></div>
         </div>
 
         <!-- Modals -->
         <!-- Agregar producto -->
-        <div class="modal fade" id="agregar_producto" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center text-light">
-                            <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Agregar producto
+                            <h1 class="modal-title fs-5 text-center fw-bold" id="modalTitle">Agregar producto
                             </h1>
                         </div>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form action="" id="crear_producto">
+                        <form action="" id="saveForm">
+                            <div class="modal-body">
                             <!-- Fila 1 -->
-                            <div class="container text-center text-md-start text-lg-start">
+                                <input type="hidden" id="idProducto" name="idProducto">
+                                <input type="hidden" id="fechaRegistroProducto" name="fechaRegistroProducto">
+                                <div class="container text-center text-md-start text-lg-start">
                                 <div class="row align-items-center gy-3">
                                     <div class="col-sm-12 col-md-auto">
-                                        <img class="rounded-1" src="../../resources/img/png/rectangulo.png"
+                                        <img class="rounded-1" id="imagen" src="../../resources/img/png/rectangulo.png"
                                             width="120px">
                                     </div>
                                     <div class="col">
                                         <!-- Botón para cargar imagen -->
-                                        <input type="file" class="form-control" id="upload" hidden>
+                                        <input type="file" class="form-control" id="imgProduct" name="imagenProducto" hidden required>
                                         <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                        <label class="btn btn-red-color text-light" for="upload">Cargar imagen</label>
+                                        <label class="btn btn-red-color text-light" for="imgProduct">Cargar imagen</label>
                                     </div>
                                     <div class="col-sm-12 col-md-auto">
                                         <div class="form-check form-switch float-end mb-md-5">
                                             <input class="form-check-input bg-orange-color" type="checkbox"
-                                                role="switch" id="switchPerros" name="switchPerros" checked>
+                                                role="switch" id="switchPerros" name="switchPerros" checked >
                                         </div>
                                     </div>
                                 </div>
@@ -125,13 +126,13 @@
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
                                             <label for="nombre_producto" class="form-label fw-semibold">Nombre</label>
-                                            <input type="text" class="form-control" id="nombre_producto"
-                                                name="nombre_producto">
+                                            <input type="text" class="form-control" id="nombreProducto"
+                                                name="nombreProducto">
                                         </div>
                                         <div class="mb-3">
                                             <label for="descripcion_producto"
                                                 class="form-label fw-semibold">Descripción</label>
-                                            <textarea class="form-control" id="descripcion_producto"
+                                            <textarea class="form-control" id="descripcionProducto"
                                                 name="descripcionProducto" rows="3"></textarea>
                                         </div>
                                         <div class="row">
@@ -140,15 +141,15 @@
                                                     <label for="precio_producto"
                                                         class="form-label fw-semibold">Precio</label>
                                                     <input type="number" min="0" step="any" class="form-control"
-                                                        id="precio_producto" name="precioProducto">
+                                                        id="precioProducto" name="precioProducto">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3">
                                                     <label for="cantidad_producto"
                                                         class="form-label fw-semibold">Cantidad</label>
-                                                    <input type="number" class="form-control" id="cantidad_producto"
-                                                        name="cantidadProducto">
+                                                    <input type="number" class="form-control" id="cantidadProducto"
+                                                        name="existenciaProducto">
                                                 </div>
                                             </div>
                                         </div>
@@ -156,27 +157,17 @@
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
                                             <label for="tipo_mascota" class="form-label fw-semibold">Mascota</label>
-                                            <select class="form-select" id="tipo_mascota" name="tipoMascota" required>
-                                                <option selected disabled value="">Selecciona el tipo de mascota
-                                                </option>
-                                                <option>Perro</option>
-                                                <option>Gato</option>
-                                            </select>
+                                            <select class="form-select" id="mascotaSelect" name="mascotas" required></select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="tipo_categoria" class="form-label fw-semibold">Categoría</label>
-                                            <select class="form-select" id="tipo_categoria" name="tipoCategoria"
+                                            <select class="form-select" id="categoriaSelect" name="idCategoria"
                                                 required>
-                                                <option selected disabled value="">Selecciona la Categoría</option>
-                                                <option></option>
-                                                <option></option>
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="tipo_marca" class="form-label fw-semibold">Marca</label>
-                                            <select class="form-select" id="tipo_marca" name="tipoMarca" required>
-                                                <option selected disabled value="">Selecciona la marca</option>
-                                                <option></option>
+                                            <select class="form-select" id="marcaSelect" name="idMarca" required>
                                             </select>
                                             <div class="text-end mt-2">¿No existe la marca que buscas?</div>
                                             <a class="btn btn-red-color btn-sm text-light rounded-3 p-1 float-end mt-1 "
@@ -192,13 +183,13 @@
                             </div>
                     </div>
                     <div class="container text-center mb-4 mt-4">
-                        <button type="button" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
+                        <button type="submit" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
                             id="btnGuardar" name="btnGuardar">Guardar</button>
-                        <button type="button" class="btn btn-red-color text-light" id="btnCancelar"
+                        <button type="reset" class="btn btn-red-color text-light" id="btnCancelar"
                             name="btnCancelar">Cancelar</button>
                     </div>
-                    </form>
                 </div>
+                    </form>
             </div>
         </div>
 
