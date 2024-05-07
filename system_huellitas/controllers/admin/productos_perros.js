@@ -1,35 +1,84 @@
 // API'S UTILIZADAS EN LA PANTALLA
 const PRODUCTOS_API = 'services/admin/productos.php';
-const CATEGORIAS_API = 'services/admin/categoria.php';
+const CATEGORIAS_API = 'services/admin/categorias.php';
+const MARCAS_API = 'services/admin/marcas.php';
 
-const TABLE_BODY = document.getElementById('tableBody');
+const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 
-const SAVE_MODAL = new bootstrap.Modal('#saveModal');
-    MODAL_TITLE = document.getElementById('modalTitle')
+const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+    MODAL_TITLE = document.getElementById('modalTitle');
 
-const SAVE_FORM = document.getElementById('saveForm');
-    ID_PRODUCTO = document.getElementById('idProducto');
-    NOMBRE_PRODUCTO = document.getElementById('nombreProducto');
-    DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto');
-    PRECIO_PRODUCTO = document.getElementById('precioProducto');
-    FECHA_REGISTRO = document.getElementById('fechaRegistro');
-    CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto');
-    MASCOTA = document.getElementById('mascotaSelect');
-    CATEGORIA = document.getElementById('categoriaSelect');
-    MARCA = document.getElementById('marcaSelect');
+const SAVE_FORM = document.getElementById('saveForm'),
+    ID_PRODUCTO = document.getElementById('idProducto'),
+    NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
+    DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
+    PRECIO_PRODUCTO = document.getElementById('precioProducto'),
+    FECHA_REGISTRO = document.getElementById('fechaRegistro'),
+    CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
+    MASCOTA = document.getElementById('mascotaSelect'),
+    CATEGORIA = document.getElementById('categoriaSelect'),
+    MARCA = document.getElementById('marcaSelect'),
+    ESTADO_PRODUCTO = document.getElementById('switchPerros'),
+    IMAGEN_PRODUCTO = document.getElementById('imgProduct');
 
-    // CUANDO SE CARGUE EL DOCUMENTO
-document.addEventListener('DOMContentLoaded', async  => {
+// Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
+const IMAGEN = document.getElementById('imagen');
+
+// Agregamos el evento change al input de tipo file que selecciona la imagen
+IMAGEN_PRODUCTO.addEventListener('change', function (event) {
+    // Verifica si hay una imagen seleccionada
+    if (event.target.files && event.target.files[0]) {
+        // con el objeto FileReader lee de forma asincrona el archivo seleccionado
+        const reader = new FileReader();
+        // Luego de haber leido la imagen seleccionada se nos devuele un objeto de tipo blob
+        // Con el metodo createObjectUrl de fileReader crea una url temporal para la imagen  
+        reader.onload = function (event) {
+            // finalmente la url creada se le asigna al atributo src de la etiqueta img
+            IMAGEN.src = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+});
+
+// CUANDO SE CARGUE EL DOCUMENTO
+document.addEventListener('DOMContentLoaded', ()  => {
     loadTemplate();
     fillTable();
 })
 
+SAVE_FORM.addEventListener('submit', async (event) => {
+     // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
+     // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(SAVE_FORM);
+    const estadoProducto = ESTADO_PRODUCTO.checked ? 1 : 0;
+
+    FORM.set('estadoProducto', estadoProducto);
+
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(PRODUCTOS_API, action, FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se cierra la caja de diálogo.
+        SAVE_FORM.hide();
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message, true);
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+
+});
+
 const openCreate = async () => {
-    ID_PRODUCTO = '';
+    await fillSelect(MARCAS_API, 'readAll', 'marcaSelect');
+    await fillSelect(CATEGORIAS_API, 'readAll', 'categoriaSelect');
     SAVE_MODAL.show();
     MODAL_TITLE.textContent = 'Crear producto';
 }
+
+
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar el producto de forma permanente?');
@@ -60,6 +109,7 @@ const fillTable =  async () => {
     const DATA = await  fetchData(PRODUCTOS_API, 'readSpecificProduct', FORM);
     if(DATA.status){
         DATA.dataset.forEach(row => {
+            const stwitchChecked = (row.estado_producto === 1) ? 'checked' : '';
             TABLE_BODY.innerHTML += `
             <tr>
                 <td>
@@ -71,7 +121,7 @@ const fillTable =  async () => {
                 <td>
                    <div class="form-check form-switch">
                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
-                              id="switch1" name="switch1" checked disabled>
+                              id="switch1" name="switch1" ${stwitchChecked} disabled>
                    </div>
                 </td>
                 <td>

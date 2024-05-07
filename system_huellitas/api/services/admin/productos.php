@@ -27,7 +27,7 @@ if(isset($_SESSION['idAdministrador']) or true){
                 !$productos->setNombreProducto($_POST['nombreProducto']) or
                 !$productos->setDescripcionProducto($_POST['descripcionProducto']) or
                 !$productos->setPrecioProducto($_POST['precioProducto']) or
-                !$productos->setImagenProducto($_POST['imagenProducto'])or
+                !$productos->setImagenProducto($_FILES['imagenProducto'])or
                 !$productos->setEstadoProducto($_POST['estadoProducto']) or
                 !$productos->setExistenciaProducto($_POST['existenciaProducto']) or
                 !$productos->setFechaRegistro($_POST['fechaRegistroProducto']) or
@@ -39,6 +39,8 @@ if(isset($_SESSION['idAdministrador']) or true){
             } elseif ($productos->createRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto ingresado correctamente';
+                 // Se asigna el estado del archivo después de insertar.
+                 $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $productos::RUTA_IMAGEN);
             } else{
                 $result['error'] = 'Ocurrio un problema al ingresar el producto';
             }

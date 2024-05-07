@@ -46,7 +46,7 @@ class marcas_handler
     // READ ALL
     public function readAll()
     {
-        $sql = 'SELECT id_marca, imagen_marca, nombre_marca 
+        $sql = 'SELECT id_marca, nombre_marca, imagen_marca 
                 FROM marcas
                 ORDER BY nombre_marca';
         return Database::getRows($sql);

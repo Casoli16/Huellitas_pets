@@ -18,6 +18,8 @@ class productosHandler
     protected $idCategoria = null;
     protected $idMarca = null;
 
+    const RUTA_IMAGEN = '../../images/productos/';
+
     //    Buscar un producto
     public function searchRows()
     {

@@ -103,8 +103,14 @@ class productosData extends productosHandler{
 
     public function setEstadoProducto($value)
     {
-        $this->estadoProducto = $value;
-        return true;
+        if (Validator::validateBoolean($value)) {
+            $this->estadoProducto = $value;
+            return true;
+        } 
+         else {
+            $this->data_error = 'Esto no es un booleano';
+            return false;
+        }
     }
 
     public  function setFechaRegistro($value)
