@@ -218,7 +218,7 @@ const fillTable = async (form = null) => {
         // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html
         HIDDEN_ELEMENT.innerHTML = `
         <div class="container text-center">
-            <p class="p-4 bg-beige-color rounded-4">No hay resultados para tu búsqueda</p>
+            <p class="p-4 bg-beige-color rounded-4">No existen resultados</p>
         </div>`
         // Muestra el codigo injectado
         HIDDEN_ELEMENT.style.display = 'block'

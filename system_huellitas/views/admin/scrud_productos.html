@@ -36,10 +36,10 @@
         <div class="container mt-4">
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <img src="../../resources/img/png/dog.png" alt="">
+                    <img id="imagenMascota" alt="">
                 </div>
                 <div class="col">
-                    <h4 class="fw-bold">Perros</h4>
+                    <h4 class="fw-bold" id="titulo"></h4>
                 </div>
             </div>
         </div>
@@ -59,9 +59,15 @@
                     </button>
                 </div>
             </div>
+            <div class="mt-4 col-6">
+                <select class="form-select shadow" id="selectMenu" onchange="selectedOption()">
+                    <option>Perros</option>
+                    <option>Gatos</option>
+                </select>
+            </div>
         </div>
         <!-- Tabla -->
-        <div class="container mt-5 table-responsive">
+        <div class="container mt-4 table-responsive">
             <table class="table align-middle">
                 <thead class="table">
                     <tr>
@@ -103,7 +109,7 @@
                                 <div class="row align-items-center gy-3">
                                     <div class="col-sm-12 col-md-auto">
                                         <img class="rounded-1" id="imagen" src="../../resources/img/png/rectangulo.png"
-                                            width="120px">
+                                            height="120px" width="120px">
                                     </div>
                                     <div class="col">
                                         <!-- Botón para cargar imagen -->
@@ -277,7 +283,7 @@
     <!-- Agregamos la ruta para agregar el menu -->
     <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
     <!-- Agregamos el controlador de la pagina web -->
-    <script type="text/javascript" src="../../controllers/admin/productos_perros.js"></script>
+    <script type="text/javascript" src="../../controllers/admin/productos.js"></script>
 </body>
 
 </html>

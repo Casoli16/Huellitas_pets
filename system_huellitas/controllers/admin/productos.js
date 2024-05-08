@@ -3,8 +3,14 @@ const PRODUCTOS_API = 'services/admin/productos.php';
 const CATEGORIAS_API = 'services/admin/categorias.php';
 const MARCAS_API = 'services/admin/marcas.php';
 
+const PARAMS = new URLSearchParams(window.location.search);
+const MENU = PARAMS.get("mascota");
+
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
+
+// BUSCADOR
+const SEARCH_INPUT = document.getElementById('searchInput');
 
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
@@ -14,7 +20,6 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
     DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
-    FECHA_REGISTRO = document.getElementById('fechaRegistro'),
     CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
     MASCOTA = document.getElementById('mascotaSelect'),
     CATEGORIA = document.getElementById('categoriaSelect'),
@@ -33,9 +38,18 @@ const CANTIDAD_TEXT = document.getElementById('cantidad');
 const MARCA_TEXT = document.getElementById('marca');
 const IMAGEN_INFO = document.getElementById('imagenInfo');
 
+// LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
+const HIDDEN_ELEMENT = document.getElementById('anyTable');
 
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
+
+const OPTION_PET = document.getElementById('selectMenu');
+
+const TITLO = document.getElementById('titulo');
+const IMAGEN_PAGINA = document.getElementById('imagenMascota');
+
+let OPTION;
 
 // Agregamos el evento change al input de tipo file que selecciona la imagen
 IMAGEN_PRODUCTO.addEventListener('change', function (event) {
@@ -54,16 +68,34 @@ IMAGEN_PRODUCTO.addEventListener('change', function (event) {
 });
 
 // CUANDO SE CARGUE EL DOCUMENTO
-document.addEventListener('DOMContentLoaded', ()  => {
+document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
-    fillTable();
+    OPTION_PET.value = MENU;
+    selectedOption();
 })
 
+const searchRow = async () => {
+    //Obtenemos lo que se ha escrito en el input
+    const inputValue = SEARCH_INPUT.value;
+    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
+    const FORM = new FormData();
+    FORM.append('search', inputValue);
+    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
+    if (inputValue === '') {
+        OPTION = MENU;
+        console.log(OPTION)
+        fillTable(null, OPTION);
+    } else {
+        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
+        fillTable(FORM, null);
+    }
+}
+
 SAVE_FORM.addEventListener('submit', async (event) => {
-     // Se evita recargar la página web después de enviar el formulario.
+    // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
-     // Constante tipo objeto con los datos del formulario.
+    // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // PARA REGISTRAR LA FECHA DEL REGISTRO
     const currentDate = new Date().toISOString().split('T')[0];
@@ -84,7 +116,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         sweetAlert(1, DATA.message, true);
         IMAGEN.src = '../../resources/img/png/rectangulo.png'
         // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
+        selectedOption();
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -126,7 +158,6 @@ const openUpdate = async (id) => {
 
         //Traemos el valor que tiene el campo mascotas y lo guardamos en una variable.
         const mascota = ROW.mascotas;
-        MASCOTA.disabled= true;
         //Llamamos a la funcion preselectOption y le pasamos el id del select y el dato que queremos que compare
         //entre las opciones que ya estan definidas en el select para mostrar esta opcion en el select.
         preselectOption('mascotaSelect', mascota);
@@ -143,7 +174,7 @@ const openInfo = async (id) => {
     const FORM = new FormData();
     FORM.append('idProducto', id);
     const DATA = await fetchData(PRODUCTOS_API, 'readSpecificProductById', FORM);
-    if(DATA.status){
+    if (DATA.status) {
         INFO_MODAL.show();
         MODAL_TITLE_INFO.textContent = 'Información del producto';
         const [ROW] = DATA.dataset;
@@ -155,7 +186,7 @@ const openInfo = async (id) => {
         PRECIO_TEXT.textContent = ROW.precio_producto;
         CANTIDAD_TEXT.textContent = ROW.existencia_producto;
         MARCA_TEXT.textContent = ROW.nombre_marca;
-    } else{
+    } else {
         sweetAlert(2, DATA.error, false)
     }
 }
@@ -180,14 +211,40 @@ const openDelete = async (id) => {
         }
     }
 }
-const fillTable =  async () => {
+
+const selectedOption = () => {
+    const optionSelected = OPTION_PET.value;
+    if (optionSelected === 'Perros') {
+        OPTION = 'Perro'
+        TITLO.textContent = 'Perros'
+        IMAGEN_PAGINA.src = '../../resources/img/png/dog.png';
+        fillTable(null, OPTION)
+    } else {
+        OPTION = 'Gato'
+        TITLO.textContent = 'Gatos'
+        IMAGEN_PAGINA.src = '../../resources/img/png/cat.png';
+        fillTable(null, OPTION)
+    }
+}
+
+const fillTable = async (form = null, option = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
-    const mascota = 'perro';
-    const FORM = new FormData();
-    FORM.append('mascota', mascota);
-    const DATA = await  fetchData(PRODUCTOS_API, 'readSpecificProduct', FORM);
-    if(DATA.status){
+    let mascota;
+    if (form) {
+        action = 'searchRows'
+    } else {
+        action = 'readSpecificProduct'
+        form = new FormData();
+        if (option == 'Perro') {
+            mascota = 'Perro';
+        } else {
+            mascota = 'Gato';
+        }
+        form.append('mascota', mascota)
+    }
+    const DATA = await fetchData(PRODUCTOS_API, action, form);
+    if (DATA.status) {
         DATA.dataset.forEach(row => {
             const stwitchChecked = (row.estado_producto === 1) ? 'checked' : '';
             TABLE_BODY.innerHTML += `
@@ -217,7 +274,15 @@ const fillTable =  async () => {
             </tr>
             `
         });
+        ROWS_FOUND.textContent = DATA.message;
+        HIDDEN_ELEMENT.style.display = 'none';
     } else {
         sweetAlert(3, DATA.error, true);
+        HIDDEN_ELEMENT.innerHTML = `
+        <div class="container text-center">
+            <p class="p-4 bg-beige-color rounded-4">No existen resultados</p>
+        </div>`
+        // Muestra el codigo injectado
+        HIDDEN_ELEMENT.style.display = 'block'
     }
 }
