@@ -27,7 +27,7 @@
             <div class="row mt-5">
                 <!-- Automaticamente cada col se va distribuir en la row -->
                 <div class="col-auto">
-                    <img src="../../resources/img/png/ShoppingCart.png" width="50px">
+                    <img src="../../resources/img/png/ShoppingCart.png" width="60px">
                 </div>
                 <div class="col-auto">
                     <h2 class="fw-bold">Pedidos</h2>
@@ -42,161 +42,88 @@
             <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
-                    <form class="d-flex" role="search" id="search_pedidos">
-                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="search" placeholder="Buscar...">
-                    </form>
+                    <!--Ocupamos el evento oninput para que cuando se detecte que se esta escribiendo en el input llame a la funcion searchhRow-->
+                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search"
+                        id="searchInput" name="search" placeholder="Buscar...">
                 </div>
             </div>
         </div>
 
         <!-- Empieza la programación de las tablas
-      Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->¬
-        <div class="container p-3 mt-2">
+      Primero se define las columnas con "th", "td" es para definir el contenido de cada columna-->
+        <div class="container mt-5">
             <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr class="table">
+                <table class="table align-middle text-center">
+                    <!-- Encabezado de las tablas -->
+                    <thead class="table table-responsive">
+                        <tr>
+                            <td colspan="7" id="rowsFound" hidden></td>
+                        </tr>
+                        <tr class="table-warning">
                             <!-- Las columnas habitualmente son estáticas, en este caso siempre serán estáticas -->
-                            <th scope="col">Cliente</th>
-                            <th scope="col">Fecha registro</th>
-                            <th scope="col">Productos</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Acciones</th>
+                            <th>Cliente</th>
+                            <th>Fecha registro</th>
+                            <th>Productos</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <!-- Esto si ya es contenido que cuando vaya conectado a db, será interactivo -->
-                            <td>Julio López</td>
-                            <td>2024-02-14</td>
-                            <td>3</td>
-                            <td>
-                                <button type="button" class="btn" data-bs-toggle="modal"
-                                    data-bs-target="#EstadoPedido"><img src="../../resources/img/png/eye.square.png"
-                                        class="tamanio_edicion_botones"></button>
-                                <!-- Aqui va el botón para ver el estado pedido-->
-                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                        se pone arriba del </html pero fuera del body-->
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                        se pone arriba del </html pero fuera del body-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Rodolfo Baker</td>
-                            <td>2024-01-20</td>
-                            <td>6</td>
-                            <td>
-                                <button type="button" class="btn" data-bs-toggle="modal"
-                                    data-bs-target="#EstadoPedido"><img src="../../resources/img/png/eye.square.png"
-                                        class="tamanio_edicion_botones"></button>
-                                <!-- Aqui va el botón para ver el estado pedido-->
-                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                        se pone arriba del </html pero fuera del body-->
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                                          se pone arriba del </html pero fuera del body-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Elena Morán</td>
-                            <td>2023-12-15</td>
-                            <td>5</td>
-                            <td>
-                                <button type="button" class="btn" data-bs-toggle="modal"
-                                    data-bs-target="#EstadoPedido"><img src="../../resources/img/png/eye.square.png"
-                                        class="tamanio_edicion_botones"></button>
-                                <!-- Aqui va el botón para ver el estado pedido-->
-                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                        se pone arriba del </html pero fuera del body-->
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-light img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#InfoPedido"><img src="../../resources/img/svg/info_icon.svg"
-                                        class="tamanio_edicion_botones"></button>
-                                <!-- donde dice "data-bs-target" se indica el id del modal que se abrirá al darle click, el modal comunmente 
-                        se pone arriba del </html pero fuera del body-->
-                            </td>
-                        </tr>
-                    </tbody>
+                    <!-- Cuerpo de la tabla -->
+                    <tbody id="tableBody"></tbody>
                 </table>
+                <div id="anyTable"></div>
             </div>
         </div>
-        <!-- Modal para modificar el estado del pedido -->
-        <div class="modal" id="EstadoPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <form id="Formulario_ModificarPed">
-                    <div class="modal-content">
-                        <!-- Encabezado del modal -->
-                        <div class="modal-header bg-orange-color">
-                            <div class="container text-center">
-                                <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Estado</h1>
-                            </div>
-                            <!-- Botón de cerrar -->
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <!-- Cuerpo del modal -->
-                        <div class="modal-body">
-                            <div class="container text-center">
-                                <!-- Etiqueta para el estado actual del pedido -->
-                                <label class="form-check-label custom-bold-label" for="flexSwitchCheckChecked">Estado
-                                    actual
-                                    del
-                                    pedido</label>
-                                <br>
-                                <!-- Dropdown para seleccionar el estado -->
-                                <div class="dropdown" id="DropDown_ModificarPed" name="DropDown_ModificarPedN">
-                                    <br>
-                                    <button class="btn bg-gray-color dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <span id="estadoSeleccionado">Elige un estado</span>
-                                    </button>
 
-                                    <!-- Opciones del dropdown -->
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#" id="completadooption"> Completado</a>
-                                        <a class="dropdown-item" href="#" id="pendienteoption"> Pendiente</a>
-                                        <a class="dropdown-item" href="#" id="canceladooption"> Cancelado</a>
-                                    </div>
+        <!-- Modal para modificar el estado del pedido -->
+        <div class="modal" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Encabezado del modal -->
+                    <div class="modal-header bg-orange-color">
+                        <div class="container text-center">
+                            <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Estado</h1>
+                        </div>
+                        <!-- Botón de cerrar -->
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <!-- Cuerpo del modal -->
+                    <form action="" id="saveForm">
+                        <div class="modal-body p-4">
+                            <!-- ID'S -->
+                            <input type="hidden" id="id_pedido" name="id_pedido">
+                            <div class="container border border-secondary-subtle p-4">
+                                <div class="mb-3">
+                                    <label for="idPermiso" class="form-label fw-semibold">Estado actual del
+                                        pedido</label>
+                                    <select class="form-select" id="estado" name="estado" required></select>
+                                </div>
+                                <div class="container text-center mb-2 mt-4">
+                                    <button type="submit" class="btn btn-orange-color text-light me-3">
+                                        Guardar</button>
+                                    <button type="reset" class="btn btn-red-color text-light" id="btn_cancelar"
+                                        name="btnCancelar">Cancelar</button>
                                 </div>
                             </div>
-                            <br>
                         </div>
-                        <!-- Pie del modal -->
-                        <div class="container text-center">
-                            <!-- Botón para guardar cambios -->
-                            <button type="button" class="btn btn-orange-color text-white">Guardar</button>
-                        </div>
-                        <br>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
 
 
 
 
-        <!-- Modal para mostrar información detallada del pedido -->
-        <div class="modal" id="InfoPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <form id="Formulario_InformacionPedidos" name="Formulario_InformacionPedidosN">
+            <!-- Modal para mostrar información detallada del pedido -->
+            <div class="modal" id="viewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <!-- Encabezado del modal -->
                         <div class="modal-header bg-orange-color">
                             <!-- Título del modal -->
                             <div class="container text-center">
-                                <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Información del
+                                <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Información
+                                    del
                                     pedido
                                 </h1>
                             </div>
@@ -205,148 +132,76 @@
                                 aria-label="Close"></button>
                         </div>
                         <!-- Cuerpo del modal -->
-                        <div class="modal-body">
+                        <div class="modal-body mt-3">
                             <div class="row">
+                                <input type="hidden" id="idPedidoView" name="idPedidoView">
                                 <div class="col-sm-12">
                                     <ol class="list-group">
-                                        <!-- Elemento de la lista representando un producto -->
-                                        <li
-                                            class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
-                                            <img src="../../resources/img/png/product1.png" alt="Imagen" height="90">
-                                            <!-- Información del producto -->
-                                            <div class="ms-2 me-auto">
-                                                <span class="badge badge-custom text-dark shadow mb-4"
-                                                    id="Cantidad_InformacionPedidos"
-                                                    name="Cantidad__InformacionPedidosN">1</span>
-                                                <div class="marca" id="Marca_InformacionPedidos"
-                                                    name="Marca_InformacionPedidosN"> Pedigree</div>
-                                                <div class="producto" id="Producto_InformacionPedidos"
-                                                    name="Producto__InformacionPedidosN"> Bolsa 21 kilos, pedigree perro
-                                                    adulto
-                                                </div>
-                                            </div>
-                                            <!-- Opciones para el producto -->
-                                            <div class="d-flex flex-column mb-3">
-                                                <div class="p-2 text-end">
-                                                    <button type="button" class="btn-close btn-close-red"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="p-2">
-                                                    <label class="fw-bold" id="Precio_InformacionPedidosN">$9.80</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li
-                                            class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
-                                            <img src="../../resources/img/png/product2.png" alt="Imagen" height="90">
-                                            <div class="ms-2 me-auto">
-                                                <span class="badge badge-custom text-dark shadow mb-4">3</span>
-                                                <div class="marca">Maxxi chucho</div>
-                                                <div class="producto">Bolsa Maxxi chucho - perro adulto</div>
-                                            </div>
-                                            <div class="d-flex flex-column mb-3">
-                                                <div class="p-2 text-end">
-                                                    <button type="button" class="btn-close btn-close-red"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="p-2">
-                                                    <label class="fw-bold">$9.80</label>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li
-                                            class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
-                                            <img src="../../resources/img/png/product3.png" alt="Imagen" height="90">
-                                            <div class="ms-2 me-auto">
-                                                <span class="badge badge-custom text-dark shadow mb-4">2</span>
-                                                <div class="marca">Purina</div>
-                                                <div class="producto"> Cat show gato adulto pescado 39.6LBS (2 PACK)
-                                                </div>
-                                            </div>
-                                            <div class="d-flex flex-column mb-3">
-                                                <div class="p-2 text-end">
-                                                    <button type="button" class="btn-close btn-close-red"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="p-2">
-                                                    <label class="fw-bold">$9.80</label>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </li>
-                                        <br>
+                                        <!-- Elemento de la lista representando los productos -->
                                     </ol>
                                 </div>
                                 <!-- Información adicional del pedido -->
                                 <div class="col-sm-12 col-md-6">
                                     <!-- Etiqueta para el nombre -->
                                     <label class="form-check-label custom-bold-label"
-                                        for="flexSwitchCheckChecked">Nombre</label>
+                                        for="nombreCliente">Nombre</label>
                                     <br>
                                     <!-- Nombre del cliente -->
-                                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                                        id="Nombre__InformacionPedidos" name="Nombr_InformacionPedidosN">Daniel
-                                        Carranza</label>
+                                    <label class="form-check-label" id="nombreCliente" name="nombreCliente"></label>
                                 </div>
                                 <!-- Más información adicional -->
                                 <br>
                                 <!-- Información de la dirección -->
                                 <div class="col-sm-12 col-md-6">
-                                    <label class="form-check-label custom-bold-label"
-                                        for="flexSwitchCheckChecked">Dirección</label>
+                                    <label class="form-check-label custom-bold-label" for="direccion">Dirección</label>
                                     <br>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                                        id="Direccion_InformacionPedidos" name="Direccion_InformacionPedidosN">Calle las
-                                        rosas,
-                                        residencial 4,
-                                        polígono 3A, casa #10</label>
+                                    <label class="form-check-label" id="direccion" name="direccion"></label>
                                 </div>
                                 <!-- Más información de la dirección -->
                                 <br>
-                                <!-- Fecha de pago -->
+                                <!-- Estado del pedido -->
                                 <div class="col-sm-12 col-md-6">
-                                    <label class="form-check-label custom-bold-label"
-                                        for="flexSwitchCheckChecked">Estado</label>
+                                    <label class="form-check-label custom-bold-label" for="estestadoPedidoado">Estado</label>
                                     <br>
-                                    <!-- Fecha de pago del pedido -->
-                                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                                        id="Fecha_InformacionPedidos"
-                                        name="Fecha_InformacionPedidosN">Completado</label>
+                                    <!-- Estado del pedido -->
+                                    <label class="form-check-label" id="estadoPedido" name="estadoPedido"></label>
                                 </div>
                                 <!-- Total a pagar -->
                                 <br>
                                 <div class="col-sm-12 col-md-6">
-                                    <label class="form-check-label custom-bold-label" for="flexSwitchCheckChecked">Total
+                                    <label class="form-check-label custom-bold-label" for="totalAPagar">Total
                                         a
                                         pagar</label>
                                     <br>
                                     <!-- Monto total a pagar por el pedido -->
-                                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                                        id="Total_InformacionPedidos" name="Total_InformacionPedidosN">$29.40</label>
+                                    <label class="form-check-label" id="totalAPagar" name="totalAPagar"></label>
                                 </div>
                             </div>
-                            <br>
                         </div>
                         <!-- Pie del modal -->
-                        <div class="container text-center">
+                        <div class="container text-center mb-3">
                             <!-- Botón para salir del modal -->
                             <button type="button" class="btn btn-orange-color text-white"
                                 data-bs-dismiss="modal">Salir</button>
                         </div>
-                        <br>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-        </form>
-        </div>
-        </div>
+
     </main>
 
+    <!-- Framework Bootstrap - JS -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Agregamos el framework de Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos el controlador general de la aplicacion-->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos el script del menu-->
     <script src="../../controllers/utils/admin.js"></script>
-    <script src="../../controllers/admin/pedidos.js"></script>
+    <!-- Script funcionamiento -->
+    <script type="text/javascript" src="../../controllers/admin/pedidos.js"></script>
 </body>
 
 
