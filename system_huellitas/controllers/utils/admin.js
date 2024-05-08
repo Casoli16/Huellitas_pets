@@ -3,8 +3,7 @@
 
 const USER_API = 'services/admin/admins.php'
 const MAIN = document.querySelector('main');
-//Constante para estableces el elemento del titulo principal.
-const MAIN_TITLE = document.getElementById('mainTitle');
+
 
 //Crea una funcion que espere un valor y retorne un string
 function switchMenu(opcion) {
@@ -18,7 +17,7 @@ function switchMenu(opcion) {
 }
 
 const navbar = `
-<nav class="navbar bg-skin-color fixed-top sticky-sm-top">
+<nav class="navbar bg-skin-color fixed-top ">
     <div class="container-fluid ">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
