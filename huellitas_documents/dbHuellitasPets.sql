@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS productos (
   existencia_producto INT,
   CONSTRAINT existencia_producto_check CHECK(existencia_producto > 0),
   fecha_registro_producto DATE DEFAULT NOW(),
-  mascotas ENUM('perro', 'gato'),
+  mascotas ENUM('Perro', 'Gato'),
   id_categoria INT,
   id_marca INT,
   CONSTRAINT fk_productos_marca FOREIGN KEY (id_marca) REFERENCES marcas (id_marca),

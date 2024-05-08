@@ -40,6 +40,14 @@ class productosHandler
         return Database::getRows($sql, $params);
     }
 
+    // Selecciona el producto de acuerdo al id que se pase
+    public function readEspecificProductsById()
+    {
+        $sql = 'SELECT * FROM productosView WHERE id_producto = ?';
+        $params = array($this->idProducto);
+        return Database::getRows($sql, $params);
+    }
+
     //    Crear producto
     public function createRow()
     {

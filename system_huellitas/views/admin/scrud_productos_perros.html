@@ -99,7 +99,6 @@
                             <div class="modal-body">
                             <!-- Fila 1 -->
                                 <input type="hidden" id="idProducto" name="idProducto">
-                                <input type="hidden" id="fechaRegistroProducto" name="fechaRegistroProducto">
                                 <div class="container text-center text-md-start text-lg-start">
                                 <div class="row align-items-center gy-3">
                                     <div class="col-sm-12 col-md-auto">
@@ -125,12 +124,12 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
-                                            <label for="nombre_producto" class="form-label fw-semibold">Nombre</label>
+                                            <label for="nombreProducto" class="form-label fw-semibold">Nombre</label>
                                             <input type="text" class="form-control" id="nombreProducto"
                                                 name="nombreProducto">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="descripcion_producto"
+                                            <label for="descripcionProducto"
                                                 class="form-label fw-semibold">Descripción</label>
                                             <textarea class="form-control" id="descripcionProducto"
                                                 name="descripcionProducto" rows="3"></textarea>
@@ -138,7 +137,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="mb-3">
-                                                    <label for="precio_producto"
+                                                    <label for="precioProducto"
                                                         class="form-label fw-semibold">Precio</label>
                                                     <input type="number" min="0" step="any" class="form-control"
                                                         id="precioProducto" name="precioProducto">
@@ -146,7 +145,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3">
-                                                    <label for="cantidad_producto"
+                                                    <label for="cantidadProducto"
                                                         class="form-label fw-semibold">Cantidad</label>
                                                     <input type="number" class="form-control" id="cantidadProducto"
                                                         name="existenciaProducto">
@@ -156,21 +155,21 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
-                                            <label for="tipo_mascota" class="form-label fw-semibold">Mascota</label>
-                                            <select class="form-select" id="mascotaSelect" name="mascotas" required>
+                                            <label for="mascotaSelect" class="form-label fw-semibold">Mascota</label>
+                                            <select class="form-select" id="mascotaSelect" name="mascotasProducto" required>
                                                 <option>Selecciona la mascota</option>
                                                 <option>Perro</option>
                                                 <option>Gato</option>
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="tipo_categoria" class="form-label fw-semibold">Categoría</label>
+                                            <label for="categoriaSelect" class="form-label fw-semibold">Categoría</label>
                                             <select class="form-select" id="categoriaSelect" name="idCategoria"
                                                 required>
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="tipo_marca" class="form-label fw-semibold">Marca</label>
+                                            <label for="marcaSelect" class="form-label fw-semibold">Marca</label>
                                             <select class="form-select" id="marcaSelect" name="idMarca" required>
                                             </select>
                                             <div class="text-end mt-2">¿No existe la marca que buscas?</div>
@@ -192,31 +191,29 @@
                         <button type="reset" class="btn btn-red-color text-light" id="btnCancelar"
                             name="btnCancelar">Cancelar</button>
                     </div>
-                </div>
+                    </div>
                     </form>
             </div>
         </div>
 
         <!-- Informacion producto -->
-        <div class="modal fade" id="info_producto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center text-light">
-                            <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Información del
-                                producto
-                            </h1>
+                            <h1 class="modal-title fs-5 text-center fw-bold" id="titleModalInfo"></h1>
                         </div>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" id="crear_admin">
+                        <form action="" id="seeForms">
                             <!-- Fila 1 -->
                             <div class="container text-center text-md-start text-lg-start">
                                 <div class="row align-items-center gy-3">
                                     <div class="col-sm-12 col-md-auto">
-                                        <img class="rounded-1" src="../../resources/img/png/rectangulo.png"
+                                        <img class="rounded-1" id="imagenInfo" src="../../resources/img/png/rectangulo.png"
                                             width="120px">
                                     </div>
                                 </div>
@@ -226,46 +223,46 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 col-lg-6 ">
                                         <div class="mb-3">
-                                            <label for="nombre_admin" class="form-label fw-semibold mb-0">Nombre</label>
-                                            <p id="nombre_producto">Bola giratoria - Juguetes de gato</p>
+                                            <label class="form-label fw-semibold mb-0">Nombre</label>
+                                            <p id="nombre">Bola giratoria - Juguetes de gato</p>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1"
+                                            <label
                                                 class="form-label fw-semibold mb-0">Descripción</label>
-                                            <p id="descripcion_producto">Pelotas de plástico de diferentes colores</p>
+                                            <p id="descripcion">Pelotas de plástico de diferentes colores</p>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1"
+                                            <label
                                                 class="form-label fw-semibold mb-0">Mascota</label>
                                             <p id="tipo_mascota">Gatos</p>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1"
+                                            <label
                                                 class="form-label fw-semibold mb-0">Categoría</label>
-                                            <p id="tipo_categoria">Entretenimiento</p>
+                                            <p id="categoria">Entretenimiento</p>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1"
+                                            <label
                                                 class="form-label fw-semibold mb-0">Precio</label>
-                                            <p id="precio_producto">Entretenimiento</p>
+                                            <p id="precio">Entretenimiento</p>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1"
+                                            <label
                                                 class="form-label fw-semibold mb-0">Cantidad</label>
-                                            <p id="cantidad_producto">$20.50</p>
+                                            <p id="cantidad">$20.50</p>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1"
+                                            <label
                                                 class="form-label fw-semibold mb-0">Marca</label>
-                                            <p id="tipo_marca">MIMI</p>
+                                            <p id="marca">MIMI</p>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                    </div>
+                        </div>
                     </form>
                 </div>
             </div>

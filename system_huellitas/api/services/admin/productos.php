@@ -9,7 +9,7 @@ $productos = new productosData;
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
-if(isset($_SESSION['idAdministrador']) or true){
+if(isset($_SESSION['idAdministrador'])or true){
     switch($_GET['action']){
         case 'searchRows':
             if (!Validator::validateSearch($_POST['search'])){
@@ -31,7 +31,7 @@ if(isset($_SESSION['idAdministrador']) or true){
                 !$productos->setEstadoProducto($_POST['estadoProducto']) or
                 !$productos->setExistenciaProducto($_POST['existenciaProducto']) or
                 !$productos->setFechaRegistro($_POST['fechaRegistroProducto']) or
-                !$productos->setMascotas($_POST['mascotas']) or
+                !$productos->setMascotas($_POST['mascotasProducto']) or
                 !$productos->setIdCategoria($_POST['idCategoria']) or
                 !$productos->setIdMarca($_POST['idMarca'])
             ) {
@@ -52,11 +52,11 @@ if(isset($_SESSION['idAdministrador']) or true){
                 !$productos->setNombreProducto($_POST['nombreProducto']) or
                 !$productos->setDescripcionProducto($_POST['descripcionProducto']) or
                 !$productos->setPrecioProducto($_POST['precioProducto']) or
-                !$productos->setImagenProducto($_POST['imagenProducto'])or
+                !$productos->setImagenProducto($_FILES['imagenProducto'])or
                 !$productos->setEstadoProducto($_POST['estadoProducto']) or
                 !$productos->setExistenciaProducto($_POST['existenciaProducto']) or
                 !$productos->setFechaRegistro($_POST['fechaRegistroProducto']) or
-                !$productos->setMascotas($_POST['mascotas']) or
+                !$productos->setMascotas($_POST['mascotasProducto']) or
                 !$productos->setIdCategoria($_POST['idCategoria']) or
                 !$productos->setIdMarca($_POST['idMarca'])
             ){
@@ -64,6 +64,8 @@ if(isset($_SESSION['idAdministrador']) or true){
             } elseif ($productos -> updateRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto actualizado correctamente';
+                // Se asigna el estado del archivo después de insertar.
+                $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $productos::RUTA_IMAGEN);
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar el producto';
             }
@@ -92,6 +94,15 @@ if(isset($_SESSION['idAdministrador']) or true){
                 $result['status'] = 1;
             } else {
                 $result['error'] = 'Aún no hay productos registrados';
+            }
+            break;
+        case 'readSpecificProductById':
+            if (!$productos->setIdProducto($_POST['idProducto'])) {
+                $result['error'] = $productos->getDataError();
+            } elseif ($result['dataset'] = $productos->readEspecificProductsById()) {
+                $result['status'] = 1;
+            } else {
+                $result['error'] = 'No se encuentra la información de este producto';
             }
             break;
         case 'deleteRow':

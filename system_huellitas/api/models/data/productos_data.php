@@ -95,10 +95,21 @@ class productosData extends productosHandler{
         }
     }
 
-    public function setImagenProducto($value)
+    public function setImagenProducto($file, $filename = null)
     {
-        $this->imagenProducto = $value;
-        return true;
+        if(Validator::validateImageFile($file, 1000)){
+            $this->imagenProducto = Validator::getFilename();
+            return true;
+        } elseif (Validator::getFileError()){
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename){
+            $this->imagenProducto = $filename;
+            return true;
+        } else{
+            $this->imagenProducto = 'default.png';
+            return true;
+        }
     }
 
     public function setEstadoProducto($value)

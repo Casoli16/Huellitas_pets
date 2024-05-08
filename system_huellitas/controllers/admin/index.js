@@ -45,6 +45,10 @@ SIGNUP_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     const FORM = new FormData(SIGNUP_FORM);
+    // PARA REGISTRAR LA FECHA DEL REGISTRO
+    const currentDate = new Date().toISOString().split('T')[0];
+    FORM.append('fechaRegistroAdmin', currentDate);
+
     const DATA = await fetchData(USER_API, 'signUp', FORM);
     if(DATA.status){
         sweetAlert(1, DATA.message, true, 'index.html');

@@ -92,6 +92,32 @@ const fillSelect = async (filename, action, select, selected = null) => {
     document.getElementById(select).innerHTML = content;
 }
 
+// /*
+// *   Función para mostrar la opcion seleccionada de un formulario en base a opciones ya predefinidas.
+// *   Parámetros: selectedElement (identificar el id del select en el forms), valueToSelect (Opcion que queremos mostrar en el select, comparara si esta opcion se encuentra en el select).
+// *   Retorno: ninguno.
+// */
+function preselectOption(selectElement, valueToSelect) {
+    // Seleccionar el elemento select
+    const select = document.getElementById(selectElement);
+
+    // Recorrer las opciones del select
+    for (const option of select.options) {
+        if (option.value === valueToSelect) {
+            // Seleccionar la opción coincidente
+            option.selected = true;
+
+            // Si hay un input asociado, asignar el valor seleccionado
+            const associatedInput = document.getElementById(`${selectElement}-input`);
+            if (associatedInput) {
+                associatedInput.value = valueToSelect;
+            }
+            break; // Detener el bucle una vez encontrada la opción
+        }
+    }
+}
+
+
 // Funcion para cerrar la sesion del admin.
 const logOut = async () => {
     const RESPONSE = await confirmAction('¿Está seguro que desea cerrar sesión?');
