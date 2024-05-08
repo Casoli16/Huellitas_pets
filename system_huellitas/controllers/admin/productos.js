@@ -3,7 +3,9 @@ const PRODUCTOS_API = 'services/admin/productos.php';
 const CATEGORIAS_API = 'services/admin/categorias.php';
 const MARCAS_API = 'services/admin/marcas.php';
 
+//Obtenemos los parametros de la mascota que se selecciono en la pantalla menu_productos.html
 const PARAMS = new URLSearchParams(window.location.search);
+//Guarda en una variable el parametro obtenido
 const MENU = PARAMS.get("mascota");
 
 const TABLE_BODY = document.getElementById('tableBody'),
@@ -29,6 +31,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
 
 const INFO_MODAL = new bootstrap.Modal('#infoModal'),
     MODAL_TITLE_INFO = document.getElementById('titleModalInfo');
+
 const NOMBRE_TEXT = document.getElementById('nombre');
 const DESCRIPCION_TEXT = document.getElementById('descripcion');
 const MASCOTA_TEXT = document.getElementById('tipo_mascota');
@@ -44,11 +47,14 @@ const HIDDEN_ELEMENT = document.getElementById('anyTable');
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
 
+//Obtiene el id del select para elegir el tipo de mascota
 const OPTION_PET = document.getElementById('selectMenu');
 
+//Contiene el id donde se pondra el titulo de la pantalla asi como su imagen
 const TITLO = document.getElementById('titulo');
 const IMAGEN_PAGINA = document.getElementById('imagenMascota');
 
+//
 let OPTION;
 
 // Agregamos el evento change al input de tipo file que selecciona la imagen
@@ -82,8 +88,7 @@ const searchRow = async () => {
     FORM.append('search', inputValue);
     //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
     if (inputValue === '') {
-        OPTION = MENU;
-        console.log(OPTION)
+        OPTION = OPTION_PET.value;
         fillTable(null, OPTION);
     } else {
         // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
@@ -205,7 +210,7 @@ const openDelete = async (id) => {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
             // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTable();
+            selectedOption();
         } else {
             sweetAlert(2, DATA.error, false);
         }
@@ -215,12 +220,12 @@ const openDelete = async (id) => {
 const selectedOption = () => {
     const optionSelected = OPTION_PET.value;
     if (optionSelected === 'Perros') {
-        OPTION = 'Perro'
+        OPTION = optionSelected;
         TITLO.textContent = 'Perros'
         IMAGEN_PAGINA.src = '../../resources/img/png/dog.png';
         fillTable(null, OPTION)
     } else {
-        OPTION = 'Gato'
+        OPTION = optionSelected;
         TITLO.textContent = 'Gatos'
         IMAGEN_PAGINA.src = '../../resources/img/png/cat.png';
         fillTable(null, OPTION)
@@ -236,7 +241,8 @@ const fillTable = async (form = null, option = null) => {
     } else {
         action = 'readSpecificProduct'
         form = new FormData();
-        if (option == 'Perro') {
+        console.log(option)
+        if (option === 'Perros') {
             mascota = 'Perro';
         } else {
             mascota = 'Gato';
