@@ -93,6 +93,8 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'Ocurrio un problema al eliminar el producto';
                     }
                     break;
+            default:
+                $result['error'] = 'Acción no disponible fuera de la sesión';
         }
         // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
         $result['exception'] = Database::getException();

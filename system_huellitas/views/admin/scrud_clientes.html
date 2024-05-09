@@ -17,7 +17,7 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
 </head>
 
-<body>
+<body class="mt-5">
     <header>
         <!-- Insertar nuestro navbar a esta pantalla usando js -->
         <div id="navbar"></div>
@@ -52,6 +52,9 @@
                 <table class="table align-middle">
                     <!-- Encabezado de las tablas -->
                     <thead class="table table-responsive">
+                    <tr>
+                        <td colspan="8" id="rowsFound" hidden></td>
+                    </tr>
                         <tr>
                             <th>Imagen</th>
                             <th>Nombre</th>
@@ -64,45 +67,10 @@
                         </tr>
                     </thead>
                     <!-- Cuerpo de la tabla -->
-                    <tbody>
-                        <!-- Fila 1 -->
-                        <tr>
-                            <td>
-                                <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
-                                    height="70px">
-                            </td>
-                            <td>Mariana</td>
-                            <td>Campos</td>
-                            <td>12345678-9</td>
-                            <td>mariana@gmail.com</td>
-                            <td>1232-4323</td>
-                            <td>Activo</td>
-                            <td>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#ver_cliente"><img src="../../resources/img/svg/info_icon.svg"
-                                        width="35px"></button>
-                            </td>
-                        </tr>
-                        <!-- fila 2 -->
-                        <tr>
-                            <td>
-                                <img class="rounded-circle" src="../../resources/img/png/picture.png" width="70px"
-                                    height="70px">
-                            </td>
-                            <td>Eduardo</td>
-                            <td>Castro</td>
-                            <td>12345678-9</td>
-                            <td>eduardo@gmail.com</td>
-                            <td>7823-0998</td>
-                            <td>Inactivo</td>
-                            <td>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#ver_cliente"><img src="../../resources/img/svg/info_icon.svg"
-                                        width="35px"></button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
+                <!--Aca aparecera el codigo para mostrar el mensaje cuando no se encuentren los registros-->
+                <div id="anyTable"></div>
             </div>
         </div>
 
@@ -207,8 +175,14 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la libreria para alertas -->
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Agregamos el controlador general de la aplicacion-->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
-    <script src="../../controllers/utils/admin.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
+    <!-- Agregamos el controlador de la pagina web -->
+    <script type="text/javascript" src="../../controllers/admin/clientes.js"></script>
 </body>
 
 </html>
