@@ -8,6 +8,9 @@ const SEARCH_INPUT = document.getElementById('searchInput');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 
+// CARTAS QUE SE MUESTRAN AL ABRIR EL MODAL DE PERMISOS
+const CARDS = document.getElementById('tarjetas');
+
 //MODAL PARA CREAR/ACTUALIZAR REGISTROS
 const SAVE_MODAL = new bootstrap.Modal('#saveModal')
 
@@ -74,19 +77,14 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 
-const openUpdate = async (id) => {
+const openView = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
     FORM.append('id_pedido', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
+    const DATA = await fetchData(PEDIDOS_API, 'readTwo', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se muestra la caja de diálogo con su título.
-        VIEW_MODAL.show();
-        // Se prepara el formulario.
-        SAVE_FORM.reset();
-        // Se inicializan los campos con los datos.
         const [ROW] = DATA.dataset;
         ID_PEDIDO_VIEW.value = ROW.id_pedido;
         NOMBRE_CLIENTE.textContent = ROW.nombre_cliente;
@@ -94,6 +92,9 @@ const openUpdate = async (id) => {
         ESTADO_PEDIDO.textContent = ROW.estado;
         TOTAL_A_PAGAR.textContent = ROW.precio_total;
 
+        await fillCards(null, id);
+        VIEW_MODAL.show();
+        // Se prepara el formulario.
 
     } else {
         sweetAlert(2, DATA.error, false);
@@ -124,6 +125,46 @@ const openOrderStatus = async (id) => {
 
 }
 
+//Funcion que cargara los productos de ese cliente en el modal de viewModal.
+const fillCards = async (form = null, id) => {
+    CARDS.innerHTML = '';
+    const FORM = new FormData();
+    FORM.append('id_pedido', id);
+    const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
+
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
+            CARDS.innerHTML += `
+            <li
+            class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
+            <img src="${SERVER_URL}images/productos/${row.imagen_producto}" alt="Imagen" height="90">
+            <!-- Información del producto -->
+            <div class="ms-2 me-auto">
+                <span class="badge badge-custom text-dark shadow mb-4"
+                    id="Cantidad_InformacionPedidos"
+                    name="Cantidad__InformacionPedidosN">${row.cantidad}</span>
+                <div class="marca" id="Marca_InformacionPedidos"
+                    name="Marca_InformacionPedidosN"> ${row.nombre_marca}</div>
+                <div class="producto" id="Producto_InformacionPedidos"
+                    name="Producto__InformacionPedidosN"> ${row.nombre_producto}
+                </div>
+            </div>
+            <!-- Opciones para el producto -->
+            <div class="d-flex flex-column mb-3">
+                <div class="p-2 text-end">
+                    <button type="button" class="btn-close btn-close-red" onclick="openDeleteDetail(${row.id_detalle_pedido}, ${row.id_pedido})"></button>
+                </div>
+                <div class="p-2">
+                    <label class="fw-bold" id="Precio_InformacionPedidosN">${row.precio}</label>
+                </div>
+            </div>
+        </li>
+            `
+        });
+    } else {
+        sweetAlert(3, DATA.error, true);
+    }
+}
 
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
@@ -142,6 +183,29 @@ const openDelete = async (id) => {
             await sweetAlert(1, DATA.message, true);
             // Se carga nuevamente la tabla para visualizar los cambios.
             fillTable();
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
+    }
+}
+
+const openDeleteDetail = async (id, id_pedido) => {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Desea eliminar este producto del pedido de forma permanente?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define una constante tipo objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        console.log(id);
+        FORM.append('id_detalle_pedido', id);
+        // Petición para eliminar el registro seleccionado.
+        const DATA = await fetchData(PEDIDOS_API, 'deleteRow2', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, DATA.message, true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            await fillCards(null, id_pedido);
         } else {
             sweetAlert(2, DATA.error, false);
         }
@@ -170,7 +234,7 @@ const fillTable = async (form = null) => {
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-light" onclick="openUpdate(${row.id_cupon})">
+                        <button type="button" class="btn btn-light" onclick="openView(${row.id_pedido})">
                         <img src="../../resources/img/svg/edit_icon.svg" width="35px">
                         </button>
                     </td>        

@@ -53,6 +53,17 @@ class pedidos_handler
         return Database::executeRow($sql, $params);
     }
 
+    public function deleteRow2()
+    {
+        $sql = 'DELETE FROM valoraciones  WHERE id_detalle_pedido = ?; 
+                DELETE FROM detalles_pedidos  WHERE id_detalle_pedido = ?;';
+       $params = array(
+        $this->id_pedido_p,
+        $this->id_pedido_p
+    );
+        return Database::executeRow($sql, $params);
+    }
+
     public function readOne1()
     {
         $sql = 'SELECT * FROM pedido_view_one_I WHERE Id_pedido = ?;';

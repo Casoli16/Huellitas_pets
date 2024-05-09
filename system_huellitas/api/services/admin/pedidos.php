@@ -83,6 +83,16 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrio un problema al eliminar el pedido';
                 }
                 break;
+                case 'deleteRow2':
+                    if (!$pedidos->setIdPedido($_POST['id_detalle_pedido'])) {
+                        $result['error'] = $pedidos->getDataError();
+                    } elseif ($pedidos->deleteRow2()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Producto eliminado correctamente del pedido';
+                    } else {
+                        $result['error'] = 'Ocurrio un problema al eliminar el producto';
+                    }
+                    break;
         }
         // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
         $result['exception'] = Database::getException();

@@ -80,6 +80,7 @@ SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view WHERE cliente LIKE '%Car
 CREATE VIEW pedido_view_one_I AS
 SELECT 
     p.id_pedido,
+    dp.id_detalle_pedido,
     dp.cantidad_detalle_pedido AS cantidad,
     CONCAT('$', dp.precio_detalle_pedido) AS precio,
     m.nombre_marca,
