@@ -73,8 +73,6 @@ const fillSelectStatic = (textList, select, selectedText = null) => {
     if (textList.length === 0) {
         content += '<option>No hay opciones disponibles</option>';
     } else {
-        content += '<option value="" selected>Seleccione una opción</option>';
-
         // Recorremos la lista de textos y generamos las opciones del select.
         textList.forEach(text => {
             // El valor y el texto serán iguales.
