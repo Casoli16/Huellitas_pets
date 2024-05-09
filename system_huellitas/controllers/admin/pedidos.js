@@ -133,6 +133,8 @@ const fillCards = async (form = null, id) => {
     const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
 
     if (DATA.status) {
+        const cantidad_registros = DATA.dataset.length;
+        console.log(cantidad_registros);
         DATA.dataset.forEach(row => {
             CARDS.innerHTML += `
             <li
@@ -152,7 +154,7 @@ const fillCards = async (form = null, id) => {
             <!-- Opciones para el producto -->
             <div class="d-flex flex-column mb-3">
                 <div class="p-2 text-end">
-                    <button type="button" class="btn-close btn-close-red" onclick="openDeleteDetail(${row.id_detalle_pedido}, ${row.id_pedido})"></button>
+                    <button type="button" class="btn-close btn-close-red" onclick="openDeleteDetail(${row.id_detalle_pedido}, ${row.id_pedido}, ${cantidad_registros})"></button>
                 </div>
                 <div class="p-2">
                     <label class="fw-bold" id="Precio_InformacionPedidosN">${row.precio}</label>
@@ -189,9 +191,10 @@ const openDelete = async (id) => {
     }
 }
 
-const openDeleteDetail = async (id, id_pedido) => {
+const openDeleteDetail = async (id, id_pedido, cant_registros) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar este producto del pedido de forma permanente?');
+    const RESPONSE2 = await confirmAction('Si eliminas el último producto del pedido, este estará vacío, ¿Deseas eliminarlo?');
     // Se verifica la respuesta del mensaje.
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
@@ -199,6 +202,21 @@ const openDeleteDetail = async (id, id_pedido) => {
         console.log(id);
         FORM.append('id_detalle_pedido', id);
         // Petición para eliminar el registro seleccionado.
+        // Petición para eliminar el registro seleccionado.
+        if (cant_registros === 1) {
+           if(RESPONSE2){
+            const DATA = await fetchData(PEDIDOS_API, 'deleteRow2', FORM);
+            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+            if (DATA.status) {
+                // Se muestra un mensaje de éxito.
+                await sweetAlert(1, DATA.message, true);
+                // Se carga nuevamente la tabla para visualizar los cambios.
+            await fillCards(null, id_pedido);
+            } else {
+                sweetAlert(2, DATA.error, false);
+            }
+           }
+        }
         const DATA = await fetchData(PEDIDOS_API, 'deleteRow2', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (DATA.status) {
