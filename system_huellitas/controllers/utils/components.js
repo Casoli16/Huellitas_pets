@@ -61,6 +61,38 @@ const sweetAlert = async (type, text, timer, url = null) => {
 }
 
 /*
+*   Función asíncrona para cargar las opciones en un select de formulario, en caso de que la lista sea estatica.
+*   Parámetros: textlist (Lista de opciones), select (id del select), selected (dato opcional con el valor seleccionado).
+*   Retorno: ninguno.
+*/
+
+const fillSelectStatic = (textList, select, selectedText = null) => {
+    let content = '';
+
+    // Comprobamos si la lista de textos está vacía.
+    if (textList.length === 0) {
+        content += '<option>No hay opciones disponibles</option>';
+    } else {
+        content += '<option value="" selected>Seleccione una opción</option>';
+
+        // Recorremos la lista de textos y generamos las opciones del select.
+        textList.forEach(text => {
+            // El valor y el texto serán iguales.
+            const value = text;
+            // Verificamos si esta opción debe estar seleccionada.
+            if (value !== selectedText) {
+                content += `<option value="${value}">${text}</option>`;
+            } else {
+                content += `<option value="${value}" selected>${text}</option>`;
+            }
+        });
+    }
+
+    // Agregamos las opciones al elemento select mediante su id.
+    document.getElementById(select).innerHTML = content;
+}
+
+/*
 *   Función asíncrona para cargar las opciones en un select de formulario.
 *   Parámetros: filename (nombre del archivo), action (acción a realizar), select (identificador del select en el formulario) y selected (dato opcional con el valor seleccionado).
 *   Retorno: ninguno.
@@ -118,7 +150,7 @@ function preselectOption(selectElement, valueToSelect) {
 }
 
 
-// Funcion para cerrar la sesion del admin.
+    // Funcion para cerrar la sesion del admin.
 const logOut = async () => {
     const RESPONSE = await confirmAction('¿Está seguro que desea cerrar sesión?');
 

@@ -40,7 +40,7 @@ class pedidos_data extends pedidos_handler{
             $this->data_error = 'El contenido debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombreProducto = $value;
+            $this->estado_pedido_p = $value;
             return true;
         } else {
             $this->data_error = 'El contenido debe tener una longitud entre ' . $min . ' y ' . $max;

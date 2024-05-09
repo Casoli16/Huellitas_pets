@@ -13,7 +13,7 @@ const SAVE_MODAL = new bootstrap.Modal('#saveModal')
 
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_PEDIDO = document.getElementById('idCupon'),
+    ID_PEDIDO = document.getElementById('id_pedido'),
     ESTADO = document.getElementById('estado')
 
 const VIEW_MODAL = new bootstrap.Modal('#viewModal'),
@@ -51,32 +51,24 @@ const searchRow = async () => {
 
 // Escuchamos el evento 'submit' del formulario
 SAVE_FORM.addEventListener('submit', async (event) => {
-    // Evitar que el formulario se envíe y la página se recargue
+    // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-
-    // Determinar la acción a realizar (actualización o creación de un cupón)
-    action = 'createRow';
-
-    // Obtener los datos del formulario
+    action = 'updateRow'
+    console.log(action);
+    // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
-
-    // Enviar los datos del formulario al servidor y manejar la respuesta
+    console.log(FORM.get('id_pedido'));
+    console.log(FORM.get('estado'));
+    // Petición para guardar los datos del formulario.
     const DATA = await fetchData(PEDIDOS_API, action, FORM);
-
-    console.log(DATA);
-    // Verificar si la respuesta del servidor fue satisfactoria
+    console.log(DATA)
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Ocultar el modal
+        // Se cierra la caja de diálogo.
         SAVE_MODAL.hide();
-        // Mostrar mensaje de éxito
+        // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
-        // Volver a llenar la tabla para mostrar los cambios
-        fillTable();
-        //Cargamos la imagen por defecto
-        IMAGEN.src = '../../resources/img/png/rectangulo.png'
     } else {
-        // Mostrar mensaje de error
-        console.log(DATA.error);
         sweetAlert(2, DATA.error, false);
     }
 });
@@ -107,6 +99,31 @@ const openUpdate = async (id) => {
         sweetAlert(2, DATA.error, false);
     }
 }
+
+const openOrderStatus = async (id) => {
+    const options = ['pendiente', 'completado', 'cancelado'];
+    ID_PEDIDO.value = id;
+    const FORM = new FormData();
+    FORM.append('id_pedido', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(PEDIDOS_API, 'readThree', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se inicializan los campos con los datos.
+        const [ROW] = DATA.dataset;
+        ESTADO.value = ROW.estado_pedido;
+        // Llenamos el select con las opciones y ponemos la opción predeterminada.
+        fillSelectStatic(options, 'estado', ROW.estado_pedido);
+        // Se abre el modal
+        SAVE_MODAL.show();
+        // Se prepara el formulario.
+        SAVE_FORM.reset();
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+
+}
+
 
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
@@ -148,7 +165,7 @@ const fillTable = async (form = null) => {
                     <td>${row.fecha}</td>
                     <td>${row.cantidad}</td>
                     <td>
-                        <button type="button" class="btn btn-light" onclick="openUpdate(${row.id_pedido})">
+                        <button type="button" class="btn btn-light" onclick="openOrderStatus(${row.id_pedido})">
                         <img src="../../resources/img/png/eye.square.png" width="35px">
                         </button>
                     </td>

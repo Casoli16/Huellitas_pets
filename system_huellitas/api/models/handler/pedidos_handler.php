@@ -59,6 +59,13 @@ class pedidos_handler
         $params = array($this->id_pedido_p);
         return Database::getRows($sql, $params);
     }
+
+    public function readOne3()
+    {
+        $sql = 'SELECT estado_pedido FROM pedidos WHERE Id_pedido = ?;';
+        $params = array($this->id_pedido_p);
+        return Database::getRows($sql, $params);
+    }
     public function readOne2()
     {
         $sql = 'SELECT * FROM pedido_view_two_II WHERE id_pedido = ?;';

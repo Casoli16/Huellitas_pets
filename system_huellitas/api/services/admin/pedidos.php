@@ -64,6 +64,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'pedido inexistente';
                 }
                 break;
+            case 'readThree':
+                if (!$pedidos->setIdPedido($_POST['id_pedido'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->readOne3()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No se encuentra un valor en el estado';
+                }
+                break;
             case 'deleteRow':
                 if (!$pedidos->setIdPedido($_POST['id_pedido'])) {
                     $result['error'] = $pedidos->getDataError();
