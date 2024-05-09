@@ -204,29 +204,32 @@ const openDeleteDetail = async (id, id_pedido, cant_registros) => {
         // Petición para eliminar el registro seleccionado.
         // Petición para eliminar el registro seleccionado.
         if (cant_registros === 1) {
-           if(RESPONSE2){
+            if (RESPONSE2) {
+                const DATA = await fetchData(PEDIDOS_API, 'deleteRow2', FORM);
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (DATA.status) {
+                    // Se muestra un mensaje de éxito.
+                    await sweetAlert(1, DATA.message, true);
+                    // Se carga nuevamente la tabla para visualizar los cambios.
+                    await fillCards(null, id_pedido);
+                } else {
+                    sweetAlert(2, DATA.error, false);
+                }
+            }
+        }
+        else {
             const DATA = await fetchData(PEDIDOS_API, 'deleteRow2', FORM);
             // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
             if (DATA.status) {
                 // Se muestra un mensaje de éxito.
                 await sweetAlert(1, DATA.message, true);
                 // Se carga nuevamente la tabla para visualizar los cambios.
-            await fillCards(null, id_pedido);
+                await fillCards(null, id_pedido);
             } else {
                 sweetAlert(2, DATA.error, false);
             }
-           }
         }
-        const DATA = await fetchData(PEDIDOS_API, 'deleteRow2', FORM);
-        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        if (DATA.status) {
-            // Se muestra un mensaje de éxito.
-            await sweetAlert(1, DATA.message, true);
-            // Se carga nuevamente la tabla para visualizar los cambios.
-            await fillCards(null, id_pedido);
-        } else {
-            sweetAlert(2, DATA.error, false);
-        }
+
     }
 }
 
