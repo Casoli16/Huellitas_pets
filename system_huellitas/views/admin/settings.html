@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas Pets - Ajustes</title>
     <!-- Icono de la pestaña del navegador -->
-    <link type="image/png" rel="icon" href="../../resources/img/png/huellita_logo_without_text.png">
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
     <!-- Framework Bootstrap - CSS -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Estilos propios -->
@@ -18,7 +18,7 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
 </head>
 
-<body class="mt-5">
+<body>
     <!-- Encabezado de la página -->
     <header class="container_one">
         <!-- Insertar nuestro navbar a esta pantalla usando js -->
@@ -32,94 +32,88 @@
     <main>
         <div class="col-11">
             <div class="container-fluid contenedor_datos rounded-4 mb-5">
-                <!-- Encabezado de la sección -->
-                <div class="container-fluid p-4 mt-5">
-                    <div class="d-flex">
-                        <img src="../../resources/img/svg/settings.svg" class="custom-margin-right imagen_logo" alt="">
-                        <h2 class="mt-2"><strong>Ajustes</strong></h2>
-                        <div class="row"></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <!-- Contenido de la sección de ajustes -->
-                    <div class="container d-flex align-items-center justify-content-center">
-                        <!-- Imagen del perfil -->
-                        <img src="../../resources/img/png/huellitas_logo_without_text.png"
-                            class="img-fluid imagen_perfil" stalt="">
-                    </div>
-                    <br>
-                    <div class="container text-center">
-                        <!-- Botón para cargar imagen -->
-                        <button type="button" class="btn btn-orange-color text-white"> Cargar Imagen</button>
-                        <br>
-                        <br>
-                        <br>
-                        <!-- Campos para nombre, apellido, correo, alias y contraseña -->
-                        <div class="mb-3 row container d-flex align-items-center justify-content-center">
-                            <label for="nombre_cliente_ajustes"
-                                class="col-sm-1 col-form-label texto_input"><strong>Nombre</strong></label>
-                            <div class="col-sm-6">
-                                <input class="form-control input-sm tamanio_input bg-white" type="text"
-                                    name="nombreClienteAjustes" id="nombre_cliente_ajustes">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb-3 row container d-flex align-items-center justify-content-center">
-                            <label for="apellido_cliente_ajustes"
-                                class="col-sm-1 col-form-label texto_input"><strong>Apellido</strong></label>
-                            <div class="col-sm-6">
-                                <input class="form-control tamanio_input bg-white" type="text"
-                                    name="apellido_cliente_ajustes" id="apellidoClienteAjustes">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb-3 row container d-flex align-items-center justify-content-center">
-                            <label for="correo_cliente_ajustes"
-                                class="col-sm-1 col-form-label texto_input"><strong>Correo</strong></label>
-                            <div class="col-sm-6">
-                                <input class="form-control tamanio_input bg-white" type="email"
-                                    name="correoClienteAjustes" id="correo_cliente_ajustes">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb-3 row container d-flex align-items-center justify-content-center">
-                            <label for="alias_cliente_ajustes" class="col-sm-1 col-form-label texto_input"><strong>Alias
-                                    del usuario</strong></label>
-                            <div class="col-sm-6">
-                                <input class="form-control tamanio_input bg-white" type="text"
-                                    name="aliasClienteAjustes" id="alias_cliente_ajustes">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="mb-0 row container d-flex align-items-center justify-content-center">
-                            <label for="contrasenia_cliente_ajustes"
-                                class="col-sm-1 col-form-label texto_input"><strong>Contraseña</strong></label>
-                            <div class="col-sm-6">
-                                <input type="password" name="contraseniaClienteAjustes" id="contrasenia_cliente_ajustes"
-                                    class="form-control tamanio_input bg-white">
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-                        <!--.............-->
-                        <!-- Botón para guardar cambios -->
-                        <div class="container">
-                            <button type="btn me-md-2"
-                                class="btn btn-orange-color text-white boton_guardar">Guardar</button>
+                <form id="saveForm">
+                    <!-- Encabezado de la sección -->
+                    <div class="container-fluid p-4 mt-5">
+                        <input type="hidden" id="idAdministrador" name="idAdministrador">
+                        <div class="d-flex">
+                            <img src="../../resources/img/svg/settings.svg" class="custom-margin-right imagen_logo" alt="">
+                            <h2 class="mt-2"><strong>Ajustes</strong></h2>
+                            <div class="row"></div>
+                            <h1 class="fw-bold text-light" id="greetings" hidden></h1>
                         </div>
                     </div>
-                    <br>
-                    <br>
-                    <br>
-                    <!-- Botón para cerrar sesión -->
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="../admin/index_admin.html" class="btn btn-light me-md-2 boton_cerrar_sesion"
-                            type="button"><img src="../../resources/img/svg/close_sesion.svg"
-                                class="tamanio_edicion_botones" alt="">
-                            Cerrar Sesión</a>
+                    <div class="col">
+                        <!-- Contenido de la sección de ajustes -->
+                        <div class="container d-flex align-items-center justify-content-center">
+                            <!-- Imagen del perfil -->
+                            <img class="picture rounded-circle" src="../../resources/img/png/rectangulo.png" id="adminImg">
+                        </div>
+                        <br>
+                        <div class="container text-center">
+                            <!-- Botón para cargar imagen -->
+                            <input type="file" class="form-control" id="imgAdmin" name="imagenAdmin" hidden required>
+                            <label class="btn btn-orange-color text-light " for="imgAdmin">Cargar
+                                imagen</label>
+                            <br>
+                            <br>
+                            <br>
+                            <!-- Campos para nombre, apellido, correo, alias y contraseña -->
+                            <div class="mb-3 row container d-flex align-items-center justify-content-center">
+                                <label for="nombreAdmin" class="col-sm-1 col-form-label texto_input"><strong>Nombre</strong></label>
+                                <div class="col-sm-6">
+                                    <input class="form-control input-sm tamanio_input bg-white" type="text" name="adminName" id="adminName" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="mb-3 row container d-flex align-items-center justify-content-center">
+                                <label for="apellidoAdmin"
+                                    class="col-sm-1 col-form-label texto_input"><strong>Apellido</strong></label>
+                                <div class="col-sm-6">
+                                    <input class="form-control tamanio_input bg-white" type="text"
+                                        name="adminApellido" id="adminApellido" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="mb-3 row container d-flex align-items-center justify-content-center">
+                                <label for="AdminEmail"
+                                    class="col-sm-1 col-form-label texto_input"><strong>Correo</strong></label>
+                                <div class="col-sm-6">
+                                    <input class="form-control tamanio_input bg-white" type="email"
+                                        name="AdminEmail" id="AdminEmail" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="mb-3 row container d-flex align-items-center justify-content-center">
+                                <label for="AdminAlias" class="col-sm-1 col-form-label texto_input"><strong>Alias
+                                        del usuario</strong></label>
+                                <div class="col-sm-6">
+                                    <input class="form-control tamanio_input bg-white" type="text"
+                                        name="AdminAlias" id="AdminAlias" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="mb-0 row container d-flex align-items-center justify-content-center">
+                                <label for="AdminPassword"
+                                    class="col-sm-1 col-form-label texto_input"><strong>Contraseña</strong></label>
+                                <div class="col-sm-6">
+                                    <input type="password" name="AdminPassword" id="AdminPassword"
+                                        class="form-control tamanio_input bg-white">
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <!--.............-->
+                            <!-- Botón para guardar cambios -->
+                            <div class="container">
+                                <button type="submit" class="btn btn-orange-color text-white boton_guardar"data-bs-dismiss="modal">Guardar</button>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
                     </div>
-                    <br>
-                </div>
+                </form>      
             </div>
         </div>
     </main>
@@ -127,6 +121,9 @@
     <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript" src="../../controllers/admin/settings.js"></script>
 </body>
 
 </html>
