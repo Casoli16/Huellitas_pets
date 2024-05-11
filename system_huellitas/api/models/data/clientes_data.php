@@ -85,20 +85,20 @@ class ClientesData extends  ClientesHandler
 
     public function setFechaNacimiento($value)
     {
-        $this->fechaNacimientoCliente = $value;
-        return true;
+        if(!Validator::validateDate($value)){
+            $this->data_error = 'Ingrese una fecha válida';
+            return false;
+        }else{
+            $this->fechaNacimientoCliente = $value;
+            return true;
+        }
 
     }
 
     public function setDireccionCliente($value)
     {
-        if(!Validator::validateAlphabetic($value)){
-            $this->data_error = 'La dirección debe ser alfanúmerica';
-            return false;
-        }else{
-            $this->direccionCliente = $value;
-            return true;
-        }
+        $this->direccionCliente = $value;
+        return true;
     }
 
     public function setClaveCliente($value)
@@ -114,13 +114,9 @@ class ClientesData extends  ClientesHandler
 
     public function setEstadoCliente($value)
     {
-        if(!Validator::validateBoolean($value)){
-            $this->data_error = 'El dato ingresado no es un booleano';
-            return false;
-        }else{
-            $this->estadoCliente = $value;
-            return true;
-        }
+        $this->estadoCliente = $value;
+        return true;
+
     }
     public function setFechaRegistro($value)
     {

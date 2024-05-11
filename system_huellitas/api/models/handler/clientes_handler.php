@@ -29,7 +29,7 @@ class ClientesHandler
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT *
                 FROM clientes
-                WHERE nombre_cliente LIKE ? OR correo_cliente LIKE ?
+                WHERE nombre_cliente LIKE ? OR apellido_cliente LIKE ?
                 ORDER BY nombre_cliente';
         $params = array($value, $value);
         return Database::getRows($sql, $params);

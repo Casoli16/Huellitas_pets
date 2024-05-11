@@ -38,11 +38,11 @@
         <div class="container mt-4">
             <!-- Buscador -->
             <div class="row align-items-center ">
+                <!--Buscador-->
                 <div class="col-md-6 col-lg-6">
-                    <form class="d-flex" role="search" id="search_clientes">
-                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="search" name="search" placeholder="Buscar...">
-                    </form>
+                    <!--Ocupamos el evento oninput para que cuando se detecte que se esta escribiendo en el input llame a la funcion searchhRow-->
+                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search"
+                           id="searchInput" name="search" placeholder="Buscar...">
                 </div>
             </div>
         </div>
@@ -52,9 +52,9 @@
                 <table class="table align-middle">
                     <!-- Encabezado de las tablas -->
                     <thead class="table table-responsive">
-                    <tr>
-                        <td colspan="8" id="rowsFound" hidden></td>
-                    </tr>
+                        <tr>
+                            <td colspan="8" id="rowsFound" hidden></td>
+                        </tr>
                         <tr>
                             <th>Imagen</th>
                             <th>Nombre</th>
@@ -75,28 +75,27 @@
         </div>
 
         <!-- Modals -->
-        <!-- Ver admin -->
-        <div class="modal fade" id="ver_cliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Ver cliente -->
+        <div class="modal fade" id="seeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <!-- El modal se centra con modal-dialog-center, cuando esta en pantallas pequeñas toma todo el espacio de las pantallas -->
             <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center text-light">
-                            <h1 class="modal-title fs-5 text-center fw-bold" id="exampleModalLabel">Información del
-                                cliente
-                            </h1>
+                            <h1 class="modal-title fs-5 text-center fw-bold" id="modalTitle"></h1>
                         </div>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" id="ver_cliente">
+                        <form action="" id="seeForm">
                             <!-- Fila 1 -->
+                            <input type="text" class="form-control" name="idCliente" hidden="">
                             <div class="container text-center">
                                 <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-12 col-md-auto">
-                                        <img class="rounded-1" id="img_admin" src="../../resources/img/png/mujeeer.png"
-                                            width="120px">
+                                        <img class="rounded-1" id="imgCliente" src="../../resources/img/png/mujeeer.png"
+                                            width="150px" height="120px">
                                     </div>
                                 </div>
                             </div>
@@ -105,68 +104,70 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
-                                            <label for="nombre_cliente" class="form-label fw-semibold">Nombre</label>
-                                            <input type="text" class="form-control" id="nombre_cliente"
-                                                name="nombre_cliente" disabled>
+                                            <label for="nombreCliente" class="form-label fw-semibold">Nombre</label>
+                                            <input type="text" class="form-control" id="nombreCliente"
+                                                name="nombreCliente" disabled>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="apellido_cliente"
+                                            <label for="apellidoCliente"
                                                 class="form-label fw-semibold">Apellidos</label>
-                                            <input type="text" class="form-control" id="apellido_cliente"
-                                                name="apellido_cliente" disabled>
+                                            <input type="text" class="form-control" id="apellidoCliente"
+                                                name="apellidoCliente" disabled>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="contra_cliente" class="form-label fw-semibold">Teléfono</label>
-                                            <input type="text" class="form-control" id="contra_cliente"
-                                                name="correo_cliente" disabled>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="contra_cliente" class="form-label fw-semibold">Dirección</label>
-                                            <input type="text" class="form-control" id="contra_cliente"
-                                                name="correo_cliente" disabled>
+                                            <label for="telCliente" class="form-label fw-semibold">Teléfono</label>
+                                            <input type="text" class="form-control" id="telCliente"
+                                                name="telefonoliente" disabled>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="contra_cliente" class="form-label fw-semibold">Estado actual del
+                                            <label for="direccionCliente"
+                                                class="form-label fw-semibold">Dirección</label>
+                                            <input type="text" class="form-control" id="direccionCliente"
+                                                name="direccionCliente" disabled>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="estadoCliente" class="form-label fw-semibold">Estado actual del
                                                 cliente</label>
-                                            <input type="text" class="form-control" id="estado_cliente"
-                                                name="estado_cliente" disabled>
+                                            <input type="text" class="form-control" id="estadoCliente"
+                                                name="estadoCliente" disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="mb-3">
-                                            <label for="email_cliente" class="form-label fw-semibold">Correo</label>
-                                            <input type="email" class="form-control" id="email_cliente"
-                                                name="email_cliente" disabled>
+                                            <label for="emailCliente" class="form-label fw-semibold">Correo</label>
+                                            <input type="email" class="form-control" id="emailCliente"
+                                                name="emailCliente" disabled>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="alias_cliente" class="form-label fw-semibold">DUI</label>
-                                            <input type="text" class="form-control" id="alias_cliente"
-                                                name="alias_cliente" disabled>
+                                            <label for="duiCliente" class="form-label fw-semibold">DUI</label>
+                                            <input type="text" class="form-control" id="duiCliente" name="duiCliente"
+                                                disabled>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="alias_cliente" class="form-label fw-semibold">Fecha de
+                                            <label for="nacimientoCliente" class="form-label fw-semibold">Fecha de
                                                 nacimiento</label>
-                                            <input type="text" class="form-control" id="alias_cliente"
-                                                name="alias_cliente" disabled>
+                                            <input type="text" class="form-control" id="nacimientoCliente"
+                                                name="nacimientoCliente" disabled>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="alias_cliente" class="form-label fw-semibold">Fecha registro
+                                            <label for="fechaRegistroCliente" class="form-label fw-semibold">Fecha
+                                                registro
                                                 cliente</label>
-                                            <input type="text" class="form-control" id="contra_cliente"
+                                            <input type="text" class="form-control" id="fechaRegistroCliente"
                                                 name="fecha_registro_cliente" disabled>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                    </div>
-                    <div class="container text-center mb-4 mt-4">
-                        <button type="button" class="btn btn-orange-color text-light me-3"
-                            data-bs-dismiss="modal">Regresar</button>
-                    </div>
+                            <div class="container text-center mb-4 mt-4">
+                                <button type="button" class="btn btn-orange-color text-light me-3"
+                                    data-bs-dismiss="modal">Regresar</button>
+                            </div>
+                            </div>
                     </form>
                 </div>
             </div>
