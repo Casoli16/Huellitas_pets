@@ -76,6 +76,16 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     const swver_permiso = VER_PERMISO.checked ? 1 : 0;
     const swver_usuario = VER_USUARIO.checked ? 1 : 0;
 
+    // Verificar si al menos un permiso está activo
+    const isAnyPermissionActive =
+        swver_cliente || swver_marca || swver_pedido || swver_comentario ||
+        swver_producto || swver_categoria || swver_cupon || swver_permiso || swver_usuario;
+
+    if (!isAnyPermissionActive) {
+        // Mostrar SweetAlert con el mensaje de error
+        sweetAlert(2, "¡Activa por lo menos un permiso!", false);
+        return; // Detener el proceso
+    }
     FORM.set('ver_cliente', swver_cliente);
     FORM.set('ver_marca', swver_marca);
     FORM.set('ver_pedido', swver_pedido);
