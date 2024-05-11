@@ -47,7 +47,7 @@
                         <!-- Contenido de la sección de ajustes -->
                         <div class="container d-flex align-items-center justify-content-center">
                             <!-- Imagen del perfil -->
-                            <img class="picture rounded-circle" src="../../resources/img/png/rectangulo.png" id="adminImg">
+                            <img class="picture rounded-circle" src="../../resources/img/png/rectangulo.png" id="imagen">
                         </div>
                         <br>
                         <div class="container text-center">
@@ -62,7 +62,7 @@
                             <div class="mb-3 row container d-flex align-items-center justify-content-center">
                                 <label for="nombreAdmin" class="col-sm-1 col-form-label texto_input"><strong>Nombre</strong></label>
                                 <div class="col-sm-6">
-                                    <input class="form-control input-sm tamanio_input bg-white" type="text" name="adminName" id="adminName" required>
+                                    <input class="form-control input-sm tamanio_input bg-grey" type="text" name="nombreAdmin" id="adminName" required>
                                 </div>
                             </div>
                             <br>
@@ -70,8 +70,8 @@
                                 <label for="apellidoAdmin"
                                     class="col-sm-1 col-form-label texto_input"><strong>Apellido</strong></label>
                                 <div class="col-sm-6">
-                                    <input class="form-control tamanio_input bg-white" type="text"
-                                        name="adminApellido" id="adminApellido" required>
+                                    <input class="form-control tamanio_input bg-grey" type="text"
+                                        name="apellidoAdmin" id="adminApellido" required>
                                 </div>
                             </div>
                             <br>
@@ -79,8 +79,8 @@
                                 <label for="AdminEmail"
                                     class="col-sm-1 col-form-label texto_input"><strong>Correo</strong></label>
                                 <div class="col-sm-6">
-                                    <input class="form-control tamanio_input bg-white" type="email"
-                                        name="AdminEmail" id="AdminEmail" required>
+                                    <input class="form-control tamanio_input bg-grey" type="email"
+                                        name="correoAdmin" id="AdminEmail" required>
                                 </div>
                             </div>
                             <br>
@@ -88,8 +88,8 @@
                                 <label for="AdminAlias" class="col-sm-1 col-form-label texto_input"><strong>Alias
                                         del usuario</strong></label>
                                 <div class="col-sm-6">
-                                    <input class="form-control tamanio_input bg-white" type="text"
-                                        name="AdminAlias" id="AdminAlias" required>
+                                    <input class="form-control tamanio_input bg-grey" type="text"
+                                        name="aliasAdmin" id="AdminAlias" readonly required>
                                 </div>
                             </div>
                             <br>
@@ -97,8 +97,8 @@
                                 <label for="AdminPassword"
                                     class="col-sm-1 col-form-label texto_input"><strong>Contraseña</strong></label>
                                 <div class="col-sm-6">
-                                    <input type="password" name="AdminPassword" id="AdminPassword"
-                                        class="form-control tamanio_input bg-white">
+                                    <input type="password" name="claveAdmin" id="AdminPassword"
+                                        class="form-control tamanio_input bg-grey">
                                 </div>
                             </div>
                             <br>
@@ -106,7 +106,7 @@
                             <!--.............-->
                             <!-- Botón para guardar cambios -->
                             <div class="container">
-                                <button type="submit" class="btn btn-orange-color text-white boton_guardar"data-bs-dismiss="modal">Guardar</button>
+                                <button type="submit" class="btn btn-orange-color text-white boton_guardar">Guardar</button>
                             </div>
                         </div>
                         <br>
@@ -115,7 +115,7 @@
                     </div>
                 </form>      
             </div>
-        </div>
+        </div> 
     </main>
 
     <!-- Framework Bootstrap - JS -->
