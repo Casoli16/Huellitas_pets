@@ -26,29 +26,6 @@ class autorizaciones_data extends autorizaciones_handler
             return false;
         }
     }
-
-    
-    /*
-     * Método para guardar los permisos en un objeto
-     */
-    public function guardarPermisos($dataset)
-    {
-        // Creamos un objeto para almacenar los permisos
-        $this->permisos = new stdClass();
-        // Guardamos cada permiso en el objeto
-        $this->permisos->id_admin = $dataset['id_admin'];
-        $this->permisos->nombre_permiso = $dataset['nombre_permiso'];
-        $this->permisos->ver_usuario = $dataset['ver_usuario'];
-        $this->permisos->ver_cliente = $dataset['ver_cliente'];
-        $this->permisos->ver_marca = $dataset['ver_marca'];
-        $this->permisos->ver_pedido = $dataset['ver_pedido'];
-        $this->permisos->ver_comentario = $dataset['ver_comentario'];
-        $this->permisos->ver_producto = $dataset['ver_producto'];
-        $this->permisos->ver_categoria = $dataset['ver_categoria'];
-        $this->permisos->ver_cupon = $dataset['ver_cupon'];
-        $this->permisos->ver_permiso = $dataset['ver_permiso'];
-    }
-
     /*
      *  Métodos para obtener los atributos adicionales.
      */
