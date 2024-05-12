@@ -9,7 +9,7 @@ $valoraciones = new valoracionesData;
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
-if(isset($_SESSION['idAdministrador']) or true){
+if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario'] == 1)){
     switch($_GET['action']){
         case 'searchRows':
             if (!Validator::validateSearch($_POST['search'])){
