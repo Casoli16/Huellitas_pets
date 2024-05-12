@@ -183,6 +183,7 @@ ORDER BY
 
 SELECT * FROM cupones_oferta_vista;
 
+-- Vista para ver todos los detalles de un producto.
 CREATE VIEW  productosView AS
     SELECT
         p.id_producto,
@@ -204,4 +205,23 @@ FROM
     INNER JOIN marcas m ON m.id_marca = p.id_marca
     INNER JOIN categorias c ON c.id_categoria = p.id_categoria;
 
-SELECT * FROM productosView WHERE mascotas = 'perro';
+
+-- Vista que calcula los nuevos clientes que se han registrado en la tienda durante los ultimos siete dias
+CREATE VIEW nuevos_usuarios AS
+SELECT COUNT(*) AS newUsers
+FROM clientes
+-- Filtra la fecha que sea mayor a la de hace siete días, para eso utilizamos la función DATE_SUB,
+-- que permite restarle siete días a la fecha actual.
+WHERE clientes.fecha_registro_cliente >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY);
+
+-- Vista que permite saber el producto mas vendido.
+CREATE VIEW producto_ventas_view AS
+SELECT dp.id_producto, COUNT(*) AS cantidad_vendido,
+       pv.nombre_producto,
+       pv.nombre_categoria
+FROM detalles_pedidos dp
+INNER JOIN productosView pv ON pv.id_producto = dp.id_producto
+GROUP BY dp.id_producto
+ORDER BY cantidad_vendido DESC
+LIMIT 1;
+

@@ -85,6 +85,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen clientes registrados';
                 }
                 break;
+            case 'newUsers':
+                if ($result['dataset'] = $clientes->countNewClients()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros nuevos';
+                } else {
+                    $result['error'] = 'No existen registro nuevos de clientes';
+                }
+                break;
             case 'readOne':
                 if (!$clientes->setIdCliente($_POST['idCliente'])) {
                     $result['error'] = $clientes->getDataError();

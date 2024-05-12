@@ -87,6 +87,14 @@ if(isset($_SESSION['idAdministrador'])or true){
                 $result['error'] = 'Producto inexistente';
             }
             break;
+        case 'readTopProduct':
+            if($result['dataset'] = $productos->readTopProduct()){
+                $result['status'] = 1;
+                $result['message'] = 'Petición exitosa';
+            } else{
+                $result['error'] = 'Ocurrió un error al mostrar el producto más vendido.';
+            }
+            break;
         case 'readSpecificProduct':
             if (!$productos->setMascotas($_POST['mascota'])) {
                 $result['error'] = $productos->getDataError();

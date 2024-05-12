@@ -102,26 +102,14 @@ class ClientesHandler
         return Database::executeRow($sql, $params);
     }
 
-    //Manejo de la cuenta del cliente.
-
-    // CHECK USER - Valida las credenciales del usuario en el inicio de sesion.
-    public function checkUser($username, $password)
+    // Nuevos usuario registrados
+    public function countNewClients()
     {
-        $sql = 'SELECT id_cliente, correo_cliente, clave_cliente
-                FROM clientes
-                WHERE correo_cliente = ?';
-        $params = array($username);
-        $data = Database::getRow($sql, $params);
-        //Verificamos que la contraseña $password coincida con la contraseña hasheada en la base de datos.
-        if (password_verify($password, $data['clave_cliente'])) {
-            // Si coincide entonces se le asigna el id_cliente de la base al idCliente y lo mismo ocurre con el correo_cliente, devolviendo un true
-            $_SESSION['idCliente'] = $data['id_cliente'];
-            $_SESSION['correoCliente'] = $data['correo_cliente'];
-            return true;
-        } else {
-            return false;
-        }
+        $sql = 'SELECT * FROM nuevos_usuarios';
+        return Database::getRows($sql);
     }
+
+    //Manejo de la cuenta del cliente.
 
     // CHECK PASSWORD - Valida que la contraseña del usuario coincida con la de la base de datos.
 
@@ -137,27 +125,5 @@ class ClientesHandler
         } else {
             return false;
         }
-    }
-
-    // UPDATE PASSWORD
-
-    public function updatePassword()
-    {
-        $sql = 'UPDATE clientes
-                SET clave_cliente = ?
-                WHERE id_cliente = ?';
-        $params = array($this->claveCliente, $_SESSION['idCliente']);
-        return Database::executeRow($sql, $params);
-    }
-
-    // READ PROFILE
-
-    public function readProfile()
-    {
-        $sql = 'SELECT nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, clave_cliente, estado_cliente, fecha_registro_cliente, imagen_cliente
-                FROM clientes
-                WHERE id_cliente = ?';
-        $params = array($_SESSION['idCliente']);
-        return Database::getRow($sql, $params);
     }
 }

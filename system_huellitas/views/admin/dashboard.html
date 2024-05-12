@@ -113,10 +113,17 @@
                 <!-- Col 1 -->
                 <div class="col-md-3 col-lg-3 col-sm-12 bg-orange-color shadow p-3 rounded-4">
                     <div class="d-flex align-items-center p-2">
-                        <img class="me-3" src="../../resources/img/svg/people.svg" alt="">
-                        <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <img class="me-3" src="../../resources/img/svg/people.svg" alt="">
+                            </div>
+                            <div class="col">
+                                <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
+                                <p class="fw-light small text-light">Últimos clientes registrados en los últimos siete días</p>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text d-flex align-items-center justify-content-center fw-bold text-light">5</p>
+                    <p class="text d-flex align-items-center justify-content-center fw-bold text-light" id="newUsers"></p>
                 </div>
                 <!-- Col 2 -->
                 <div class="col-md-4 col-lg-4 col-sm-12 bg-orange-color rounded-4 mx-5 shadow p-3 rounded-4">
@@ -125,9 +132,9 @@
                         <span class="fw-semibold text-light fs-4 ">Producto más vendido</span>
                     </div>
                     <div class="p-3">
-                        <p class=" fs-5 fw-light text-light mb-0">Alimentación</p>
+                        <p class=" fs-5 fw-light text-light mb-0" id="categoryTopProduct"></p>
                         <img src="../../resources/img/svg/line.svg" alt="">
-                        <p class=" fs-5 fw-semibold text-light">Saco de Pedigree</p>
+                        <p class=" fs-5 fw-semibold text-light" id="nameTopProduct">Saco de Pedigree</p>
                     </div>
                 </div>
                 <!-- Col 3 -->
@@ -141,11 +148,9 @@
                     </div>
                     <!-- Lista de categorías -->
                     <div class="third_col">
-                        <!-- list-group-flush eliminar todos los bordes redondeados  -->
-                        <ul class="list-group list-group-flush ">
-                            <li class="list-group-item">Salud y cuidado</li>
-                            <li class="list-group-item">Alimentación</li>
-                            <li class="list-group-item">Entretenimiento</li>
+                        <!-- list-group-flush elimina todos los bordes redondeados  -->
+                        <ul class="list-group list-group-flush" id="category_list">
+
                         </ul>
                     </div>
                 </div>

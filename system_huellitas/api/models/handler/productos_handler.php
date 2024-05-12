@@ -83,6 +83,12 @@ class productosHandler
         return Database::getRows($sql, $params);
     }
 
+    //Muestra el producto mas vendido
+    public function readTopProduct()
+    {
+        $sql = 'SELECT * FROM producto_ventas_view';
+        return Database::getRows($sql);
+    }
     //    Actualizar un producto
     public function updateRow()
     {
