@@ -41,10 +41,8 @@
             <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
-                    <form class="d-flex" role="search" id="search_Comentarios">
-                        <input class="form-control rounded-4 shadow bg-white" type="search" aria-label="Search"
-                            id="busqueda_comentarios" name="busquedaComentarios" placeholder="Buscar...">
-                    </form>
+                    <!--Ocupamos el evento oninput para que cuando se detecte que se esta escribiendo en el input llame a la funcion searchhRow-->
+                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search" id="searchInput" name="search" placeholder="Buscar un producto en especifico...">
                 </div>
             </div>
         </div>
@@ -53,7 +51,10 @@
         <div class="container p-4 mt-4">
             <div class="table-responsive">
                 <table class="table">
-                    <thead>
+                    <thead class="table">
+                        <tr>
+                            <td colspan="7" id="rowsFound" hidden></td>
+                        </tr>
                         <!-- Encabezados de la tabla -->
                         <tr class="table-warning">
                             <th scope="col">Producto</th>
@@ -64,66 +65,20 @@
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td class="align-middle">Comida Rufo Para Perro Cachorro - 44lbs</td>
-                            <td class="align-middle">Juan Alberto</td>
-                            <td class="align-middle">18 de octubre de 2024</td>
-                            <td class="align-middle">5/5</td>
-                            <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt="">
-                            </td>
-                            <td class="align-middle">
-                                <!-- Botón de acción (info/detalles) -->
-                                <button type="button" class="btn img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
-                                        class="tamanio_edicion_botones" alt=""></button>
-                            </td>
-                        </tr>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td class="align-middle">Comida Rufo Para Perro Cachorro - 44lbs</td>
-                            <td class="align-middle">Juan Alberto</td>
-                            <td class="align-middle">18 de octubre de 2024</td>
-                            <td class="align-middle">5/5</td>
-                            <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt="">
-                            </td>
-                            <td class="align-middle">
-                                <!-- Botón de acción (info/detalles) -->
-                                <button type="button" class="btn img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
-                                        class="tamanio_edicion_botones" alt=""></button>
-                            </td>
-                        </tr>
-                        <!-- Datos de ejemplo en la tabla -->
-                        <tr>
-                            <td class="align-middle">Comida Rufo Para Perro Cachorro - 44lbs</td>
-                            <td class="align-middle">Juan Alberto</td>
-                            <td class="align-middle">18 de octubre de 2024</td>
-                            <td class="align-middle">5/5</td>
-                            <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt="">
-                            </td>
-                            <td class="align-middle">
-                                <!-- Botón de acción (info/detalles) -->
-                                <button type="button" class="btn img-fluid" data-bs-toggle="modal"
-                                    data-bs-target="#agcoment"><img src="../../resources/img/svg/info_icon.svg"
-                                        class="tamanio_edicion_botones" alt=""></button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
+                <div id="anyTable"></div>
             </div>
         </div>
 
         <!-- Modal para gestionar comentarios -->
-        <div class="modal fade" id="agcoment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center">
                             <!-- Título del modal -->
-                            <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Comentarios -
-                                Detalles
+                            <h1 class="modal-title fs-5 text-white fw-bold" id="titleModalInfo">Comentarios - Detalles
                             </h1>
                         </div>
                         <!-- Botón para cerrar el modal -->
@@ -131,31 +86,31 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" id="gestionar_comentario">
+                        <form action="" id="saveForm">
+                            <input type="hidden" id="idValoracion" name="idValoracion">
                             <!-- Sección para cargar información del comentario -->
                             <div class="row">
                                 <div class="col-4">
                                     <div class="container d-flex align-items-center justify-content-center">
-                                        <img src="../../resources/img/png/ejemplo_producto.png"
-                                            class="tamanio_imagen_agregar" alt="">
+                                        <img src="../../resources/img/png/ejemplo_producto.png" id="imagen" class="tamanio_imagen_agregar" alt="">
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div>
                                         <!-- Campos para nombre del producto y cliente -->
                                         <label class="fs-8 btn-orange-color fw-semibold"
-                                            for="nombre_producto_comentario">
+                                            for="nombreProductoValoracion">
                                             Producto</label>
-                                        <input type="text" name="nombreProductoComentario"
-                                            id="nombre_producto_comentario" class="form-control" aria-label="codigo"
+                                        <input type="text" name="nombreProductoValoracion"
+                                            id="nombreProductoValoracion" class="form-control" aria-label="codigo"
                                             disabled readonly>
                                     </div>
                                     <br>
                                     <div>
                                         <label class="fs-8 btn-orange-color fw-semibold"
-                                            for="nombre_cliente_comentario">
+                                            for="nombreClienteValoracion">
                                             Cliente</label>
-                                        <input type="text" name="nombre_cliente_comentario" id="nombreClienteComentario"
+                                        <input type="text" name="nombreClienteValoracion" id="nombreClienteValoracion"
                                             class="form-control" aria-label="codigo" disabled readonly>
                                     </div>
                                 </div>
@@ -164,25 +119,25 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <img src="../../resources/img/png/start_on.png" class="imagen_valoration"
-                                                alt="">
+                                                alt="" id="imagenE1">
                                         </div>
                                         <div class="col-4">
                                             <img src="../../resources/img/png/start_on.png" class="imagen_valoration"
-                                                alt="">
+                                                alt="" id="imagenE2">
                                         </div>
                                         <div class="col-4 ">
                                             <img src="../../resources/img/png/start_on.png" class="imagen_valoration"
-                                                alt="">
+                                                alt="" id="imagenE3">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
                                             <img src="../../resources/img/png/start_on.png" class="imagen_valoration"
-                                                alt="">
+                                                alt="" id="imagenE4">
                                         </div>
                                         <div class="col-6">
                                             <img src="../../resources/img/png/start_off.png" class="imagen_valoration"
-                                                alt="">
+                                                alt="" id="imagenE5">
                                         </div>
                                     </div>
                                 </div>
@@ -192,9 +147,9 @@
                             <div class="row container d-flex align-items-center mensaje_margin">
                                 <div class="mb-3">
                                     <div class="mb-3">
-                                        <label for="mensaje_comentario" class="form-label fw-semibold">Mensaje</label>
+                                        <label for="comentarioValoracion" class="form-label fw-semibold">Mensaje</label>
                                         <!-- Área de texto para el mensaje del comentario -->
-                                        <textarea class="form-control" id="mensaje_comentario" name="mensajeComentario"
+                                        <textarea class="form-control" id="comentarioValoracion" name="comentarioValoracion"
                                             rows="3" disabled></textarea>
                                     </div>
                                     <br>
@@ -216,7 +171,14 @@
 
     <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../controllers/utils/admin.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
+    <!-- Agregamos el controlador de la pagina web -->
+    <script type="text/javascript" src="../../controllers/admin/valoraciones.js"></script>
+    <!-- Agregamos la libreria para las alertas -->
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Agregamos el controlador general de la aplicacion-->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
 </body>
 
 </html>
