@@ -81,23 +81,19 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedOption();
 })
 
-const searchRow = async (input = null) => {
-    if(input){
-        fillTable(null, input);
+const searchRow = async () => {
+    //Obtenemos lo que se ha escrito en el input
+    const inputValue = SEARCH_INPUT.value;
+    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
+    const FORM = new FormData();
+    FORM.append('search', inputValue);
+    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
+    if (inputValue === '') {
+        OPTION = OPTION_PET.value;
+        fillTable(null, OPTION);
     } else {
-        //Obtenemos lo que se ha escrito en el input
-        const inputValue = SEARCH_INPUT.value;
-        // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
-        const FORM = new FormData();
-        FORM.append('search', inputValue);
-        //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
-        if (inputValue === '') {
-            OPTION = OPTION_PET.value;
-            fillTable(null, OPTION);
-        } else {
-            // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-            fillTable(FORM, null);
-        }
+        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
+        fillTable(FORM, null);
     }
 }
 
