@@ -89,6 +89,7 @@ class productosHandler
         $sql = 'SELECT * FROM producto_ventas_view';
         return Database::getRows($sql);
     }
+
     //    Actualizar un producto
     public function updateRow()
     {

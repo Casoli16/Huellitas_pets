@@ -247,7 +247,7 @@ VALUES
 SELECT * FROM pedidos;
 
 INSERT INTO detalles_pedidos (cantidad_detalle_pedido, precio_detalle_pedido, id_producto, id_pedido)
-VALUES 
+VALUES
   (20, 15.50, 1, 1),
   (10, 22.30, 2, 2),
   (30, 10.00, 3, 3),

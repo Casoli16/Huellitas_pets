@@ -19,7 +19,7 @@ class pedidos_handler
     protected $cantidad_p_unidad = null;
     protected $cantidad_p_total = null;
     protected $imagen_p_unidad = null;
-
+    protected  $monthNumber = null;
 
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
@@ -44,8 +44,6 @@ class pedidos_handler
         return Database::getRows($sql);
     }
 
-
-
     public function deleteRow()
     {
         $sql = 'DELETE FROM pedidos  WHERE id_pedido = ?;';
@@ -62,6 +60,21 @@ class pedidos_handler
         $this->id_pedido_p
     );
         return Database::executeRow($sql, $params);
+    }
+
+    //Selecciona todas las ventas de un mes en especifico
+    public function readSellingByMonth()
+    {
+        $sql = 'SELECT 
+                fecha_registro_pedido AS dia,
+                SUM(cantidad_detalle_pedido * precio_detalle_pedido) AS venta_del_dia
+                FROM pedidos p
+                JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido
+                WHERE MONTH(fecha_registro_pedido) = ?
+                GROUP BY DAY(fecha_registro_pedido)
+                ORDER BY dia;';
+        $params = array($this->monthNumber);
+        return Database::getRows($sql, $params);
     }
 
     public function readOne1()

@@ -194,26 +194,50 @@ const fetchData = async (filename, action, form = null) => {
 }
 
 
-//Funcion para los graficos.
+/*
+*   Función para generar un gráfico de barras verticales.
+*   Requiere la librería chart.js para funcionar.
+*   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
+*   Retorno: ninguno.
+*/
 
-const chart = document.getElementById('myChart');
+// Variable que guardara la grafica que se cree
+let graph = null;
+const barGraph = (canvas, xAxis, yAxis, legend, title) => {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    let colors = [];
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
+    xAxis.forEach(() => {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    });
 
-new Chart(chart, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-            backgroundColor: 'rgb(249, 87, 56)'
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+    //Verifica si la variable graph cuenta con una grafica previamente creada, si es si entonces la va destruir
+    if(graph){
+        graph.destroy();
+    }
+
+    // Vuelve a guardar la nueva grafica en la variable graph
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    graph = new Chart(document.getElementById(canvas), {
+        type: 'bar',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false
+                }
             }
         }
-    }
-});
+    });
+}

@@ -48,6 +48,12 @@ class pedidos_data extends pedidos_handler{
         }
     }
 
+    public function setMonth($value)
+    {
+        $this->monthNumber = $value;
+        return true;
+    }
+
     public function getDataError()
     {
         return $this->data_error;

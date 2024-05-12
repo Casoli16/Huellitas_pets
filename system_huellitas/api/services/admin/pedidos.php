@@ -55,6 +55,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'pedido inexistente';
                 }
                 break;
+            case 'readSellingByMonth':
+                if (!$pedidos->setMonth($_POST['month'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->readSellingByMonth()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No se encuentran ventas en el mes seleccionado';
+                }
+                break;
             case 'readTwo':
                 if (!$pedidos->setIdPedido($_POST['id_pedido'])) {
                     $result['error'] = $pedidos->getDataError();

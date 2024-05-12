@@ -38,7 +38,7 @@
                                 <form class="d-flex" id="searchDashboard" name="search_dashboard">
                                     <input class="form-control me-2 bg-white" role="search" type="search"
                                         aria-label="Search" id="search_input" name="searchInput"
-                                        placeholder="Escribe el nombre de algún producto o usuario">
+                                        placeholder="Escribe el nombre de algún producto">
                                     <button class="btn btn-orange-color text-light" type="submit"
                                         id="btn_buscador_dashboard" name="btnBuscadorDashboard">Buscar</button>
                                 </form>
@@ -56,25 +56,21 @@
                     <p class="fw-normal">Revisa las gráficas de venta que ha tenido Huellitas pet’s en estos meses.
                     </p>
                     <!-- Codigo para agregar el dropdown -->
-                    <div class="dropdown">
-                        <a class="btn btn-skin-color dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Septiembre
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Enero</a></li>
-                            <li><a class="dropdown-item" href="#">Febrero</a></li>
-                            <li><a class="dropdown-item" href="#">Marzo</a></li>
-                            <li><a class="dropdown-item" href="#">Abril</a></li>
-                            <li><a class="dropdown-item" href="#">Mayo</a></li>
-                            <li><a class="dropdown-item" href="#">Junio</a></li>
-                            <li><a class="dropdown-item" href="#">Julio</a></li>
-                            <li><a class="dropdown-item" href="#">Agosto</a></li>
-                            <li><a class="dropdown-item" href="#">Septiembre</a></li>
-                            <li><a class="dropdown-item" href="#">Octubre</a></li>
-                            <li><a class="dropdown-item" href="#">Noviembre</a></li>
-                            <li><a class="dropdown-item" href="#">Diciembre</a></li>
-                        </ul>
+                    <div class="col-4">
+                        <select class="form-select shadow bg-skin-color rounded-3" id="selectMenu" onchange="selectedOption()">
+                            <option>Enero</option>
+                            <option>Febrero</option>
+                            <option>Marzo</option>
+                            <option>Abril</option>
+                            <option>Mayo</option>
+                            <option>Junio</option>
+                            <option>Julio</option>
+                            <option>Agosto</option>
+                            <option>Septiembre</option>
+                            <option>Octubre</option>
+                            <option>Noviembre</option>
+                            <option>Diciembre</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -83,7 +79,12 @@
             <div class="row p-3 gy-4">
                 <div class="col-sm-12 col-md-8 col-lg-8">
                     <div class="shadow p-4 bg-terciary rounded">
-                        <canvas id="myChart"></canvas>
+                        <canvas id="myChart" class="d-none" height="120px"></canvas>
+                        <div id="noGraph" class="d-none text-center align-items-center p-5">
+                            <img class="img-fluid mt-5" src="../../resources/img/svg/info_icon.svg" width="100px">
+                            <p class="fw-semibold fs-5 mt-4 mb-0">Aún no se encuentran ventas en el mes seleccionado</p>
+                            <p class="fw-light">Selecciona un mes que haya recibido ventas</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Información del perfil de admin -->
@@ -119,7 +120,7 @@
                             </div>
                             <div class="col">
                                 <span class="fw-semibold text-light fs-4">Nuevos usuarios</span>
-                                <p class="fw-light small text-light">Últimos clientes registrados en los últimos siete días</p>
+                                <p class="fw-light small text-light">Clientes registrados en los últimos siete días</p>
                             </div>
                         </div>
                     </div>
