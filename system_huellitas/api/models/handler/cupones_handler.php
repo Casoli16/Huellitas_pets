@@ -62,7 +62,7 @@ class cupones_handler
 
     public  function readOne()
     {
-        $sql = 'SELECT * FROM cupones_oferta WHERE id_cupon = ?';
+        $sql = 'SELECT * FROM cupones_oferta WHERE id_cupon = ?;';
         $params = array($this->id_cupon);
         return Database::getRows($sql, $params);
     }

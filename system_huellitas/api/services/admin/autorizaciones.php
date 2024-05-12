@@ -20,7 +20,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $autorizacion->readOneAdmin()) {
                     $result['status'] = 1;
                     // Guardar los permisos en un arreglo dentro de la clase autorizaciones_data
-                    $autorizacion->guardarPermisos($result['dataset']);
+                    $_SESSION['permisos'] = $result['dataset'];
                 } else {
                     $result['error'] = 'Este administrador no tiene permisos asignados';
                 }
@@ -38,4 +38,3 @@ if (isset($_GET['action'])) {
 } else {
     print (json_encode('Recurso no disponible'));
 }
-

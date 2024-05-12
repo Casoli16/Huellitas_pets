@@ -11,7 +11,8 @@ if (isset($_GET['action'])) {
 
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
-    if (isset($_SESSION['idAdministrador'])or true) {
+
+    if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_pedido'] == 1)) {
         $result['session'] = 1;
         switch ($_GET['action']) {
             case 'searchRows':
@@ -106,6 +107,5 @@ if (isset($_GET['action'])) {
 } else {
     print (json_encode('Recurso no disponible'));
 }
-
 
 

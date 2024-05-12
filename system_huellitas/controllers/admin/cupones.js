@@ -151,6 +151,7 @@ const fillTable = async (form = null) => {
         // Evalua si viene con un paramentro, de ser asi entonces sera un searchRows pero si viene vacio entonces sera un readAll
         (form) ? action = 'searchRows' : action = 'readAll';
         const DATA = await fetchData(CUPONES_API, action, form);
+        console.log(DATA);
         if (DATA.status) {
             DATA.dataset.forEach(row => {
                 const switchChecked = (row.estado_cupon === 1) ? 'checked' : '';
