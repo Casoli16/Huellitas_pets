@@ -37,11 +37,24 @@
                                 <!-- Input para buscador -->
                                 <form class="d-flex" id="searchDashboard" name="search_dashboard">
                                     <input class="form-control me-2 bg-white" role="search" type="search"
-                                        aria-label="Search" id="search_input" name="searchInput"
+                                        aria-label="Search" id="search_input" name="search"
                                         placeholder="Escribe el nombre de algún producto">
                                     <button class="btn btn-orange-color text-light" type="submit"
                                         id="btn_buscador_dashboard" name="btnBuscadorDashboard">Buscar</button>
                                 </form>
+                                <table class="table align-middle mt-2">
+                                    <thead class="table">
+                                    <tr>
+                                        <td colspan="3" id="rowsFound" hidden></td>
+                                    </tr>
+                                    <tr>
+                                        <th hidden>Imagen</th>
+                                        <th hidden>Nombre</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tableBody"></tbody>
+                                </table>
+                                <div id="anyTable" class="table mt-2"></div>
                             </div>
                         </div>
                     </div>
@@ -78,7 +91,7 @@
             <!-- gráfica -->
             <div class="row p-3 gy-4">
                 <div class="col-sm-12 col-md-8 col-lg-8">
-                    <div class="shadow p-4 bg-terciary rounded">
+                    <div class="shadow p-4 bg-terciary rounded-4">
                         <canvas id="myChart" class="d-none" height="120px"></canvas>
                         <div id="noGraph" class="d-none text-center align-items-center p-5">
                             <img class="img-fluid mt-5" src="../../resources/img/svg/info_icon.svg" width="100px">

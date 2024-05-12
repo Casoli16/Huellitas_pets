@@ -19,6 +19,12 @@ const MONTH = document.getElementById("selectMenu");
 const GRAPH = document.getElementById("myChart");
 const NO_GRAPH = document.getElementById("noGraph");
 
+const TABLE_BODY = document.getElementById('tableBody'),
+    ROWS_FOUND = document.getElementById('rowsFound');
+
+// LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
+const HIDDEN_ELEMENT = document.getElementById('anyTable');
+const SEARCH_FORM = document.getElementById('searchDashboard');
 document.addEventListener('DOMContentLoaded', async () => {
     //Carga el menu en las pantalla
     loadTemplate();
@@ -163,5 +169,43 @@ const graficoBarrasVentas = async (number) => {
     } else {
         NO_GRAPH.classList.remove('d-none');
         GRAPH.classList.add('d-none');
+    }
+}
+
+SEARCH_FORM.addEventListener('submit', (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(SEARCH_FORM);
+    // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
+    fillTable(FORM);
+});
+
+
+const fillTable = async (form = null) => {
+    ROWS_FOUND.textContent = '';
+    TABLE_BODY.innerHTML = '';
+    const DATA = await fetchData(PRODUCTOS_API, 'searchRows', form);
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
+            TABLE_BODY.innerHTML += `
+            <tr onclick="window.location.href = '../../views/admin/scrud_productos.html'">
+                <td>
+                  <img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="70px" width="80px">
+                </td>
+                <td>${row.nombre_producto}</td>
+            </tr>
+            `
+        });
+        ROWS_FOUND.textContent = DATA.message;
+        HIDDEN_ELEMENT.style.display = 'none';
+    } else {
+        sweetAlert(3, DATA.error, true);
+        HIDDEN_ELEMENT.innerHTML = `
+        <div class="container text-center">
+            <p class="p-3 bg-beige-color">No existen resultados</p>
+        </div>`
+        // Muestra el codigo injectado
+        HIDDEN_ELEMENT.style.display = 'block'
     }
 }
