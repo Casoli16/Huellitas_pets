@@ -49,10 +49,11 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_producto']
             $_POST = Validator::validateForm($_POST);
             if (
                 !$productos->setIdProducto($_POST['idProducto']) or
+                !$productos->setFilename() or
                 !$productos->setNombreProducto($_POST['nombreProducto']) or
                 !$productos->setDescripcionProducto($_POST['descripcionProducto']) or
                 !$productos->setPrecioProducto($_POST['precioProducto']) or
-                !$productos->setImagenProducto($_FILES['imagenProducto'])or
+                !$productos->setImagenProducto($_FILES['imagenProducto'], $productos->getFilename())or
                 !$productos->setEstadoProducto($_POST['estadoProducto']) or
                 !$productos->setExistenciaProducto($_POST['existenciaProducto']) or
                 !$productos->setFechaRegistro($_POST['fechaRegistroProducto']) or
@@ -65,7 +66,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_producto']
                 $result['status'] = 1;
                 $result['message'] = 'Producto actualizado correctamente';
                 // Se asigna el estado del archivo después de insertar.
-                $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $productos::RUTA_IMAGEN);
+                $result['fileStatus'] = Validator::changeFile($_FILES['imagenProducto'],$productos::RUTA_IMAGEN, $productos->getFilename());
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar el producto';
             }
@@ -114,11 +115,13 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_producto']
             }
             break;
         case 'deleteRow':
-            if(!$productos->setIdProducto($_POST['idProducto'])){
+            if(!$productos->setIdProducto($_POST['idProducto']) or !$productos->setFilename()){
                 $result['error'] = $productos->getDataError();
             } elseif ($productos->deleteRow()){
                 $result['status'] = 1;
                 $result['message'] = 'Producto eliminado correctamente';
+                // Se asigna el estado del archivo después de eliminar.
+                $result['fileStatus'] = Validator::deleteFile($productos::RUTA_IMAGEN, $productos->getFilename());
             } else{
                 $result['error'] = 'Ocurrio un problema al eliminar el producto';
             }

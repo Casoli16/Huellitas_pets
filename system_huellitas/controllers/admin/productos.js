@@ -162,6 +162,9 @@ const openUpdate = async (id) => {
         CANTIDAD_PRODUCTO.value = ROW.existencia_producto;
         ESTADO_PRODUCTO.checked = switchChecked;
 
+        //Cargamos la imagen del registro seleccionado
+        IMAGEN.src = SERVER_URL + 'images/productos/' + ROW.imagen_producto;
+
         //Traemos el valor que tiene el campo mascotas y lo guardamos en una variable.
         const mascota = ROW.mascotas;
         //Llamamos a la funcion preselectOption y le pasamos el id del select y el dato que queremos que compare
