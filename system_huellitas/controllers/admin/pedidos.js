@@ -256,7 +256,7 @@ const fillTable = async (form = null) => {
                     </td>
                     <td>
                         <button type="button" class="btn btn-light" onclick="openView(${row.id_pedido})">
-                        <img src="../../resources/img/svg/edit_icon.svg" width="35px">
+                        <img src="../../resources/img/svg/info_icon.svg" width="35px">
                         </button>
                     </td>        
                 `;
