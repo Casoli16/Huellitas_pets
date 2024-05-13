@@ -149,8 +149,9 @@ const openUpdate = async (id) => {
         APELLIDO_ADMIN.value = ROW.apellido_admin;
         CORREO_ADMIN.value = ROW.correo_admin;
         ALIAS_ADMIN.value = ROW.alias_admin;
+
         //Cargamos la imagen del registro seleccionado
-        //IMAGEN.src = SERVER_URL + 'images/admins/' + ROW.imagen_admin;  
+        IMAGEN.src = SERVER_URL + 'images/admins/' + ROW.imagen_admin;
 
     } else {
         sweetAlert(2, DATA.error, false);
