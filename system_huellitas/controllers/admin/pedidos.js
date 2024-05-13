@@ -177,6 +177,7 @@ const openDeleteDetail = async (id, id_pedido, cant_registros) => {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
         console.log(id);
+        console.log(id_pedido)
         FORM.append('id_detalle_pedido', id);
         FORM.append('id_pedido', id_pedido);
         // Petición para eliminar el registro seleccionado.
