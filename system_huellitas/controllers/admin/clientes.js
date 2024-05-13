@@ -13,8 +13,9 @@ const INFO_MODAL = new bootstrap.Modal ('#seeModal'),
 
 const SEARCH_INPUT = document.getElementById("searchInput");
 
-const FORM = document.getElementById("seeForm"),
+const FORM_UPDATE = document.getElementById("seeForm"),
     IMG_CLIENTE = document.getElementById("imgCliente"),
+    ID_CLIENTE = document.getElementById("idCliente"),
     NOMBRE_CLIENTE = document.getElementById("nombreCliente"),
     APELLIDO_CLIENTE = document.getElementById("apellidoCliente"),
     TELEFONO_CLIENTE = document.getElementById("telCliente"),
@@ -45,7 +46,21 @@ const searchRow = async () => {
     }
 }
 
+FORM_UPDATE.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const FORM = new FormData(FORM_UPDATE);
+    const DATA = await fetchData(CLIENTE_API, 'updateRow', FORM);
+    if(DATA.status){
+        INFO_MODAL.hide();
+        sweetAlert(1, DATA.message, true);
+        fillTable();
+    }else {
+        sweetAlert(2, DATA.error, false);
+    }
+})
+
 const seeInfo = async (id) => {
+    FORM_UPDATE.reset();
     const form = new FormData();
     form.append('idCliente', id)
     const DATA = await fetchData(CLIENTE_API, 'readOne', form);
@@ -54,6 +69,7 @@ const seeInfo = async (id) => {
         TITLE_MODAL.textContent = 'Información del cliente';
         const [ROW] = DATA.dataset;
         IMG_CLIENTE.src = SERVER_URL + 'images/clientes/' + ROW.imagen_cliente;
+        ID_CLIENTE.value = ROW.id_cliente;
         NOMBRE_CLIENTE.value = ROW.nombre_cliente;
         APELLIDO_CLIENTE.value = ROW.apellido_cliente;
         CORREO_CLIENTE.value = ROW.correo_cliente;
@@ -62,7 +78,9 @@ const seeInfo = async (id) => {
         FECHA_NACIMIENTO.value = ROW.nacimiento_cliente;
         DIRECCION_CLIENTE.value = ROW.direccion_cliente;
         FECHA_REGISTRO.value = ROW.fecha_registro_cliente;
-        ESTADO_CLIENTE.value = ROW.estado_cliente;
+        const estado = ROW.estado_cliente;
+
+        preselectOption('estadoCliente', estado);
     } else {
         sweetAlert(2, DATA.error, false);
     }

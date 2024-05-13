@@ -56,25 +56,14 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$clientes->setIdCliente($_POST['idCliente']) or
-                    !$clientes->setNombreCliente($_POST['nombreCliente']) or
-                    !$clientes->setApellidoCliente($_POST['apellidoCliente']) or
-                    !$clientes->setDuiCliente($_POST['duiCliente']) or
-                    !$clientes->setCorreoCliente($_POST['correoCliente']) or
-                    !$clientes->setTelefonoCliente($_POST['telefonoCliente']) or
-                    !$clientes->setFechaNacimiento($_POST['fechaNacimiento']) or
-                    !$clientes->setDireccionCliente($_POST['direccionCliente']) or
-                    !$clientes->setClaveCliente($_POST['claveCliente']) or
-                    !$clientes->setEstadoCliente($_POST['estadoCliente']) or
-                    !$clientes->setFechaRegistro($_POST['fechaRegistro']) or
-                    !$clientes->setImagenCliente($_FILES['imagenCliente'], $clientes->getFilename())
+                    !$clientes->setEstadoCliente($_POST['estadoCliente'])
                 ) {
                     $result['error'] = $clientes->getDataError();
                 } elseif ($clientes->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Información actualizada correctamente';
-                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenCliente'], $clientes::RUTA_IMAGEN, $clientes->getFilename());
+                    $result['message'] = 'Estado actualizado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al actualizar tu información';
+                    $result['error'] = 'Ocurrió un problema al actualizar el estado';
                 }
                 break;
             case 'readAll':
