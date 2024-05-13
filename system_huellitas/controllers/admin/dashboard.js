@@ -1,4 +1,8 @@
-const DASHBOARD_API = 'services/admin/dashboard.php';
+const ADMINISTRADOR_API = 'services/admin/admins.php';
+const CATEGORIA_API = 'services/admin/categorias.php';
+const CLIENTE_API = 'services/admin/clientes.php'
+const PRODUCTOS_API = 'services/admin/productos.php';
+const PEDIDOS_API = 'services/admin/pedidos.php';
 
 const GREETING = document.getElementById('greetings');
 const ADMIN_IMAGE = document.getElementById('adminImg');
@@ -37,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 const getData = async (form = null) => {
     //Peticion a nuestra api para obtener info del usuario logeado
-    const DATA = await fetchData(DASHBOARD_API, 'readProfile');
+    const DATA = await fetchData(ADMINISTRADOR_API, 'readProfile');
     //Verifica si la respuesta fue satisfactoria, si no manda un mensaje de error.
     if(DATA.status){
         //Obtiene el nombre del usuario logueado.
@@ -58,7 +62,7 @@ const getData = async (form = null) => {
 }
 
 const categoryList = async () => {
-    const DATA = await fetchData(DASHBOARD_API, 'readAll');
+    const DATA = await fetchData(CATEGORIA_API, 'readAll');
     if(DATA.status){
         DATA.dataset.forEach(row=> {
             CATEGORY_LIST.innerHTML += `
@@ -72,7 +76,7 @@ const categoryList = async () => {
 
 // Accede a la cantidad de nuevos clientes registrados
 const newUsers = async () => {
-    const DATA = await fetchData(DASHBOARD_API, 'newUsers');
+    const DATA = await fetchData(CLIENTE_API, 'newUsers');
     if(DATA.status){
         NEW_USERS.textContent =  DATA.dataset[0].newUsers;
     }else {
@@ -81,7 +85,7 @@ const newUsers = async () => {
 }
 
 const topProduct = async () => {
-    const DATA = await fetchData(DASHBOARD_API, 'readTopProduct');
+    const DATA = await fetchData(PRODUCTOS_API, 'readTopProduct');
     if(DATA.status){
         CATEGORY_TOP_PRODUCT.textContent = DATA.dataset[0].nombre_categoria;
         NAME_TOP_PRODUCT.textContent = DATA.dataset[0].nombre_producto;
@@ -145,7 +149,7 @@ const graficoBarrasVentas = async (number) => {
     const FORM = new FormData();
     FORM.append('month', number)
     // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(DASHBOARD_API, 'readSellingByMonth', FORM);
+    const DATA = await fetchData(PEDIDOS_API, 'readSellingByMonth', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
     if (DATA.status) {
 
@@ -181,7 +185,7 @@ SEARCH_FORM.addEventListener('submit', (event) => {
 const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
-    const DATA = await fetchData(DASHBOARD_API, 'searchRows', form);
+    const DATA = await fetchData(PRODUCTOS_API, 'searchRows', form);
     if (DATA.status) {
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
