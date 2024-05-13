@@ -63,6 +63,15 @@ class AdminHandler
         return Database::getRows($sql, $params);
     }
 
+    public function readFilename()
+    {
+        $sql = 'SELECT imagen_admin
+                FROM administradores
+                WHERE id_admin = ?';
+        $params = array($this->idAdministrador);
+        return Database::getRow($sql, $params);
+    }
+
     // UPDATE
     public function updateRow ()
     {

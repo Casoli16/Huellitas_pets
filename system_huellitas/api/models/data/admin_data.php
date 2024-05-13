@@ -110,6 +110,17 @@ class AdminData extends AdminHandler
         }
     }
 
+    public function setFilename()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['imagen_admin'];
+            return true;
+        } else {
+            $this->data_error = 'Administrador inexistente';
+            return false;
+        }
+    }
+
     public function getDataError()
     {
         return $this->data_error;

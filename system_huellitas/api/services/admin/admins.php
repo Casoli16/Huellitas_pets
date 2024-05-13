@@ -57,6 +57,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administradores->setIdAdmin($_POST['idAdministrador']) or
+                    !$administradores->setFilename() or
                     !$administradores->setNombreAdmin($_POST['nombreAdmin']) or
                     !$administradores->setApellidoAdmin($_POST['apellidoAdmin']) or
                     !$administradores->setCorreoAdmin($_POST['correoAdmin']) or
@@ -92,11 +93,16 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'deleteRow':
-                if (!$administradores->setIdAdmin($_POST['idAdministrador'])) {
+                if (
+                    !$administradores->setIdAdmin($_POST['idAdministrador']) or
+                    !$administradores->setFilename()
+                ) {
                     $result['error'] = $administradores->getDataError();
                 } elseif ($administradores->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Administrador eliminado correctamente';
+                    // Se asigna el estado del archivo después de eliminar.
+                    $result['fileStatus'] = Validator::deleteFile($administradores::RUTA_IMAGEN, $administradores->getFilename());
                 } else {
                     $result['error'] = 'Ocurrio un problema al eliminar al administrador';
                 }
