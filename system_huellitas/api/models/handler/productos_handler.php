@@ -121,4 +121,13 @@ class productosHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function readFilename()
+    {
+        $sql = 'SELECT imagen_producto
+                FROM productos
+                WHERE id_producto= ?';
+        $params = array($this->idProducto);
+        return Database::getRow($sql, $params);
+    }
+
 }

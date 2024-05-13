@@ -136,6 +136,16 @@ class productosData extends productosHandler{
         return true;
     }
 
+    public function setFilename()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['imagen_producto'];
+            return true;
+        } else {
+            $this->data_error = 'Producto inexistente';
+            return false;
+        }
+    }
 
     public function getDataError()
     {
