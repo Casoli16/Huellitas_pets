@@ -168,29 +168,6 @@ const fillCards = async (form = null, id) => {
     }
 }
 
-const openDelete = async (id) => {
-    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar el pedido de forma permanente?');
-    // Se verifica la respuesta del mensaje.
-    if (RESPONSE) {
-        // Se define una constante tipo objeto con los datos del registro seleccionado.
-        const FORM = new FormData();
-        console.log(id);
-        FORM.append('id_pedido', id);
-        // Petición para eliminar el registro seleccionado.
-        const DATA = await fetchData(PEDIDOS_API, 'deleteRow', FORM);
-        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        if (DATA.status) {
-            // Se muestra un mensaje de éxito.
-            await sweetAlert(1, DATA.message, true);
-            // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTable();
-        } else {
-            sweetAlert(2, DATA.error, false);
-        }
-    }
-}
-
 const openDeleteDetail = async (id, id_pedido, cant_registros) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar este producto del pedido de forma permanente?');
@@ -201,17 +178,18 @@ const openDeleteDetail = async (id, id_pedido, cant_registros) => {
         const FORM = new FormData();
         console.log(id);
         FORM.append('id_detalle_pedido', id);
+        FORM.append('id_pedido', id_pedido);
         // Petición para eliminar el registro seleccionado.
         // Petición para eliminar el registro seleccionado.
         if (cant_registros === 1) {
             if (RESPONSE2) {
-                const DATA = await fetchData(PEDIDOS_API, 'deleteRow2', FORM);
+                const DATA = await fetchData(PEDIDOS_API, 'deleteRow', FORM);
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (DATA.status) {
                     // Se muestra un mensaje de éxito.
                     await sweetAlert(1, DATA.message, true);
-                    // Se carga nuevamente la tabla para visualizar los cambios.
-                    await fillCards(null, id_pedido);
+                    VIEW_MODAL.hide();
+                    fillTable();
                 } else {
                     sweetAlert(2, DATA.error, false);
                 }

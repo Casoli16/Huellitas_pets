@@ -55,7 +55,8 @@ class cupones_handler
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM cupones_oferta  WHERE id_cupon = ?;';
+        $sql = 'DELETE FROM cupones_utilizados WHERE id_cupon = ?;
+                DELETE FROM cupones_oferta  WHERE id_cupon = ?;';
         $params = array($this->id_cupon);
         return Database::executeRow($sql, $params);
     }

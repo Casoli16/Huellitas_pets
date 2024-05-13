@@ -62,7 +62,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $pedidos->readSellingByMonth()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'No se encuentran ventas en el mes seleccionado';
+                    $result['error'] = 'No se encuentran ventas en el mes seleccionado o no tienes permiso para ver este apartado';
                 }
                 break;
             case 'readTwo':
@@ -84,7 +84,10 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'deleteRow':
-                if (!$pedidos->setIdPedido($_POST['id_pedido'])) {
+                if (
+                    !$pedidos->setIdPedido($_POST['id_pedido']) or
+                    !$pedidos->setIdDetallePedido($_POST['id_detalle_pedido'])
+                    ) {
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($pedidos->deleteRow()) {
                     $result['status'] = 1;

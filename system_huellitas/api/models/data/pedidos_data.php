@@ -20,6 +20,17 @@ class pedidos_data extends pedidos_handler{
         }
     }
 
+    public function setIdDetallePedido($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_detalle_p = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador es incorrecto';
+            return false;
+        }
+    }
+
     public function setNombreCliente($value, $min = 3, $max = 20)
     {
         if (!Validator::validateAlphanumeric($value)) {

@@ -99,7 +99,7 @@ if (isset($_GET['action'])) {
                 if (
                     !$permisos->setIdPermiso($_POST['idPermiso'])
                 ) {
-                    $result['error'] = $permisos->getDataError();
+                    $result['error'] = 'Por favor asegurate de eliminar este permiso de los administradores que lo tengan asignado';
                 } elseif ($permisos->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Permiso eliminado correctamente';

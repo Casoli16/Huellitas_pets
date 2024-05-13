@@ -10,6 +10,7 @@ class pedidos_handler
      *  Declaración de atributos para el manejo de datos.
      */
     protected $id_pedido_p = null;
+    protected $id_detalle_p = null;
     protected $nombre_cliente_p = null;
     protected $fecha_registro_P = null;
     protected $estado_pedido_p = null;
@@ -46,8 +47,14 @@ class pedidos_handler
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM pedidos  WHERE id_pedido = ?;';
-        $params = array($this->id_pedido_p);
+        $sql = 'DELETE FROM valoraciones  WHERE id_detalle_pedido = ?; 
+                DELETE FROM detalles_pedidos  WHERE id_detalle_pedido = ?;
+                DELETE FROM pedidos  WHERE id_pedido = ?;';
+        $params = array(
+            $this->id_detalle_p,
+            $this->id_detalle_p,
+            $this->id_pedido_p
+        );
         return Database::executeRow($sql, $params);
     }
 
@@ -56,8 +63,8 @@ class pedidos_handler
         $sql = 'DELETE FROM valoraciones  WHERE id_detalle_pedido = ?; 
                 DELETE FROM detalles_pedidos  WHERE id_detalle_pedido = ?;';
        $params = array(
-        $this->id_pedido_p,
-        $this->id_pedido_p
+        $this->id_detalle_p,
+        $this->id_detalle_p
     );
         return Database::executeRow($sql, $params);
     }
