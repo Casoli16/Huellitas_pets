@@ -61,9 +61,6 @@ if (isset($_GET['action'])) {
                     !$administradores->setNombreAdmin($_POST['nombreAdmin']) or
                     !$administradores->setApellidoAdmin($_POST['apellidoAdmin']) or
                     !$administradores->setCorreoAdmin($_POST['correoAdmin']) or
-                    !$administradores->setAliasAdmin($_POST['aliasAdmin']) or
-                    !$administradores->setClaveAdmin($_POST['claveAdmin']) or
-                    !$administradores->setFechaRegistro($_POST['fechaRegistroAdmin']) or
                     !$administradores->setImagenAdmin($_FILES['imagenAdmin'], $administradores->getFilename())
                 ) {
                     $result['error'] = $administradores->getDataError();

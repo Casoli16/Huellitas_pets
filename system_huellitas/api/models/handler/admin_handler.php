@@ -76,15 +76,12 @@ class AdminHandler
     public function updateRow ()
     {
         $sql = 'UPDATE administradores
-        SET nombre_admin = ?, apellido_admin = ?, correo_admin = ?, alias_admin = ?, clave_admin = ?, fecha_registro_admin = ?, imagen_admin = ?
+        SET nombre_admin = ?, apellido_admin = ?, correo_admin = ?, imagen_admin = ?
         WHERE id_admin = ?';
         $params = array(
           $this->nombreAdmin,
           $this->apellidoAdmin,
           $this->correoAdmin,
-          $this->aliasAdmin,
-          $this->claveAdmin,
-          $this->fechaRegistroAdmin,
           $this->imagenAdmin,
           $this->idAdministrador
         );

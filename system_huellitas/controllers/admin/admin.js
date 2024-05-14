@@ -123,7 +123,7 @@ const openCreate = () => {
     IMAGEN.src = '../../resources/img/png/rectangulo.png'
     ALIAS_ADMIN.disabled = false;
     CLAVE_ADMIN.disabled = false;
-    CONFIRMAR_CLAVE.disable = false;
+    CONFIRMAR_CLAVE.disabled = false;
 }
 
 const openUpdate = async (id) => {
@@ -139,9 +139,9 @@ const openUpdate = async (id) => {
         MODAL_TITLE.textContent = 'Actualizar administrador';
         // Se prepara el formulario.
         SAVE_FORM.reset();
-        ALIAS_ADMIN.disabled = false;
-        CLAVE_ADMIN.disabled = false;
-        CONFIRMAR_CLAVE.disabled = false;
+        ALIAS_ADMIN.disabled = true;
+        CLAVE_ADMIN.disabled = true;
+        CONFIRMAR_CLAVE.disabled = true;
         // Se inicializan los campos con los datos.
         const [ROW] = DATA.dataset;
         ID_ADMIN.value = ROW.id_admin;
@@ -149,7 +149,6 @@ const openUpdate = async (id) => {
         APELLIDO_ADMIN.value = ROW.apellido_admin;
         CORREO_ADMIN.value = ROW.correo_admin;
         ALIAS_ADMIN.value = ROW.alias_admin;
-
         //Cargamos la imagen del registro seleccionado
         IMAGEN.src = SERVER_URL + 'images/admins/' + ROW.imagen_admin;
 
