@@ -59,61 +59,61 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     // Determinar la acción a realizar (actualización o creación de un cupón)
-    (ID_PERMISO.value) ? action = 'updateRow' : action = 'createRow';
+    (ID_PERMISO.value) ? ACTION = 'updateRow' : ACTION = 'createRow';
 
     // Obtener los datos del formulario
     const FORM = new FormData(SAVE_FORM);
 
     console.log(FORM);
 
-    const swver_cliente = VER_CLIENTE.checked ? 1 : 0;
-    const swver_marca = VER_MARCA.checked ? 1 : 0;
-    const swver_pedido = VER_PEDIDO.checked ? 1 : 0;
-    const swver_comentario = VER_COMENTARIO.checked ? 1 : 0;
-    const swver_producto = VER_PRODUCTO.checked ? 1 : 0;
-    const swver_categoria = VER_CATEGORIA.checked ? 1 : 0;
-    const swver_cupon = VER_CUPON.checked ? 1 : 0;
-    const swver_permiso = VER_PERMISO.checked ? 1 : 0;
-    const swver_usuario = VER_USUARIO.checked ? 1 : 0;
+    const SWVER_CLIENTE = VER_CLIENTE.checked ? 1 : 0;
+    const SWVER_MARCA = VER_MARCA.checked ? 1 : 0;
+    const SWVER_PEDIDO = VER_PEDIDO.checked ? 1 : 0;
+    const SWVER_COMENTARIO = VER_COMENTARIO.checked ? 1 : 0;
+    const SWVER_PRODUCTO = VER_PRODUCTO.checked ? 1 : 0;
+    const SWVER_CATEGORIA = VER_CATEGORIA.checked ? 1 : 0;
+    const SWVER_CUPON = VER_CUPON.checked ? 1 : 0;
+    const SWVER_PERMISO = VER_PERMISO.checked ? 1 : 0;
+    const SWVER_USUARIO = VER_USUARIO.checked ? 1 : 0;
 
     // Verificar si al menos un permiso está activo
-    const isAnyPermissionActive =
-        swver_cliente || swver_marca || swver_pedido || swver_comentario ||
-        swver_producto || swver_categoria || swver_cupon || swver_permiso || swver_usuario;
+    const IS_ANY_PERMISSION_ACTIVE =
+        SWVER_CLIENTE || SWVER_MARCA || SWVER_PEDIDO || SWVER_COMENTARIO ||
+        SWVER_PRODUCTO || SWVER_CATEGORIA || SWVER_CUPON || SWVER_PERMISO || SWVER_USUARIO;
 
-    if (!isAnyPermissionActive) {
+    if (!IS_ANY_PERMISSION_ACTIVE) {
         // Mostrar SweetAlert con el mensaje de error
         sweetAlert(2, "¡Activa por lo menos un permiso!", false);
         return; // Detener el proceso
     }
-    FORM.set('ver_cliente', swver_cliente);
-    FORM.set('ver_marca', swver_marca);
-    FORM.set('ver_pedido', swver_pedido);
-    FORM.set('ver_comentario', swver_comentario);
-    FORM.set('ver_producto', swver_producto);
-    FORM.set('ver_categoria', swver_categoria);
-    FORM.set('ver_cupon', swver_cupon);
-    FORM.set('ver_permiso', swver_permiso);
-    FORM.set('ver_usuario', swver_usuario);
+    FORM.set('ver_cliente', SWVER_CLIENTE);
+    FORM.set('ver_marca', SWVER_MARCA);
+    FORM.set('ver_pedido', SWVER_PEDIDO);
+    FORM.set('ver_comentario', SWVER_COMENTARIO);
+    FORM.set('ver_producto', SWVER_PRODUCTO);
+    FORM.set('ver_categoria', SWVER_CATEGORIA);
+    FORM.set('ver_cupon', SWVER_CUPON);
+    FORM.set('ver_permiso', SWVER_PERMISO);
+    FORM.set('ver_usuario', SWVER_USUARIO);
 
     console.log(FORM);
     // Enviar los datos del formulario al servidor y manejar la respuesta
-    const DATA = await fetchData(PERMISOS_API, action, FORM);
+    const DATA = await fetchData(PERMISOS_API, ACTION, FORM);
 
     console.log(DATA);
     // Verificar si la respuesta del servidor fue satisfactoria
-    if (DATA.status) {
+    if (DATA.STATUS) {
         console.log('Si pase');
         // Ocultar el modal
         SAVE_MODAL.hide();
         // Mostrar mensaje de éxito
-        sweetAlert(1, DATA.message, true);
+        sweetAlert(1, DATA.MESSAGE, true);
         // Volver a llenar la tabla para mostrar los cambios
         fillTable();
     } else {
         // Mostrar mensaje de error
-        console.log(DATA.error);
-        sweetAlert(2, DATA.error, false);
+        console.log(DATA.ERROR);
+        sweetAlert(2, DATA.ERROR, false);
     }
 });
 
@@ -133,37 +133,37 @@ const openUpdate = async (id) => {
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(PERMISOS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
+    if (DATA.STATUS) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
         MODAL_TITLE.textContent = 'Actualizar permiso';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
-        const [ROW] = DATA.dataset;
-        NOMBRE_PERMISO.value = ROW.nombre_permiso;
-        ID_PERMISO.value = ROW.id_permiso;
-        const sch_ver_cliente = (ROW.ver_cliente === 1) ? 'checked' : '';
-        const sch_ver_marca = (ROW.ver_marca === 1) ? 'checked' : '';
-        const sch_ver_pedido = (ROW.ver_pedido === 1) ? 'checked' : '';
-        const sch_ver_comentario = (ROW.ver_comentario === 1) ? 'checked' : '';
-        const sch_ver_producto = (ROW.ver_producto === 1) ? 'checked' : '';
-        const sch_ver_categoria = (ROW.ver_categoria === 1) ? 'checked' : '';
-        const sch_ver_cupon = (ROW.ver_cupon === 1) ? 'checked' : '';
-        const sch_ver_permiso = (ROW.ver_permiso === 1) ? 'checked' : '';
-        const sch_ver_usuario = (ROW.ver_usuario === 1) ? 'checked' : '';
+        const [ROW] = DATA.DATASET;
+        NOMBRE_PERMISO.value = ROW.NOMBRE_PERMISO;
+        ID_PERMISO.value = ROW.ID_PERMISO;
+        const SCH_VER_CLIENTE = (ROW.VER_CLIENTE === 1) ? 'checked' : '';
+        const SCH_VER_MARCA = (ROW.VER_MARCA === 1) ? 'checked' : '';
+        const SCH_VER_PEDIDO = (ROW.VER_PEDIDO === 1) ? 'checked' : '';
+        const SCH_VER_COMENTARIO = (ROW.VER_COMENTARIO === 1) ? 'checked' : '';
+        const SCH_VER_PRODUCTO = (ROW.VER_PRODUCTO === 1) ? 'checked' : '';
+        const SCH_VER_CATEGORIA = (ROW.VER_CATEGORIA === 1) ? 'checked' : '';
+        const SCH_VER_CUPON = (ROW.VER_CUPON === 1) ? 'checked' : '';
+        const SCH_VER_PERMISO = (ROW.VER_PERMISO === 1) ? 'checked' : '';
+        const SCH_VER_USUARIO = (ROW.VER_USUARIO === 1) ? 'checked' : '';
 
-        VER_CLIENTE.checked = sch_ver_cliente;
-        VER_MARCA.checked = sch_ver_marca;
-        VER_PEDIDO.checked = sch_ver_pedido;
-        VER_COMENTARIO.checked = sch_ver_comentario;
-        VER_PRODUCTO.checked = sch_ver_producto;
-        VER_CATEGORIA.checked = sch_ver_categoria;
-        VER_CUPON.checked = sch_ver_cupon;
-        VER_PERMISO.checked = sch_ver_permiso;
-        VER_USUARIO.checked = sch_ver_usuario;
+        VER_CLIENTE.checked = SCH_VER_CLIENTE;
+        VER_MARCA.checked = SCH_VER_MARCA;
+        VER_PEDIDO.checked = SCH_VER_PEDIDO;
+        VER_COMENTARIO.checked = SCH_VER_COMENTARIO;
+        VER_PRODUCTO.checked = SCH_VER_PRODUCTO;
+        VER_CATEGORIA.checked = SCH_VER_CATEGORIA;
+        VER_CUPON.checked = SCH_VER_CUPON;
+        VER_PERMISO.checked = SCH_VER_PERMISO;
+        VER_USUARIO.checked = SCH_VER_USUARIO;
     } else {
-        sweetAlert(2, DATA.error, false);
+        sweetAlert(2, DATA.ERROR, false);
     }
 }
 
