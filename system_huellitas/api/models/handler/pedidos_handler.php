@@ -4,22 +4,22 @@ require_once ('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla cupones.
  */
-class pedidos_handler
+class PedidosHandler
 {
     /*
      *  Declaración de atributos para el manejo de datos.
      */
-    protected $id_pedido_p = null;
-    protected $id_detalle_p = null;
-    protected $nombre_cliente_p = null;
-    protected $fecha_registro_P = null;
-    protected $estado_pedido_p = null;
-    protected $direccion_p = null;
-    protected $total_p = null;
-    protected $total_unidad_P = null;
-    protected $cantidad_p_unidad = null;
-    protected $cantidad_p_total = null;
-    protected $imagen_p_unidad = null;
+    protected $idPedido = null;
+    protected $idDetalle = null;
+    protected $nombreCliente = null;
+    protected $fechaRegistro = null;
+    protected $estadoPedido = null;
+    protected $direccion = null;
+    protected $total = null;
+    protected $totalUnidad = null;
+    protected $cantidadUnidad = null;
+    protected $cantidadTotal = null;
+    protected $imagenUnidad = null;
     protected  $monthNumber = null;
 
     /*
@@ -51,9 +51,9 @@ class pedidos_handler
                 DELETE FROM detalles_pedidos  WHERE id_detalle_pedido = ?;
                 DELETE FROM pedidos  WHERE id_pedido = ?;';
         $params = array(
-            $this->id_detalle_p,
-            $this->id_detalle_p,
-            $this->id_pedido_p
+            $this->idDetalle,
+            $this->idDetalle,
+            $this->idPedido
         );
         return Database::executeRow($sql, $params);
     }
@@ -63,8 +63,8 @@ class pedidos_handler
         $sql = 'DELETE FROM valoraciones  WHERE id_detalle_pedido = ?; 
                 DELETE FROM detalles_pedidos  WHERE id_detalle_pedido = ?;';
        $params = array(
-        $this->id_detalle_p,
-        $this->id_detalle_p
+        $this->idDetalle,
+        $this->idDetalle
     );
         return Database::executeRow($sql, $params);
     }
@@ -87,28 +87,28 @@ class pedidos_handler
     public function readOne1()
     {
         $sql = 'SELECT * FROM pedido_view_one_I WHERE Id_pedido = ?;';
-        $params = array($this->id_pedido_p);
+        $params = array($this->idPedido);
         return Database::getRows($sql, $params);
     }
 
     public function readOne3()
     {
         $sql = 'SELECT estado_pedido FROM pedidos WHERE Id_pedido = ?;';
-        $params = array($this->id_pedido_p);
+        $params = array($this->idPedido);
         return Database::getRows($sql, $params);
     }
     public function readOne2()
     {
         $sql = 'SELECT * FROM pedido_view_two_II WHERE id_pedido = ?;';
-        $params = array($this->id_pedido_p);
+        $params = array($this->idPedido);
         return Database::getRows($sql, $params);
     }
     public function updateRow()
     {
         $sql = 'UPDATE pedidos SET estado_pedido = ? WHERE id_pedido = ?';
         $params = array(
-            $this->estado_pedido_p,
-            $this->id_pedido_p
+            $this->estadoPedido,
+            $this->idPedido
         );
         return Database::executeRow($sql, $params);
     }

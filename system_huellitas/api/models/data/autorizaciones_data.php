@@ -7,7 +7,7 @@ require_once ('../../models/handler/autorizaciones_handler.php');
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla permisos.
  */
-class autorizaciones_data extends autorizaciones_handler
+class AutorizacionesData extends AutorizacionesHandler
 {
     /*
      *  Atributos adicionales.
@@ -19,7 +19,7 @@ class autorizaciones_data extends autorizaciones_handler
     public function setIdAdmin($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_admin = $value;
+            $this->idAdmin = $value;
             return true;
         } else {
             $this->data_error = 'El identificador es incorrecto';

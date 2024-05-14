@@ -4,12 +4,12 @@ require_once ('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla autorizaciones.
  */
-class autorizaciones_handler
+class AutorizacionesHandler
 {
     /*
      *  Declaración de atributos para controlar el id del usuario que esta en la sesion
      */
-    protected $id_admin = null;
+    protected $idAdmin = null;
 
     /*
      *  Métodos para realizar la lectura de permisos unicamente por seguridad
@@ -19,7 +19,7 @@ class autorizaciones_handler
     public function readOneAdmin()
     {
         $sql = 'SELECT * FROM vista_permisos_administrador WHERE id_admin =?;';
-        $params = array($this->id_admin);
+        $params = array($this->idAdmin);
         return Database::getRow($sql, $params);
     }
 

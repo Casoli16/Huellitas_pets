@@ -6,7 +6,7 @@ require_once ('../../models/handler/permisos_handler.php');
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla CATEGORIA.
  */
-class permisos_data extends permisos_handler
+class PermisosData extends PermisosHandler
 {
     /*
      *  Atributos adicionales.
@@ -20,7 +20,7 @@ class permisos_data extends permisos_handler
     public function setIdPermiso($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_permiso = $value;
+            $this->idPermiso = $value;
             return true;
         } else {
             $this->data_error = 'El identificador es incorrecto';
@@ -31,7 +31,7 @@ class permisos_data extends permisos_handler
     public function setIdAdmin($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_admin = $value;
+            $this->idAdmin = $value;
             return true;
         } else {
             $this->data_error = 'El identificador es incorrecto';
@@ -45,7 +45,7 @@ class permisos_data extends permisos_handler
             $this->data_error = 'El nombre debe ser un valor alfanúmerico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombre_permiso = $value;
+            $this->nombrePermiso = $value;
             return true;
         } else {
             $this->data_error = 'El nombre debe debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -61,7 +61,7 @@ class permisos_data extends permisos_handler
     public function setVerUsuario($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_usuario = $value;
+            $this->verUsuario = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';
@@ -71,7 +71,7 @@ class permisos_data extends permisos_handler
     public function setVerProducto($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_producto = $value;
+            $this->verProducto = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';
@@ -81,7 +81,7 @@ class permisos_data extends permisos_handler
     public function setVerComentario($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_comentario = $value;
+            $this->verComentario = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';
@@ -91,7 +91,7 @@ class permisos_data extends permisos_handler
     public function setVerCategoria($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_categoria = $value;
+            $this->verCategoria = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';
@@ -102,7 +102,7 @@ class permisos_data extends permisos_handler
     public function setVerCupon($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_cupon = $value;
+            $this->verCupon = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';
@@ -113,7 +113,7 @@ class permisos_data extends permisos_handler
     public function setVerPermiso($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_permiso = $value;
+            $this->verPermiso = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';
@@ -125,7 +125,7 @@ class permisos_data extends permisos_handler
     public function setVerCliente($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_cliente = $value;
+            $this->verCliente = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';
@@ -136,7 +136,7 @@ class permisos_data extends permisos_handler
     public function setVerMarca($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_marca = $value;
+            $this->verMarca = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';
@@ -146,7 +146,7 @@ class permisos_data extends permisos_handler
     public function setVerPedido($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->ver_pedido = $value;
+            $this->verPedido = $value;
             return true;
         } else {
             $this->data_error = 'Esto no es un booleano';

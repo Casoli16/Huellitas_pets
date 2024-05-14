@@ -6,7 +6,7 @@ require_once ('../../models/data/cupones_data.php');
 if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
-    $cupones = new cupones_data;
+    $cupones = new CuponesData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
