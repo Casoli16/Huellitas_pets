@@ -4,18 +4,7 @@
 const USER_API = 'services/admin/generalidades.php'
 const MAIN = document.querySelector('main');
 
-
-//Crea una funcion que espere un valor y retorne un string
-function switchMenu(opcion) {
-    const permisos =  JSON.parse(localStorage.getItem('dataset'));
-    const clase = (permisos[opcion] == 1) ? '' : 'd-none';
-    const rowId = opcion;
-    const rowElement = document.getElementById(rowId);
-    if (rowElement) {
-        rowElement.classList.add(clase); // Agrega la clase de visibilidad
-    }
-}
-
+const permisos =  JSON.parse(localStorage.getItem('dataset'));
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top ">
     <div class="container-fluid ">
@@ -51,7 +40,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id= "ver_usuario">
+                    <div class="row mt-2 ${(permisos['ver_usuario']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/admins.svg" alt="">
                         </div>
@@ -62,7 +51,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id= "ver_producto">
+                    <div class="row mt-2 ${(permisos['ver_producto']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/products.svg" alt="">
                         </div>
@@ -73,7 +62,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id= "ver_categoria">
+                    <div class="row mt-2 ${(permisos['ver_categoria']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/categories.svg" alt="">
                         </div>
@@ -84,7 +73,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id= "ver_pedido">
+                    <div class="row mt-2 ${(permisos['ver_pedido']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/orders.svg" alt="">
                         </div>
@@ -95,7 +84,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id= "ver_comentario">
+                    <div class="row mt-2 ${(permisos['ver_comentario']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/comments.svg" alt="">
                         </div>
@@ -106,7 +95,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id= "ver_marca">
+                    <div class="row mt-2 ${(permisos['ver_marca']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/brand.svg" alt="">
                         </div>
@@ -117,7 +106,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id= "ver_cupon">
+                    <div class="row mt-2 ${(permisos['ver_cupon']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/voucher.svg" alt="">
                         </div>
@@ -128,7 +117,7 @@ const navbar = `
                             </li>
                         </div>
                     </div>
-                    <div class="row mt-2" id= "ver_cliente">
+                    <div class="row mt-2 ${(permisos['ver_cliente']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/clients.svg" alt="">
                         </div>
@@ -141,7 +130,7 @@ const navbar = `
                     </div>
                     <hr>
 
-                    <div class="row mt-3" id= "ver_permiso">
+                    <div class="row mt-3 ${(permisos['ver_permiso']) ? '' : 'd-none'}">
                         <div class="col-2">
                             <img src="../../resources/img/svg/permisos.svg" alt="">
                         </div>
@@ -191,18 +180,10 @@ const loadTemplate = async () => {
     if (DATA.session) {
         // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
         if(DATA.status){
+            
             document.getElementById('navbar').innerHTML = navbar;
-
-            // Ejecutar la función switchMenu para aplicar las clases al cargar la página
-            switchMenu('ver_cliente');
-            switchMenu('ver_marca');
-            switchMenu('ver_pedido');
-            switchMenu('ver_comentario');
-            switchMenu('ver_producto');
-            switchMenu('ver_categoria');
-            switchMenu('ver_cupon');
-            switchMenu('ver_permiso');
-            switchMenu('ver_usuario');
+            console.log(permisos['ver_usuario'])
+            
         } else {
             sweetAlert(3, DATA.error, false, 'index.html');
         }

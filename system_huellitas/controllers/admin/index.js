@@ -71,7 +71,7 @@ LOGIN_FORM.addEventListener('submit', async (event) => {
         const DATA2 = await fetchData(AUTORIZACIONES_API, 'readOneAdmin', FORM2)
         localStorage.setItem('dataset', JSON.stringify(DATA2.dataset));
         console.log(localStorage.getItem('dataset'));
-        sweetAlert(1, DATA.message, true, 'pantalla_carga.html');
+        sweetAlert(1, DATA.message, false, 'pantalla_carga.html');
     } else {
         sweetAlert(2, DATA.error, false);
     }
