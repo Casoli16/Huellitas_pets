@@ -1,4 +1,4 @@
-const ADMINISTRADOR_API = 'services/admin/admins.php';
+const ADMINISTRADOR_API = 'services/admin/generalidades.php';
 
 const ADMIN_IMAGE = document.getElementById('imagen');
 
@@ -74,7 +74,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     let idAdministrador = ID.dataset.id_admin;
     
     // Se verifica la acción a realizar.
-    (idAdministrador) ? action = 'updateRow' : action = 'createRow';
+    action = 'editProfile';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
 
