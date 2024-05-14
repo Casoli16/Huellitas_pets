@@ -4,16 +4,16 @@ require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla cupones.
  */
-class cupones_handler
+class CuponesHandler
 {
     /*
      *  Declaración de atributos para el manejo de datos.
      */
-    protected $id_cupon = null;
-    protected $codigo_cupon = null;
-    protected $porcentaje_cupon = null;
-    protected $estado_cupon = null;
-    protected $fecha_cupon = null;
+    protected $idCupon = null;
+    protected $codigoCupon = null;
+    protected $porcentajeCupon = null;
+    protected $estadoCupon = null;
+    protected $fechaCupon = null;
 
 
     /*
@@ -33,7 +33,7 @@ class cupones_handler
     public function createRow()
     {
         $sql = 'CALL agregar_cupon_PA (?, ?, ?);';
-        $params = array($this->codigo_cupon, $this->porcentaje_cupon, $this->estado_cupon);
+        $params = array($this->codigoCupon, $this->porcentajeCupon, $this->estadoCupon);
         return Database::executeRow($sql, $params);
     }
 
@@ -49,7 +49,7 @@ class cupones_handler
     public function updateRow()
     {
         $sql = 'CALL actualizar_cupon_PA (?, ?, ?, ?);';
-        $params = array($this->codigo_cupon, $this->porcentaje_cupon, $this->estado_cupon, $this->id_cupon);
+        $params = array($this->codigoCupon, $this->porcentajeCupon, $this->estadoCupon, $this->idCupon);
         return Database::executeRow($sql, $params);
     }
 
@@ -57,14 +57,14 @@ class cupones_handler
     {
         $sql = 'DELETE FROM cupones_utilizados WHERE id_cupon = ?;
                 DELETE FROM cupones_oferta  WHERE id_cupon = ?;';
-        $params = array($this->id_cupon);
+        $params = array($this->idCupon, $this->idCupon);
         return Database::executeRow($sql, $params);
     }
 
     public  function readOne()
     {
         $sql = 'SELECT * FROM cupones_oferta WHERE id_cupon = ?;';
-        $params = array($this->id_cupon);
+        $params = array($this->idCupon);
         return Database::getRows($sql, $params);
     }
 

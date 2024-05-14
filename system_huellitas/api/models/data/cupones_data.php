@@ -6,7 +6,7 @@ require_once('../../models/handler/cupones_handler.php');
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla CATEGORIA.
  */
-class cupones_data extends cupones_handler
+class CuponesData extends CuponesHandler
 {
     /*
      *  Atributos adicionales.
@@ -20,7 +20,7 @@ class cupones_data extends cupones_handler
     public function setIdCupon($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_cupon = $value;
+            $this->idCupon = $value;
             return true;
         } else {
             $this->data_error = 'El identificador es incorrecto';
@@ -34,7 +34,7 @@ class cupones_data extends cupones_handler
             $this->data_error = 'El codigo debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->codigo_cupon = $value;
+            $this->codigoCupon = $value;
             return true;
         } else {
             $this->data_error = 'El codigo debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -45,7 +45,7 @@ class cupones_data extends cupones_handler
     public function setPorcentajeCupon($value, $min = 5, $max = 100)
     {
         if (Validator::validateNaturalNumber($value) && Validator::validateMaxAdnMinNumber($value, $min, $max)) {
-            $this->porcentaje_cupon = $value;
+            $this->porcentajeCupon = $value;
             return true;
         }  
      else {
@@ -57,7 +57,7 @@ class cupones_data extends cupones_handler
     public function setestado_cupon($value)
     {
         if (Validator::validateBoolean($value)) {
-            $this->estado_cupon = $value;
+            $this->estadoCupon = $value;
             return true;
         } 
          else {
@@ -69,7 +69,7 @@ class cupones_data extends cupones_handler
     public function setfecha_cupon($value)
     {
         if (Validator::validateDate($value)) {
-            $this->fecha_cupon = $value;
+            $this->fechaCupon = $value;
             return true;
         } 
          else {

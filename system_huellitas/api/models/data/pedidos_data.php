@@ -4,7 +4,7 @@ require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/pedidos_handler.php');
 
-class pedidos_data extends pedidos_handler{
+class PedidosData extends PedidosHandler{
 
     private $data_error = null;
     private $filename = null;
@@ -12,7 +12,7 @@ class pedidos_data extends pedidos_handler{
     public function setIdPedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_pedido_p = $value;
+            $this->idPedido = $value;
             return true;
         } else {
             $this->data_error = 'El identificador es incorrecto';
@@ -23,7 +23,7 @@ class pedidos_data extends pedidos_handler{
     public function setIdDetallePedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_detalle_p = $value;
+            $this->idDetalle = $value;
             return true;
         } else {
             $this->data_error = 'El identificador es incorrecto';
@@ -51,7 +51,7 @@ class pedidos_data extends pedidos_handler{
             $this->data_error = 'El contenido debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->estado_pedido_p = $value;
+            $this->estadoPedido = $value;
             return true;
         } else {
             $this->data_error = 'El contenido debe tener una longitud entre ' . $min . ' y ' . $max;

@@ -4,23 +4,23 @@ require_once ('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla permisos.
  */
-class permisos_handler
+class PermisosHandler
 {
     /*
      *  Declaración de atributos para el manejo de datos.
      */
-    protected $id_permiso = null;
-    protected $nombre_permiso = null;
-    protected $id_admin = null;
-    protected $ver_usuario = null;
-    protected $ver_cliente = null;
-    protected $ver_marca = null;
-    protected $ver_pedido = null;
-    protected $ver_comentario = null;
-    protected $ver_producto = null;
-    protected $ver_categoria = null;
-    protected $ver_cupon = null;
-    protected $ver_permiso = null;
+    protected $idPermiso = null;
+    protected $nombrePermiso = null;
+    protected $idAdmin = null;
+    protected $verUsuario = null;
+    protected $verCliente = null;
+    protected $verMarca = null;
+    protected $verPedido = null;
+    protected $verComentario = null;
+    protected $verProducto = null;
+    protected $verCategoria = null;
+    protected $verCupon = null;
+    protected $verPermiso = null;
 
 
 
@@ -45,16 +45,16 @@ class permisos_handler
     {
         $sql = 'INSERT INTO permisos (nombre_permiso, ver_usuario, ver_cliente, ver_marca, ver_pedido, ver_comentario, ver_producto, ver_categoria, ver_cupon, ver_permiso) VALUES (?,?,?,?,?,?,?,?,?,?);';
         $params = array(
-            $this->nombre_permiso,
-            $this->ver_usuario,
-            $this->ver_cliente,
-            $this->ver_marca,
-            $this->ver_pedido,
-            $this->ver_comentario,
-            $this->ver_producto,
-            $this->ver_categoria,
-            $this->ver_cupon,
-            $this->ver_permiso
+            $this->nombrePermiso,
+            $this->verUsuario,
+            $this->verCliente,
+            $this->verMarca,
+            $this->verPedido,
+            $this->verComentario,
+            $this->verProducto,
+            $this->verCategoria,
+            $this->verCupon,
+            $this->verPermiso
         );
         return Database::executeRow($sql, $params);
     }
@@ -86,17 +86,17 @@ class permisos_handler
 
         // Se crea el arreglo con los parámetros para la consulta
         $params = array(
-            $this->nombre_permiso,
-            $this->ver_usuario,
-            $this->ver_cliente,
-            $this->ver_marca,
-            $this->ver_pedido,
-            $this->ver_comentario,
-            $this->ver_producto,
-            $this->ver_categoria,
-            $this->ver_cupon,
-            $this->ver_permiso,
-            $this->id_permiso
+            $this->nombrePermiso, 
+            $this->verUsuario, 
+            $this->verCliente, 
+            $this->verMarca, 
+            $this->verPedido, 
+            $this->verComentario, 
+            $this->verProducto, 
+            $this->verCategoria, 
+            $this->verCupon, 
+            $this->verPermiso, 
+            $this->idPermiso
         );
 
         // Se ejecuta la consulta y se retorna el resultado
@@ -106,21 +106,21 @@ class permisos_handler
     public function readOne()
     {
         $sql = 'SELECT * FROM permisos WHERE id_permiso = ?';
-        $params = array($this->id_permiso);
+        $params = array($this->idPermiso);
         return Database::getRows($sql, $params);
     }
 
     public function readOneAdmin()
     {
         $sql = 'SELECT * FROM vista_permisos_administrador WHERE id_admin =?;';
-        $params = array($this->id_admin);
+        $params = array($this->idAdmin);
         return Database::getRow($sql, $params);
     }
 
     public function deleteRow()
     {
         $sql = 'DELETE FROM permisos  WHERE id_permiso = ?;';
-        $params = array($this->id_permiso);
+        $params = array($this->idPermiso);
         return Database::executeRow($sql, $params);
     }
 

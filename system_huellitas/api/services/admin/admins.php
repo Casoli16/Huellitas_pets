@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $administradores = new AdminData();
-    $permisos = new permisos_data;
+    $permisos = new PermisosData;
     $asignacionPermisos = new AsignacionPermisosData;
 
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.

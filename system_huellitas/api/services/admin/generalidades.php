@@ -15,12 +15,12 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $administradores = new AdminData();
-    $permisos = new permisos_data;
-    $asignacionPermisos = new AsignacionPermisosData;
-    $categorias = new CategoriasData;
-    $pedidos = new pedidos_data();
+    $permisos = new PermisosData();
+    $asignacionPermisos = new AsignacionPermisosData();
+    $categorias = new CategoriasData();
+    $pedidos = new PedidosData();
     $clientes = new ClientesData();
-    $productos = new productosData;
+    $productos = new productosData();
 
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
