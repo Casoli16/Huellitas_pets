@@ -16,6 +16,8 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_comentarios.css">
     <!-- Estilos del menú -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+    <!-- Agregamos el archivo css para estilizar los switch-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
 </head>
 
 <body class="mt-5">
@@ -152,12 +154,17 @@
                                         <textarea class="form-control" id="comentarioValoracion" name="comentarioValoracion"
                                             rows="3" disabled></textarea>
                                     </div>
+                                    <div class="form-check form-switch float-end mb-md-5">
+                                        <label class="form-check-label" for="estadoValoracion">Estado</label>
+                                        <input class="form-check-input bg-orange-color" type="checkbox"
+                                            role="switch" id="switchComentarios" name="estadoValoracion" checked >
+                                    </div>
                                     <br>
                                     <!-- Botones de acción (Agregar, Ocultar) -->
                                     <div class="container text-center">
                                         <button type="button" class="btn btn-orange-color text-white mx-3">
                                             Regresar</button>
-                                        <button type="submit" id="modalButton" class="btn btn-red-color text-white"> Ocultar</button>
+                                        <button type="submit" data-bs-dismiss="modal" id="btnGuardar" name="btnGuardar" class="btn btn-red-color text-white"> Actualizar</button>
                                     </div>
                                     <br>
                                 </div>

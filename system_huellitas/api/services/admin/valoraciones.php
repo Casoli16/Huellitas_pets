@@ -25,7 +25,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario
             $_POST = Validator::validateForm($_POST);
             if (
                 !$valoraciones->setIdValoracion($_POST['idValoracion']) or
-                !$valoraciones->setEstadoValoracion($_POST[false])
+                !$valoraciones->setEstadoValoracion(isset($_POST['estadoValoracion']) ? 1 : 0)
             ){
                 $result['error'] = $valoraciones->getDataError();
             } elseif ($valoraciones -> updateRow()) {
