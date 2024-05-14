@@ -18,11 +18,11 @@ if (isset($_GET['action'])) {
                 if (!$autorizacion->setIdAdmin($_POST['idAdmin'])) {
                     $result['error'] = $autorizacion->getDataError();
                 } elseif ($result['dataset'] = $autorizacion->readOneAdmin()) {
-                    $result['status'] = 1;
+                    $result['status'] = 1;  
                     // Guardar los permisos en un arreglo dentro de la clase autorizaciones_data
                     $_SESSION['permisos'] = $result['dataset'];
                 } else {
-                    $result['error'] = 'Este administrador no tiene permisos asignados';
+                    $result['error'] = 'Este administrador no tiene permiso asignado';
                 }
                 break;
             default:
