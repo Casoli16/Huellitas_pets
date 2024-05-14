@@ -1,7 +1,7 @@
 // Controlador de uso general en las paginas web del sitio privador
 // Maneja la plantilla del encabezado del documento.
 
-const USER_API = 'services/admin/admins.php'
+const USER_API = 'services/admin/generalidades.php'
 const MAIN = document.querySelector('main');
 
 
