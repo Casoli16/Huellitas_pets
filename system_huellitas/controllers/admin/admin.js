@@ -194,7 +194,7 @@ const fillTable = async (form = null) => {
                     <td>${row.nombre_admin}</td>
                     <td>${row.apellido_admin}</td>
                     <td>${row.correo_admin}</td>
-                    <td>${row.fecha_registro_admin}</td>
+                    <td>${row.fecha_registro_admin_formato}</td>
                     <td>
                        <button type="button" class="btn btn-light" onclick="openCreatePermission(${row.id_admin})">
                             <img src="../../resources/img/png/permisos.png" width="35px">

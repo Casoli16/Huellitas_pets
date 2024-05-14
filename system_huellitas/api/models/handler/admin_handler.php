@@ -24,10 +24,12 @@ class AdminHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT *
+                $sql = "SELECT id_admin, nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, 
+                DATE_FORMAT(fecha_registro_admin, '%d de %M del %Y') AS fecha_registro_admin_formato,
+                imagen_admin 
                 FROM administradores
                 WHERE nombre_admin LIKE ? OR correo_admin LIKE ?
-                ORDER BY nombre_admin';
+                ORDER BY nombre_admin";
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
@@ -51,7 +53,11 @@ class AdminHandler
     // READ ALL
     public function readAll()
     {
-        $sql = 'SELECT * FROM administradores ORDER BY fecha_registro_admin';
+        $sql = "SELECT id_admin, nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, 
+        DATE_FORMAT(fecha_registro_admin, '%d de %M del %Y') AS fecha_registro_admin_formato,
+        imagen_admin 
+        FROM administradores 
+        ORDER BY fecha_registro_admin;";
         return DATABASE::getRows($sql);
     }
 
