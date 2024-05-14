@@ -30,9 +30,9 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario
                 $result['error'] = $valoraciones->getDataError();
             } elseif ($valoraciones -> updateRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Producto actualizado correctamente';
+                $result['message'] = 'Comentario actualizada correctamente';
             } else{
-                $result['error'] = 'Ocurrió un problema al actualizar el producto';
+                $result['error'] = 'Ocurrió un problema al actualizar el comentario';
             }
             break;
         case 'readAll':
@@ -40,7 +40,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario
                 $result['status'] = 1;
                 $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
             } else{
-                $result['error'] = 'No existen productos registrados';
+                $result['error'] = 'No existen comentario  registrados';
             }
             break; 
         case 'readOne':
@@ -49,7 +49,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario
             } elseif ($result['dataset'] = $valoraciones->readOne()) {
                 $result['status'] = 1;
             } else {
-                $result['error'] = 'Producto inexistente';
+                $result['error'] = 'Comentario inexistente';
             }
             break;
     }

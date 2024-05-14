@@ -59,6 +59,16 @@ class marcas_handler
         return Database::getRows($sql, $params);
     }
 
+    //     Leer la imagen del producto
+    public function readFilename()
+    {
+        $sql = 'SELECT imagen_marca
+                FROM marcas
+                WHERE id_marca = ?';
+        $params = array($this->idMarca);
+        return Database::getRow($sql, $params);
+    }
+
     //    Actualizar un producto
     public function updateRow(){
         $sql = 'UPDATE marcas 

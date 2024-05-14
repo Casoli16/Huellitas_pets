@@ -118,7 +118,7 @@ const openUpdate = async (id) => {
         ID_MARCA.value = ROW.id_marca;
         NOMBRE_MARCA.value = ROW.nombre_marca;
         //Cargamos la imagen del registro seleccionado
-        //IMAGEN.src = SERVER_URL + 'images/marcas/' + ROW.imagen_marca; 
+        IMAGEN.src = SERVER_URL + 'images/marcas/' + ROW.imagen_marca; 
 
     } else {
         sweetAlert(2, DATA.error, false);

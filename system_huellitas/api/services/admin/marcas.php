@@ -32,7 +32,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] ==
             } elseif ($marcas->createRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Marca ingresado correctamente';
-                $result['fileStatus'] = Validator::saveFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
+                $result['fileStatus'] = Validator::saveFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN);
             } else{
                 $result['error'] = 'Ocurrio un problema al ingresar el producto';
             }
@@ -41,6 +41,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] ==
             $_POST = Validator::validateForm($_POST);
             if (
                 !$marcas->setIdMarca($_POST['idMarca']) or
+                !$marcas->setFilename() or
                 !$marcas->setNombreMarca($_POST['nombreMarca']) or
                 !$marcas->setImagenMarca($_FILES['imagenMarca'])
             ){
@@ -48,7 +49,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] ==
             } elseif ($marcas -> updateRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Marca actualizado correctamente';
-                $result['fileStatus'] = Validator::saveFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
+                $result['fileStatus'] = Validator::changeFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar el producto';
             }
@@ -71,11 +72,16 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] ==
             }
             break;
         case 'deleteRow':
-            if(!$marcas->setIdMarca($_POST['idMarca'])){
+            if(
+                !$marcas->setIdMarca($_POST['idMarca']) or
+                !$marcas->setFilename()
+            ){
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas->deleteRow()){
                 $result['status'] = 1;
                 $result['message'] = 'Marca eliminado correctamente';
+                // Se asigna el estado del archivo después de eliminar.
+                $result['fileStatus'] = Validator::deleteFile($marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
                 $result['error'] = 'Ocurrio un problema al eliminar el producto';
             }

@@ -163,7 +163,6 @@ const fillTable = async (form = null, option = null) => {
     if (DATA.status) {
         DATA.dataset.forEach(row => {
             const stwitchChecked = (row.estado_valoracion === 1) ? 'checked' : '';
-            console.log(row.estado_valoracion)
             switch (row.estado_valoracion) {
                 case 0:
                     TABLE_BODY.innerHTML += `

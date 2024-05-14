@@ -4,8 +4,8 @@ require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/marcas_handler.php');
 
-class marcasData extends marcas_handler{
-
+class marcasData extends marcas_handler
+{
     private $data_error = null;
     private $filename = null;
 
@@ -48,6 +48,17 @@ class marcasData extends marcas_handler{
         } else{
             $this->imagenMarca = 'default.png';
             return true;
+        }
+    }
+
+    public function setFilename()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['imagen_marca'];
+            return true;
+        } else {
+            $this->data_error = 'Marca inexistente';
+            return false;
         }
     }
 
