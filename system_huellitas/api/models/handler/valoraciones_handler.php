@@ -35,7 +35,7 @@ class valoracionesHandler
                 INNER JOIN clientes c ON pe.id_cliente = c.id_cliente
                 WHERE nombre_producto LIKE ?
                 ORDER BY c.nombre_cliente;';
-        $params = array($value, $value);
+        $params = array($value);
         return Database::getRows($sql, $params);
     }
 

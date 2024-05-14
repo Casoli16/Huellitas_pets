@@ -44,10 +44,10 @@ const searchRow = async () => {
     FORM.append('search', inputValue);
     //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
     if (inputValue === '') {
-        fillTable(null, OPTION);
+        fillTable();
     } else {
         // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-        fillTable(FORM, null);
+        fillTable(FORM);
     }
 }
 

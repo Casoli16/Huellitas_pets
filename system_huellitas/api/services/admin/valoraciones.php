@@ -25,14 +25,12 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario
             $_POST = Validator::validateForm($_POST);
             if (
                 !$valoraciones->setIdValoracion($_POST['idValoracion']) or
-                !$valoraciones->setEstadoValoracion($_POST['estadoValoracion'])
+                !$valoraciones->setEstadoValoracion($_POST[false])
             ){
                 $result['error'] = $valoraciones->getDataError();
             } elseif ($valoraciones -> updateRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Producto actualizado correctamente';
-                // Se asigna el estado del archivo después de insertar.
-                $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $productos::RUTA_IMAGEN);
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar el producto';
             }
