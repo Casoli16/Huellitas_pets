@@ -14,6 +14,10 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_marcas.css">
     <!-- Estilos del menú -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+    <!--Personalizamos los botones de la paginacion-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/pagination_styles.css">
+    <!--Se agrega la libreria de DataTables para la paginación-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
 </head>
 
 <body class="mt-5">
@@ -39,13 +43,9 @@
             <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
-                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search" id="searchInput" name="search" placeholder="Buscar...">
+                    <p>Haz clíc en el siguiente botón para poder agregar una nueva marca.</p>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
-                    <div class="d-md-none d-lg-none">
-                        <p>Haz clíc en el siguiente botón para poder agregar una nueva marca.</p>
-                    </div>
                     <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
@@ -60,7 +60,7 @@
         <!-- Contenido principal: Tabla de marcas -->
         <div class="container p-3 mt-4">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="paginationTable">
                     <thead>
                         <tr>
                             <td colspan="8" id="rowsFound" hidden></td>
@@ -133,12 +133,19 @@
 
     <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la libreria para alertas -->
     <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="text/javascript" type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!--Agregamos la libreria para la paginacion -- jquery y js-->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Script personalizado -->
     <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
     <!-- Script funcionamiento -->
     <script type="text/javascript" src="../../controllers/admin/marcas.js"></script>
+    <!-- Nos permite cambiar el idioma de la paginacion-->
+    <script type="text/javascript" src="../../controllers/utils/language_pagination.js"></script>
     
     
 

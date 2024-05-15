@@ -13,5 +13,5 @@ const spanishLanguage = {
     "zeroRecords": "No se encontraron coincidencias",
     "loading": "Cargando...",
     "processing": "Procesando...",
-    "search": "Buscar:",
+    "search": "Buscar",
 };
