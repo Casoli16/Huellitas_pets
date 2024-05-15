@@ -43,7 +43,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] ==
                 !$marcas->setIdMarca($_POST['idMarca']) or
                 !$marcas->setFilename() or
                 !$marcas->setNombreMarca($_POST['nombreMarca']) or
-                !$marcas->setImagenMarca($_FILES['imagenMarca'])
+                !$marcas->setImagenMarca($_FILES['imagenMarca'], $marcas->getFilename())
             ){
                 $result['error'] = $marcas->getDataError();
             } elseif ($marcas -> updateRow()) {
