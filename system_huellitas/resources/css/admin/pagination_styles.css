@@ -1,0 +1,20 @@
+/*Permite cambiar el color de los botones que aparecen en la paginacion*/
+.paginate_button .page-link:focus {
+    background-color: #F95738; /* Active button background color */
+    color: white; /* Active button text color */
+    border-color:#F95738;
+    box-shadow:  0 0 0 0.25rem rgba(255, 91, 26, 0.25);
+
+}
+
+.paginate_button .page-link {
+    background-color: #ff8b4d; /* Default button background color */
+    border-color: #ddd; /* Default button border color */
+    color: #ffffff; /* Default button text color */
+}
+
+.dataTables_filter input {
+    background-color: white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}

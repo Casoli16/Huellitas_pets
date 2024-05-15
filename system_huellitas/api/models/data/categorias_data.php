@@ -71,4 +71,15 @@ class CategoriasData extends CategoriasHandler{
     {
         return $this->filename;
     }
+
+    public function setFileName()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['imagen_categoria'];
+            return true;
+        } else {
+            $this->data_error = 'Categoría inexistente';
+            return false;
+        }
+    }
 }

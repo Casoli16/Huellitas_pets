@@ -45,6 +45,15 @@ class CategoriasHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function readFilename()
+    {
+        $sql = 'SELECT imagen_categoria
+                FROM categorias
+                WHERE id_categoria = ?';
+        $params = array($this->idCategoria);
+        return Database::getRow($sql, $params);
+    }
+
     // READ ALL
     public function readAll()
     {

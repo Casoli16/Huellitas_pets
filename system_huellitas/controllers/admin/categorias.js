@@ -1,9 +1,6 @@
 //Constantes para completar las rutas API
 const CATEGORIA_API = 'services/admin/categorias.php';
 
-// Constante para establecer el formulario de buscar.
-const SEARCH_INPUT = document.getElementById('searchInput');
-
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle'),
@@ -25,6 +22,12 @@ const IMAGEN = document.getElementById('imagen');
 
 // LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
 const HIDDEN_ELEMENT = document.getElementById('anyTable');
+
+//Obtiene el id de la tabla
+const PAGINATION_TABLE = document.getElementById('paginationTable');
+//Declaramos una variable que permitira guardar la paginacion de la tabla
+let PAGINATION;
+
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
@@ -50,22 +53,6 @@ IMAGEN_CATEGORIA.addEventListener('change', function (event) {
     }
 });
 
-//Metodo para el buscador
-const searchRow = async () => {
-    //Obtenemos lo que se ha escrito en el input
-    const inputValue = SEARCH_INPUT.value;
-    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
-    const FORM = new FormData();
-    FORM.append('search', inputValue);
-    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
-    if (inputValue === '') {
-        fillTable();
-    } else {
-        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-        fillTable(FORM);
-    }
-}
-
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
@@ -82,6 +69,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
+        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+        PAGINATION.destroy();
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
     } else {
@@ -122,7 +111,7 @@ const openUpdate = async (id) => {
         NOMBRE_CATEGORIA.value = ROW.nombre_categoria;
         DESCRIPCION_CATEGORIA.value = ROW.descripcion_categoria;
         //Cargamos la imagen del registro seleccionado
-        //IMAGEN.src = SERVER_URL + 'images/marcas/' + ROW.imagen_marca; 
+        IMAGEN.src = SERVER_URL + 'images/categorias/' + ROW.imagen_categoria;
 
     } else {
         sweetAlert(2, DATA.error, false);
@@ -143,6 +132,8 @@ const openDelete = async (id) => {
         if (DATA.status) {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
+            // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+            PAGINATION.destroy();
             // Se carga nuevamente la tabla para visualizar los cambios.
             fillTable();
         } else {
@@ -154,9 +145,9 @@ const openDelete = async (id) => {
 const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
+    //let action = form ? 'searchRows' : 'readAll'
     (form) ? action = 'searchRows' : action = 'readAll';
     const DATA = await fetchData(CATEGORIA_API, action, form);
-
     if (DATA.status) {
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `       
@@ -177,8 +168,27 @@ const fillTable = async (form = null) => {
                 `;
             });
             ROWS_FOUND.textContent = DATA.message;
+            //En caso que si existen los registro en la base, entonces no se mostrara este codigo.
+            HIDDEN_ELEMENT.style.display = 'none';
+
+            //Creamos la instancia de DataTable y la guardamos en la variable
+                PAGINATION = new DataTable(PAGINATION_TABLE, {
+                    paging: true,
+                    searching: true,
+                    language: spanishLanguage,
+                });
+
+
         } else {
-            sweetAlert(4, DATA.error, true);
+            sweetAlert(3, DATA.error, true);
+            // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html
+            HIDDEN_ELEMENT.innerHTML = `
+            <div class="container text-center">
+                <p class="p-4 bg-beige-color rounded-4">No existen resultados</p>
+            </div>`
+            // Muestra el codigo injectado
+            HIDDEN_ELEMENT.style.display = 'block'
+
         }
 
     }

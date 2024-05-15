@@ -14,6 +14,10 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_categorias.css">
     <!-- Estilos del menú -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
+    <!--Personalizamos los botones de la paginacion-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/pagination_styles.css">
+    <!--Se agrega la libreria de DataTables para la paginación-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
 </head>
 
 <body class="mt-5">
@@ -36,16 +40,12 @@
     <main>
         <!-- Barra de búsqueda -->
         <div class="container mt-4">
-            <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+            <!-- py-4 agrega un margin vertical entre el texto y el buscador -->
             <div class="row align-items-center gy-4">
                 <div class="col-md-6 col-lg-6">
-                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search" id="searchInput" name="search" placeholder="Buscar...">
+                    <p>Haz clíc en el siguiente botón para poder agregar una nueva categoría.</p>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
-                    <div class="d-md-none d-lg-none">
-                        <p>Haz clíc en el siguiente botón para poder agregar una nueva categoría.</p>
-                    </div>
                     <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
@@ -58,9 +58,10 @@
         </div>
 
         <!-- Contenido principal: Tabla de categorías -->
-        <div class="container p-3 mt-5">
+        <div class="container p-3 mt-4">
             <div class="table-responsive">
-                <table class="table">
+                <!--Agregamos el id a la tabla para poder utilizar la paginacion-->
+                <table class="table" id="paginationTable">
                     <thead>
                         <tr>
                             <td colspan="8" id="rowsFound" hidden></td>
@@ -75,6 +76,7 @@
                     </thead>
                     <tbody id="tableBody"></tbody>
                 </table>
+                <!--Aca aparecera el codigo para mostrar el mensaje cuando no se encuentren los registros-->
                 <div id="anyTable"></div>
             </div>
         </div>
@@ -100,13 +102,14 @@
                                 <div class="col-4">
                                     <div class="container d-flex align-items-center">
                                         <img src="../../resources/img/png/entretenimiento_categorias.png"
-                                            class="tamanio_imagen_agregar" id="imagen" alt="">
+                                            class="tamanio_imagen_agregar" id="imagen" width="120px" height="120px">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-4 d-flex align-items-center">
                                     <div>
                                         <!-- Botón para cargar imagen -->
-                                        <input type="file" class="form-control" id="imagenCategoria" name="imagenCategoria" hidden required>
+                                        <input type="file" class="form-control" id="imagenCategoria"
+                                            name="imagenCategoria" hidden>
                                         <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
                                         <label class="btn btn-red-color text-light btn-sm" for="imagenCategoria">Cargar
                                             imagen</label>
@@ -123,15 +126,15 @@
                                     <br>
                                     <div class="mb-3">
                                         <!-- Descripción de la categoría -->
-                                        <label for="descripcionCategoria"
-                                            class="form-label fw-bold">Descripción</label>
+                                        <label for="descripcionCategoria" class="form-label fw-bold">Descripción</label>
                                         <textarea class="form-control" name="descripcionCategoria"
                                             id="descripcionCategoria" rows="3"></textarea>
                                     </div>
                                     <br>
                                     <div class="container text-center">
                                         <!-- Botón para agregar la categoría -->
-                                        <button type="submit" id="modalButton" class="btn btn-orange-color text-white"></button>
+                                        <button type="submit" id="modalButton"
+                                            class="btn btn-orange-color text-white"></button>
                                     </div>
                                     <br>
                                 </div>
@@ -145,11 +148,20 @@
 
     <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Script personalizado -->
-    <script src="../../controllers/utils/admin.js"></script>
-    <script type="text/javascript" src="../../controllers/admin/categorias.js"></script>
+    <!-- Agregamos la libreria para alertas -->
     <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="text/javascript" type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!--Agregamos la libreria para la paginacion -- jquery y js-->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Agregamos el controlador general de la aplicacion-->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script src="../../controllers/utils/admin.js"></script>
+    <!-- Agregamos el controlador de la pagina web -->
+    <script type="text/javascript" src="../../controllers/admin/categorias.js"></script>
+    <!-- Nos permite cambiar el idioma de la paginacion-->
+    <script type="text/javascript" src="../../controllers/utils/language_pagination.js"></script>
 </body>
 
 </html>
