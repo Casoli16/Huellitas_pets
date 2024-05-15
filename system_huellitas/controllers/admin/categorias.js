@@ -172,11 +172,12 @@ const fillTable = async (form = null) => {
             HIDDEN_ELEMENT.style.display = 'none';
 
             //Creamos la instancia de DataTable y la guardamos en la variable
-                PAGINATION = new DataTable(PAGINATION_TABLE, {
-                    paging: true,
-                    searching: true,
-                    language: spanishLanguage,
-                });
+            PAGINATION = new DataTable(PAGINATION_TABLE, {
+                paging: true,
+                searching: true,
+                language: spanishLanguage,
+                responsive: true
+            });
 
 
         } else {

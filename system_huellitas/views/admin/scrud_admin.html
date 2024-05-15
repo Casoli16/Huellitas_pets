@@ -15,6 +15,10 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/static_components/menu.css">
     <!-- Agregamos el archivo css para estilizar los switch-->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
+    <!--Personalizamos los botones de la paginacion-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/pagination_styles.css">
+    <!--Se agrega la libreria de DataTables para la paginación-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
 </head>
 
 <body class="mt-5">
@@ -41,14 +45,9 @@
                 <!--Buscador-->
                 <div class="col-md-6 col-lg-6">
                     <!--Ocupamos el evento oninput para que cuando se detecte que se esta escribiendo en el input llame a la funcion searchhRow-->
-                    <input class="form-control rounded-4 shadow bg-white" oninput="searchRow()" type="search"
-                        id="searchInput" name="search" placeholder="Buscar...">
+                    <p>Haz clíc en el siguiente botón para poder agregar un nuevo administrador.</p>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <!-- Este texto solo se mostrara en pantallas pequeñas, el .d-none esconde elementos -->
-                    <div class="d-md-none d-lg-none">
-                        <p>Haz clíc en el siguiente botón para poder agregar un nuevo administrador.</p>
-                    </div>
                     <!-- .float-left y end posiciona el boton a la izquieda o derecha de la pantalla dependiendo del tamaño -->
                     <button
                         class="btn btn-red-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3 p-2"
@@ -63,7 +62,7 @@
         <div class="container mt-5">
             <div></div>
             <div class="table-responsive">
-                <table class="table align-middle text-center">
+                <table class="table align-middle text-center" id="paginationTable">
                     <!-- Encabezado de las tablas -->
                     <thead class="table table-responsive">
                         <tr>
@@ -223,12 +222,18 @@
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Agregamos la libreria para alertas -->
     <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Agregamos la libreria para la paginacion -- jquery y js-->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <!-- Agregamos el controlador general de la aplicacion-->
     <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
     <!-- Agregamos el controlador de la pagina web -->
     <script type="text/javascript" src="../../controllers/admin/admin.js"></script>
+    <!-- Nos permite cambiar el idioma de la paginacion-->
+    <script type="text/javascript" src="../../controllers/utils/language_pagination.js"></script>
 </body>
 
 </html>
