@@ -22,6 +22,12 @@ const SAVE_FORM = document.getElementById('saveForm'),
 // LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
 const HIDDEN_ELEMENT = document.getElementById('anyTable');
 
+//Obtiene el id de la tabla
+const PAGINATION_TABLE = document.getElementById('paginationTable');
+//Declaramos una variable que permitira guardar la paginacion de la tabla
+let PAGINATION;
+
+
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
     //Carga el menu en las pantalla
@@ -29,22 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //Muestra los registros que hay en la tabla
     fillTable();
 });
-
-//Metodo para el buscador
-const searchRow = async () => {
-    //Obtenemos lo que se ha escrito en el input
-    const inputValue = SEARCH_INPUT.value;
-    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
-    const FORM = new FormData();
-    FORM.append('search', inputValue);
-    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
-    if (inputValue === '') {
-        fillTable();
-    } else {
-        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-        fillTable(FORM);
-    }
-}
 
 // Escuchamos el evento 'submit' del formulario
 SAVE_FORM.addEventListener('submit', async (event) => {
@@ -71,10 +61,10 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.hide();
         // Mostrar mensaje de éxito
         sweetAlert(1, DATA.message, true);
+        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+        PAGINATION.destroy();
         // Volver a llenar la tabla para mostrar los cambios
         fillTable();
-        //Cargamos la imagen por defecto
-        IMAGEN.src = '../../resources/img/png/rectangulo.png'
     } else {
         // Mostrar mensaje de error
         console.log(DATA.error);
@@ -134,6 +124,8 @@ const openDelete = async (id) => {
         if (DATA.status) {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
+            //Cargamos la imagen por defecto
+            IMAGEN.src = '../../resources/img/png/rectangulo.png'
             // Se carga nuevamente la tabla para visualizar los cambios.
             fillTable();
         } else {
@@ -179,6 +171,15 @@ const fillTable = async (form = null) => {
             ROWS_FOUND.textContent = DATA.message;
             //En caso que si existen los registro en la base, entonces no se mostrara este codigo.
             HIDDEN_ELEMENT.style.display = 'none';
+
+            //Creamos la instancia de DataTable y la guardamos en la variable
+            PAGINATION = new DataTable(PAGINATION_TABLE, {
+                paging: true,
+                searching: true,
+                language: spanishLanguage,
+                responsive: true
+            });
+
         } else {
             sweetAlert(3, DATA.error, true);
             // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html
@@ -191,7 +192,6 @@ const fillTable = async (form = null) => {
         }
     } catch (error) {
         console.error('Error:', error);
-        // Aquí puedes hacer algo con el error, como imprimirlo en la consola o mostrar un mensaje al usuario.
     }
 }
 

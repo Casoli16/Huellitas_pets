@@ -26,25 +26,15 @@ const FORM_UPDATE = document.getElementById("seeForm"),
     FECHA_NACIMIENTO = document.getElementById("nacimientoCliente"),
     FECHA_REGISTRO = document.getElementById("fechaRegistroCliente");
 
+//Obtiene el id de la tabla
+const PAGINATION_TABLE = document.getElementById('paginationTable');
+//Declaramos una variable que permitira guardar la paginacion de la tabla
+let PAGINATION;
+
 document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     fillTable();
 })
-const searchRow = async () => {
-    //Obtenemos lo que se ha escrito en el input
-    const inputValue = SEARCH_INPUT.value;
-    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
-    const FORM = new FormData();
-    FORM.append('search', inputValue);
-    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
-    if (inputValue === '') {
-        fillTable();
-    } else {
-        console.log(FORM)
-        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-        fillTable(FORM);
-    }
-}
 
 FORM_UPDATE.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -53,6 +43,8 @@ FORM_UPDATE.addEventListener('submit', async (event) => {
     if(DATA.status){
         INFO_MODAL.hide();
         sweetAlert(1, DATA.message, true);
+        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+        PAGINATION.destroy();
         fillTable();
     }else {
         sweetAlert(2, DATA.error, false);
@@ -113,6 +105,14 @@ const fillTable = async (form = null) => {
         ROWS_FOUND.textContent = DATA.message;
         //En caso que si existen los registro en la base, entonces no se mostrara este codigo.
         HIDDEN_ELEMENT.style.display = 'none';
+
+        //Creamos la instancia de DataTable y la guardamos en la variable
+        PAGINATION = new DataTable(PAGINATION_TABLE, {
+            paging: true,
+            searching: true,
+            language: spanishLanguage,
+            responsive: true
+        });
     } else {
         sweetAlert(3, DATA.error, true);
         // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html

@@ -29,6 +29,11 @@ const SAVE_FORM = document.getElementById('saveForm'),
 // LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
 const HIDDEN_ELEMENT = document.getElementById('anyTable');
 
+//Obtiene el id de la tabla
+const PAGINATION_TABLE = document.getElementById('paginationTable');
+//Declaramos una variable que permitira guardar la paginacion de la tabla
+let PAGINATION;
+
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
     //Carga el menu en las pantalla
@@ -36,22 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //Muestra los registros que hay en la tabla
     fillTable();
 });
-
-//Metodo para el buscador
-const searchRow = async () => {
-    //Obtenemos lo que se ha escrito en el input
-    const inputValue = SEARCH_INPUT.value;
-    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
-    const FORM = new FormData();
-    FORM.append('search', inputValue);
-    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
-    if (inputValue === '') {
-        fillTable();
-    } else {
-        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-        fillTable(FORM);
-    }
-}
 
 // Escuchamos el evento 'submit' del formulario
 SAVE_FORM.addEventListener('submit', async (event) => {
@@ -102,18 +91,18 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 
     console.log(DATA);
     // Verificar si la respuesta del servidor fue satisfactoria
-    if (DATA.STATUS) {
+    if (DATA.status) {
         console.log('Si pase');
         // Ocultar el modal
         SAVE_MODAL.hide();
         // Mostrar mensaje de éxito
-        sweetAlert(1, DATA.MESSAGE, true);
+        sweetAlert(1, DATA.message, true);
+        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+        PAGINATION.destroy();
         // Volver a llenar la tabla para mostrar los cambios
         fillTable();
     } else {
-        // Mostrar mensaje de error
-        console.log(DATA.ERROR);
-        sweetAlert(2, DATA.ERROR, false);
+        sweetAlert(2, DATA.error, false);
     }
 });
 
@@ -133,25 +122,25 @@ const openUpdate = async (id) => {
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(PERMISOS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.STATUS) {
+    if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
         MODAL_TITLE.textContent = 'Actualizar permiso';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
-        const [ROW] = DATA.DATASET;
-        NOMBRE_PERMISO.value = ROW.NOMBRE_PERMISO;
-        ID_PERMISO.value = ROW.ID_PERMISO;
-        const SCH_VER_CLIENTE = (ROW.VER_CLIENTE === 1) ? 'checked' : '';
-        const SCH_VER_MARCA = (ROW.VER_MARCA === 1) ? 'checked' : '';
-        const SCH_VER_PEDIDO = (ROW.VER_PEDIDO === 1) ? 'checked' : '';
-        const SCH_VER_COMENTARIO = (ROW.VER_COMENTARIO === 1) ? 'checked' : '';
-        const SCH_VER_PRODUCTO = (ROW.VER_PRODUCTO === 1) ? 'checked' : '';
-        const SCH_VER_CATEGORIA = (ROW.VER_CATEGORIA === 1) ? 'checked' : '';
-        const SCH_VER_CUPON = (ROW.VER_CUPON === 1) ? 'checked' : '';
-        const SCH_VER_PERMISO = (ROW.VER_PERMISO === 1) ? 'checked' : '';
-        const SCH_VER_USUARIO = (ROW.VER_USUARIO === 1) ? 'checked' : '';
+        const [ROW] = DATA.dataset;
+        NOMBRE_PERMISO.value = ROW.nombre_permiso;
+        ID_PERMISO.value = ROW.id_permiso;
+        const SCH_VER_CLIENTE = (ROW.ver_cliente === 1) ? 'checked' : '';
+        const SCH_VER_MARCA = (ROW.ver_marca === 1) ? 'checked' : '';
+        const SCH_VER_PEDIDO = (ROW.ver_pedido === 1) ? 'checked' : '';
+        const SCH_VER_COMENTARIO = (ROW.ver_comentario === 1) ? 'checked' : '';
+        const SCH_VER_PRODUCTO = (ROW.ver_producto === 1) ? 'checked' : '';
+        const SCH_VER_CATEGORIA = (ROW.ver_categoria === 1) ? 'checked' : '';
+        const SCH_VER_CUPON = (ROW.ver_cupon === 1) ? 'checked' : '';
+        const SCH_VER_PERMISO = (ROW.ver_permiso === 1) ? 'checked' : '';
+        const SCH_VER_USUARIO = (ROW.ver_usuario === 1) ? 'checked' : '';
 
         VER_CLIENTE.checked = SCH_VER_CLIENTE;
         VER_MARCA.checked = SCH_VER_MARCA;
@@ -163,7 +152,7 @@ const openUpdate = async (id) => {
         VER_PERMISO.checked = SCH_VER_PERMISO;
         VER_USUARIO.checked = SCH_VER_USUARIO;
     } else {
-        sweetAlert(2, DATA.ERROR, false);
+        sweetAlert(2, DATA.error, false);
     }
 }
 
@@ -182,6 +171,8 @@ const openDelete = async (id) => {
         if (DATA.status) {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
+            // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+            PAGINATION.destroy();
             // Se carga nuevamente la tabla para visualizar los cambios.
             fillTable();
         } else {
@@ -217,19 +208,26 @@ const fillTable = async (form = null) => {
             ROWS_FOUND.textContent = DATA.message;
             //En caso que si existen los registro en la base, entonces no se mostrara este codigo.
             HIDDEN_ELEMENT.style.display = 'none';
+
+            //Creamos la instancia de DataTable y la guardamos en la variable
+            PAGINATION = new DataTable(PAGINATION_TABLE, {
+                paging: true,
+                searching: true,
+                language: spanishLanguage,
+                responsive: true
+            });
         } else {
             sweetAlert(3, DATA.error, true);
             // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html
             HIDDEN_ELEMENT.innerHTML = `
             <div class="container text-center">
-                <p class="p-4 bg-beige-color rounded-4">No hay resultados para tu búsqueda</p>
+                <p class="p-4 bg-beige-color rounded-4">No existen resultados</p>
             </div>`
             // Muestra el codigo injectado
             HIDDEN_ELEMENT.style.display = 'block'
         }
     } catch (error) {
         console.error('Error:', error);
-        // Aquí puedes hacer algo con el error, como imprimirlo en la consola o mostrar un mensaje al usuario.
     }
 }
 
