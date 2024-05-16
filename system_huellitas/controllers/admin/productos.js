@@ -5,14 +5,12 @@ const MARCAS_API = 'services/admin/marcas.php';
 
 //Obtenemos los parametros de la mascota que se selecciono en la pantalla menu_productos.html
 const PARAMS = new URLSearchParams(window.location.search);
+
 //Guarda en una variable el parametro obtenido
 const MENU = PARAMS.get("mascota");
 
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
-
-// BUSCADOR
-const SEARCH_INPUT = document.getElementById('searchInput');
 
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
@@ -23,9 +21,6 @@ const SAVE_FORM = document.getElementById('saveForm'),
     DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
     CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
-    MASCOTA = document.getElementById('mascotaSelect'),
-    CATEGORIA = document.getElementById('categoriaSelect'),
-    MARCA = document.getElementById('marcaSelect'),
     ESTADO_PRODUCTO = document.getElementById('switchPerros'),
     IMAGEN_PRODUCTO = document.getElementById('imgProduct');
 
@@ -54,7 +49,12 @@ const OPTION_PET = document.getElementById('selectMenu');
 const TITLO = document.getElementById('titulo');
 const IMAGEN_PAGINA = document.getElementById('imagenMascota');
 
-//
+//Obtiene el id de la tabla
+const PAGINATION_TABLE = document.getElementById('paginationTable');
+//Declaramos una variable que permitira guardar la paginacion de la tabla
+let PAGINATION;
+
+//Guarda lo que se seleccione en el select la mascota
 let OPTION;
 
 // Agregamos el evento change al input de tipo file que selecciona la imagen
@@ -76,26 +76,10 @@ IMAGEN_PRODUCTO.addEventListener('change', function (event) {
 // CUANDO SE CARGUE EL DOCUMENTO
 document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
-    //Guarda lo escrito en nuestro input
+    //Guarda lo escrito en nuestro select
     OPTION_PET.value = MENU;
     selectedOption();
 })
-
-const searchRow = async () => {
-    //Obtenemos lo que se ha escrito en el input
-    const inputValue = SEARCH_INPUT.value;
-    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
-    const FORM = new FormData();
-    FORM.append('search', inputValue);
-    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
-    if (inputValue === '') {
-        OPTION = OPTION_PET.value;
-        fillTable(null, OPTION);
-    } else {
-        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-        fillTable(FORM, null);
-    }
-}
 
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -121,7 +105,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         IMAGEN.src = '../../resources/img/png/rectangulo.png'
-        // Se carga nuevamente la tabla para visualizar los cambios.
         selectedOption();
     } else {
         sweetAlert(2, DATA.error, false);
@@ -223,15 +206,21 @@ const openDelete = async (id) => {
 
 const selectedOption = () => {
     const optionSelected = OPTION_PET.value;
+    //Revisa si paginacion existe, de ser asi entonces la elminina
+    if(PAGINATION){
+        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+        PAGINATION.destroy();
+    }
+
     if (optionSelected === 'Perros') {
         OPTION = optionSelected;
         TITLO.textContent = 'Perros'
-        IMAGEN_PAGINA.src = '../../resources/img/png/dog.png';
+        IMAGEN_PAGINA.src = '../../resources/img/svg/dogs.svg';
         fillTable(null, OPTION)
     } else {
         OPTION = optionSelected;
         TITLO.textContent = 'Gatos'
-        IMAGEN_PAGINA.src = '../../resources/img/png/cat.png';
+        IMAGEN_PAGINA.src = '../../resources/img/svg/cats.svg';
         fillTable(null, OPTION)
     }
 }
@@ -239,21 +228,18 @@ const selectedOption = () => {
 const fillTable = async (form = null, option = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
+
     let mascota;
-    if (form) {
-        action = 'searchRows'
-    } else {
-        action = 'readSpecificProduct'
-        form = new FormData();
-        console.log(option)
+
+    form = new FormData();
         if (option === 'Perros') {
             mascota = 'Perro';
         } else {
             mascota = 'Gato';
         }
-        form.append('mascota', mascota)
-    }
-    const DATA = await fetchData(PRODUCTOS_API, action, form);
+    form.append('mascota', mascota)
+
+    const DATA = await fetchData(PRODUCTOS_API, 'readSpecificProduct', form);
     if (DATA.status) {
         DATA.dataset.forEach(row => {
             const stwitchChecked = (row.estado_producto === 1) ? 'checked' : '';
@@ -286,6 +272,14 @@ const fillTable = async (form = null, option = null) => {
         });
         ROWS_FOUND.textContent = DATA.message;
         HIDDEN_ELEMENT.style.display = 'none';
+
+        //Creamos la instancia de DataTable y la guardamos en la variable
+        PAGINATION = new DataTable(PAGINATION_TABLE, {
+            paging: true,
+            searching: true,
+            language: spanishLanguage,
+            responsive: true
+        });
     } else {
         sweetAlert(3, DATA.error, true);
         HIDDEN_ELEMENT.innerHTML = `

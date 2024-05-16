@@ -95,7 +95,7 @@ class productosHandler
     {
         $sql = 'UPDATE productos
                 SET nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, imagen_producto = ?,
-                estado_producto = ?, existencia_producto = ?, fecha_registro_producto = ?, mascotas = ?, id_categoria = ?, id_marca = ?
+                estado_producto = ?, existencia_producto = ?, mascotas = ?, id_categoria = ?, id_marca = ?
                 WHERE id_producto = ?';
         $params = array(
             $this->nombreProducto,
@@ -104,7 +104,6 @@ class productosHandler
             $this->imagenProducto,
             $this->estadoProducto,
             $this->existenciaProducto,
-            $this->fechaRegistroProducto,
             $this->mascotas,
             $this->idCategoria,
             $this->idMarca,
