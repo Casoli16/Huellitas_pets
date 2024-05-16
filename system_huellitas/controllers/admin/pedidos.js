@@ -25,8 +25,14 @@ const VIEW_MODAL = new bootstrap.Modal('#viewModal'),
     DIRECCION = document.getElementById('direccion'),
     ESTADO_PEDIDO = document.getElementById('estadoPedido'),
     TOTAL_A_PAGAR = document.getElementById('totalAPagar')
+
 // LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
 const HIDDEN_ELEMENT = document.getElementById('anyTable');
+
+//Obtiene el id de la tabla
+const PAGINATION_TABLE = document.getElementById('paginationTable');
+//Declaramos una variable que permitira guardar la paginacion de la tabla
+let PAGINATION;
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
@@ -35,22 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //Muestra los registros que hay en la tabla
     fillTable();
 });
-
-//Metodo para el buscador
-const searchRow = async () => {
-    //Obtenemos lo que se ha escrito en el input
-    const inputValue = SEARCH_INPUT.value;
-    // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
-    const FORM = new FormData();
-    FORM.append('search', inputValue);
-    //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
-    if (inputValue === '') {
-        fillTable();
-    } else {
-        // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-        fillTable(FORM);
-    }
-}
 
 // Escuchamos el evento 'submit' del formulario
 SAVE_FORM.addEventListener('submit', async (event) => {
@@ -71,6 +61,9 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
+        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+        PAGINATION.destroy();
+        fillTable();
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -94,7 +87,6 @@ const openView = async (id) => {
 
         await fillCards(null, id);
         VIEW_MODAL.show();
-        // Se prepara el formulario.
 
     } else {
         sweetAlert(2, DATA.error, false);
@@ -102,7 +94,7 @@ const openView = async (id) => {
 }
 
 const openOrderStatus = async (id) => {
-    const options = ['pendiente', 'completado', 'cancelado'];
+    const options = ['Pendiente', 'Completado', 'Cancelado'];
     ID_PEDIDO.value = id;
     const FORM = new FormData();
     FORM.append('id_pedido', id);
@@ -190,6 +182,8 @@ const openDeleteDetail = async (id, id_pedido, cant_registros) => {
                     // Se muestra un mensaje de éxito.
                     await sweetAlert(1, DATA.message, true);
                     VIEW_MODAL.hide();
+                    // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
+                    PAGINATION.destroy();
                     fillTable();
                 } else {
                     sweetAlert(2, DATA.error, false);
@@ -230,7 +224,7 @@ const fillTable = async (form = null) => {
                     <td>${row.cantidad}</td>
                     <td>
                         <button type="button" class="btn btn-light" onclick="openOrderStatus(${row.id_pedido})">
-                        <img src="../../resources/img/png/eye.square.png" width="35px">
+                        <img src="../../resources/img/svg/eye.square.svg" width="35px">
                         </button>
                     </td>
                     <td>
@@ -243,19 +237,25 @@ const fillTable = async (form = null) => {
             ROWS_FOUND.textContent = DATA.message;
             //En caso que si existen los registro en la base, entonces no se mostrara este codigo.
             HIDDEN_ELEMENT.style.display = 'none';
+
+            //Creamos la instancia de DataTable y la guardamos en la variable
+            PAGINATION = new DataTable(PAGINATION_TABLE, {
+                paging: true,
+                searching: true,
+                language: spanishLanguage,
+            });
         } else {
             sweetAlert(3, DATA.error, true);
             // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html
             HIDDEN_ELEMENT.innerHTML = `
             <div class="container text-center">
-                <p class="p-4 bg-beige-color rounded-4">No hay resultados para tu búsqueda</p>
+                <p class="p-4 bg-beige-color rounded-4">No existen resultados</p>
             </div>`
             // Muestra el codigo injectado
             HIDDEN_ELEMENT.style.display = 'block'
         }
     } catch (error) {
         console.error('Error:', error);
-        // Aquí puedes hacer algo con el error, como imprimirlo en la consola o mostrar un mensaje al usuario.
     }
 }
 

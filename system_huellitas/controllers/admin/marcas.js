@@ -54,22 +54,6 @@ IMAGEN_MARCA.addEventListener('change', function (event) {
     }
 });
 
-// Metodo para el buscador
-// const searchRow = async () => {
-//     //Obtenemos lo que se ha escrito en el input
-//     const inputValue = SEARCH_INPUT.value;
-//     // Mandamos lo que se ha escrito y lo convertimos para que sea aceptado como FORM
-//     const FORM = new FormData();
-//     FORM.append('search', inputValue);
-//     //Revisa si el input esta vacio entonces muestra todos los resultados de la tabla
-//     if (inputValue === '') {
-//         fillTable();
-//     } else {
-//         // En caso que no este vacio, entonces cargara la tabla pero le pasamos el valor que se escribio en el input y se mandara a la funcion FillTable()
-//         fillTable(FORM);
-//     }
-// }
-
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
