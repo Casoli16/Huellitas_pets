@@ -253,7 +253,7 @@ const fillTable = async (form = null, option = null) => {
                 <td>${row.nombre_categoria}</td>
                 <td>
                    <div class="form-check form-switch">
-                       <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                       <input class="form-check-input" type="checkbox" role="switch"
                               id="switch1" name="switch1" ${stwitchChecked} disabled>
                    </div>
                 </td>

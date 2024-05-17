@@ -89,7 +89,7 @@ const openUpdate = async (id) => {
         const switchChecked = (ROW.estado_valoracion === 1) ? 'checked' : '';
         ID_VALORACION.value = ROW.id_valoracion;
         NOMBRE_PRODUCTO.value = ROW.nombre_producto;
-        NOMBRE_CLIENTE.value = ROW.nombre_cliente;
+        NOMBRE_CLIENTE.value = ROW.nombre_cliente + ' ' + ROW.apellido_cliente;
         COMENTARIO_VALORACION.value = ROW.comentario_valoracion;
         //Cargamos la imagen del registro seleccionado
         IMAGEN.src = SERVER_URL + 'images/productos/' + ROW.imagen_producto; 

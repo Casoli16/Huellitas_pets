@@ -1,9 +1,21 @@
 .form-check-input:focus {
-    border-color: #ffffff;
     outline: 0;
-    box-shadow: 0 0 0 0.25rem rgba(201, 123, 34, 0.25);
+    border-color: #ffffff;
+    box-shadow: 0 0 0 0.25rem rgba(141, 138, 134, 0.25);
   }
+
+  .form-check-input:checked:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(244, 224, 201);
+    border-color: #ffffff;
+  } 
 
   .form-check-input:checked {
     border-color: #ffffff;
+    background-color: rgb(238, 150, 75);
+  }
+
+  .form-check-input{
+    border-color: #ffffff;
+    background-color: rgb(145, 144, 143);
   }

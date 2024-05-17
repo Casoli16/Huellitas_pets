@@ -154,7 +154,7 @@ const fillTable = async (form = null) => {
                 <td>${row.porcentaje_cupon}</td>
                 <td>
                     <div class="form-switch">
-                        <input class="form-check-input bg-orange-color" type="checkbox" role="switch"
+                        <input class="form-check-input" type="checkbox" role="switch"
                             id="flexSwitchCheckChecked" ${switchChecked} disabled>
                     </div> 
                 </td>  
