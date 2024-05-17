@@ -94,8 +94,9 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
-        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
-        PAGINATION.destroy();
+        if(PAGINATION){
+            PAGINATION.destroy();
+        }
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
         //Cargamos la imagen por defecto

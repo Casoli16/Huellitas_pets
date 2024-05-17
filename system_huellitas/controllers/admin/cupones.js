@@ -62,7 +62,9 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         // Mostrar mensaje de éxito
         sweetAlert(1, DATA.message, true);
         // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
-        PAGINATION.destroy();
+        if(PAGINATION){
+            PAGINATION.destroy();
+        }
         // Volver a llenar la tabla para mostrar los cambios
         fillTable();
     } else {
@@ -79,8 +81,6 @@ const openCreate = () => {
     SAVE_MODAL.show()
     MODAL_TITLE.textContent = 'Crear cupón';
     SAVE_FORM.reset();
-    //Cargamos la imagen por defecto
-    IMAGEN.src = '../../resources/img/png/rectangulo.png'
 }
 
 const openUpdate = async (id) => {
@@ -124,8 +124,7 @@ const openDelete = async (id) => {
         if (DATA.status) {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
-            //Cargamos la imagen por defecto
-            IMAGEN.src = '../../resources/img/png/rectangulo.png'
+            PAGINATION.destroy();
             // Se carga nuevamente la tabla para visualizar los cambios.
             fillTable();
         } else {
