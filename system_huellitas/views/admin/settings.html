@@ -92,21 +92,63 @@
                                         name="aliasAdmin" id="AdminAlias" readonly required>
                                 </div>
                             </div>
-                            <br>
-                            <br>
+                            <div class="text-center p-3">
+                                <button type="button" class="btn btn-red-color text-white" onclick="openPassword()">
+                                    <i class="bi bi-shield-lock"></i> Cambiar contraseña
+                                </button>
+                            </div>
                             <!--.............-->
                             <!-- Botón para guardar cambios -->
-                            <div class="container">
+                            <div class="container py-5">
                                 <button type="submit" class="btn btn-orange-color text-white boton_guardar">Guardar</button>
                             </div>
                         </div>
                         <br>
-                        <br>
-                        <br>
                     </div>
                 </form>      
             </div>
-        </div> 
+        </div>
+        <!-- Componente Modal para mostrar el formulario de cambio de contraseña -->
+        <div class="modal fade" id="passwordModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <!-- Contenido del componente Modal -->
+                <div class="modal-content">
+                    <div class="modal-header bg-orange-color">
+                        <h1 class="modal-title fs-5 text-white fw-bold" id="modalTitle">Cambiar contraseña</h1>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para actualizar contraseña -->
+                    <form id="passwordForm">
+                        <div class="modal-body row g-3">
+                            <div class="col-sm-12 col-md-6 offset-md-3">
+                                <label for="claveActual" class="fs-8 fw-semibold">Contraseña actual</label>
+                                <input id="claveActual" type="password" name="claveActual" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-12 text-center">
+                                <span class="fs-8 fw-semibold">CONTRASEÑA NUEVA</span>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="claveNueva" class="fs-8 fw-semibold">Contraseña</label>
+                                <input id="claveNueva" type="password" name="claveNueva" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="confirmarClave" class="fs-8 fw-semibold">Confirmar contraseña</label>
+                                <input id="confirmarClave" type="password" name="ConfirmarClave" class="form-control"
+                                    required>
+                            </div>
+                            <div class="py-3"></div>
+                            <div class="container text-center">
+                                <button type="reset" class="btn btn-red-color text-white">Cancelar</button>
+                                <button type="submit" class="btn btn-orange-color text-white">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Framework Bootstrap - JS -->

@@ -101,7 +101,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el perfil';
                 }
                 break;
-            case 'changePassword':
+            case 'updatePassword':
                 $_POST = Validator::validateForm($_POST);
                 if (!$administradores->checkPassword($_POST['claveActual'])) {
                     $result['error'] = 'Contraseña actual incorrecta';

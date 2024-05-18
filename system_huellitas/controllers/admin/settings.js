@@ -8,11 +8,14 @@ const SAVE_FORM = document.getElementById('saveForm'),
     ADMIN_APELLIDO = document.getElementById('adminApellido'),
     ADMIN_EMAIL = document.getElementById('AdminEmail'),
     ADMIN_ALIAS = document.getElementById('AdminAlias'),
-    ADMIN_PASSWORD = document.getElementById('AdminPassword'),
     ADMIN_ID = document.getElementById('idAdministrador');
 
 const GREETING = document.getElementById('greetings');
 
+// Constante para establecer la modal de cambiar contraseña.
+const PASSWORD_MODAL = new bootstrap.Modal('#passwordModal');
+// Constante para establecer el formulario de cambiar contraseña.
+const PASSWORD_FORM = document.getElementById('passwordForm');
 
 document.addEventListener('DOMContentLoaded', async () => {
     //Carga el menu en las pantalla
@@ -93,3 +96,29 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         console.log(DATA.message)
     }
 });
+
+// Mètodo del evento para cuando se envía el formulario de cambiar contraseña.
+PASSWORD_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(PASSWORD_FORM);
+    // Petición para actualizar la constraseña.
+    const DATA = await fetchData(ADMINISTRADOR_API, 'updatePassword', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se cierra la caja de diálogo.
+        PASSWORD_MODAL.hide();
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message, true);
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
+const openPassword = () => {
+    // Se abre la caja de diálogo que contiene el formulario.
+    PASSWORD_MODAL.show();
+    // Se restauran los elementos del formulario.
+    PASSWORD_FORM.reset();
+}
