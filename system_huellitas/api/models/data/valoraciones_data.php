@@ -4,7 +4,7 @@ require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/valoraciones_handler.php');
 
-class valoracionesData extends valoracionesHandler{
+class ValoracionesData extends ValoracionesHandler{
 
     private $data_error = null;
     private $filename = null;

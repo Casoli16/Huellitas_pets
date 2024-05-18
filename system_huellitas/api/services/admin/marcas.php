@@ -6,7 +6,7 @@ require_once('../../models/data/marcas_data.php');
 if (isset($_GET['action'])) {
 session_start();
 
-$marcas = new marcasData;
+$marcas = new MarcasData;
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 

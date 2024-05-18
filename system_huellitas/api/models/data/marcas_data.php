@@ -4,7 +4,7 @@ require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/marcas_handler.php');
 
-class marcasData extends marcas_handler
+class MarcasData extends MarcasHandler
 {
     private $data_error = null;
     private $filename = null;

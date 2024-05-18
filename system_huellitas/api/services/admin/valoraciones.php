@@ -5,7 +5,7 @@ require_once('../../models/data/valoraciones_data.php');
 if (isset($_GET['action'])) {
 session_start();
 
-$valoraciones = new valoracionesData;
+$valoraciones = new ValoracionesData;
 
 $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 

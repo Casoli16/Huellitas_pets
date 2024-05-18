@@ -4,7 +4,7 @@ require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla cupones.
  */
-class valoracionesHandler
+class ValoracionesHandler
 {
     /*
      *  Declaración de atributos para el manejo de datos.
