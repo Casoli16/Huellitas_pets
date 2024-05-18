@@ -89,18 +89,24 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'deleteRow':
-                if (
+                if (!isset($_POST['idAdministrador'])) {
+                    $result['error'] = 'ID de administrador no proporcionado';
+                } elseif (
                     !$administradores->setIdAdmin($_POST['idAdministrador']) or
                     !$administradores->setFilename()
                 ) {
                     $result['error'] = $administradores->getDataError();
-                } elseif ($administradores->deleteRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Administrador eliminado correctamente';
-                    // Se asigna el estado del archivo después de eliminar.
-                    $result['fileStatus'] = Validator::deleteFile($administradores::RUTA_IMAGEN, $administradores->getFilename());
+                } elseif ($_POST['idAdministrador'] != $_SESSION['idAdministrador']) {
+                    if ($administradores->deleteRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Administrador eliminado correctamente';
+                        // Se asigna el estado del archivo después de eliminar.
+                        $result['fileStatus'] = Validator::deleteFile($administradores::RUTA_IMAGEN, $administradores->getFilename());
+                    } else {
+                        $result['error'] = 'Ocurrio un problema al eliminar al administrador';
+                    }
                 } else {
-                    $result['error'] = 'Ocurrio un problema al eliminar al administrador';
+                    $result['error'] = '¡Por la integridad del sistema no puedes eliminar tu propia cuenta!';
                 }
                 break;
             // Manejo de datos de la cuenta del admin
@@ -193,7 +199,7 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Administrador registrado exitosamente';
                     // Se asigna el estado del archivo después de insertar.
                     $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN);
-                    
+
                     $permisos->setNombrePermiso('Administrador por defecto');
                     $permisos->setVerUsuario(1);
                     $permisos->setVerCliente(1);
