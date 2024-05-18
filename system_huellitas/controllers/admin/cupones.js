@@ -1,9 +1,6 @@
 // API'S UTILIZADAS EN LA PANTALLA
 const CUPONES_API = 'services/admin/cupones.php';
 
-// BUSCADOR
-const SEARCH_INPUT = document.getElementById('searchInput');
-
 // ELEMENTOS DE LA TABLA
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
@@ -19,9 +16,6 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_CUPON = document.getElementById('codigoCupon'),
     PORCENTAJE_CUPON = document.getElementById('porcentajeCupon')
 
-// LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
-const HIDDEN_ELEMENT = document.getElementById('anyTable');
-
 //Obtiene el id de la tabla
 const PAGINATION_TABLE = document.getElementById('paginationTable');
 //Declaramos una variable que permitira guardar la paginacion de la tabla
@@ -32,9 +26,31 @@ let PAGINATION;
 document.addEventListener("DOMContentLoaded", () => {
     //Carga el menu en las pantalla
     loadTemplate();
-    //Muestra los registros que hay en la tabla
-    fillTable();
+    //Espera a que fillTable termine de ejecutarse, para luego llamar a la funcion initializeDataTable;
+    fillTable().then(initializeDataTable);
 });
+
+// Función asincrona para inicializar la instancia de DataTable(Paginacion en las tablas)
+const initializeDataTable = async () => {
+    PAGINATION = await new DataTable(PAGINATION_TABLE, {
+        paging: true,
+        searching: true,
+        language: spanishLanguage,
+        responsive: true
+    });
+};
+
+// Función asincrona para reinicializar DataTable después de realizar cambios en la tabla
+const resetDataTable = async () => {
+    //Revisamos si ya existe una instancia de DataTable ya creada, si es asi se elimina
+    if (PAGINATION) {
+        PAGINATION.destroy();
+    }
+    // Espera a que se ejecute completamente la funcion antes de seguir (fillTable llena la tabla con los datos actualizados)
+    await fillTable();
+    //Espera a que se ejecute completamente la funcion antes de seguir.
+    await initializeDataTable();
+};
 
 // Escuchamos el evento 'submit' del formulario
 SAVE_FORM.addEventListener('submit', async (event) => {
@@ -61,12 +77,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.hide();
         // Mostrar mensaje de éxito
         sweetAlert(1, DATA.message, true);
-        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
-        if(PAGINATION){
-            PAGINATION.destroy();
-        }
-        // Volver a llenar la tabla para mostrar los cambios
-        fillTable();
+        //Llamos la funcion que reinicializara DataTable y cargara nuevamente la tabla para visualizar los cambios.
+        await resetDataTable();
     } else {
         // Mostrar mensaje de error
         console.log(DATA.error);
@@ -124,16 +136,14 @@ const openDelete = async (id) => {
         if (DATA.status) {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
-            PAGINATION.destroy();
-            // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTable();
+            //Llamos la funcion que reinicializara DataTable y cargara nuevamente la tabla para visualizar los cambios.
+            await resetDataTable();
         } else {
             sweetAlert(2, DATA.error, false);
         }
     }
 }
 
-// Funcion para llenar la tabla con los registros de la base
 // Funcion para llenar la tabla con los registros de la base
 const fillTable = async (form = null) => {
     try {
@@ -168,26 +178,8 @@ const fillTable = async (form = null) => {
                 `;
             });
             ROWS_FOUND.textContent = DATA.message;
-            //En caso que si existen los registro en la base, entonces no se mostrara este codigo.
-            HIDDEN_ELEMENT.style.display = 'none';
-
-            //Creamos la instancia de DataTable y la guardamos en la variable
-            PAGINATION = new DataTable(PAGINATION_TABLE, {
-                paging: true,
-                searching: true,
-                language: spanishLanguage,
-                responsive: true
-            });
-
         } else {
             sweetAlert(3, DATA.error, true);
-            // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html
-            HIDDEN_ELEMENT.innerHTML = `
-            <div class="container text-center">
-                <p class="p-4 bg-beige-color rounded-4">No hay resultados para tu búsqueda</p>
-            </div>`
-            // Muestra el codigo injectado
-            HIDDEN_ELEMENT.style.display = 'block'
         }
     } catch (error) {
         console.error('Error:', error);

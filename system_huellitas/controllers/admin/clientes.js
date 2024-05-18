@@ -5,13 +5,8 @@ const CLIENTE_API = 'services/admin/clientes.php'
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 
-// LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
-const HIDDEN_ELEMENT = document.getElementById('anyTable');
-
 const INFO_MODAL = new bootstrap.Modal ('#seeModal'),
     TITLE_MODAL = document.getElementById("modalTitle");
-
-const SEARCH_INPUT = document.getElementById("searchInput");
 
 const FORM_UPDATE = document.getElementById("seeForm"),
     IMG_CLIENTE = document.getElementById("imgCliente"),
@@ -32,10 +27,32 @@ const PAGINATION_TABLE = document.getElementById('paginationTable');
 let PAGINATION;
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadTemplate();
-    fillTable();
+    loadTemplate()
+    //Espera a que fillTable termine de ejecutarse, para luego llamar a la funcion initializeDataTable;
+    fillTable().then(initializeDataTable);
 })
 
+// Función asincrona para inicializar la instancia de DataTable(Paginacion en las tablas)
+const initializeDataTable = async () => {
+    PAGINATION = await new DataTable(PAGINATION_TABLE, {
+        paging: true,
+        searching: true,
+        language: spanishLanguage,
+        responsive: true
+    });
+};
+
+// Función asincrona para reinicializar DataTable después de realizar cambios en la tabla
+const resetDataTable = async () => {
+    //Revisamos si ya existe una instancia de DataTable ya creada, si es asi se elimina
+    if (PAGINATION) {
+        PAGINATION.destroy();
+    }
+    // Espera a que se ejecute completamente la funcion antes de seguir (fillTable llena la tabla con los datos actualizados)
+    await fillTable();
+    //Espera a que se ejecute completamente la funcion antes de seguir.
+    await initializeDataTable();
+};
 FORM_UPDATE.addEventListener('submit', async (event) => {
     event.preventDefault();
     const FORM = new FormData(FORM_UPDATE);
@@ -43,9 +60,7 @@ FORM_UPDATE.addEventListener('submit', async (event) => {
     if(DATA.status){
         INFO_MODAL.hide();
         sweetAlert(1, DATA.message, true);
-        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
-        PAGINATION.destroy();
-        fillTable();
+        await resetDataTable()
     }else {
         sweetAlert(2, DATA.error, false);
     }
@@ -103,25 +118,7 @@ const fillTable = async (form = null) => {
             `;
         });
         ROWS_FOUND.textContent = DATA.message;
-        //En caso que si existen los registro en la base, entonces no se mostrara este codigo.
-        HIDDEN_ELEMENT.style.display = 'none';
-
-        //Creamos la instancia de DataTable y la guardamos en la variable
-        PAGINATION = new DataTable(PAGINATION_TABLE, {
-            paging: true,
-            searching: true,
-            language: spanishLanguage,
-            responsive: true
-        });
     } else {
         sweetAlert(3, DATA.error, true);
-        // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html
-        HIDDEN_ELEMENT.innerHTML = `
-        <div class="container text-center">
-            <p class="p-4 bg-beige-color rounded-4">No existen resultados</p>
-        </div>`
-        // Muestra el codigo injectado
-        HIDDEN_ELEMENT.style.display = 'block'
-
     }
 }
