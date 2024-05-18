@@ -193,7 +193,7 @@ CREATE VIEW  productosView AS
         p.imagen_producto,
         p.estado_producto,
         p.existencia_producto,
-        p.fecha_registro_producto,
+        DATE_FORMAT(p.fecha_registro_producto, '%d de %M del %Y') AS fecha_registro_producto,
         p.mascotas,	
         p.id_categoria,
         m.nombre_marca,

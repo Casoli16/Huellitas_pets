@@ -20,9 +20,6 @@ const SAVE_FORM = document.getElementById('saveForm'),
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
 
-// LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
-const HIDDEN_ELEMENT = document.getElementById('anyTable');
-
 //Obtiene el id de la tabla
 const PAGINATION_TABLE = document.getElementById('paginationTable');
 //Declaramos una variable que permitira guardar la paginacion de la tabla
@@ -31,10 +28,10 @@ let PAGINATION;
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
-    //Muestra los registros que hay en la tabla
-    fillTable();
     //Carga el menu en las pantalla
     loadTemplate();
+    //Espera a que fillTable termine de ejecutarse, para luego llamar a la funcion initializeDataTable;
+    fillTable().then(initializeDataTable)
 });
 
 // Agregamos el evento change al input de tipo file que selecciona la imagen
@@ -53,6 +50,29 @@ IMAGEN_CATEGORIA.addEventListener('change', function (event) {
     }
 });
 
+// Función asincrona para inicializar la instancia de DataTable(Paginacion en las tablas)
+const initializeDataTable = async () => {
+    PAGINATION = await new DataTable(PAGINATION_TABLE, {
+        paging: true,
+        searching: true,
+        language: spanishLanguage,
+        responsive: true
+    });
+};
+
+// Función asincrona para reinicializar DataTable después de realizar cambios en la tabla
+const resetDataTable = async () => {
+    //Revisamos si ya existe una instancia de DataTable ya creada, si es asi se elimina
+    if (PAGINATION) {
+        PAGINATION.destroy();
+    }
+    // Espera a que se ejecute completamente la funcion antes de seguir (fillTable llena la tabla con los datos actualizados)
+    await fillTable();
+    //Espera a que se ejecute completamente la funcion antes de seguir.
+    await initializeDataTable();
+};
+
+
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
@@ -69,12 +89,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         SAVE_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
-        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
-        if(PAGINATION){
-            PAGINATION.destroy();
-        }
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
+        //Llamos la funcion que reinicializara DataTable y cargara nuevamente la tabla para visualizar los cambios.
+        await resetDataTable();
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -134,10 +150,8 @@ const openDelete = async (id) => {
         if (DATA.status) {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
-            // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
-            PAGINATION.destroy();
-            // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTable();
+            //Llamos la funcion que reinicializara DataTable y cargara nuevamente la tabla para visualizar los cambios.
+            await resetDataTable();
         } else {
             sweetAlert(2, DATA.error, false);
         }
@@ -170,28 +184,7 @@ const fillTable = async (form = null) => {
                 `;
             });
             ROWS_FOUND.textContent = DATA.message;
-            //En caso que si existen los registro en la base, entonces no se mostrara este codigo.
-            HIDDEN_ELEMENT.style.display = 'none';
-
-            //Creamos la instancia de DataTable y la guardamos en la variable
-            PAGINATION = new DataTable(PAGINATION_TABLE, {
-                paging: true,
-                searching: true,
-                language: spanishLanguage,
-                responsive: true
-            });
-
-
         } else {
             sweetAlert(3, DATA.error, true);
-            // Si lo que se ha buscado no coincide con los registros de la base entonces injectara este codigo html
-            HIDDEN_ELEMENT.innerHTML = `
-            <div class="container text-center">
-                <p class="p-4 bg-beige-color rounded-4">No existen resultados</p>
-            </div>`
-            // Muestra el codigo injectado
-            HIDDEN_ELEMENT.style.display = 'block'
-
         }
-
     }

@@ -36,9 +36,6 @@ const CANTIDAD_TEXT = document.getElementById('cantidad');
 const MARCA_TEXT = document.getElementById('marca');
 const IMAGEN_INFO = document.getElementById('imagenInfo');
 
-// LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
-const HIDDEN_ELEMENT = document.getElementById('anyTable');
-
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
 
@@ -78,8 +75,30 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     //Guarda lo escrito en nuestro select
     OPTION_PET.value = MENU;
-    selectedOption();
+    selectedOption()
 })
+
+// Función asincrona para inicializar la instancia de DataTable(Paginacion en las tablas)
+const initializeDataTable = async () => {
+    PAGINATION = await new DataTable(PAGINATION_TABLE, {
+        paging: true,
+        searching: true,
+        language: spanishLanguage,
+        responsive: true
+    });
+};
+
+// Función asincrona para reinicializar DataTable después de realizar cambios en la tabla
+const resetDataTable = async (form = null, option = null) => {
+    //Revisamos si ya existe una instancia de DataTable ya creada, si es asi se elimina
+    if (PAGINATION) {
+        PAGINATION.destroy();
+    }
+    // Espera a que se ejecute completamente la funcion antes de seguir (fillTable llena la tabla con los datos actualizados)
+    await fillTable(form, option);
+    //Espera a que se ejecute completamente la funcion antes de seguir.
+    await initializeDataTable();
+};
 
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -87,10 +106,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
-    // PARA REGISTRAR LA FECHA DEL REGISTRO
-    const currentDate = new Date().toISOString().split('T')[0];
-
-    FORM.append('fechaRegistroProducto', currentDate);
 
     const estadoProducto = ESTADO_PRODUCTO.checked ? 1 : 0;
 
@@ -105,7 +120,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         IMAGEN.src = '../../resources/img/png/rectangulo.png'
-        selectedOption();
+        await selectedOption();
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -197,31 +212,25 @@ const openDelete = async (id) => {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
             // Se carga nuevamente la tabla para visualizar los cambios.
-            selectedOption();
+            await selectedOption();
         } else {
             sweetAlert(2, DATA.error, false);
         }
     }
 }
 
-const selectedOption = () => {
+const selectedOption = async() => {
     const optionSelected = OPTION_PET.value;
-    //Revisa si paginacion existe, de ser asi entonces la elminina
-    if(PAGINATION){
-        // Destruimos la instancia que ya existe para que no se vuelva a reinicializar.
-        PAGINATION.destroy();
-    }
-
     if (optionSelected === 'Perros') {
         OPTION = optionSelected;
         TITLO.textContent = 'Perros'
         IMAGEN_PAGINA.src = '../../resources/img/svg/dogs.svg';
-        fillTable(null, OPTION)
+        await resetDataTable(null, OPTION)
     } else {
         OPTION = optionSelected;
         TITLO.textContent = 'Gatos'
         IMAGEN_PAGINA.src = '../../resources/img/svg/cats.svg';
-        fillTable(null, OPTION)
+        await resetDataTable(null, OPTION)
     }
 }
 
@@ -271,22 +280,7 @@ const fillTable = async (form = null, option = null) => {
             `
         });
         ROWS_FOUND.textContent = DATA.message;
-        HIDDEN_ELEMENT.style.display = 'none';
-
-        //Creamos la instancia de DataTable y la guardamos en la variable
-        PAGINATION = new DataTable(PAGINATION_TABLE, {
-            paging: true,
-            searching: true,
-            language: spanishLanguage,
-            responsive: true
-        });
     } else {
         sweetAlert(3, DATA.error, true);
-        HIDDEN_ELEMENT.innerHTML = `
-        <div class="container text-center">
-            <p class="p-4 bg-beige-color rounded-4">No existen resultados</p>
-        </div>`
-        // Muestra el codigo injectado
-        HIDDEN_ELEMENT.style.display = 'block'
     }
 }

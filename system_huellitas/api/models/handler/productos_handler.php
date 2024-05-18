@@ -51,8 +51,8 @@ class productosHandler
     //    Crear producto
     public function createRow()
     {
-        $sql = 'INSERT INTO productos (nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, existencia_producto, fecha_registro_producto, mascotas, id_categoria, id_marca) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO productos (nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, existencia_producto, mascotas, id_categoria, id_marca) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array(
             $this->nombreProducto,
             $this->descripcionProducto,
@@ -60,7 +60,6 @@ class productosHandler
             $this->imagenProducto,
             $this->estadoProducto,
             $this->existenciaProducto,
-            $this->fechaRegistroProducto,
             $this->mascotas,
             $this->idCategoria,
             $this->idMarca

@@ -30,7 +30,6 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_producto']
                 !$productos->setImagenProducto($_FILES['imagenProducto'])or
                 !$productos->setEstadoProducto($_POST['estadoProducto']) or
                 !$productos->setExistenciaProducto($_POST['existenciaProducto']) or
-                !$productos->setFechaRegistro($_POST['fechaRegistroProducto']) or
                 !$productos->setMascotas($_POST['mascotasProducto']) or
                 !$productos->setIdCategoria($_POST['idCategoria']) or
                 !$productos->setIdMarca($_POST['idMarca'])
