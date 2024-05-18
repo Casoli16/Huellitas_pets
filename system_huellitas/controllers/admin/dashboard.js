@@ -6,9 +6,11 @@ const ADMIN_NAME = document.getElementById('adminName');
 const ADMIN_EMAIL = document.getElementById('emailAdmin');
 
 const CATEGORY_LIST = document.getElementById("category_list");
+const NO_CATEGORY_LIST = document.getElementById("withoutCategory");
 const NEW_USERS = document.getElementById("newUsers");
 const CATEGORY_TOP_PRODUCT = document.getElementById("categoryTopProduct");
 const NAME_TOP_PRODUCT = document.getElementById("nameTopProduct");
+const NO_PRODUCT = document.getElementById("withoutProducts");
 
 const MONTH = document.getElementById("selectMenu");
 
@@ -21,6 +23,7 @@ const TABLE_BODY = document.getElementById('tableBody'),
 // LLAMAMOS AL DIV QUE CONTIENE EL MENSAJE QUE APARECERA CUANDO NO SE ENCUENTREN LOS REGISTROS EN TABLA A BUSCAR
 const HIDDEN_ELEMENT = document.getElementById('anyTable');
 const SEARCH_FORM = document.getElementById('searchDashboard');
+
 document.addEventListener('DOMContentLoaded', async () => {
     //Carga el menu en las pantalla
     loadTemplate();
@@ -35,6 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     selectedOption();
 });
 
+//Obtiene los datos del admin registrado
 const getData = async (form = null) => {
     //Peticion a nuestra api para obtener info del usuario logeado
     const DATA = await fetchData(GENERALIDADES_API, 'readProfile');
@@ -57,6 +61,7 @@ const getData = async (form = null) => {
     }
 }
 
+//Nos muestra las categorías que existen
 const categoryList = async () => {
     const DATA = await fetchData(GENERALIDADES_API, 'readAll');
     if(DATA.status){
@@ -66,7 +71,7 @@ const categoryList = async () => {
             `
         })
     } else{
-        sweetAlert(3, DATA.error, true);
+        NO_CATEGORY_LIST.classList.remove('d-none')
     }
 }
 
@@ -80,11 +85,14 @@ const newUsers = async () => {
     }
 }
 
+//Muestra el producto más vendido
 const topProduct = async () => {
     const DATA = await fetchData(GENERALIDADES_API, 'readTopProduct');
     if(DATA.status){
         CATEGORY_TOP_PRODUCT.textContent = DATA.dataset[0].nombre_categoria;
         NAME_TOP_PRODUCT.textContent = DATA.dataset[0].nombre_producto;
+    }else {
+        NO_PRODUCT.classList.remove('d-none');
     }
 }
 
@@ -196,12 +204,15 @@ const fillTable = async (form = null) => {
         ROWS_FOUND.textContent = DATA.message;
         HIDDEN_ELEMENT.style.display = 'none';
     } else {
-        sweetAlert(3, DATA.error, true);
         HIDDEN_ELEMENT.innerHTML = `
         <div class="container text-center">
             <p class="p-3 bg-beige-color">No existen resultados</p>
         </div>`
         // Muestra el codigo injectado
         HIDDEN_ELEMENT.style.display = 'block'
+
+        setTimeout(() => {
+            HIDDEN_ELEMENT.style.display = 'none';
+        }, 1500);
     }
 }

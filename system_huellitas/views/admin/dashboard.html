@@ -148,7 +148,9 @@
                     <div class="p-3">
                         <p class=" fs-5 fw-light text-light mb-0" id="categoryTopProduct"></p>
                         <img src="../../resources/img/svg/line.svg" alt="">
-                        <p class=" fs-5 fw-semibold text-light" id="nameTopProduct">Saco de Pedigree</p>
+                        <p class=" fs-5 fw-semibold text-light" id="nameTopProduct"></p>
+                        <!--Si no esxisten productos, entonces se mostrara este mensaje-->
+                        <p class=" fs-5 fw-semibold text-light text-center d-none" id="withoutProducts">Aún no has tenido pedidos en Huellitas Pet's</p>
                     </div>
                 </div>
                 <!-- Col 3 -->
@@ -162,6 +164,11 @@
                     </div>
                     <!-- Lista de categorías -->
                     <div class="third_col">
+                        <!--Si no esxisten categorias, entonces se mostrara este mensaje-->
+                        <div id="withoutCategory" class="text-center mt-4 d-none">
+                            <p class=" fs-5 fw-semibold text-light mb-0">Todavía no se han ingresado categorías</p>
+                            <p class="small">Haz clíc en el botón de ver más y crea tus categorías</p>
+                        </div>
                         <!-- list-group-flush elimina todos los bordes redondeados  -->
                         <ul class="list-group list-group-flush" id="category_list">
 

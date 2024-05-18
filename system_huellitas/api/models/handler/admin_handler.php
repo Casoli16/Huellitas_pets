@@ -37,15 +37,14 @@ class AdminHandler
     // CREATE
     public function createRow()
     {
-        $sql = 'INSERT INTO administradores(nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, fecha_registro_admin, imagen_admin)
-                VALUE (?,?,?,?,?,?,?)';
+        $sql = 'INSERT INTO administradores(nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, imagen_admin)
+                VALUE (?,?,?,?,?,?)';
         $params = array(
             $this->nombreAdmin,
             $this->apellidoAdmin,
             $this->correoAdmin,
             $this->aliasAdmin,
             $this->claveAdmin,
-            $this->fechaRegistroAdmin,
             $this->imagenAdmin);
         return Database::executeRow($sql, $params);
     }

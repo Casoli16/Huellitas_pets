@@ -38,7 +38,6 @@ if (isset($_GET['action'])) {
                     !$administradores->setCorreoAdmin($_POST['correoAdmin']) or
                     !$administradores->setAliasAdmin($_POST['aliasAdmin']) or
                     !$administradores->setClaveAdmin($_POST['claveAdmin']) or
-                    !$administradores->setFechaRegistro($_POST['fechaRegistroAdmin']) or
                     !$administradores->setImagenAdmin($_FILES['imagenAdmin'])
                 ) {
                     $result['error'] = $administradores->getDataError();
@@ -184,7 +183,6 @@ if (isset($_GET['action'])) {
                     !$administradores->setCorreoAdmin($_POST['correoAdmin']) or
                     !$administradores->setAliasAdmin($_POST['aliasAdmin']) or
                     !$administradores->setClaveAdmin($_POST['claveAdmin']) or
-                    !$administradores->setFechaRegistro($_POST['fechaRegistroAdmin']) or
                     !$administradores->setImagenAdmin($_FILES['imagenAdmin'])
                 ) {
                     $result['error'] = $administradores->getDataError();
