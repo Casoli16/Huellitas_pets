@@ -42,22 +42,23 @@ const getData = async (form = null) => {
     const DATA = await fetchData(ADMINISTRADOR_API, 'readProfile');
     //Verifica si la respuesta fue satisfactoria, si no manda un mensaje de error.
     if(DATA.status){
+        const ROW = DATA.dataset;
         //Obtiene el primer nombre del usuario
         let splitName = name.split(' ')[0];
         //Manda el nombre al html
         GREETING.textContent = '¡Buenas tardes ' + splitName + '!';
         //Manda el nombre del usuario.
-        ADMIN_NAME.value = DATA.dataset.nombre_admin;
+        ADMIN_NAME.value = ROW.nombre_admin;
         //Manda el apellido del usuario.
-        ADMIN_APELLIDO.value = DATA.dataset.apellido_admin;
+        ADMIN_APELLIDO.value = ROW.apellido_admin;
         //Manda la imagen del usuario.
-        ADMIN_IMAGE.src = SERVER_URL + 'images/admins/' + DATA.dataset.imagen_admin;   
+        ADMIN_IMAGE.src = SERVER_URL + 'images/admins/' + ROW.imagen_admin;   
         //Manda el correo del usuario.
-        ADMIN_EMAIL.value = DATA.dataset.correo_admin;
+        ADMIN_EMAIL.value = ROW.correo_admin;
         //Manda el alias del usuario.
-        ADMIN_ALIAS.value = DATA.dataset.alias_admin;
+        ADMIN_ALIAS.value = ROW.alias_admin;
         //Manda el ID del usuario.
-        ADMIN_ID.value = DATA.dataset.id_admin;
+        ADMIN_ID.value = ROW.id_admin;
     } else{
         sweetAlert(2, DATA.error, true);
     }
@@ -69,9 +70,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 
     //Peticion a nuestra api para obtener info del usuario logeado
     const ID = await fetchData(ADMINISTRADOR_API, 'readProfile');
-
-    //Obtiene el nombre del usuario logueado.
-    let idAdministrador = ID.dataset.id_admin;
     
     // Se verifica la acción a realizar.
     action = 'editProfile';
@@ -86,7 +84,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Petición para guardar los datos del formulario.
     const DATA = await fetchData(ADMINISTRADOR_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    console.log(DATA)
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);

@@ -160,18 +160,17 @@ class AdminHandler
         return Database::getRow($sql, $params);
     }
 
-    // READ PROFILE
+    // EDIT PROFILE
     public function editProfile()
     {
         $sql = 'UPDATE administradores
-                SET nombre_admin = ?, apellido_admin = ?, correo_admin = ?, alias_admin = ?, clave_admin = ?, fecha_registro_admin = ?, imagen_admin = ?
+                SET nombre_admin = ?, apellido_admin = ?, correo_admin = ?, alias_admin = ?, fecha_registro_admin = ?, imagen_admin = ?
                 WHERE id_Admin = ?';
         $params = array(
             $this->nombreAdmin,
             $this->apellidoAdmin,
             $this->correoAdmin,
             $this->aliasAdmin,
-            $this->claveAdmin,
             $this->fechaRegistroAdmin,
             $this->imagenAdmin,
             $_SESSION['idAdministrador']

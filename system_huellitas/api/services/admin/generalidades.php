@@ -83,18 +83,20 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$administradores->setNombreAdmin($_POST['nombreAdmin']) or
+                    !$administradores->setIdAdmin($_POST['idAdministrador']) or
+                    !$administradores->setFilename() or
                     !$administradores->setApellidoAdmin($_POST['apellidoAdmin']) or
                     !$administradores->setCorreoAdmin($_POST['correoAdmin']) or
                     !$administradores->setAliasAdmin($_POST['aliasAdmin']) or
-                    !$administradores->setClaveAdmin($_POST['claveAdmin']) or
                     !$administradores->setFechaRegistro($_POST['fechaRegistroAdmin']) or
-                    !$administradores->setImagenAdmin($_POST['imagenAdmin'])
+                    !$administradores->setImagenAdmin($_FILES['imagenAdmin'], $administradores->getFilename())
                 ) {
                     $result['error'] = $administradores->getDataError();
                 } elseif ($administradores->editProfile()) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil actualizado correctamente';
                     $_SESSION['aliasAdmin'] = $_POST['aliasAdmin'];
+                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN, $administradores->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al actualizar el perfil';
                 }
