@@ -32,10 +32,10 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_categoria'
                 $result['error'] = $categorias->getDataError();
             } elseif ($categorias->createRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Marca ingresado correctamente';
+                $result['message'] = 'Categoría ingresado correctamente';
                 $result['fileStatus'] = Validator::saveFile($_FILES['imagenCategoria'], $categorias::RUTA_IMAGEN);
             } else{
-                $result['error'] = 'Ocurrio un problema al ingresar el producto';
+                $result['error'] = 'Ocurrio un problema al ingresar la categoría';
             }
             break;
         case 'updateRow':
@@ -50,7 +50,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_categoria'
                 $result['error'] = $categorias->getDataError();
             } elseif ($categorias -> updateRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Marca actualizado correctamente';
+                $result['message'] = 'Categoría actualizado correctamente';
                 $result['fileStatus'] = Validator::changeFile($_FILES['imagenCategoria'], $categorias::RUTA_IMAGEN, $categorias->getFilename());
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar la categoría';

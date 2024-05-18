@@ -99,7 +99,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 const openCreate = () => {
     ID_MARCA.value = '';
     SAVE_MODAL.show()
-    MODAL_TITLE.textContent = 'Crear administrador';
+    MODAL_TITLE.textContent = 'Crear marca';
     MODAL_BUTTON.textContent = ' Agregar '
     IMAGEN.src = '../../resources/img/png/rectangulo.png'
     SAVE_FORM.reset();
@@ -116,7 +116,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar administrador';
+        MODAL_TITLE.textContent = 'Actualizar marca';
         MODAL_BUTTON.textContent = 'Actualizar '
         // Se prepara el formulario.
         SAVE_FORM.reset();
@@ -135,7 +135,7 @@ const openUpdate = async (id) => {
 
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar el administrador de forma permanente?');
+    const RESPONSE = await confirmAction('¿Desea eliminar la marca de forma permanente?');
     // Se verifica la respuesta del mensaje.
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.

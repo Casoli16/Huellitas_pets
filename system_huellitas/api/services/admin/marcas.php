@@ -34,7 +34,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] ==
                 $result['message'] = 'Marca ingresado correctamente';
                 $result['fileStatus'] = Validator::saveFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN);
             } else{
-                $result['error'] = 'Ocurrio un problema al ingresar el producto';
+                $result['error'] = 'Ocurrio un problema al ingresar la marca';
             }
             break;
         case 'updateRow':
@@ -51,7 +51,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] ==
                 $result['message'] = 'Marca actualizado correctamente';
                 $result['fileStatus'] = Validator::changeFile($_FILES['imagenMarca'], $marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
-                $result['error'] = 'Ocurrió un problema al actualizar el producto';
+                $result['error'] = 'Ocurrió un problema al actualizar la marca';
             }
             break;
         case 'readAll':
@@ -83,7 +83,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] ==
                 // Se asigna el estado del archivo después de eliminar.
                 $result['fileStatus'] = Validator::deleteFile($marcas::RUTA_IMAGEN, $marcas->getFilename());
             } else{
-                $result['error'] = 'Ocurrio un problema al eliminar el producto';
+                $result['error'] = 'Ocurrio un problema al eliminar la marca';
             }
             break;
     }

@@ -40,7 +40,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario
                 $result['status'] = 1;
                 $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
             } else{
-                $result['error'] = 'No existen comentario  registrados';
+                $result['error'] = 'No existen comentarios registrados';
             }
             break; 
         case 'readOne':
