@@ -73,7 +73,7 @@ class PedidosHandler
     public function readSellingByMonth()
     {
         $sql = 'SELECT 
-                fecha_registro_pedido AS dia,
+                DATE_FORMAT(p.fecha_registro_pedido, "%d de %M del %Y") AS dia,
                 SUM(cantidad_detalle_pedido * precio_detalle_pedido) AS venta_del_dia
                 FROM pedidos p
                 JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido

@@ -232,11 +232,26 @@ const fillTable = async (form = null) => {
         const DATA = await fetchData(PEDIDOS_API, action, form);
         if (DATA.status) {
             DATA.dataset.forEach(row => {
+
+                let textColor= 'emphasis'
+
+                switch (row.estado_pedido){
+                    case 'Completado':
+                        textColor = 'success';
+                        break;
+                    case 'Cancelado':
+                        textColor = 'danger';
+                        break;
+                    case 'Pendiente':
+                        textColor = 'warning';
+                }
+
                 TABLE_BODY.innerHTML += `
                 <tr>
                     <td>${row.cliente}</td>
                     <td>${row.fecha}</td>
                     <td>${row.cantidad}</td>
+                    <td class="text-${textColor} fw-semibold">${row.estado_pedido}</td>
                     <td>
                         <button type="button" class="btn btn-light" onclick="openOrderStatus(${row.id_pedido})">
                         <img src="../../resources/img/svg/eye.square.svg" width="35px">

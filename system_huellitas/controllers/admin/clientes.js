@@ -101,6 +101,14 @@ const fillTable = async (form = null) => {
     const DATA = await fetchData(CLIENTE_API, action, form);
     if (DATA.status) {
         DATA.dataset.forEach(row => {
+            let textColor = 'black';
+
+            if(row.estado_cliente === 'Activo'){
+                textColor = 'success';
+            }else {
+                textColor = 'danger';
+            }
+
             TABLE_BODY.innerHTML += `
                 <tr>
                     <td><img class="rounded-circle" src="${SERVER_URL}images/clientes/${row.imagen_cliente}" height="70px" width="80px"></td>
@@ -109,7 +117,7 @@ const fillTable = async (form = null) => {
                     <td>${row.dui_cliente}</td>
                     <td>${row.correo_cliente}</td>
                     <td>${row.telefono_cliente}</td>
-                    <td>${row.estado_cliente}</td>
+                    <td class="text-${textColor} fw-semibold">${row.estado_cliente}</td>
                     <td>
                         <button type="button" class="btn btn-light" onclick="seeInfo(${row.id_cliente})"><img src="../../resources/img/svg/info_icon.svg"
                         width="35px"></button>
