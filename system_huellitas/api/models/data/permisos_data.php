@@ -39,7 +39,7 @@ class PermisosData extends PermisosHandler
         }
     }
 
-    public function setNombrePermiso($value, $min = 2, $max = 50)
+    public function setNombrePermiso($value, $min = 5, $max = 50)
     {
         if (!Validator::validateAlphanumeric($value)) {
             $this->data_error = 'El nombre debe ser un valor alfanúmerico';
@@ -48,7 +48,7 @@ class PermisosData extends PermisosHandler
             $this->nombrePermiso = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'El nombre debe debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
             return false;
         }
     }

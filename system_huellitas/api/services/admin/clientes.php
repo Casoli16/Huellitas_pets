@@ -49,7 +49,7 @@ if (isset($_GET['action'])) {
                     // Se asigna el estado del archivo después de insertar.
                     $result['fileStatus'] = Validator::saveFile($_FILES['imagenCliente'], $clientes::RUTA_IMAGEN);
                 } else {
-                    $result['error'] = 'Ocurrio un problema al ingresar al cliente';
+                    $result['error'] = 'Ocurrió un problema al ingresar al cliente';
                 }
                 break;
             case 'updateRow':
@@ -98,7 +98,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'cliente eliminado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrio un problema al eliminar al cliente';
+                    $result['error'] = 'Ocurrió un problema al eliminar al cliente';
                 }
                 break;
             default:

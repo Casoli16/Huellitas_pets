@@ -22,14 +22,14 @@ class productosData extends productosHandler{
 
     public function setNombreProducto($value, $min = 2, $max = 50)
     {
-        if (!Validator::validateAlphanumeric($value)) {
+        if (!Validator::validateString($value)) {
             $this->data_error = 'El nombre debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
             $this->nombreProducto = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
             return false;
         }
     }
@@ -45,7 +45,7 @@ class productosData extends productosHandler{
             $this->descripcionProducto = $value;
             return true;
         } else {
-            $this->data_error = 'La descripción debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'La descripción debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
             return false;
         }
     }
@@ -68,7 +68,7 @@ class productosData extends productosHandler{
             $this->existenciaProducto = $value;
             return true;
         } else {
-            $this->data_error = 'El valor de las existencias debe ser numérico entero';
+            $this->data_error = 'El valor de las existencias debe ser un número entero';
             return false;
         }
     }

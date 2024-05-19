@@ -33,9 +33,9 @@ if (isset($_GET['action'])) {
                     $result['error'] = $cupones->getDataError();
                 } elseif ($cupones->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Cupon agregado correctamente';
+                    $result['message'] = 'Cupón agregado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al el cupón';
+                    $result['error'] = 'Ocurrió un problema al ingresar el cupón';
                 }
                 break;
             case 'readAll':
@@ -52,7 +52,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $cupones->readOne()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'cupon inexistente';
+                    $result['error'] = 'Cupón inexistente';
                 }
                 break;
             case 'updateRow':
@@ -66,7 +66,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = $cupones->getDataError();
                 } elseif ($cupones->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Cupon modificada correctamente';
+                    $result['message'] = 'Cupón modificado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el cupón';
                 }
@@ -78,7 +78,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = $cupones->getDataError();
                 } elseif ($cupones->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Cupon eliminado correctamente';
+                    $result['message'] = 'Cupón eliminado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al eliminar el cupón';
                 }

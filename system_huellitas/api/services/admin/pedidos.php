@@ -53,7 +53,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $pedidos->readOne1()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'pedido inexistente';
+                    $result['error'] = 'Pedido inexistente';
                 }
                 break;
             case 'readSellingByMonth':
@@ -71,7 +71,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $pedidos->readOne2()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'pedido inexistente';
+                    $result['error'] = 'Pedido inexistente';
                 }
                 break;
             case 'readThree':
@@ -93,7 +93,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Pedido eliminado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrio un problema al eliminar el pedido';
+                    $result['error'] = 'Ocurrió un problema al eliminar el pedido';
                 }
                 break;
                 case 'deleteRow2':
@@ -103,7 +103,7 @@ if (isset($_GET['action'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Producto eliminado correctamente del pedido';
                     } else {
-                        $result['error'] = 'Ocurrio un problema al eliminar el producto';
+                        $result['error'] = 'Ocurrió un problema al eliminar el producto';
                     }
                     break;
             default:

@@ -30,7 +30,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario
                 $result['error'] = $valoraciones->getDataError();
             } elseif ($valoraciones -> updateRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Comentario actualizada correctamente';
+                $result['message'] = 'Comentario actualizado correctamente';
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar el comentario';
             }

@@ -90,7 +90,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = $permisos->getDataError();
                 } elseif ($permisos->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Permiso modificada correctamente';
+                    $result['message'] = 'Permiso modificado correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el permiso';
                 }

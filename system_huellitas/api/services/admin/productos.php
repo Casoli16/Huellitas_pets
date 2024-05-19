@@ -41,7 +41,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_producto']
                  // Se asigna el estado del archivo después de insertar.
                  $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $productos::RUTA_IMAGEN);
             } else{
-                $result['error'] = 'Ocurrio un problema al ingresar el producto';
+                $result['error'] = 'Ocurrió un problema al ingresar el producto';
             }
             break;
         case 'updateRow':
@@ -121,7 +121,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_producto']
                 // Se asigna el estado del archivo después de eliminar.
                 $result['fileStatus'] = Validator::deleteFile($productos::RUTA_IMAGEN, $productos->getFilename());
             } else{
-                $result['error'] = 'Ocurrio un problema al eliminar el producto';
+                $result['error'] = 'Ocurrió un problema al eliminar el producto';
             }
             break;
     }
