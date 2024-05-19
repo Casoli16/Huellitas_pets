@@ -123,7 +123,7 @@
                                     <div class="col-sm-12 col-md-auto">
                                         <div class="form-check form-switch float-end mb-md-5">
                                             <input class="form-check-input" type="checkbox"
-                                                role="switch" id="switchPerros" name="EstadoProducto" checked >
+                                                role="switch" id="switchPerros" name="EstadoProducto" checked>
                                         </div>
                                     </div>
                                 </div>
@@ -135,13 +135,13 @@
                                         <div class="mb-3">
                                             <label for="nombreProducto" class="form-label fw-semibold">Nombre</label>
                                             <input type="text" class="form-control" id="nombreProducto"
-                                                name="nombreProducto">
+                                                name="nombreProducto" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="descripcionProducto"
                                                 class="form-label fw-semibold">Descripción</label>
                                             <textarea class="form-control" id="descripcionProducto"
-                                                name="descripcionProducto" rows="3"></textarea>
+                                                name="descripcionProducto" rows="3" required></textarea>
                                         </div>
                                         <div class="row">
                                             <div class="col">
@@ -149,7 +149,7 @@
                                                     <label for="precioProducto"
                                                         class="form-label fw-semibold">Precio</label>
                                                     <input type="number" min="0" step="any" class="form-control"
-                                                        id="precioProducto" name="precioProducto">
+                                                        id="precioProducto" name="precioProducto" required>
                                                 </div>
                                             </div>
                                             <div class="col">
@@ -157,7 +157,7 @@
                                                     <label for="cantidadProducto"
                                                         class="form-label fw-semibold">Cantidad</label>
                                                     <input type="number" class="form-control" id="cantidadProducto"
-                                                        name="existenciaProducto">
+                                                        name="existenciaProducto" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,11 +195,10 @@
                             </div>
                     </div>
                     <div class="container text-center mb-4 mt-4">
-                        <button type="submit" class="btn btn-orange-color text-light me-3" data-bs-dismiss="modal"
+                        <button type="submit" class="btn btn-orange-color text-light me-3"
                             id="btnGuardar" name="btnGuardar">Guardar</button>
                         <button type="reset" class="btn btn-red-color text-light" id="btnCancelar"
                             name="btnCancelar">Cancelar</button>
-                    </div>
                     </div>
                     </form>
             </div>

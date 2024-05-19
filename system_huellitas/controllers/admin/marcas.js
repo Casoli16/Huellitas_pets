@@ -17,7 +17,7 @@ const TABLE_BODY = document.getElementById('tableBody'),
 const SAVE_FORM = document.getElementById('crear_marca'),
     ID_MARCA = document.getElementById('idMarca'),
     IMAGEN_MARCA = document.getElementById('imagenMarca'),
-    NOMBRE_MARCA = document.getElementById('nombreMarca')
+    NOMBRE_MARCA = document.getElementById('nombreMarca');
 
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');

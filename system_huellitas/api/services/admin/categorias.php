@@ -32,10 +32,10 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_categoria'
                 $result['error'] = $categorias->getDataError();
             } elseif ($categorias->createRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Categoría ingresado correctamente';
+                $result['message'] = 'Categoría creada correctamente';
                 $result['fileStatus'] = Validator::saveFile($_FILES['imagenCategoria'], $categorias::RUTA_IMAGEN);
             } else{
-                $result['error'] = 'Ocurrio un problema al ingresar la categoría';
+                $result['error'] = 'Ocurrió un problema al crear la categoría';
             }
             break;
         case 'updateRow':
@@ -50,7 +50,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_categoria'
                 $result['error'] = $categorias->getDataError();
             } elseif ($categorias -> updateRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Categoría actualizado correctamente';
+                $result['message'] = 'Categoría actualizada correctamente';
                 $result['fileStatus'] = Validator::changeFile($_FILES['imagenCategoria'], $categorias::RUTA_IMAGEN, $categorias->getFilename());
             } else{
                 $result['error'] = 'Ocurrió un problema al actualizar la categoría';
@@ -61,7 +61,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_categoria'
                 $result['status'] = 1;
                 $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
             } else{
-                $result['error'] = 'No existen categorías registrados';
+                $result['error'] = 'No existen categorías registradas';
             }
             break;
         case 'readOne':
@@ -80,7 +80,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_categoria'
                 $result['status'] = 1;
                 $result['message'] = 'Categoría eliminada correctamente';
             } else{
-                $result['error'] = 'Ocurrio un problema al eliminar la categoría';
+                $result['error'] = 'Ocurrió un problema al eliminar la categoría, elimina los productos que están asociados a esta categoría';
             }
             break;
     }

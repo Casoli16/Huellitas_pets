@@ -41,11 +41,11 @@ CREATE TABLE IF NOT EXISTS administradores (
   id_admin INT AUTO_INCREMENT PRIMARY KEY,
   nombre_admin VARCHAR(50) NOT NULL,
   apellido_admin VARCHAR(50) NOT NULL,
-  correo_admin VARCHAR(100),
+  correo_admin VARCHAR(100)NOT NULL ,
   CONSTRAINT correo_admin_unico UNIQUE(correo_admin),
-  alias_admin VARCHAR(50),
+  alias_admin VARCHAR(50) NOT NULL ,
   CONSTRAINT alias_admin_unico UNIQUE(alias_admin),
-  clave_admin VARCHAR(100),
+  clave_admin VARCHAR(100) NOT NULL ,
   fecha_registro_admin DATE DEFAULT NOW() NOT NULL,
   imagen_admin VARCHAR(50) DEFAULT 'imagen_admin.png' NOT NULL
 );

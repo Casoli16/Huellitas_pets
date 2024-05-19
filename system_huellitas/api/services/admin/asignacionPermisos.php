@@ -20,9 +20,9 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_usuario'] 
                 $result['error'] = $asignacionPermisos->getDataError();
             } elseif ($asignacionPermisos->createRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Asignación de permiso ingresado correctamente';
+                $result['message'] = 'Permiso asignado correctamente';
             } else{
-                $result['error'] = 'Ocurrio un problema al asignar el permiso';
+                $result['error'] = 'Ocurrió un problema al asignar el permiso';
             }
             break;
         case 'updateRow':
@@ -54,7 +54,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_usuario'] 
             } elseif ($result['dataset'] = $asignacionPermisos->readOneByAdminId()) {
                 $result['status'] = 1;
             } else {
-                $result['error'] = 'Este usuario aún no tiene permisos';
+                $result['error'] = 'Este usuario aún no tiene permisos asignados';
             }
             break;
         case 'readOneByPermisoId':
@@ -73,7 +73,7 @@ if(isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_usuario'] 
                 $result['status'] = 1;
                 $result['message'] = 'Permiso asignado eliminado correctamente';
             } else{
-                $result['error'] = 'Ocurrio un problema al eliminar el permiso asignado';
+                $result['error'] = 'Ocurrió un problema al eliminar el permiso asignado';
             }
             break;
     }

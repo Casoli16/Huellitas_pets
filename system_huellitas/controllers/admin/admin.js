@@ -3,9 +3,6 @@ const ADMINISTRADOR_API = 'services/admin/admins.php';
 const PERMISO_API = 'services/admin/permisos.php';
 const ASIGNACION_PERMISO_API = 'services/admin/asignacionPermisos.php';
 
-// BUSCADOR
-const SEARCH_INPUT = document.getElementById('searchInput');
-
 // ELEMENTOS DE LA TABLA
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
@@ -30,13 +27,13 @@ const SAVE_FORM_PERMISOS = document.getElementById('permisosForm'),
 // Constante para estableces los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_ADMIN = document.getElementById('idAdministrador'),
-    IMAGEN_ADMIN = document.getElementById('imgAdmin')
-    NOMBRE_ADMIN = document.getElementById('nombreAdmin'),
-    APELLIDO_ADMIN = document.getElementById('apellidoAdmin'),
-    CORREO_ADMIN = document.getElementById('correoAdmin'),
-    ALIAS_ADMIN = document.getElementById('aliasAdmin'),
-    CLAVE_ADMIN = document.getElementById('claveAdmin'),
-    CONFIRMAR_CLAVE = document.getElementById('confirmarClave');
+    IMAGEN_ADMIN = document.getElementById('imgAdmin'),
+    NOMBRE_ADMIN = document.getElementById("nombre_admin"),
+    APELLIDO_ADMIN = document.getElementById("apellidoAdmin"),
+    CORREO_ADMIN = document.getElementById("correoAdmin"),
+    ALIAS_ADMIN = document.getElementById("aliasAdmin"),
+    CLAVE_ADMIN = document.getElementById("claveAdmin"),
+    CONFIRMAR_CLAVE = document.getElementById("confirmarClave");
 
 // Obtenemos el id de la etiqueta img que mostrara la imagen que hemos seleccionado en nuestro input
 const IMAGEN = document.getElementById('imagen');
@@ -99,6 +96,7 @@ const resetDataTable = async () => {
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+
     // Se verifica la acción a realizar.
     (ID_ADMIN.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
@@ -107,6 +105,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Petición para guardar los datos del formulario.
     const DATA = await fetchData(ADMINISTRADOR_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+
     if (DATA.status) {
         // Se cierra la caja de diálogo.
         SAVE_MODAL.hide();

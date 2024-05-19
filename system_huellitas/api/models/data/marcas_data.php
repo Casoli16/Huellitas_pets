@@ -20,7 +20,7 @@ class MarcasData extends MarcasHandler
         }
     }
 
-    public function setNombreMarca($value, $min = 2, $max = 50)
+    public function setNombreMarca($value, $min = 4, $max = 25)
     {
         if (!Validator::validateAlphanumeric($value)) {
             $this->data_error = 'El nombre debe ser un valor alfanumérico';
@@ -29,7 +29,7 @@ class MarcasData extends MarcasHandler
             $this->nombreMarca = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
             return false;
         }
     }

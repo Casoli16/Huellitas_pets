@@ -29,7 +29,7 @@ class CategoriasData extends CategoriasHandler{
             $this->nombreCategoria = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
             return false;
         }
     }
@@ -40,7 +40,7 @@ class CategoriasData extends CategoriasHandler{
             $this->descripcionCategoria = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
             return false;
         }
     }

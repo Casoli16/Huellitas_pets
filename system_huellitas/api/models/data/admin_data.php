@@ -39,7 +39,7 @@ class AdminData extends AdminHandler
     public function setApellidoAdmin($value, $min = 2, $max = 50)
     {
         if (!Validator::validateAlphanumeric($value)){
-            $this->data_error = 'El nombre debe ser un valor alfanúmerico';
+            $this->data_error = 'El apellido debe ser un valor alfanúmerico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)){
             $this->apellidoAdmin = $value;
@@ -62,16 +62,16 @@ class AdminData extends AdminHandler
         }
     }
 
-    public function setAliasAdmin($value, $min = 5, $max = 15)
+    public function setAliasAdmin($value, $min = 5, $max = 50)
     {
         if (!Validator::validateAlphanumeric($value)){
-            $this->data_error = 'El alias debe ser un valor alfanumerico';
+            $this->data_error = 'El alías debe ser un valor alfanumerico';
             return false;
         }elseif (Validator::validateLength($value, $min, $max)){
             $this->aliasAdmin = $value;
             return true;
         } else{
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . 'y' . $max;
+            $this->data_error = 'El alías debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
         }
     }

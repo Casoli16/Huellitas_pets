@@ -49,7 +49,7 @@ if (isset($_GET['action'])) {
                     // Se asigna el estado del archivo después de insertar.
                     $result['fileStatus'] = Validator::saveFile($_FILES['imagenAdmin'], $administradores::RUTA_IMAGEN);
                 } else {
-                    $result['error'] = 'Ocurrio un problema al ingresar al administrador';
+                    $result['error'] = 'Ocurrió un problema al ingresar al administrador';
                 }
                 break;
             case 'updateRow':
@@ -103,7 +103,7 @@ if (isset($_GET['action'])) {
                         // Se asigna el estado del archivo después de eliminar.
                         $result['fileStatus'] = Validator::deleteFile($administradores::RUTA_IMAGEN, $administradores->getFilename());
                     } else {
-                        $result['error'] = 'Ocurrio un problema al eliminar al administrador';
+                        $result['error'] = 'Ocurrio un problema al eliminar al administrador, elimina los permisos que tenga este administrador';
                     }
                 } else {
                     $result['error'] = '¡Por la integridad del sistema no puedes eliminar tu propia cuenta!';
@@ -165,7 +165,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = $administradores->getDataError();
                 } elseif ($administradores->updatePassword()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Contraseña cambiada correctamente';
+                    $result['message'] = 'La constraseña ha sido cambiada exitosamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                 }
