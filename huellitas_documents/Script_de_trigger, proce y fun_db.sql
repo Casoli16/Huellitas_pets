@@ -66,6 +66,21 @@ END
 //
 DELIMITER ;
 
+-- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE ELIMINA UN PEDIDO --
+DELIMITER //
+
+CREATE TRIGGER devolver_existencias BEFORE DELETE ON detalles_pedidos
+FOR EACH ROW
+BEGIN
+    UPDATE productos
+    SET existencia_producto = existencia_producto + OLD.cantidad_detalle_pedido
+    WHERE id_producto = OLD.id_producto;
+END;
+
+//
+DELIMITER ;
+DELETE FROM valoraciones WHERE id_detalle_pedido = 1;
+DELETE FROM detalles_pedidos WHERE id_detalle_pedido = 1;
 -- Vista para ver el GET de los pedidos, contiene nombre de los clientes, fecha en cadena de texto y cantidad de productos llevada --
 CREATE VIEW pedidos_view AS
 SELECT c.nombre_cliente AS cliente, DATE_FORMAT(p.fecha_registro_pedido, '%e de %M del %Y') AS fecha, dp.cantidad_detalle_pedido AS cantidad, p.estado_pedido, p.id_pedido AS id_pedido

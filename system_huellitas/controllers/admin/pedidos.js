@@ -244,6 +244,7 @@ const fillTable = async (form = null) => {
                         break;
                     case 'Pendiente':
                         textColor = 'warning';
+                        break;
                 }
 
                 TABLE_BODY.innerHTML += `
