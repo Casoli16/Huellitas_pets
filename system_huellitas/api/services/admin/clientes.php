@@ -37,7 +37,6 @@ if (isset($_GET['action'])) {
                     !$clientes->setDireccionCliente($_POST['direccionCliente']) or
                     !$clientes->setClaveCliente($_POST['claveCliente']) or
                     !$clientes->setEstadoCliente($_POST['estadoCliente']) or
-                    !$clientes->setFechaRegistro($_POST['fechaRegistro']) or
                     !$clientes->setImagenCliente($_FILES['imagenCliente'])
                 ) {
                     $result['error'] = $clientes->getDataError();

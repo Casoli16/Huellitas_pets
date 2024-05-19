@@ -38,8 +38,8 @@ class ClientesHandler
     // CREATE
     public function createRow()
     {
-        $sql = 'INSERT INTO clientes(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, clave_cliente, estado_cliente, fecha_registro_cliente, imagen_cliente)
-                VALUE (?,?,?,?,?,?,?,?,?,?,?)';
+        $sql = 'INSERT INTO clientes(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, clave_cliente, estado_cliente, imagen_cliente)
+                VALUE (?,?,?,?,?,?,?,?,?,?)';
         $params = array(
             $this->nombreCliente,
             $this->apellidoCliente,
@@ -50,7 +50,6 @@ class ClientesHandler
             $this->direccionCliente,
             $this->claveCliente,
             $this->estadoCliente,
-            $this->fechaRegistroCliente,
             $this->imagenCliente);
         return Database::executeRow($sql, $params);
     }
