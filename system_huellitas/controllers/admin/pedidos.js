@@ -109,6 +109,26 @@ const openView = async (id) => {
     }
 }
 
+const openViewMini = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_pedido', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(PEDIDOS_API, 'readTwo', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        const [ROW] = DATA.dataset;
+        ID_PEDIDO_VIEW.value = ROW.id_pedido;
+        NOMBRE_CLIENTE.textContent = ROW.nombre_cliente;
+        DIRECCION.textContent = ROW.direccion;
+        ESTADO_PEDIDO.textContent = ROW.estado;
+        TOTAL_A_PAGAR.textContent = ROW.precio_total;
+
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
 const openOrderStatus = async (id) => {
     const options = ['Pendiente', 'Completado', 'Cancelado'];
     ID_PEDIDO.value = id;
@@ -211,8 +231,11 @@ const openDeleteDetail = async (id, id_pedido, cant_registros) => {
             if (DATA.status) {
                 // Se muestra un mensaje de éxito.
                 await sweetAlert(1, DATA.message, true);
-                // Se carga nuevamente la tabla para visualizar los cambios.
+                // Se carga nuevamente la las cartas para visualizar los cambios.
                 await fillCards(id_pedido);
+                // Se carga los datos de abajo que son puros text
+                await openViewMini(id_pedido);
+
             } else {
                 sweetAlert(2, DATA.error, false);
             }
@@ -233,9 +256,9 @@ const fillTable = async (form = null) => {
         if (DATA.status) {
             DATA.dataset.forEach(row => {
 
-                let textColor= 'emphasis'
+                let textColor = 'emphasis'
 
-                switch (row.estado_pedido){
+                switch (row.estado_pedido) {
                     case 'Completado':
                         textColor = 'success';
                         break;

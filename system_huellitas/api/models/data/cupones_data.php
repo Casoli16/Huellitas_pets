@@ -42,7 +42,7 @@ class CuponesData extends CuponesHandler
         }
     }
 
-    public function setPorcentajeCupon($value, $min = 5, $max = 100)
+    public function setPorcentajeCupon($value, $min = 5, $max = 80)
     {
         if (Validator::validateNaturalNumber($value) && Validator::validateMaxAdnMinNumber($value, $min, $max)) {
             $this->porcentajeCupon = $value;

@@ -31,20 +31,6 @@ class PedidosData extends PedidosHandler{
         }
     }
 
-    public function setNombreCliente($value, $min = 3, $max = 20)
-    {
-        if (!Validator::validateAlphanumeric($value)) {
-            $this->data_error = 'El contenido debe ser un valor alfanumérico';
-            return false;
-        } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombreProducto = $value;
-            return true;
-        } else {
-            $this->data_error = 'El contenido debe tener una longitud entre ' . $min . ' y ' . $max;
-            return false;
-        }
-    }
-
     public function setEstadoPedido($value, $min = 6, $max = 12)
     {
         if (!Validator::validateAlphanumeric($value)) {
