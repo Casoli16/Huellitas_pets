@@ -97,7 +97,7 @@ GROUP BY c.nombre_cliente, p.fecha_registro_pedido, p.estado_pedido, p.id_pedido
 SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view;
 SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view WHERE cliente LIKE '%Carlos%' OR fecha LIKE '$ $';
 
-DROP VIEW pedido_view_one_I;
+
 -- Vista para ver la parte 1 de los productos del detalle pedido, es del GET parte I
 CREATE VIEW pedido_view_one_I AS
 SELECT 
