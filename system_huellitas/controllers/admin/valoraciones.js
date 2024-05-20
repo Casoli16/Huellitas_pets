@@ -170,10 +170,10 @@ const fillTable = async (form = null) => {
             let eye;
 
             if(row.estado_valoracion === 1){
-                eye="../../resources/img/png/oculto_categorias.png";
+                eye="../../resources/img/png/comentarios_ver.png";
             }
             else{
-                eye="../../resources/img/png/comentarios_ver.png"
+                eye="../../resources/img/png/oculto_categorias.png"
             }
 
             TABLE_BODY.innerHTML += `
@@ -182,10 +182,10 @@ const fillTable = async (form = null) => {
                     <td class="align-middle">${row.nombre_cliente} ${row.apellido_cliente}</td>
                     <td class="align-middle">${row.fecha_valoracion}</td>
                     <td class="align-middle">${row.calificacion_valoracion}/5</td>
-                    <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt=""></td>
+                    <td class="align-middle"><img src=${eye} width="27px"></td>
                     <td class="align-middle">
                         <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                        data-bs-target="#infoModal"><img src=${eye}
+                        data-bs-target="#infoModal"><img src="../../resources/img/svg/info_icon.svg"
                         width="33px" onclick="openUpdate(${row.id_valoracion})">
                         </button>
                     </td>
