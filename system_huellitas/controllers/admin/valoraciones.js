@@ -167,45 +167,31 @@ const fillTable = async (form = null) => {
     const DATA = await fetchData(VALORACIONES_API, action, form);
     if (DATA.status) {
         DATA.dataset.forEach(row => {
-            const stwitchChecked = (row.estado_valoracion === 1) ? 'checked' : '';
-            switch (row.estado_valoracion) {
-                case 0:
-                    TABLE_BODY.innerHTML += `
-                    <tr>
-                        <td class="align-middle">${row.nombre_producto}</td>
-                            <td class="align-middle">${row.nombre_cliente} ${row.apellido_cliente}</td>
-                            <td class="align-middle">${row.fecha_valoracion}</td>
-                            <td class="align-middle">${row.calificacion_valoracion}/5</td>
-                            <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt=""></td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#infoModal"><img src="../../resources/img/svg/info_icon.svg"
-                                width="33px" onclick="openUpdate(${row.id_valoracion})">
-                                </button>
-                            </td>
-                        </td>
-                    </tr>
-                    `
-                    break;
-                case 1:
-                    TABLE_BODY.innerHTML += `
-                    <tr>
-                        <td class="align-middle">${row.nombre_producto}</td>
-                            <td class="align-middle">${row.nombre_cliente} ${row.apellido_cliente}</td>
-                            <td class="align-middle">${row.fecha_valoracion}</td>
-                            <td class="align-middle">${row.calificacion_valoracion}/5</td>
-                            <td class="align-middle"><img src="../../resources/img/png/comentarios_ver.png" alt="" width="25"></td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                data-bs-target="#infoModal"><img src="../../resources/img/svg/info_icon.svg"
-                                width="33px" onclick="openUpdate(${row.id_valoracion})">
-                                </button>
-                            </td>
-                        </td>
-                    </tr>
-                    `
-                    break;
-                }
+            let eye;
+
+            if(row.estado_valoracion === 1){
+                eye="../../resources/img/png/oculto_categorias.png";
+            }
+            else{
+                eye="../../resources/img/png/comentarios_ver.png"
+            }
+
+            TABLE_BODY.innerHTML += `
+            <tr>
+                <td class="align-middle">${row.nombre_producto}</td>
+                    <td class="align-middle">${row.nombre_cliente} ${row.apellido_cliente}</td>
+                    <td class="align-middle">${row.fecha_valoracion}</td>
+                    <td class="align-middle">${row.calificacion_valoracion}/5</td>
+                    <td class="align-middle"><img src="../../resources/img/png/oculto_categorias.png" alt=""></td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                        data-bs-target="#infoModal"><img src=${eye}
+                        width="33px" onclick="openUpdate(${row.id_valoracion})">
+                        </button>
+                    </td>
+                </td>
+            </tr>
+            `
         });
         ROWS_FOUND.textContent = DATA.message;
     } else {
