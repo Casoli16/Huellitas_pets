@@ -97,7 +97,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 case 'deleteRow2':
-                    if (!$pedidos->setIdPedido($_POST['id_detalle_pedido'])) {
+                    if (!$pedidos->setIdDetallePedido($_POST['id_detalle_pedido'])) {
                         $result['error'] = $pedidos->getDataError();
                     } elseif ($pedidos->deleteRow2()) {
                         $result['status'] = 1;

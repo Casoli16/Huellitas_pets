@@ -101,7 +101,7 @@ const openView = async (id) => {
         ESTADO_PEDIDO.textContent = ROW.estado;
         TOTAL_A_PAGAR.textContent = ROW.precio_total;
 
-        await fillCards(null, id);
+        await fillCards(id);
         VIEW_MODAL.show();
 
     } else {
@@ -134,7 +134,7 @@ const openOrderStatus = async (id) => {
 }
 
 //Funcion que cargara los productos de ese cliente en el modal de viewModal.
-const fillCards = async (form = null, id) => {
+const fillCards = async (id) => {
     CARDS.innerHTML = '';
     const FORM = new FormData();
     FORM.append('id_pedido', id);
@@ -212,7 +212,7 @@ const openDeleteDetail = async (id, id_pedido, cant_registros) => {
                 // Se muestra un mensaje de éxito.
                 await sweetAlert(1, DATA.message, true);
                 // Se carga nuevamente la tabla para visualizar los cambios.
-                await fillCards(null, id_pedido);
+                await fillCards(id_pedido);
             } else {
                 sweetAlert(2, DATA.error, false);
             }
