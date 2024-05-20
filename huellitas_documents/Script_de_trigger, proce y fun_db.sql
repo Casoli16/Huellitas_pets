@@ -82,13 +82,11 @@ DELIMITER ;
 DELETE FROM valoraciones WHERE id_detalle_pedido = 1;
 DELETE FROM detalles_pedidos WHERE id_detalle_pedido = 1;
 
-
-DROP VIEW  pedidos_view;
 -- Vista para ver el GET de los pedidos, contiene nombre de los clientes, fecha en cadena de texto y cantidad de productos llevada --
 CREATE VIEW pedidos_view AS
 SELECT c.nombre_cliente AS cliente,
        DATE_FORMAT(p.fecha_registro_pedido, '%e de %M del %Y') AS fecha,
-       MIN(dp.cantidad_detalle_pedido) AS cantidad,
+       SUM(dp.cantidad_detalle_pedido) AS cantidad,
        p.estado_pedido,
        p.id_pedido AS id_pedido
 FROM clientes c
@@ -96,10 +94,10 @@ INNER JOIN pedidos p ON c.id_cliente = p.id_cliente
 INNER JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido
 GROUP BY c.nombre_cliente, p.fecha_registro_pedido, p.estado_pedido, p.id_pedido;
 
-
 SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view;
 SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view WHERE cliente LIKE '%Carlos%' OR fecha LIKE '$ $';
 
+DROP VIEW pedido_view_one_I;
 -- Vista para ver la parte 1 de los productos del detalle pedido, es del GET parte I
 CREATE VIEW pedido_view_one_I AS
 SELECT 
@@ -110,7 +108,7 @@ SELECT
     m.nombre_marca,
     pr.nombre_producto,
     pr.imagen_producto
-FROM 
+FROM
     pedidos p
     INNER JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido
     INNER JOIN productos pr ON dp.id_producto = pr.id_producto
