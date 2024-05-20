@@ -42,7 +42,7 @@ class ValoracionesHandler
     // READ ALL
     public function readAll()
     {
-        $sql = 'SELECT id_valoracion, nombre_producto, imagen_producto, calificacion_valoracion, comentario_valoracion, fecha_valoracion, estado_valoracion, nombre_cliente, apellido_cliente
+        $sql = 'SELECT id_valoracion, nombre_producto, imagen_producto, calificacion_valoracion, comentario_valoracion, DATE_FORMAT(fecha_valoracion, "%d de %M del %Y") AS fecha_valoracion, estado_valoracion, nombre_cliente, apellido_cliente
                 FROM valoraciones v
                 INNER JOIN detalles_pedidos dp ON v.id_detalle_pedido = dp.id_detalle_pedido
                 INNER JOIN productos p ON dp.id_producto = p.id_producto

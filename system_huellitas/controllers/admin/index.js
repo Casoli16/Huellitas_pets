@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         location.href = 'dashboard.html'
     } else if (DATA.status) {
         CONTAINER_ONE.classList.remove('d-none');
-        sweetAlert(4, DATA.message, true);
+        sweetAlert(3, DATA.message, true);
     } else {
         CONTAINER_SECOND.classList.remove('d-none');
-        sweetAlert(4, DATA.error, true);
+        sweetAlert(2, DATA.error, true);
     }
 });
 
