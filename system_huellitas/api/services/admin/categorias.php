@@ -1,17 +1,21 @@
 <?php
-
+// Se incluye la clase del modelo.
 require_once('../../models/data/categorias_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     session_start();
-
+ // Se instancia la clase correspondiente.
     $categorias = new CategoriasData;
 
+     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
+     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_categoria'] == 1)) {
+         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            //Metódo que permite buscar un registro.
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -22,6 +26,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+                //Metódo que permite crear una categoría.
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -38,6 +43,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear la categoría';
                 }
                 break;
+                //Metódo que permite actualizar una categoría
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -56,6 +62,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar la categoría';
                 }
                 break;
+                //Metódo que permite leer todos los registros que se encuentran en la base de datos
             case 'readAll':
                 if ($result['dataset'] = $categorias->readAll()) {
                     $result['status'] = 1;
@@ -64,6 +71,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen categorías registradas';
                 }
                 break;
+                //Metódo que permite leer una categoría en especifíco
             case 'readOne':
                 if (!$categorias->setIdCategoria($_POST['idCategoria'])) {
                     $result['error'] = $categorias->getDataError();
@@ -73,6 +81,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Categoría inexistente';
                 }
                 break;
+                //Metódo que permite eliminar una categoría por medio del idCategoria.
             case 'deleteRow':
                 if (!$categorias->setIdCategoria($_POST['idCategoria'])) {
                     $result['error'] = $categorias->getDataError();

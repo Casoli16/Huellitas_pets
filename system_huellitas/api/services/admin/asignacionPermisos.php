@@ -1,16 +1,20 @@
 <?php
 
+//Importamos la ruta de nuestro Data.
 require_once('../../models/data/asignacionPermisos_data.php');
 
 if (isset($_GET['action'])) {
     session_start();
 
+    //Creamos la instancia de asignacionPermisosData
     $asignacionPermisos = new AsignacionPermisosData();
 
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
+    //Verifica si ya hay una sesión iniciada y si cuenta con los permisos para ver este servicio.
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_usuario'] == 1)) {
         switch ($_GET['action']) {
+            //Metódo que permite asignar los permisos a un admin, para ello se necesita pasar el idPermiso y idAdministrador
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -25,6 +29,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al asignar el permiso';
                 }
                 break;
+            //Metódo que permite actualizar los permisos que se le han asignado a un admin    
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -40,6 +45,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el permiso';
                 }
                 break;
+                //Metódo que permite leer todos los registros que se encuentran en la base de datos.
             case 'readAll':
                 if ($result['dataset'] = $asignacionPermisos->readAll()) {
                     $result['status'] = 1;
@@ -48,6 +54,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen asignaciones de permisos';
                 }
                 break;
+                //Metódo que permite leer los permisos que tenga un admin, pasandole el idAdministrador
             case 'readOneByAdminId':
                 if (!$asignacionPermisos->setIdAdmin($_POST['idAdministrador'])) {
                     $result['error'] = $asignacionPermisos->getDataError();
@@ -57,6 +64,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Este usuario aún no tiene permisos asignados';
                 }
                 break;
+                //Metódo que permite leer los permisos asignados pasando el idAsignacionPermiso
             case 'readOneByPermisoId':
                 if (!$asignacionPermisos->setIdAsignacionPermiso($_POST['idAsignacionPermiso'])) {
                     $result['error'] = $asignacionPermisos->getDataError();
@@ -66,6 +74,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Este usuario aún no tiene permisos';
                 }
                 break;
+                //Metódo que permite eliminar un permiso asignado, para ello solo se necesita que se pase el idAsignacionPermiso
             case 'deleteRow':
                 if (!$asignacionPermisos->setIdAdmin($_POST['idAsignacionPermiso'])) {
                     $result['error'] = $asignacionPermisos->getDataError();

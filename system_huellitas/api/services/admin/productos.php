@@ -1,16 +1,22 @@
 <?php
-
+// Se incluye la clase del modelo.
 require_once('../../models/data/productos_data.php');
 
+// Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     session_start();
 
+     // Se instancia la clase correspondiente.
     $productos = new productosData;
 
+    // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
+     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_producto'] == 1)) {
+        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            //Metódo que permite buscar un registro.
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -21,6 +27,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+            //Metódo que permite crear un producto
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -44,6 +51,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al ingresar el producto';
                 }
                 break;
+                //Metódo que permite actualizar un producto
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -69,6 +77,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el producto';
                 }
                 break;
+                //Metódo que permite leer todos los productos registrados en la base de datos
             case 'readAll':
                 if ($result['dataset'] = $productos->readAll()) {
                     $result['status'] = 1;
@@ -77,6 +86,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen productos registrados';
                 }
                 break;
+                //Metódo que permite leer un producto en específico
             case 'readOne':
                 if (!$productos->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $productos->getDataError();
@@ -86,6 +96,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
+                //Metódo que permite traer el producto más vendido.
             case 'readTopProduct':
                 if ($result['dataset'] = $productos->readTopProduct()) {
                     $result['status'] = 1;
@@ -94,6 +105,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un error al mostrar el producto más vendido.';
                 }
                 break;
+                //Metódo que permite leer un producto dependiendo de la mascota que se pase. (Perro o gato)
             case 'readSpecificProduct':
                 if (!$productos->setMascotas($_POST['mascota'])) {
                     $result['error'] = $productos->getDataError();
@@ -103,6 +115,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Aún no hay productos registrados';
                 }
                 break;
+                //Metódo que permite leer un producto en específico por medio de idProducto
             case 'readSpecificProductById':
                 if (!$productos->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $productos->getDataError();
@@ -112,6 +125,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No se encuentra la información de este producto';
                 }
                 break;
+                //Metódo que permite eliminar el producto
             case 'deleteRow':
                 if (!$productos->setIdProducto($_POST['idProducto']) or !$productos->setFilename()) {
                     $result['error'] = $productos->getDataError();
