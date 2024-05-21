@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         location.href = 'dashboard.html'
     } else if (DATA.status) {
         CONTAINER_ONE.classList.remove('d-none');
-        sweetAlert(3, DATA.message, true);
     } else {
         CONTAINER_SECOND.classList.remove('d-none');
         sweetAlert(2, DATA.error, true);

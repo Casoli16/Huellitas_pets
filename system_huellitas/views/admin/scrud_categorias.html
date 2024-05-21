@@ -120,20 +120,22 @@
                                     <!-- Nombre de la categoría -->
                                     <label for="nombreCategoria" class="fs-8 fw-bold"> Nombre</label>
                                     <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria"
-                                        placeholder="Escribe el nombre de la categoría" required>
+                                        placeholder="Escribe el nombre de la categoría" maxlength="50" required>
                                     <br>
                                     <div class="mb-3">
                                         <!-- Descripción de la categoría -->
                                         <label for="descripcionCategoria" class="form-label fw-bold">Descripción</label>
                                         <textarea class="form-control" name="descripcionCategoria"
                                             placeholder="Escribe la descripción de esta categoría"
-                                            id="descripcionCategoria" required rows="3"></textarea>
+                                            id="descripcionCategoria" maxlength="250" required rows="3"></textarea>
                                     </div>
                                     <br>
                                     <div class="container text-center">
                                         <!-- Botón para agregar la categoría -->
                                         <button type="submit" id="modalButton"
                                             class="btn btn-orange-color text-white"></button>
+                                        <button type="reset"
+                                                class="btn btn-red-color text-white">Cancelar</button>
                                     </div>
                                     <br>
                                 </div>

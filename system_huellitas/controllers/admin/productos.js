@@ -194,7 +194,7 @@ const openInfo = async (id) => {
         DESCRIPCION_TEXT.textContent = ROW.descripcion_producto;
         MASCOTA_TEXT.textContent = ROW.mascotas;
         CATEGORIA_TEXT.textContent = ROW.nombre_categoria;
-        PRECIO_TEXT.textContent = ROW.precio_producto;
+        PRECIO_TEXT.textContent = '$' + ROW.precio_producto;
         CANTIDAD_TEXT.textContent = ROW.existencia_producto;
         MARCA_TEXT.textContent = ROW.nombre_marca;
     } else {
