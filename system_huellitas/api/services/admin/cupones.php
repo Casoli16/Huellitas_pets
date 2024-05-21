@@ -13,6 +13,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_cupon'] == 1)) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            //Case para buscar un cupón en base a su nombre o su fecha de ingreso
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -23,6 +24,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+            // Case para crear un cupón, se le pasa 3 parametros, codigo, porcentaje y el estado del cupón, un string, un int y un booleano
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -38,6 +40,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = '¡El máximo de porcentaje de un cupón es 80%, modificalo por favor!';
                 }
                 break;
+            // Case para leer todos los registros de los cupones, ordenados del más reciente creado al más antiguo de último 
             case 'readAll':
                 if ($result['dataset'] = $cupones->readAll()) {
                     $result['status'] = 1;
@@ -46,6 +49,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen cupones registrados';
                 }
                 break;
+            // Case para leer la información de un registro en especifico, se verá el código, porcentaje y estado  
             case 'readOne':
                 if (!$cupones->setIdCupon($_POST['idCupon'])) {
                     $result['error'] = $cupones->getDataError();
@@ -55,6 +59,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Cupón inexistente';
                 }
                 break;
+             // Case para actualizar un cupón, se le pasa 3 parametros, codigo, porcentaje y el estado del cupón, un string, un int y un booleano
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -71,6 +76,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = '¡El máximo de porcentaje de un cupón es 80%, modificalo por favor!';
                 }
                 break;
+             // Case para eliminar un cupón, ya sea que tenga relación en alguna tabla o no
             case 'deleteRow':
                 if (
                     !$cupones->setIdCupon($_POST['idCupon'])

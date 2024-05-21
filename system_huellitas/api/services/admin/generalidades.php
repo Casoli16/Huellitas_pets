@@ -13,7 +13,7 @@ require_once('../../models/data/productos_data.php');
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     session_start();
-    // Se instancia la clase correspondiente.
+    // Se instancian las clases correspondientes.
     $administradores = new AdminData();
     $permisos = new PermisosData();
     $asignacionPermisos = new AsignacionPermisosData();
@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-                // Manejo de datos de la cuenta del admin
+            // Manejo de los productos más vendidos
             case 'readTopProduct':
                 if ($result['dataset'] = $productos->readTopProduct()) {
                     $result['status'] = 1;
@@ -39,6 +39,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un error al mostrar el producto más vendido.';
                 }
                 break;
+            // Case para guardar el alias del admin 
             case 'getUser':
                 if (isset($_SESSION['aliasAdmin'])) {
                     $result['status'] = 1;
@@ -47,6 +48,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Alias de administrador no encontrado';
                 }
                 break;
+            // Case para las gráficas que entrega la cantidad de los clientes nuevos
             case 'newUsers':
                 if ($result['dataset'] = $clientes->countNewClients()) {
                     $result['status'] = 1;
@@ -55,6 +57,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen registro nuevos de clientes';
                 }
                 break;
+            // Case para salir de una sesión, es decir para des loggearse
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -63,6 +66,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+            // Case para ver las ventas de un mes seleccionado, se le pasa un número del 1 al 12 y devuelve un dato con las ventas de ese mes
             case 'readSellingByMonth':
                 if (!$pedidos->setMonth($_POST['month'])) {
                     $result['error'] = $pedidos->getDataError();
@@ -72,6 +76,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No se encuentran ventas en el mes seleccionado o no tienes permiso para ver este apartado';
                 }
                 break;
+            // Case para ver la información de mi perfil, en base a su idAdmin guardado en la sesion
             case 'readProfile':
                 if ($result['dataset'] = $administradores->readProfile()) {
                     $result['status'] = 1;
@@ -79,6 +84,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+            // Case para editar mi perfil
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -101,6 +107,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el perfil';
                 }
                 break;
+            // Case para acutalizar la contraseña
             case 'updatePassword':
                 $_POST = Validator::validateForm($_POST);
                 if (!$administradores->checkPassword($_POST['claveActual'])) {
@@ -116,6 +123,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                 }
                 break;
+            // Case para leer todas las categorias, esto pertenece al dashboard
             case 'readAll':
                 if ($result['dataset'] = $categorias->readAll()) {
                     $result['status'] = 1;
@@ -124,6 +132,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen categorías registrados';
                 }
                 break;
+            // Case para buscar un producto en especifico con su nombre
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -139,6 +148,7 @@ if (isset($_GET['action'])) {
         }
     } else {
         switch ($_GET['action']) {
+            // Case para ver si hay usuarios en la base de datos
             case 'readUsers':
                 if ($administradores->readAll()) {
                     $result['status'] = 1;
@@ -147,6 +157,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Debe crear un administrador para comenzar';
                 }
                 break;
+            // Case para registrarse, cuando se registra se le crea el permiso de Administrador por defecto y se le asigna
             case 'signUp':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -186,6 +197,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al registrar el administrador';
                 }
                 break;
+            // Case para logearse
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
                 if ($administradores->checkUser($_POST['nameLogin'], $_POST['passwordLogin'])) {

@@ -14,6 +14,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            // Case para ver el o los permisos de un administrador 
             case 'readOneAdmin':
                 if (!$autorizacion->setIdAdmin($_POST['idAdmin'])) {
                     $result['error'] = $autorizacion->getDataError();

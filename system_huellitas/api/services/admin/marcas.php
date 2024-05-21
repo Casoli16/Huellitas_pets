@@ -4,14 +4,16 @@ require_once('../../models/data/marcas_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
+    // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
-
+    // Se instancia la clase correspondiente.
     $marcas = new MarcasData;
 
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_marca'] == 1)) {
         switch ($_GET['action']) {
+            //Case para buscar una marca en base a su nombre
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -22,6 +24,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+            // Case para crear una marca
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -37,6 +40,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al ingresar la marca';
                 }
                 break;
+            // Case para actualizar una marca
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -54,6 +58,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar la marca';
                 }
                 break;
+            // Case para leer todas las marcas registradas
             case 'readAll':
                 if ($result['dataset'] = $marcas->readAll()) {
                     $result['status'] = 1;
@@ -62,6 +67,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen marcas registradas';
                 }
                 break;
+            // Case para leer la información de un registro en especifico
             case 'readOne':
                 if (!$marcas->setIdMarca($_POST['idMarca'])) {
                     $result['error'] = $marcas->getDataError();
@@ -71,6 +77,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Marca inexistente';
                 }
                 break;
+            // Case para eliminar una marca que no tenga relaciones, en caso de tenerlas no se le dejará eliminar esta marca
             case 'deleteRow':
                 if (
                     !$marcas->setIdMarca($_POST['idMarca']) or

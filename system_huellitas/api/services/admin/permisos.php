@@ -14,6 +14,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            //Case para buscar un permiso en base a su nombre
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -24,6 +25,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+            // Case para crear un permiso, se le pasan 1 string y 10 booleanos
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -46,6 +48,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear el permiso';
                 }
                 break;
+            // Case para leer todos los registros de los permisos, ordenados del más reciente creado al más antiguo de último 
             case 'readAll':
                 if ($result['dataset'] = $permisos->readAll()) {
                     $result['status'] = 1;
@@ -54,6 +57,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen permisos registrados';
                 }
                 break;
+            // Case para leer la información de un registro en especifico, se verá el nombre, y los 10 permisos en el estado en que se encuentren
             case 'readOne':
                 if (!$permisos->setIdPermiso($_POST['idPermiso'])) {
                     $result['error'] = $permisos->getDataError();
@@ -63,6 +67,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Permiso inexistente';
                 }
                 break;
+            // Case para ver la información de un registro en especifico.
             case 'readOneAdmin':
                 if (!$permisos->setIdAdmin($_POST['idAdmin'])) {
                     $result['error'] = $permisos->getDataError();
@@ -72,6 +77,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Este administrador no tiene permisos asignados';
                 }
                 break;
+            // Case para actualizar un permiso, se le pasan 1 string y 10 booleanos
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -95,6 +101,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el permiso';
                 }
                 break;
+            // Case para eliminar un permiso, en caso de que este relacionado no se elimina y se le explica al cliente la razón
             case 'deleteRow':
                 if (
                     !$permisos->setIdPermiso($_POST['idPermiso'])
