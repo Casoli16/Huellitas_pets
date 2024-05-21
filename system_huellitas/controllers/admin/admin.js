@@ -231,7 +231,6 @@ SAVE_FORM_PERMISOS.addEventListener('submit', async (event) => {
     const FORM = new FormData(SAVE_FORM_PERMISOS);
     // Petición para guardar los datos del formulario.
     const DATA = await fetchData(ASIGNACION_PERMISO_API, action, FORM);
-    console.log(DATA)
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.

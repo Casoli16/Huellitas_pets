@@ -24,7 +24,6 @@ IMAGEN_ADMIN.addEventListener('change', function (event) {
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('Hi')
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
     // Petición para consultar los usuarios registrados.

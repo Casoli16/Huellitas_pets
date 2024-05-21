@@ -26,6 +26,7 @@ const PAGINATION_TABLE = document.getElementById('paginationTable');
 //Declaramos una variable que permitira guardar la paginacion de la tabla
 let PAGINATION;
 
+//Incicia cuando el documento se recarga
 document.addEventListener('DOMContentLoaded', () => {
     loadTemplate()
     //Espera a que fillTable termine de ejecutarse, para luego llamar a la funcion initializeDataTable;
@@ -53,6 +54,8 @@ const resetDataTable = async () => {
     //Espera a que se ejecute completamente la funcion antes de seguir.
     await initializeDataTable();
 };
+
+//Función que permite actualizar el estado del cliente
 FORM_UPDATE.addEventListener('submit', async (event) => {
     event.preventDefault();
     const FORM = new FormData(FORM_UPDATE);
@@ -66,6 +69,7 @@ FORM_UPDATE.addEventListener('submit', async (event) => {
     }
 })
 
+//Función que permiste ver la información del cliente
 const seeInfo = async (id) => {
     FORM_UPDATE.reset();
     const form = new FormData();
@@ -93,6 +97,7 @@ const seeInfo = async (id) => {
     }
 }
 
+//Función que llena la tabla de datos.
 const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';

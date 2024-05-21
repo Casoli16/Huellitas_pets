@@ -72,8 +72,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Obtener los datos del formulario
     const FORM = new FormData(SAVE_FORM);
 
-    console.log(FORM);
-
     const SWVER_CLIENTE = VER_CLIENTE.checked ? 1 : 0;
     const SWVER_MARCA = VER_MARCA.checked ? 1 : 0;
     const SWVER_PEDIDO = VER_PEDIDO.checked ? 1 : 0;
@@ -108,10 +106,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Enviar los datos del formulario al servidor y manejar la respuesta
     const DATA = await fetchData(PERMISOS_API, ACTION, FORM);
 
-    console.log(DATA);
     // Verificar si la respuesta del servidor fue satisfactoria
     if (DATA.status) {
-        console.log('Si pase');
         // Ocultar el modal
         SAVE_MODAL.hide();
         // Mostrar mensaje de éxito
@@ -128,7 +124,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 const openCreate = () => {
     ID_PERMISO.value = '';
     SAVE_MODAL.show()
-    MODAL_TITLE.textContent = 'Crear permsio';
+    MODAL_TITLE.textContent = 'Crear permiso';
     SAVE_FORM.reset();
 }
 

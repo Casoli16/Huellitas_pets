@@ -167,7 +167,7 @@ const fillCards = async (id) => {
             CARDS.innerHTML += `
             <li
             class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
-            <img src="${SERVER_URL}images/productos/${row.imagen_producto}" alt="Imagen" height="90">
+            <img src="${SERVER_URL}images/productos/${row.imagen_producto}" width="90" height="100">
             <!-- Información del producto -->
             <div class="ms-2 me-auto">
                 <span class="badge badge-custom text-dark shadow mb-4"

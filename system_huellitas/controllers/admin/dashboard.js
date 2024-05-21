@@ -24,6 +24,11 @@ const TABLE_BODY = document.getElementById('tableBody'),
 const HIDDEN_ELEMENT = document.getElementById('anyTable');
 const SEARCH_FORM = document.getElementById('searchDashboard');
 
+const BUTTON_CATEGORY = document.getElementById('btnCategory');
+
+//Permite obtener los permisos con los que cuenta este usuario.
+const PERMISOS = JSON.parse(localStorage.getItem('dataset'));
+
 document.addEventListener('DOMContentLoaded', async () => {
     //Carga el menu en las pantalla
     loadTemplate();
@@ -35,8 +40,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     newUsers();
     //Carga el producto mas vendido
     topProduct();
+    //Carga la función de la gráfica
     selectedOption();
+    //Función que permite saber los permisos del user
+    permissions();
 });
+
+
+//Nos permite mostrar el search para buscar productos o mostrar el botón que permite irse a categorías
+const permissions = async () => {
+    if (PERMISOS['ver_categoria']){
+        BUTTON_CATEGORY.classList.remove('d-none');
+    } else{
+       BUTTON_CATEGORY.classList.add('d-none');
+    }
+
+    if (PERMISOS['ver_producto']){
+        SEARCH_FORM.classList.remove('d-none');
+    } else {
+        BUTTON_CATEGORY.classList.add('d-none');
+    }
+}
+
 
 //Obtiene los datos del admin registrado
 const getData = async (form = null) => {

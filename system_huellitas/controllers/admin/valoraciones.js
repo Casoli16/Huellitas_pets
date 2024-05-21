@@ -93,7 +93,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         INFO_MODAL.show();
-        MODAL_TITLE_INFO.textContent = 'Detalless - Comentarios';
+        MODAL_TITLE_INFO.textContent = 'Detalles - Comentarios';
         //MODAL_BUTTON.textContent = 'Actualizar '
         // Se prepara el formulario.
         SAVE_FORM.reset();

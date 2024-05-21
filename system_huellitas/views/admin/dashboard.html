@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-5">
                                 <!-- Input para buscador -->
-                                <form class="d-flex" id="searchDashboard" name="search_dashboard">
+                                <form class="d-flex d-none" id="searchDashboard" name="search_dashboard">
                                     <input class="form-control me-2 bg-white" role="search" type="search"
                                         aria-label="Search" id="search_input" name="search"
                                         placeholder="Escribe el nombre de algún producto">
@@ -160,7 +160,7 @@
                         <span class="fw-semibold text-light fs-4">Categorías</span>
                         <!-- Con d-none d-lg-block el boton no se vera en pantallas pequeñas -->
                         <a href="../../views/admin/scrud_categorias.html"
-                            class="btn btn-light text-orange-color p-2 rounded-5 mx-3 d-none d-lg-block">Ver más</a>
+                            id="btnCategory" class="btn btn-light text-orange-color p-2 rounded-5 mx-3">Ver más</a>
                     </div>
                     <!-- Lista de categorías -->
                     <div class="third_col">
