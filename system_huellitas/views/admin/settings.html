@@ -137,7 +137,8 @@
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="claveNueva" class="fs-8 fw-semibold">Contraseña</label>
-                                <input id="claveNueva" type="password" name="claveNueva" class="form-control" required>
+                                <input id="claveNueva" type="password" name="claveNueva" class="form-control" pattern="(?=.*\d)(?=.*[A-Z]).{8,}"
+                                       title="Debe contener al menos un número, una mayúscula y ocho caracteres o más." required>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="confirmarClave" class="fs-8 fw-semibold">Confirmar contraseña</label>
