@@ -120,7 +120,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 
-
+// Preparamos el modal para resetear su data y abrirse con el titulo elegido
 const openCreate = () => {
     ID_PERMISO.value = '';
     SAVE_MODAL.show()
@@ -128,6 +128,7 @@ const openCreate = () => {
     SAVE_FORM.reset();
 }
 
+// Preparamos el modal para que se cargue la información correspondiente de este registro
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
@@ -169,6 +170,7 @@ const openUpdate = async (id) => {
     }
 }
 
+// Metodo para eliminar un permiso en caso de que no esté asignado a ningún empleado
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar el permiso de forma permanente?');
@@ -192,7 +194,6 @@ const openDelete = async (id) => {
     }
 }
 
-// Funcion para llenar la tabla con los registros de la base
 // Funcion para llenar la tabla con los registros de la base
 const fillTable = async (form = null) => {
     try {

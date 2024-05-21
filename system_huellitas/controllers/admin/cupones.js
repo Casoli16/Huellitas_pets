@@ -87,14 +87,14 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 
-
+// Preparamos el metodo para que abra el modal del cupón y resetee el formulario
 const openCreate = () => {
     ID_CUPON.value = '';
     SAVE_MODAL.show()
     MODAL_TITLE.textContent = 'Crear cupón';
     SAVE_FORM.reset();
 }
-
+// Preparamos el modal para que se llene con datos y se abre el modal correspondiente con el titulo correcto
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
@@ -119,8 +119,7 @@ const openUpdate = async (id) => {
     } else {
         sweetAlert(2, DATA.error, false);
     }
-}
-
+}// Metodo para borrar un cupón
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar el cupón de forma permanente?');

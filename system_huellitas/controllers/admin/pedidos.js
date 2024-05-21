@@ -85,7 +85,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
-
+// Preparamos el metodo para llenar los datos del modal, en este caso primero se llenan los datos generales del pedido
 const openView = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
@@ -109,6 +109,7 @@ const openView = async (id) => {
     }
 }
 
+// Este metodo es para que se use cuando se actualice un producto del pedido y este recargué la información general del pedido
 const openViewMini = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
@@ -129,6 +130,7 @@ const openViewMini = async (id) => {
     }
 }
 
+// Este metodo prepara el modal de estado pedido para que este con el estado correspondiente de este registro
 const openOrderStatus = async (id) => {
     const options = ['Pendiente', 'Completado', 'Cancelado'];
     ID_PEDIDO.value = id;
@@ -196,6 +198,7 @@ const fillCards = async (id) => {
     }
 }
 
+// Metodo para eliminar un producto especifico de un pedido en especifico, maneja 2 condiciones, eliminar solo 1 producto o el producto y el pedido
 const openDeleteDetail = async (id, id_pedido, cant_registros) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar este producto del pedido de forma permanente?');
@@ -208,7 +211,6 @@ const openDeleteDetail = async (id, id_pedido, cant_registros) => {
         console.log(id_pedido)
         FORM.append('id_detalle_pedido', id);
         FORM.append('id_pedido', id_pedido);
-        // Petición para eliminar el registro seleccionado.
         // Petición para eliminar el registro seleccionado.
         if (cant_registros === 1) {
             if (RESPONSE2) {
