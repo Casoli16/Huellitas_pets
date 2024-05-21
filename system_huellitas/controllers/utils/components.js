@@ -42,7 +42,7 @@ const sweetAlert = async (type, text, timer, url = null) => {
             icon = 'info'
     }
 
-    let option =  {
+    let option = {
         title: title,
         text: text,
         icon: icon,
@@ -148,11 +148,11 @@ function preselectOption(selectElement, valueToSelect) {
 }
 
 
-    // Funcion para cerrar la sesion del admin.
+// Funcion para cerrar la sesion del admin.
 const logOut = async () => {
     const RESPONSE = await confirmAction('¿Está seguro que desea cerrar sesión?');
 
-    if(RESPONSE) {
+    if (RESPONSE) {
         // Peticion para eliminar la sesion
         const DATA = await fetchData(USER_API, 'logOut');
         //Si la respuesta es buena entonces mostrara un mensaje de exito y redijira al index.html
@@ -212,7 +212,7 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
     });
 
     //Verifica si la variable graph cuenta con una grafica previamente creada, si es si entonces la va destruir
-    if(graph){
+    if (graph) {
         graph.destroy();
     }
 

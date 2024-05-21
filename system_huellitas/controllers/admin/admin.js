@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Función asincrona para inicializar la instancia de DataTable(Paginacion en las tablas)
 const initializeDataTable = async () => {
-   PAGINATION = await new DataTable(PAGINATION_TABLE, {
+    PAGINATION = await new DataTable(PAGINATION_TABLE, {
         paging: true,
         searching: true,
         language: spanishLanguage,

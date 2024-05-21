@@ -9,12 +9,15 @@ const PARAMS = new URLSearchParams(window.location.search);
 //Guarda en una variable el parametro obtenido
 const MENU = PARAMS.get("mascota");
 
+//Obtiene el id de la tabla
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 
+//Obtiene el id del boostrap asi como el titulo
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 
+//Obtiene todos los input del formulario
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
@@ -27,6 +30,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
 const INFO_MODAL = new bootstrap.Modal('#infoModal'),
     MODAL_TITLE_INFO = document.getElementById('titleModalInfo');
 
+//Obtiene los input donde se mostrara la info del producto
 const NOMBRE_TEXT = document.getElementById('nombre');
 const DESCRIPCION_TEXT = document.getElementById('descripcion');
 const MASCOTA_TEXT = document.getElementById('tipo_mascota');
@@ -219,7 +223,7 @@ const openDelete = async (id) => {
     }
 }
 
-const selectedOption = async() => {
+const selectedOption = async () => {
     const optionSelected = OPTION_PET.value;
     if (optionSelected === 'Perros') {
         OPTION = optionSelected;
@@ -241,11 +245,11 @@ const fillTable = async (form = null, option = null) => {
     let mascota;
 
     form = new FormData();
-        if (option === 'Perros') {
-            mascota = 'Perro';
-        } else {
-            mascota = 'Gato';
-        }
+    if (option === 'Perros') {
+        mascota = 'Perro';
+    } else {
+        mascota = 'Gato';
+    }
     form.append('mascota', mascota)
 
     const DATA = await fetchData(PRODUCTOS_API, 'readSpecificProduct', form);

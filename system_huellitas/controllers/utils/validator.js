@@ -8,38 +8,28 @@ class validator {
     }
     isEmail(email) {
         if (!email.includes('@') || !email.includes('.')) {
-            this.errors.push('Email is not valid');
+            this.errors.push('Correo electrónico no válido');
         }
     }
     isPassword(password) {
         if (password.length < 8 || password.length > 70) {
-            this.errors.push('Password must be at least 8 characters');
+            this.errors.push('La constraseña debe tener al menos ocho caracteres');
         }
     }
     isRequired(value) {
         if (value === '') {
-            this.errors.push('This field is required');
+            this.errors.push('Este campo es requerido');
         }
     }
     isNumber(value) {
         if (isNaN(value)) {
-            this.errors.push('This field must be a number');
-        }
-    }
-    isMoney(value) {
-        if (isNaN(value)) {
-            this.errors.push('This field must be a number');
-        }
-    }
-    isLength(value, min, max) {
-        if (value.length < min || value.length > max) {
-            this.errors.push(`This field must be between ${min} and ${max} characters`);
+            this.errors.push('Este campo debe ser un número');
         }
     }
     // Crea un metodo que valide si un valor es un numero de telefono, tomando en cuenta que solo puede contener numeros y tener una longitud de 10 digitos, un signo de mas y espacios
     isPhoneNumber(value) {
         if (value.length != 8 || isNaN(value)) {
-            this.errors.push('This field must be a phone number');
+            this.errors.push('Este campo debe ser un numero de teléfono');
         }
     }
     isDate(value, min, max) {
@@ -50,7 +40,7 @@ class validator {
         
         // Comprueba si el valor está dentro del rango de fechas
         if (!(dateValue >= minDate && dateValue <= maxDate)) {
-            this.errors.push('This field must be a date within the specified range');
+            this.errors.push('Este campo debe tener una fecha con el rango específicado');
         }
     }
     toLowerCase(value) {

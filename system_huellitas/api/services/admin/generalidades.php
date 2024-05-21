@@ -1,12 +1,12 @@
 <?php
 // Se incluye la clase del modelo.
-require_once ('../../models/data/admin_data.php');
-require_once ('../../models/data/permisos_data.php');
-require_once ('../../models/data/asignacionPermisos_data.php');
-require_once ('../../models/data/categorias_data.php');
-require_once ('../../models/data/pedidos_data.php');
-require_once ('../../models/data/clientes_data.php');
-require_once ('../../models/data/productos_data.php');
+require_once('../../models/data/admin_data.php');
+require_once('../../models/data/permisos_data.php');
+require_once('../../models/data/asignacionPermisos_data.php');
+require_once('../../models/data/categorias_data.php');
+require_once('../../models/data/pedidos_data.php');
+require_once('../../models/data/clientes_data.php');
+require_once('../../models/data/productos_data.php');
 
 
 
@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            // Manejo de datos de la cuenta del admin
+                // Manejo de datos de la cuenta del admin
             case 'readTopProduct':
                 if ($result['dataset'] = $productos->readTopProduct()) {
                     $result['status'] = 1;
@@ -205,7 +205,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

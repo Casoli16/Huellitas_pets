@@ -56,20 +56,20 @@ const resetDataTable = async () => {
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Evitar que el formulario se envíe y la página se recargue
     event.preventDefault();
-    
+
     // Determinar la acción a realizar (actualización o creación de un cupón)
     (ID_CUPON.value) ? action = 'updateRow' : action = 'createRow';
-    
+
     // Obtener los datos del formulario
     const FORM = new FormData(SAVE_FORM);
-    
+
     // Modificar el valor del checkbox 'estadoCupon' antes de enviarlo
     const estadoCupon = ESTADO_CUPON.checked ? '1' : '0';
     FORM.set('estadoCupon', estadoCupon);
-    
+
     // Enviar los datos del formulario al servidor y manejar la respuesta
     const DATA = await fetchData(CUPONES_API, action, FORM);
-    
+
     console.log(DATA);
     // Verificar si la respuesta del servidor fue satisfactoria
     if (DATA.status) {

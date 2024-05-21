@@ -5,7 +5,7 @@ const CLIENTE_API = 'services/admin/clientes.php'
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 
-const INFO_MODAL = new bootstrap.Modal ('#seeModal'),
+const INFO_MODAL = new bootstrap.Modal('#seeModal'),
     TITLE_MODAL = document.getElementById("modalTitle");
 
 const FORM_UPDATE = document.getElementById("seeForm"),
@@ -60,11 +60,11 @@ FORM_UPDATE.addEventListener('submit', async (event) => {
     event.preventDefault();
     const FORM = new FormData(FORM_UPDATE);
     const DATA = await fetchData(CLIENTE_API, 'updateRow', FORM);
-    if(DATA.status){
+    if (DATA.status) {
         INFO_MODAL.hide();
         sweetAlert(1, DATA.message, true);
         await resetDataTable()
-    }else {
+    } else {
         sweetAlert(2, DATA.error, false);
     }
 })
@@ -75,7 +75,7 @@ const seeInfo = async (id) => {
     const form = new FormData();
     form.append('idCliente', id)
     const DATA = await fetchData(CLIENTE_API, 'readOne', form);
-    if(DATA.status){
+    if (DATA.status) {
         INFO_MODAL.show();
         TITLE_MODAL.textContent = 'Información del cliente';
         const [ROW] = DATA.dataset;
@@ -108,9 +108,9 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             let textColor = 'black';
 
-            if(row.estado_cliente === 'Activo'){
+            if (row.estado_cliente === 'Activo') {
                 textColor = 'success';
-            }else {
+            } else {
                 textColor = 'danger';
             }
 

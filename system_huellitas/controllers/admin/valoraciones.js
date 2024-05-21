@@ -105,55 +105,55 @@ const openUpdate = async (id) => {
         NOMBRE_CLIENTE.value = ROW.nombre_cliente + ' ' + ROW.apellido_cliente;
         COMENTARIO_VALORACION.value = ROW.comentario_valoracion;
         //Cargamos la imagen del registro seleccionado
-        IMAGEN.src = SERVER_URL + 'images/productos/' + ROW.imagen_producto; 
+        IMAGEN.src = SERVER_URL + 'images/productos/' + ROW.imagen_producto;
         ESTADO_COMENTARIO.checked = switchChecked;
-        
+
         const notaValoracion = ROW.calificacion_valoracion;
 
         switch (notaValoracion) {
             case 1:
-                IMAGEN_ESTRELLA1.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA2.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA3.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA4.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA5.src ='../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA1.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA2.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA3.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA4.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA5.src = '../../resources/img/png/start_off.png'
                 break;
             case 2:
-                IMAGEN_ESTRELLA1.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA2.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA3.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA4.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA5.src ='../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA1.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA2.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA3.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA4.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA5.src = '../../resources/img/png/start_off.png'
                 break;
             case 3:
-                IMAGEN_ESTRELLA1.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA2.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA3.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA4.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA5.src ='../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA1.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA2.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA3.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA4.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA5.src = '../../resources/img/png/start_off.png'
                 break;
             case 4:
-                IMAGEN_ESTRELLA1.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA2.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA3.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA4.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA5.src ='../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA1.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA2.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA3.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA4.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA5.src = '../../resources/img/png/start_off.png'
                 break;
             case 5:
-                IMAGEN_ESTRELLA1.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA2.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA3.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA4.src ='../../resources/img/png/start_on.png'
-                IMAGEN_ESTRELLA5.src ='../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA1.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA2.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA3.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA4.src = '../../resources/img/png/start_on.png'
+                IMAGEN_ESTRELLA5.src = '../../resources/img/png/start_on.png'
                 break;
             default:
-                IMAGEN_ESTRELLA1.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA2.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA3.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA4.src ='../../resources/img/png/start_off.png'
-                IMAGEN_ESTRELLA5.src ='../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA1.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA2.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA3.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA4.src = '../../resources/img/png/start_off.png'
+                IMAGEN_ESTRELLA5.src = '../../resources/img/png/start_off.png'
                 break;
-            }
+        }
 
     } else {
         sweetAlert(2, DATA.error, false);
@@ -169,11 +169,11 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             let eye;
 
-            if(row.estado_valoracion === 1){
-                eye="../../resources/img/png/comentarios_ver.png";
+            if (row.estado_valoracion === 1) {
+                eye = "../../resources/img/png/comentarios_ver.png";
             }
-            else{
-                eye="../../resources/img/png/oculto_categorias.png"
+            else {
+                eye = "../../resources/img/png/oculto_categorias.png"
             }
 
             TABLE_BODY.innerHTML += `

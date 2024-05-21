@@ -4,7 +4,7 @@
 const USER_API = 'services/admin/generalidades.php'
 
 // Permite manenajar los permisos del usuario logueado
-const permisos =  JSON.parse(localStorage.getItem('dataset'));
+const permisos = JSON.parse(localStorage.getItem('dataset'));
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top ">
     <div class="container-fluid ">
@@ -179,14 +179,14 @@ const loadTemplate = async () => {
     // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
     if (DATA.session) {
         // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
-        if(DATA.status){
+        if (DATA.status) {
             document.getElementById('navbar').innerHTML = navbar;
-            
+
         } else {
             sweetAlert(3, DATA.error, false, 'index.html');
         }
-    }else {
-        if (location.pathname.endsWith('index.html')){
+    } else {
+        if (location.pathname.endsWith('index.html')) {
             console.log('index.html')
         } else {
             location.href = 'index.html'

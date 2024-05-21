@@ -182,9 +182,9 @@ const fillTable = async (form = null) => {
                             </td>
                     </tr>
                 `;
-            });
-            ROWS_FOUND.textContent = DATA.message;
-        } else {
-            sweetAlert(3, DATA.error, true);
-        }
+        });
+        ROWS_FOUND.textContent = DATA.message;
+    } else {
+        sweetAlert(3, DATA.error, true);
     }
+}

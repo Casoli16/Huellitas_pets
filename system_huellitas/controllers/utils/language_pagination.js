@@ -14,6 +14,6 @@ const spanishLanguage = {
     "loading": "Cargando...",
     "processing": "Procesando...",
     "search": "Buscar",
-    "infoEmpty":  "Mostrando 0 a 0 de 0 entradas",
-    "infoFiltered":   "(filtrado de _MAX_ registros totales)",
+    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+    "infoFiltered": "(filtrado de _MAX_ registros totales)",
 };

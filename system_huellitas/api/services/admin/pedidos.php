@@ -1,6 +1,6 @@
 <?php
 
-require_once ('../../models/data/pedidos_data.php');
+require_once('../../models/data/pedidos_data.php');
 
 
 if (isset($_GET['action'])) {
@@ -87,7 +87,7 @@ if (isset($_GET['action'])) {
                 if (
                     !$pedidos->setIdPedido($_POST['id_pedido']) or
                     !$pedidos->setIdDetallePedido($_POST['id_detalle_pedido'])
-                    ) {
+                ) {
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($pedidos->deleteRow()) {
                     $result['status'] = 1;
@@ -96,16 +96,16 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar el pedido';
                 }
                 break;
-                case 'deleteRow2':
-                    if (!$pedidos->setIdDetallePedido($_POST['id_detalle_pedido'])) {
-                        $result['error'] = $pedidos->getDataError();
-                    } elseif ($pedidos->deleteRow2()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Producto eliminado correctamente del pedido';
-                    } else {
-                        $result['error'] = 'Ocurrió un problema al eliminar el producto';
-                    }
-                    break;
+            case 'deleteRow2':
+                if (!$pedidos->setIdDetallePedido($_POST['id_detalle_pedido'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($pedidos->deleteRow2()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Producto eliminado correctamente del pedido';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al eliminar el producto';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión';
         }
@@ -114,10 +114,8 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print (json_encode($result));
+        print(json_encode($result));
     }
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }
-
-

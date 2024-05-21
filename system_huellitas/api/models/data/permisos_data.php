@@ -1,8 +1,8 @@
 <?php
 // Se incluye la clase para validar los datos de entrada.
-require_once ('../../helpers/validator.php');
+require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
-require_once ('../../models/handler/permisos_handler.php');
+require_once('../../models/handler/permisos_handler.php');
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla CATEGORIA.
  */
@@ -48,15 +48,10 @@ class PermisosData extends PermisosHandler
             $this->nombrePermiso = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
+            $this->data_error = 'El nombre debe debe tener una longitud entre ' . $min . ' y ' . $max . ' caracteres';
             return false;
         }
     }
-
-
-
-
-
 
     public function setVerUsuario($value)
     {

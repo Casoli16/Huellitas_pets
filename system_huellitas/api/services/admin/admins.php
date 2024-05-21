@@ -1,8 +1,8 @@
 <?php
 // Se incluye la clase del modelo.
-require_once ('../../models/data/admin_data.php');
-require_once ('../../models/data/permisos_data.php');
-require_once ('../../models/data/asignacionPermisos_data.php');
+require_once('../../models/data/admin_data.php');
+require_once('../../models/data/permisos_data.php');
+require_once('../../models/data/asignacionPermisos_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -109,7 +109,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = '¡Por la integridad del sistema no puedes eliminar tu propia cuenta!';
                 }
                 break;
-            // Manejo de datos de la cuenta del admin
+                // Manejo de datos de la cuenta del admin
             case 'getUser':
                 if (isset($_SESSION['aliasAdmin'])) {
                     $result['status'] = 1;
@@ -240,7 +240,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print (json_encode($result));
+    print(json_encode($result));
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

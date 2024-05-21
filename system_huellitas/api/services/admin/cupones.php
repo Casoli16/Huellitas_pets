@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once ('../../models/data/cupones_data.php');
+require_once('../../models/data/cupones_data.php');
 
 // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
 if (isset($_GET['action'])) {
@@ -91,8 +91,8 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print (json_encode($result));
+        print(json_encode($result));
     }
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

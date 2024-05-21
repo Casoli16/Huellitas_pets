@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once ('../../models/data/autorizaciones_data.php');
+require_once('../../models/data/autorizaciones_data.php');
 
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
@@ -18,7 +18,7 @@ if (isset($_GET['action'])) {
                 if (!$autorizacion->setIdAdmin($_POST['idAdmin'])) {
                     $result['error'] = $autorizacion->getDataError();
                 } elseif ($result['dataset'] = $autorizacion->readOneAdmin()) {
-                    $result['status'] = 1;  
+                    $result['status'] = 1;
                     // Guardar los permisos en un arreglo dentro de la clase autorizaciones_data
                     $_SESSION['permisos'] = $result['dataset'];
                 } else {
@@ -33,8 +33,8 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print (json_encode($result));
+        print(json_encode($result));
     }
 } else {
-    print (json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

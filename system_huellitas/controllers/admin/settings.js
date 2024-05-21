@@ -44,7 +44,7 @@ const getData = async (form = null) => {
     //Peticion a nuestra api para obtener info del usuario logeado
     const DATA = await fetchData(ADMINISTRADOR_API, 'readProfile');
     //Verifica si la respuesta fue satisfactoria, si no manda un mensaje de error.
-    if(DATA.status){
+    if (DATA.status) {
         const ROW = DATA.dataset;
         //Obtiene el primer nombre del usuario
         let splitName = name.split(' ')[0];
@@ -55,14 +55,14 @@ const getData = async (form = null) => {
         //Manda el apellido del usuario.
         ADMIN_APELLIDO.value = ROW.apellido_admin;
         //Manda la imagen del usuario.
-        ADMIN_IMAGE.src = SERVER_URL + 'images/admins/' + ROW.imagen_admin;   
+        ADMIN_IMAGE.src = SERVER_URL + 'images/admins/' + ROW.imagen_admin;
         //Manda el correo del usuario.
         ADMIN_EMAIL.value = ROW.correo_admin;
         //Manda el alias del usuario.
         ADMIN_ALIAS.value = ROW.alias_admin;
         //Manda el ID del usuario.
         ADMIN_ID.value = ROW.id_admin;
-    } else{
+    } else {
         sweetAlert(2, DATA.error, true);
     }
 }
@@ -73,7 +73,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 
     //Peticion a nuestra api para obtener info del usuario logeado
     const ID = await fetchData(ADMINISTRADOR_API, 'readProfile');
-    
+
     // Se verifica la acción a realizar.
     action = 'editProfile';
     // Constante tipo objeto con los datos del formulario.

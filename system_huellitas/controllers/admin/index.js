@@ -1,6 +1,6 @@
 const LOGIN_FORM = document.getElementById('loginForm');
 const SIGNUP_FORM = document.getElementById('signUpForm'),
-        IMAGEN_ADMIN = document.getElementById('imgAdmin');
+    IMAGEN_ADMIN = document.getElementById('imgAdmin');
 const CONTAINER_ONE = document.getElementById('containerOne');
 const CONTAINER_SECOND = document.getElementById('containerSecond');
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Petición para consultar los usuarios registrados.
     const DATA = await fetchData(USER_API, 'readUsers');
     // Se comprueba si existe una sesión, de lo contrario se sigue con el flujo normal.
-    if(DATA.session) {
+    if (DATA.session) {
         location.href = 'dashboard.html'
     } else if (DATA.status) {
         CONTAINER_ONE.classList.remove('d-none');
@@ -49,7 +49,7 @@ SIGNUP_FORM.addEventListener('submit', async (event) => {
     FORM.append('fechaRegistroAdmin', currentDate);
 
     const DATA = await fetchData(USER_API, 'signUp', FORM);
-    if(DATA.status){
+    if (DATA.status) {
         sweetAlert(1, DATA.message, true, 'index.html');
     } else {
         sweetAlert(2, DATA.error, false);

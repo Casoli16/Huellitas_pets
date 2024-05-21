@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 //Nos permite mostrar el search para buscar productos o mostrar el botón que permite irse a categorías
 const permissions = async () => {
-    if (PERMISOS['ver_categoria']){
+    if (PERMISOS['ver_categoria']) {
         BUTTON_CATEGORY.classList.remove('d-none');
-    } else{
-       BUTTON_CATEGORY.classList.add('d-none');
+    } else {
+        BUTTON_CATEGORY.classList.add('d-none');
     }
 
-    if (PERMISOS['ver_producto']){
+    if (PERMISOS['ver_producto']) {
         SEARCH_FORM.classList.remove('d-none');
     } else {
         BUTTON_CATEGORY.classList.add('d-none');
@@ -68,7 +68,7 @@ const getData = async (form = null) => {
     //Peticion a nuestra api para obtener info del usuario logeado
     const DATA = await fetchData(GENERALIDADES_API, 'readProfile');
     //Verifica si la respuesta fue satisfactoria, si no manda un mensaje de error.
-    if(DATA.status){
+    if (DATA.status) {
         //Obtiene el nombre del usuario logueado.
         let name = DATA.dataset.nombre_admin;
         //Obtiene el primer nombre del usuario
@@ -78,10 +78,10 @@ const getData = async (form = null) => {
         //Manda el nombre completo del usuario.
         ADMIN_NAME.textContent = DATA.dataset.nombre_admin + ' ' + DATA.dataset.apellido_admin;
         //Manda la imagen del usuario.
-        ADMIN_IMAGE.src = SERVER_URL + 'images/admins/' + DATA.dataset.imagen_admin;   
+        ADMIN_IMAGE.src = SERVER_URL + 'images/admins/' + DATA.dataset.imagen_admin;
         //Manda el correo del usuario.
         ADMIN_EMAIL.textContent = DATA.dataset.correo_admin;
-    } else{
+    } else {
         sweetAlert(2, DATA.error, true);
     }
 }
@@ -89,13 +89,13 @@ const getData = async (form = null) => {
 //Nos muestra las categorías que existen
 const categoryList = async () => {
     const DATA = await fetchData(GENERALIDADES_API, 'readAll');
-    if(DATA.status){
-        DATA.dataset.forEach(row=> {
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
             CATEGORY_LIST.innerHTML += `
                 <li class="list-group-item">${row.nombre_categoria}</li>
             `
         })
-    } else{
+    } else {
         NO_CATEGORY_LIST.classList.remove('d-none')
     }
 }
@@ -103,9 +103,9 @@ const categoryList = async () => {
 // Accede a la cantidad de nuevos clientes registrados
 const newUsers = async () => {
     const DATA = await fetchData(GENERALIDADES_API, 'newUsers');
-    if(DATA.status){
-        NEW_USERS.textContent =  DATA.dataset[0].newUsers;
-    }else {
+    if (DATA.status) {
+        NEW_USERS.textContent = DATA.dataset[0].newUsers;
+    } else {
         console.log("Fallo algo")
     }
 }
@@ -113,10 +113,10 @@ const newUsers = async () => {
 //Muestra el producto más vendido
 const topProduct = async () => {
     const DATA = await fetchData(GENERALIDADES_API, 'readTopProduct');
-    if(DATA.status){
+    if (DATA.status) {
         CATEGORY_TOP_PRODUCT.textContent = DATA.dataset[0].nombre_categoria;
         NAME_TOP_PRODUCT.textContent = DATA.dataset[0].nombre_producto;
-    }else {
+    } else {
         NO_PRODUCT.classList.remove('d-none');
     }
 }
@@ -130,7 +130,7 @@ const topProduct = async () => {
 
 const selectedOption = async () => {
     const month = MONTH.value;
-    switch (month){
+    switch (month) {
         case 'Enero':
             graficoBarrasVentas(1);
             break;

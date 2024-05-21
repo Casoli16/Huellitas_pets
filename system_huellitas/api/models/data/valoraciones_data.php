@@ -47,17 +47,6 @@ class ValoracionesData extends ValoracionesHandler{
         }
     }
 
-    public function setIdCategoria($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->idCategoria = $value;
-            return true;
-        } else {
-            $this->data_error = 'El identificador es incorrecto';
-            return false;
-        }
-    }
-
     public function setEstadoValoracion($value)
     {
         if (Validator::validateBoolean($value)) {
