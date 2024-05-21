@@ -35,7 +35,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Cupón agregado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al ingresar el cupón';
+                    $result['error'] = '¡El máximo de porcentaje de un cupón es 80%, modificalo por favor!';
                 }
                 break;
             case 'readAll':
@@ -68,7 +68,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Cupón modificado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el cupón';
+                    $result['error'] = '¡El máximo de porcentaje de un cupón es 80%, modificalo por favor!';
                 }
                 break;
             case 'deleteRow':
