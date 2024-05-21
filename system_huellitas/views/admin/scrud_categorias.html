@@ -81,7 +81,7 @@
 
         <!-- Modal para agregar categoría -->
         <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+            <div class="modal-dialog modal-dialog-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-orange-color">
                         <div class="container text-center">
@@ -96,22 +96,22 @@
                         <div class="modal-body">
                             <input type="hidden" id="idCategoria" name="idCategoria">
                             <!-- Sección para cargar imagen y agregar categoría -->
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="container d-flex align-items-center">
-                                        <img src="../../resources/img/png/entretenimiento_categorias.png"
-                                            class="tamanio_imagen_agregar" id="imagen" width="120px" height="120px">
-                                    </div>
+                            <div class="row d-flex justify-content-center text-center">
+                                <div class="col-sm-12 col-md-4">
+
+                                    <img src="../../resources/img/png/entretenimiento_categorias.png"
+                                        class="tamanio_imagen_agregar" id="imagen" width="120px" height="120px">
+
                                 </div>
-                                <div class="col-sm-12 col-md-4 d-flex align-items-center">
-                                    <div>
-                                        <!-- Botón para cargar imagen -->
-                                        <input type="file" class="form-control" id="imagenCategoria"
-                                            name="imagenCategoria" hidden>
-                                        <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                        <label class="btn btn-red-color text-light btn-sm" for="imagenCategoria">Cargar
-                                            imagen</label>
-                                    </div>
+                                <div class="col-sm-12 col-md-4 d-flex align-items-center justify-content-center ">
+
+                                    <!-- Botón para cargar imagen -->
+                                    <input type="file" class="form-control" id="imagenCategoria" name="imagenCategoria"
+                                        hidden>
+                                    <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
+                                    <label class="btn btn-red-color text-light btn-sm" for="imagenCategoria">Cargar
+                                        imagen</label>
+
                                 </div>
                             </div>
                             <br>
