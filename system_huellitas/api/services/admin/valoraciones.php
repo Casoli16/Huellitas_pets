@@ -1,16 +1,18 @@
 <?php
-
+//Importamos la ruta de nuestro Data.
 require_once('../../models/data/valoraciones_data.php');
 
 if (isset($_GET['action'])) {
     session_start();
 
+    //Creamos la instancia de valoracionesData
     $valoraciones = new ValoracionesData;
 
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_comentario'] == 1)) {
         switch ($_GET['action']) {
+            //Permite buscar entre los registros
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -21,6 +23,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+            //Permite actualizar un registro de la base de datos en valoraciones    
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -35,6 +38,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el comentario';
                 }
                 break;
+            //Permite visualizar todos los registros que se encunetra en la base de datos
             case 'readAll':
                 if ($result['dataset'] = $valoraciones->readAll()) {
                     $result['status'] = 1;
@@ -43,6 +47,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen comentarios registrados';
                 }
                 break;
+            //Permite visualizar una valoración en especifíco por medio del idValoracion     
             case 'readOne':
                 if (!$valoraciones->setIdValoracion($_POST['idValoracion'])) {
                     $result['error'] = $valoraciones->getDataError();

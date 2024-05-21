@@ -20,6 +20,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            //Permite buscar un registro entre todos los que se encuentran en la tabla de admin
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -30,6 +31,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+            //Permite crear un nuevo registro    
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -52,6 +54,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al ingresar al administrador';
                 }
                 break;
+            //Actualiza un registro seleccionado por medio de idAdmin    
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -71,6 +74,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el administrador';
                 }
                 break;
+            //Permite leer todos los registros que se encuentra en la tabla de administradores    
             case 'readAll':
                 if ($result['dataset'] = $administradores->readAll()) {
                     $result['status'] = 1;
@@ -79,6 +83,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen administradores registrados';
                 }
                 break;
+             //Permite leer un registro en específico que se encuentre registrado en la base de datos, por medio del idAdmin   
             case 'readOne':
                 if (!$administradores->setIdAdmin($_POST['idAdministrador'])) {
                     $result['error'] = $administradores->getDataError();
@@ -88,6 +93,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'El administrador no existe';
                 }
                 break;
+            //Permite eliminar un registro de la base de datos por medio del idAdmin    
             case 'deleteRow':
                 if (!isset($_POST['idAdministrador'])) {
                     $result['error'] = 'ID de administrador no proporcionado';
@@ -110,6 +116,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 // Manejo de datos de la cuenta del admin
+                //Obtiene el alias del administrador que ha iniciado sesión
             case 'getUser':
                 if (isset($_SESSION['aliasAdmin'])) {
                     $result['status'] = 1;
@@ -118,6 +125,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Alias de administrador no encontrado';
                 }
                 break;
+            //Permite cerrar la sesión del admin    
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -126,6 +134,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+            //Con este metodo lee toda la información del admin que esta logueado.    
             case 'readProfile':
                 if ($result['dataset'] = $administradores->readProfile()) {
                     $result['status'] = 1;
@@ -133,6 +142,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+            //Metódo que permite editar la información del admin que se ha logueado.    
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -155,6 +165,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el perfil';
                 }
                 break;
+                //Metódo que permite actualizar la contraseña, para ello es necesario pasar la contra actual, la nueva y la confirmación de la nueva contraseña
             case 'updatePassword':
                 $_POST = Validator::validateForm($_POST);
                 if (!$administradores->checkPassword($_POST['claveActual'])) {
@@ -175,6 +186,7 @@ if (isset($_GET['action'])) {
         }
     } else {
         switch ($_GET['action']) {
+            //Metódo que permite leer si hay un usario autenticado en el sitio privado.
             case 'readUsers':
                 if ($administradores->readAll()) {
                     $result['status'] = 1;
@@ -183,6 +195,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Debe crear un administrador para comenzar';
                 }
                 break;
+                //Metódo que permite el registro de sesión del admin -- primer uso
             case 'signUp':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -221,6 +234,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al registrar el administrador';
                 }
                 break;
+                //Metódo que permite iniciar sesión en el sitio privado, para ello se debe ingresar la constraseña y alías
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
                 if ($administradores->checkUser($_POST['nameLogin'], $_POST['passwordLogin'])) {

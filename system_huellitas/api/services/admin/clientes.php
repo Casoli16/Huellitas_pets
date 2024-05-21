@@ -15,6 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_cliente'] == 1)) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            //Metódo que permite buscar un registro de entre todos los que hay en la base de datos.
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -25,6 +26,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+                //Metódo que permite agregar un cliente.
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -51,6 +53,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al ingresar al cliente';
                 }
                 break;
+                //Metódo que permite actualizar un registro de cliente
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -65,6 +68,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el estado';
                 }
                 break;
+                //Metódo que permite leer todos los clientes que se encuentran en la base de datos
             case 'readAll':
                 if ($result['dataset'] = $clientes->readAll()) {
                     $result['status'] = 1;
@@ -73,6 +77,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen clientes registrados';
                 }
                 break;
+                //Metódo que permite observar la cantidad de nuevos clientes.
             case 'newUsers':
                 if ($result['dataset'] = $clientes->countNewClients()) {
                     $result['status'] = 1;
@@ -81,6 +86,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen registro nuevos de clientes';
                 }
                 break;
+                //Metódo que permite ver un leer un cliente en específico
             case 'readOne':
                 if (!$clientes->setIdCliente($_POST['idCliente'])) {
                     $result['error'] = $clientes->getDataError();
@@ -90,6 +96,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'El cliente no existe';
                 }
                 break;
+                //Metódo que permite eliminar un registro en clientes
             case 'deleteRow':
                 if (!$clientes->setIdCliente($_POST['idCliente'])) {
                     $result['error'] = $clientes->getDataError();
