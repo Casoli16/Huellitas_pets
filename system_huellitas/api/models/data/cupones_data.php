@@ -49,7 +49,7 @@ class CuponesData extends CuponesHandler
             return true;
         }  
      else {
-        $this->data_error = 'El porcentaje es incorrecto';
+        $this->data_error = '¡El máximo de porcentaje de un cupón es 80%, modificalo por favor!';
         return false;
     }
     }
