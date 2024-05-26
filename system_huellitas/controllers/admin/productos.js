@@ -17,6 +17,8 @@ const TABLE_BODY = document.getElementById('tableBody'),
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 
+const EXISTENCIAS = document.getElementById('existencias');
+
 //Obtiene todos los input del formulario
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
@@ -25,7 +27,8 @@ const SAVE_FORM = document.getElementById('saveForm'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
     CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
     ESTADO_PRODUCTO = document.getElementById('switchPerros'),
-    IMAGEN_PRODUCTO = document.getElementById('imgProduct');
+    IMAGEN_PRODUCTO = document.getElementById('imgProduct'),
+    AGREGAR_EXISTENCIAS = document.getElementById('agregarCant');
 
 const INFO_MODAL = new bootstrap.Modal('#infoModal'),
     MODAL_TITLE_INFO = document.getElementById('titleModalInfo');
@@ -107,11 +110,34 @@ const resetDataTable = async (form = null, option = null) => {
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+
+    //Obtiene las existencias creadas
+    const CANTIDAD = CANTIDAD_PRODUCTO.value;
+
+    //Obtiene las existencias agregadas
+    const NUEVA_CANT = AGREGAR_EXISTENCIAS.value;
+
+    //Convertirmos las existencias a int, ya que estan como string.
+    const CONVER_CANT1= parseInt(CANTIDAD);
+    const CONVER_CANT2 = parseInt(NUEVA_CANT)
+
+    //Sumamos a las existencias, las nuevas existencias agregadas.
+    const SUM = CONVER_CANT1 + CONVER_CANT2;
+
     (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
 
     const estadoProducto = ESTADO_PRODUCTO.checked ? 1 : 0;
+
+    //Dependiendo de la accion asi se mandaran las existencias
+    // Si se crea un producto por primera vez, entonces solo se manda lo que se escriba en el input de existencias
+    if(action === 'createRow'){
+        FORM.append('existenciaProducto', CANTIDAD)
+    //Pero si la accion es update entonces se suma a la existencias, las nuevas que se vayan agregar.
+    } else {
+        FORM.append('existenciaProducto', SUM.toString());
+    }
 
     FORM.set('estadoProducto', estadoProducto);
 
@@ -132,6 +158,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 });
 
 const openCreate = async () => {
+    CANTIDAD_PRODUCTO.disabled =  false;
+    EXISTENCIAS.classList.add('d-none');
     ID_PRODUCTO.value = '';
     await fillSelect(MARCAS_API, 'readAll', 'marcaSelect');
     await fillSelect(CATEGORIAS_API, 'readAll', 'categoriaSelect');
@@ -142,6 +170,7 @@ const openCreate = async () => {
 }
 
 const openUpdate = async (id) => {
+    EXISTENCIAS.classList.remove('d-none');
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
     FORM.append('idProducto', id);
@@ -164,6 +193,7 @@ const openUpdate = async (id) => {
         CANTIDAD_PRODUCTO.value = ROW.existencia_producto;
         ESTADO_PRODUCTO.checked = switchChecked;
 
+        CANTIDAD_PRODUCTO.disabled = true;
         //Cargamos la imagen del registro seleccionado
         IMAGEN.src = SERVER_URL + 'images/productos/' + ROW.imagen_producto;
 

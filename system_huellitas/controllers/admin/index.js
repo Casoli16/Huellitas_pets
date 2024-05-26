@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         CONTAINER_ONE.classList.remove('d-none');
     } else {
         CONTAINER_SECOND.classList.remove('d-none');
-        sweetAlert(2, DATA.error, true);
+        sweetAlert(3, DATA.error, true);
     }
 });
 

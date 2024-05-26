@@ -4,7 +4,15 @@
 const USER_API = 'services/admin/generalidades.php'
 
 // Permite manenajar los permisos del usuario logueado
-const permisos = JSON.parse(localStorage.getItem('dataset'));
+let permisos = JSON.parse(localStorage.getItem('dataset'));
+
+//Verificamos si vienen permisos, si no, le pasamos un string a permisos, para que no quede nula.
+if(permisos){
+    console.log('Hay permisos')
+}else {
+    permisos = 'permisos';
+}
+
 const navbar = `
 <nav class="navbar bg-skin-color fixed-top ">
     <div class="container-fluid ">

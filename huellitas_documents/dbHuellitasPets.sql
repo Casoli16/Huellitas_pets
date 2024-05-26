@@ -1,4 +1,4 @@
--- DROP DATABASE IF EXISTS db_huellitas_pets;
+DROP DATABASE IF EXISTS db_huellitas_pets;
 
 CREATE DATABASE db_huellitas_pets;
 
@@ -60,20 +60,20 @@ CREATE TABLE IF NOT EXISTS asignacion_permisos (
 
 CREATE TABLE IF NOT EXISTS categorias (
   id_categoria INT AUTO_INCREMENT PRIMARY KEY,
-  nombre_categoria VARCHAR(50) NOT NULL,
+  nombre_categoria VARCHAR(50) UNIQUE NOT NULL,
   descripcion_categoria VARCHAR(250) NOT NULL,
   imagen_categoria VARCHAR(50) DEFAULT 'imagen_categoria.png'
 );
 
 CREATE TABLE IF NOT EXISTS marcas (
   id_marca INT AUTO_INCREMENT PRIMARY KEY,
-  nombre_marca VARCHAR(100) NOT NULL,
+  nombre_marca VARCHAR(100) UNIQUE NOT NULL,
   imagen_marca VARCHAR(25) DEFAULT 'imagen_marca.png'
 );
 
 CREATE TABLE IF NOT EXISTS productos (
   id_producto INT AUTO_INCREMENT PRIMARY KEY,
-  nombre_producto VARCHAR(50) NOT NULL,
+  nombre_producto VARCHAR(50) UNIQUE NOT NULL,
   descripcion_producto VARCHAR(250) NOT NULL,
   precio_producto DECIMAL(5,2) NOT NULL,
   CONSTRAINT precio_producto_check CHECK(precio_producto > 0),
@@ -98,12 +98,9 @@ CREATE TABLE IF NOT EXISTS pedidos (
   CONSTRAINT fk_pedidos_clientes FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
 );
 
-ALTER TABLE pedidos
-MODIFY COLUMN estado_pedido ENUM('Pendiente', 'Completado', 'Cancelado');
-
 CREATE TABLE IF NOT EXISTS cupones_oferta(
  id_cupon INT AUTO_INCREMENT PRIMARY KEY,
- codigo_cupon VARCHAR(50),
+ codigo_cupon VARCHAR(50) UNIQUE ,
  CONSTRAINT codigo_cupon_unique UNIQUE(codigo_cupon),
  porcentaje_cupon INT,
  CONSTRAINT porcentaje_cupon_check CHECK(porcentaje_cupon > 0),
