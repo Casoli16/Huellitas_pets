@@ -19,7 +19,7 @@
 <body>
     <!-- Encabezado de la página -->
     <header>
-        <nav id="navbar_perfil"></nav><!-- Aquí se incluirá el menú -->
+        <nav id="navbar"></nav><!-- Aquí se incluirá el menú -->
     </header>
 
     <main>
@@ -28,7 +28,7 @@
             <br>
             <!-- Título de la página -->
             <h5 class="p-5">
-                <img src="../../resources/img/png/rectangulo_naranja.png">Perfil
+                <img id="imagen" src="../../resources/img/png/rectangulo_naranja.png">Perfil
             </h5>
             <!-- Contenedor principal -->
             <div class="container shadow p-4 mt-4 rounded-4 color_conteiner_central">
@@ -39,32 +39,24 @@
                             <img src="../../resources/img/png/foto_perfil_publico.png" class="img-fluid">
                             <br>
                             <br>
-                            <!-- Botón para cargar imagen -->
-                            <div class="d-grid gap-2">
-                                <!-- Botón para cargar imagen -->
-                                <input type="file" class="form-control" id="upload_picture_profile" hidden>
-                                <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                <label class="btn btn-outline-secondary btn-lg" for="upload_picture_profile">Cargar
-                                    imagen</label>
-                            </div>
                         </form>
                     </div>
                     <!-- Columna derecha: Información del perfil -->
                     <div class="col-lg-7 col-md-5 col-sm-8 p-5">
                         <h5><b>Nombre</b></h5>
-                        <p class="text-grey">Juan Velasquez</p>
+                        <p class="text-grey" id="nombreCliente"></p>
                         <br>
                         <h5><b>Correo</b></h5>
-                        <p class="text-grey">JuanVelasquez@gmai.com</p>
+                        <p class="text-grey" id="correoCliente"></p>
                         <br>
                         <h5><b>Teléfono</b></h5>
-                        <p class="text-grey">7787-8635</p>
+                        <p class="text-grey" id="telefonoCliente"></p>
                         <br>
                         <h5><b>Dirección</b></h5>
-                        <p class="text-grey">Los Planes de Rendero, Km 15</p>
+                        <p class="text-grey" id="direccionCliente"></p>
                         <br>
                         <h5><b>DUI</b></h5>
-                        <p class="text-grey">66763456-2</p>
+                        <p class="text-grey" id="duiCliente"></p>
                         <br>
                         <!-- Botones de acción (Agregar, Ocultar) -->
                         <a href="../../views/public/perfil_editar.html"><button type="button"
@@ -79,7 +71,7 @@
                     </div>
                 </div>
                 <h5><b>Empezo</b></h5>
-                <p class="text-grey">10 de enero, 2024</p>
+                <p class="text-grey" id="fechaInicioCliente">10 de enero, 2024</p>
             </div>
         </div>
     </main>
@@ -93,8 +85,11 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
+    <script type="text/javascript" src="../../controllers/public/perfil_ver.js"></script>
 </body>
 
 </html>
