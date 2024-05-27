@@ -43,7 +43,7 @@ if (isset($_GET['action'])) {
             case 'signUp':
                 $_POST = Validator::validateForm($_POST);
                 // Se establece la clave secreta para el reCAPTCHA de acuerdo con la cuenta de Google.
-                $secretKey = '6LdBzLQUAAAAAL6oP4xpgMao-SmEkmRCpoLBLri-';
+                $secretKey = '6Lei6ukpAAAAANzaaG4VKFOI-kUNwkJk2dtgnVL4';
                 // Se establece la dirección IP del servidor.
                 $ip = $_SERVER['REMOTE_ADDR'];
                 // Se establecen los datos del raCAPTCHA.
