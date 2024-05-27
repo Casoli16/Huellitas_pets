@@ -18,10 +18,12 @@ CREATE TABLE IF NOT EXISTS clientes (
   CONSTRAINT nacimiento_cliente_check_edad CHECK (nacimiento_cliente <= '2006-01-01'),
   direccion_cliente VARCHAR(250) NOT NULL,
   clave_cliente VARCHAR(200),
-  estado_cliente ENUM ('Activo', 'Inactivo'),
+  estado_cliente ENUM ('Activo', 'Inactivo') DEFAULT 'Activo',
   fecha_registro_cliente DATE DEFAULT NOW(),
   imagen_cliente VARCHAR(50) DEFAULT 'imagen_cliente.png'
 );
+
+ALTER TABLE clientes MODIFY COLUMN estado_cliente ENUM ('Activo', 'Inactivo') DEFAULT 'Activo';
 
 CREATE TABLE IF NOT EXISTS permisos (
   id_permiso INT AUTO_INCREMENT PRIMARY KEY,

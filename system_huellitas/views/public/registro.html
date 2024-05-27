@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas pets - Regístrarse</title>
     <!-- Agregamos una imagen para que se vea en la ventana -->
-    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <link type="image/png" rel="icon" href="../../resources/img/png/huellita_logo_without_text.png">
     <!-- Agregamos el framework de boostrap - css -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Agregamos su archivo css -->
@@ -24,16 +24,18 @@
             <div class="container shadow p-4 mt-4 rounded-4">
                 <!-- Formulario -->
                 <form action="" id="registro_cliente">
+                    <!-- Campo oculto para asignar el token del reCAPTCHA -->
+                    <input type="text" class="d-none" id="gRecaptchaResponse" name="gRecaptchaResponse">
                     <div class="row mt-4">
                         <div class="text-center">
                             <h1 class="fw-bold text-center">Regístrate</h1>
                             <p class="fs-5">¡Bienvenido a Huellitas Pet’s!</p>
-                            <img src="../../resources/img/png/mujeeer.png"
-                                class="picture rounded-circle mx-auto d-block img-fluid">
+                            <img src="../../resources/img/png/rectangulo.png"
+                                class="picture rounded-circle mx-auto d-block shadow" id="imagen" width="180px" height="180px">
                             <!-- Escondemos como se muestra por defecto el input file y solo que aparezca nuestro boton -->
-                            <input type="file" class="form-control" id="upload" hidden>
+                            <input type="file" class="form-control" id="imagenCliente" name="imagenCliente" hidden>
                             <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                            <label class="btn btn-brown-color mt-3 rounded-5" for="upload">Cargar imagen</label>
+                            <label class="btn btn-brown-color mt-3 " for="imagenCliente">Cargar imagen</label>
                         </div>
                     </div>
                     <!-- Creamos una fila y dentro de ella dos columnas -->
@@ -42,29 +44,29 @@
                         <div class="col-sm-12 col-md-4">
                             <div class="mb-3">
                                 <label for="nombre_cliente" class="form-label fw-bold">Nombre</label>
-                                <input type="text" id="nombre_cliente" name="nonmbreCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                <input type="text" id="nombre_cliente" name="nombreCliente"
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
                             <div class="mb-3">
                                 <label for="dui_cliente" class="form-label fw-bold">Dui</label>
-                                <input type="number" id="dui_cliente" name="duiCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                <input type="text" id="dui_cliente" name="duiCliente"
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
                             <div class="mb-3">
                                 <label for="fecha_nacimiento_cliente" class="form-label fw-bold">Fecha de
                                     nacimiento</label>
-                                <input type="date" id="fecha_nacimiento_cliente" name="fechaNacimientoCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                <input type="date" id="fecha_nacimiento_cliente" name="nacimientoCliente"
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
                             <div class="mb-3">
                                 <label for="direccion_cliente" class="form-label fw-bold">Dirección</label>
-                                <input type="text" id="telefono_cliente" name="telefonoCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                <input type="text" id="direccion_cliente" name="direccionCliente"
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
                             <div class="mb-3">
-                                <label for="contrasenia_cliente" class="form-label fw-bold">Confirmar contraseña</label>
-                                <input type="password" id="cpntrasenia_cliente" name="contraseniaCliente"
-                                       class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                <label for="clave" class="form-label fw-bold">Confirmar contraseña</label>
+                                <input type="password" id="clave" name="claveCliente"
+                                       class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
                         </div>
                         <!-- Segunda col -->
@@ -72,28 +74,31 @@
                             <div class="mb-3">
                                 <label for="apellido_cliente" class="form-label fw-bold">Apellidos</label>
                                 <input type="text" id="apellido_cliente" name="apellidoCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email_cliente" class="form-label fw-bold">Correo electrónico</label>
-                                <input type="email" id="email_cliente" name="emailCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                <input type="email" id="email_cliente" name="correoCliente"
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
                             <div class="mb-3">
-                                <label for="direccion_cliente" class="form-label fw-bold">Teléfono</label>
-                                <input type="text" id="direccion_cliente" name="direccionCliente"
-                                       class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                <label for="telefono_cliente" class="form-label fw-bold">Teléfono</label>
+                                <input type="text" id="telefono_cliente" name="telefonoCliente"
+                                       class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
                             <div class="mb-3">
-                                <label for="contrasenia_cliente" class="form-label fw-bold">Contraseña</label>
-                                <input type="password" id="cpntrasenia_cliente" name="contraseniaCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                                <label for="confirmar_clave" class="form-label fw-bold">Contraseña</label>
+                                <input type="password" id="confirmar_clave" name="confirmarClave"
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
                             </div>
+                        </div>
+                        <div class="form-check d-flex justify-content-center mt-3">
+                            <input type="checkbox" class="form-check-input me-2 shadow" id="condicion" name="condicion" required>
+                            <label class="form-check-label" for="condicion">Acepto términos y condiciones</label>
                         </div>
                         <!-- Boton y texto -->
                         <div class="text-center mt-5">
-                            <a class="btn btn-brown-color btn-lg mb-2 d-grid gap-2 col-sm-12 col-md-4 mx-auto"
-                                href="">Regístrarse</a>
+                            <button type="submit" class="btn btn-brown-color btn-lg mb-2 d-grid gap-2 col-sm-12 col-md-4 mx-auto"> Regístrarse</button>
                             <div>
                                 ¿Ya tienes una cuenta?<a class="text-decoration-none text-dark fw-bold"
                                     href="../public/login.html"> Iniciar sesión</a>
@@ -103,6 +108,8 @@
                 </form>
             </div>
         </div>
+        <!-- Inclusión de la librería del reCAPTCHA. Para más información https://developers.google.com/recaptcha/docs/v3 -->
+        <script src="https://www.google.com/recaptcha/api.js?render=6Lei6ukpAAAAAMPZ16eVEUcYgV8tw9chT6noaxm7"></script>
     </main>
 
     <!-- Agregamos nuestro footer a la pantalla -->
@@ -110,8 +117,12 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la libreria para alertas -->
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
+    <script type="text/javascript" src="../../controllers/public/registro.js"></script>
 </body>
 
 </html>
