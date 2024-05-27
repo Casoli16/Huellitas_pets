@@ -21,6 +21,73 @@ class ClientesHandler
 
     const RUTA_IMAGEN = '../../images/clientes/';
 
+    /*
+    *  Métodos para gestionar la cuenta del cliente.
+    */
+    public function checkUser($email, $password)
+    {
+        $sql = 'SELECT id_cliente, correo_cliente, clave_cliente, estado_cliente, nombre_cliente, imagen_cliente, apellido_cliente
+                FROM clientes
+                WHERE correo_cliente = ?';
+        $params = array($email);
+        $data = Database::getRow($sql, $params);
+        if (password_verify($password, $data['clave_cliente'])) {
+            $this->idCliente = $data['id_cliente'];
+            $this->correoCliente = $data['correo_cliente'];
+            $this->estadoCliente = $data['estado_cliente'];
+            $this->nombreCliente = $data['nombre_cliente'];
+            $this->imagenCliente = $data['imagen_cliente'];
+            $this->apellidoCliente = $data['apellido_cliente'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkStatus()
+    {
+        if ($this->estadoCliente) {
+            $_SESSION['idCliente'] = $this->idCliente;
+            $_SESSION['correoCliente'] = $this->correoCliente;
+            $_SESSION['nombreCliente'] = $this->nombreCliente;
+            $_SESSION['imagenCliente'] = $this->imagenCliente;
+            $_SESSION['apellidoCliente'] = $this->apellidoCliente;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function changePassword()
+    {
+        $sql = 'UPDATE clientes
+                SET clave_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->claveCliente, $this->idCliente);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function editProfile()
+    {
+        $sql = 'UPDATE clientes
+                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?, imagen_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->duiCliente, $this->telefonoCliente, $this->fechaNacimientoCliente, $this->direccionCliente, $this->imagenCliente, $this->idCliente);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function changeStatus()
+    {
+        $sql = 'UPDATE clientes
+        SET estado_cliente = ?
+        WHERE id_cliente = ?';
+        $params = array(
+            $this->estadoCliente,
+            $this->idCliente
+        );
+        return Database::executeRow($sql, $params);
+    }
+
     //Metodos para realizar las operaciones SCRUD
 
     // SEARCH
@@ -73,12 +140,9 @@ class ClientesHandler
     public function updateRow()
     {
         $sql = 'UPDATE clientes
-        SET estado_cliente = ?
-        WHERE id_cliente = ?';
-        $params = array(
-            $this->estadoCliente,
-            $this->idCliente
-        );
+                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, estado_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?, imagen_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->nombreCliente, $this->apellidoCliente, $this->duiCliente, $this->estadoCliente, $this->telefonoCliente, $this->fechaNacimientoCliente, $this->direccionCliente, $this->idCliente, $this->imagenCliente);
         return Database::executeRow($sql, $params);
     }
 
@@ -90,6 +154,15 @@ class ClientesHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function checkDuplicate($value)
+    {
+        $sql = 'SELECT id_cliente
+                FROM clientes
+                WHERE dui_cliente = ? OR correo_cliente = ?';
+        $params = array($value, $value);
+        return Database::getRow($sql, $params);
+    }
+
     // Nuevos usuario registrados
     public function countNewClients()
     {
@@ -97,7 +170,6 @@ class ClientesHandler
         return Database::getRows($sql);
     }
 
-    //Manejo de la cuenta del cliente.
 
     // CHECK PASSWORD - Valida que la contraseña del usuario coincida con la de la base de datos.
 

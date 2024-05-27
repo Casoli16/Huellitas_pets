@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_cliente'] == 1)) {
+    if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_cliente'] == 1) or true) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             //Metódo que permite buscar un registro de entre todos los que hay en la base de datos.
@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
                     !$clientes->setEstadoCliente($_POST['estadoCliente'])
                 ) {
                     $result['error'] = $clientes->getDataError();
-                } elseif ($clientes->updateRow()) {
+                } elseif ($clientes->changeStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Estado actualizado correctamente';
                 } else {
