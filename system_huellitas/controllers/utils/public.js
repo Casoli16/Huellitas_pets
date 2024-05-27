@@ -19,10 +19,10 @@ const navbar = `
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../../views/public/categorias_perro.html">Perros</a>
+                    <a class="nav-link active" aria-current="page" href="../../views/public/categorias.html?mascota=${"Perro"}">Perros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../../views/public/categorias_gatos.html">Gatos</a>
+                    <a class="nav-link active" aria-current="page" href="../../views/public/categorias.html?mascota=${"Gatos"}">Gatos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="../../views/public/sobre_nosotros.html">¿Quiénes somos?</a>
@@ -67,10 +67,11 @@ const navbarPerfil=`
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../../views/public/categorias_perro.html">Perros</a>
+                    <a class="nav-link active" aria-current="page" href="../../views/public/categorias.html?mascota=${"Perro"}">Perros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../../views/public/categorias_gatos.html">Gatos</a>
+                    <a class="nav-link active" aria-current="page" href="../../views/public/categorias.html?mascota=${"Gato"}">Gatos</a>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="../../views/public/sobre_nosotros.html">¿Quiénes somos?</a>

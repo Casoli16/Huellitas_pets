@@ -1,10 +1,11 @@
 <?php
 // Se incluye la clase para validar los datos de entrada.
-require_once('../../helpers/validator.php');
+require_once ('../../helpers/validator.php');
 // Se incluye la clase padre.
-require_once('../../models/handler/categorias_handler.php');
+require_once ('../../models/handler/categorias_handler.php');
 
-class CategoriasData extends CategoriasHandler{
+class CategoriasData extends CategoriasHandler
+{
 
     private $data_error = null;
     private $filename = null;
@@ -29,7 +30,7 @@ class CategoriasData extends CategoriasHandler{
             $this->nombreCategoria = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max . ' caracteres';
             return false;
         }
     }
@@ -40,10 +41,19 @@ class CategoriasData extends CategoriasHandler{
             $this->data_error = 'El nombre debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombreAnimal = $value;
-            return true;
+            if ($value == 'Perro' || $value == 'Perros') {
+                $this->nombreAnimal = 'Perro';
+                return true;
+            } elseif ($value == 'Gato' || $value == 'Gatos') {
+                $this->nombreAnimal = 'Gato';
+                return true;
+            } else {
+                $this->data_error = 'El nombre de la mascota debe ser Perro o Gato';
+                return false;
+            }
+
         } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max . ' caracteres';
             return false;
         }
     }
@@ -54,23 +64,23 @@ class CategoriasData extends CategoriasHandler{
             $this->descripcionCategoria = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max . ' caracteres';
             return false;
         }
     }
 
     public function setImagenCategoria($file, $filename = null)
     {
-        if(Validator::validateImageFile($file, 1000)){
+        if (Validator::validateImageFile($file, 1000)) {
             $this->imagenCategoria = Validator::getFilename();
             return true;
-        } elseif (Validator::getFileError()){
+        } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
             return false;
-        } elseif ($filename){
+        } elseif ($filename) {
             $this->imagenCategoria = $filename;
             return true;
-        } else{
+        } else {
             $this->imagenCategoria = 'default.png';
             return true;
         }
