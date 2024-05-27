@@ -74,7 +74,7 @@ class CategoriasHandler
 
     //    Leer una categoria por nombre de mascota
     public function readOnePublic(){
-        $sql = 'SELECT * FROM vista_categorias_mascotas WHERE mascotas = ?';
+        $sql = 'SELECT * FROM vista_categorias_mascotas WHERE mascotas = ? AND estado_producto = 1';
         $params = array($this->nombreAnimal);
         return Database::getRows($sql, $params);
     }
