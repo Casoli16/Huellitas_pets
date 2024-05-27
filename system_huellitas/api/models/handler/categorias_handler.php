@@ -13,6 +13,8 @@ class CategoriasHandler
     protected $nombreCategoria = null;
     protected $descripcionCategoria = null;
     protected $imagenCategoria = null;
+
+    protected $nombreAnimal = null;
     
     const RUTA_IMAGEN = '../../images/categorias/';
 
@@ -70,6 +72,13 @@ class CategoriasHandler
         return Database::getRows($sql, $params);
     }
 
+    //    Leer una categoria por nombre de mascota
+    public function readOnePublic(){
+        $sql = 'SELECT * FROM vista_categorias_mascotas WHERE mascotas = ? AND estado_producto = 1';
+        $params = array($this->nombreAnimal);
+        return Database::getRows($sql, $params);
+    }
+
     //    Actualizar un producto
     public function updateRow(){
         $sql = 'UPDATE categorias 
@@ -91,4 +100,5 @@ class CategoriasHandler
         return Database::executeRow($sql, $params);
     }
 }
+
 

@@ -34,6 +34,20 @@ class CategoriasData extends CategoriasHandler{
         }
     }
 
+    public function setNombreMascota($value, $min = 2, $max = 50)
+    {
+        if (!Validator::validateAlphanumeric($value)) {
+            $this->data_error = 'El nombre debe ser un valor alfanumérico';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->nombreAnimal = $value;
+            return true;
+        } else {
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
+            return false;
+        }
+    }
+
     public function setDescripcionCategoria($value, $min = 2, $max = 250)
     {
         if (Validator::validateLength($value, $min, $max)) {
