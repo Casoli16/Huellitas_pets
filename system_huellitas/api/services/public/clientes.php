@@ -65,14 +65,15 @@ if (isset($_GET['action'])) {
                 } elseif(!isset($_POST['condicion'])) {
                     $result['error'] = 'Debe marcar la aceptación de términos y condiciones';
                 } elseif (
-                    !$cliente->setNombre($_POST['nombreCliente']) or
-                    !$cliente->setApellido($_POST['apellidoCliente']) or
-                    !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
-                    !$cliente->setDUI($_POST['duiCliente']) or
-                    !$cliente->setNacimiento($_POST['nacimientoCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setClave($_POST['claveCliente'])
+                    !$cliente->setNombreCliente($_POST['nombreCliente']) or
+                    !$cliente->setApellidoCliente($_POST['apellidoCliente']) or
+                    !$cliente->setCorreoCliente($_POST['correoCliente']) or
+                    !$cliente->setDireccionCliente($_POST['direccionCliente']) or
+                    !$cliente->setDuiCliente($_POST['duiCliente']) or
+                    !$cliente->setFechaNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
+                    !$cliente->setClaveCliente($_POST['claveCliente']) or
+                    !$cliente->setImagenCliente($_FILES['imagenCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($_POST['claveCliente'] != $_POST['confirmarClave']) {
@@ -80,6 +81,8 @@ if (isset($_GET['action'])) {
                 } elseif ($cliente->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Cuenta registrada correctamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN);
                 } else {
                     $result['error'] = 'Ocurrió un problema al registrar la cuenta';
                 }

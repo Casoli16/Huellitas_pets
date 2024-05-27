@@ -95,7 +95,7 @@ const navbarPerfil=`
             </div>
             <div class="row">
                 <div class="col-3">
-                    <a href="../../views/public/login.html" class="me-md-5"><img class="rounded-circle" src="../../resources/img/svg/img_perfil_navbar.svg" width="55px" height="55px" alt=""></a>
+                    <a href="../../views/public/perfil.html" class="me-md-5"><img class="rounded-circle" src="../../resources/img/svg/img_perfil_navbar.svg" width="55px" height="55px" alt=""></a>
                 </div>
                 <div class="col-6">
                     <div class="dropdown me-md-5">
