@@ -23,7 +23,7 @@
         <div class="mt-5 p-5">
             <div class="container shadow p-4 mt-4 rounded-4">
                 <!-- Formulario -->
-                <form action="" id="registro_cliente">
+                <form action="" id="registro_cliente" autocomplete="off">
                     <!-- Campo oculto para asignar el token del reCAPTCHA -->
                     <input type="text" class="d-none" id="gRecaptchaResponse" name="gRecaptchaResponse">
                     <div class="row mt-4">
@@ -45,28 +45,28 @@
                             <div class="mb-3">
                                 <label for="nombre_cliente" class="form-label fw-bold">Nombre</label>
                                 <input type="text" id="nombre_cliente" name="nombreCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="dui_cliente" class="form-label fw-bold">Dui</label>
                                 <input type="text" id="dui_cliente" name="duiCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="fecha_nacimiento_cliente" class="form-label fw-bold">Fecha de
                                     nacimiento</label>
                                 <input type="date" id="fecha_nacimiento_cliente" name="nacimientoCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white"  required>
                             </div>
                             <div class="mb-3">
                                 <label for="direccion_cliente" class="form-label fw-bold">Dirección</label>
                                 <input type="text" id="direccion_cliente" name="direccionCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="clave" class="form-label fw-bold">Confirmar contraseña</label>
                                 <input type="password" id="clave" name="claveCliente"
-                                       class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                       class="form-control form-control-lg shadow  rounded-3 bg-white" autocomplete="off" required>
                             </div>
                         </div>
                         <!-- Segunda col -->
@@ -74,22 +74,22 @@
                             <div class="mb-3">
                                 <label for="apellido_cliente" class="form-label fw-bold">Apellidos</label>
                                 <input type="text" id="apellido_cliente" name="apellidoCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email_cliente" class="form-label fw-bold">Correo electrónico</label>
                                 <input type="email" id="email_cliente" name="correoCliente"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="telefono_cliente" class="form-label fw-bold">Teléfono</label>
                                 <input type="text" id="telefono_cliente" name="telefonoCliente"
-                                       class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                       class="form-control form-control-lg shadow  rounded-3 bg-white" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="confirmar_clave" class="form-label fw-bold">Contraseña</label>
                                 <input type="password" id="confirmar_clave" name="confirmarClave"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white" required>
+                                    class="form-control form-control-lg shadow  rounded-3 bg-white" autocomplete="off" required>
                             </div>
                         </div>
                         <div class="form-check d-flex justify-content-center mt-3">
@@ -109,7 +109,8 @@
             </div>
         </div>
         <!-- Inclusión de la librería del reCAPTCHA. Para más información https://developers.google.com/recaptcha/docs/v3 -->
-        <script src="https://www.google.com/recaptcha/api.js?render=6Lei6ukpAAAAAMPZ16eVEUcYgV8tw9chT6noaxm7"></script>
+        <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6Lei6ukpAAAAAMPZ16eVEUcYgV8tw9chT6noaxm7"></script>
+        <script type="text/javascript"  src="../../node_modules/vanilla-text-mask/dist/vanillaTextMask.js"></script>
     </main>
 
     <!-- Agregamos nuestro footer a la pantalla -->
