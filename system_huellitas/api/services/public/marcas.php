@@ -1,26 +1,26 @@
 <?php
+
 // Se incluye la clase del modelo.
-require_once('../../models/data/categorias_data.php');
+require_once('../../models/data/marcas_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     session_start();
- // Se instancia la clase correspondiente.
-    $categorias = new CategoriasData;
+    // Se instancia la clase correspondiente.
+    $marca = new MarcasData();
 
-     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
+    // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
-         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
+        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-                //Metódo que permite leer una categoría en base al animal
-            case 'readOne':
-                if (!$categorias->setNombreMascota($_POST['nombreMascota'])) {
-                    $result['error'] = $categorias->getDataError();
-                } elseif ($result['dataset'] = $categorias->readOnePublic()) {
+            // Case para leer todas las marcas registradas
+            case 'readAll':
+                if ($result['dataset'] = $marca->readAll()) {
                     $result['status'] = 1;
+                    $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
                 } else {
-                    $result['error'] = 'Categoría inexistente';
+                    $result['error'] = 'No existen marcas registradas';
                 }
                 break;
             default:
