@@ -1,51 +1,58 @@
-    <!DOCTYPE html>
-    <html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Huellitas pets - categoria gatos</title>
-        <!-- Agregamos una imagen para que se vea en la ventana -->
-        <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
-        <!-- Agregamos el framework de boostrap - css -->
-        <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
-        <!-- Agregamos el archivo css del fondo -->
-        <link type="text/css" rel="stylesheet" href="../../resources/css/public/categoriass.css">
-        <!-- Agregamos el archivo css del menu -->
-        <link type="text/css" rel="stylesheet" href="../../resources/css/public/static_components/menu_public.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="titulaso"></title>
+    <!-- Agregamos una imagen para que se vea en la ventana -->
+    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <!-- Agregamos el framework de boostrap - css -->
+    <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
+    <!-- Agregamos el archivo css del fondo -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/categoriass.css">
+    <!-- Agregamos el archivo css del menu -->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/public/static_components/menu_public.css">
+</head>
 
-    <body>
-        <!-- Encabezado de la página -->
-        <header>
-            <!-- Barra de navegación -->
-            <nav id="navbar"></nav>
-        </header>
+<body>
+    <!-- Encabezado de la página -->
+    <header>
+        <!-- Barra de navegación -->
+        <nav id="navbar"></nav>
+    </header>
 
-        <!-- Contenido principal -->
-        <main class="mt-5 p-5">
-            <!-- Contenedor principal -->
-            <div class="container-fluid bg-white p-5 mt-10 rounded-4">
-                <!-- Fila para organizar el contenido -->
-                <div class="row row-cols-1 row-cols-md-4 g-4 text-center" id="contenedorPadre">
-                    <!-- Aquí iran las categorías de los productoss -->
-                </div>
+    <!-- Contenido principal -->
+    <main>
+        <!--Titulo del contenido-->
+        <div class="container-fluid text-center bg-orange-cream-color text-white pt-5">
+            <!--Titulo del contenido-->
+            <br>
+            <h1 class="p-3" id="titulo"></h1>
+            <br>
+        </div>
+
+        <!-- Contenedor principal -->
+        <div class="container-fluid bg-white mt-5 pt-5 rounded-4 mx-1">
+            <!-- Fila para organizar el contenido -->
+            <div class="row row-cols-1 row-cols-md-4 g-4 text-center" id="contenedorPadre">
+                <!-- Aquí iran las categorías de los productos -->
             </div>
-        </main>
+        </div>
+    </main>
 
-        <!-- Pie de página -->
-        <footer id="footer"></footer>
+    <!-- Pie de página -->
+    <footer id="footer"></footer>
 
-        <!-- Scripts de JavaScript -->
-        <!-- Bootstrap -->
-        <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Agregamos la ruta para agregar el footer -->
-        <script type="text/javascript" src="../../controllers/utils/components.js"></script>
-        <!-- Agregamos la ruta para agregar el menu -->
-        <script src="../../controllers/utils/public.js"></script>
-        <!-- Agregamos la ruta para agregar el controlador de la pantalla-->
-        <script type="text/javascript" src="../../controllers/public/categorias.js"></script> 
-    </body>
+    <!-- Scripts de JavaScript -->
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la ruta para agregar el footer -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos la ruta para agregar el menu -->
+    <script src="../../controllers/utils/public.js"></script>
+    <!-- Agregamos la ruta para agregar el controlador de la pantalla-->
+    <script type="text/javascript" src="../../controllers/public/categorias.js"></script>
+</body>
 
-
-    </html>
+</html>
