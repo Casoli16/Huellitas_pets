@@ -81,9 +81,9 @@ class ClientesHandler
     public function editProfile()
     {
         $sql = 'UPDATE clientes
-                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_cliente = ?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?, imagen_cliente = ?
+                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, telefono_cliente = ?, direccion_cliente = ?, imagen_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombreCliente, $this->apellidoCliente, $this->correoCliente, $this->duiCliente, $this->telefonoCliente, $this->fechaNacimientoCliente, $this->direccionCliente, $this->imagenCliente, $this->idCliente);
+        $params = array($this->nombreCliente, $this->apellidoCliente, $this->duiCliente, $this->telefonoCliente, $this->direccionCliente, $this->imagenCliente, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 
@@ -195,5 +195,14 @@ class ClientesHandler
         } else {
             return false;
         }
+    }
+
+    public function readFilename()
+    {
+        $sql = 'SELECT imagen_cliente
+                FROM clientes
+                WHERE id_cliente = ?';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRow($sql, $params);
     }
 }

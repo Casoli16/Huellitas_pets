@@ -19,7 +19,7 @@
 <body>
     <!-- Encabezado de la página -->
     <header>
-        <nav id="navbar_perfil"></nav>
+        <nav id="navbar"></nav>
     </header>
 
     <main>
@@ -35,15 +35,15 @@
                 <div class="row">
                     <!-- Columna izquierda: Formulario para editar la información del perfil -->
                     <div class="col-lg-4 col-md-6 col-sm-7 p-5">
-                        <form action="" id="perfil_editar_datos">
-                            <img src="../../resources/img/png/foto_perfil_publico.png" class="img-fluid">
+                        <form action="" id="saveForm">
+                            <img id="imagen" class="img-fluid">
                             <br>
                             <br>
                             <div class="d-grid gap-2">
                                 <!-- Botón para cargar imagen -->
-                                <input type="file" class="form-control" id="upload_picture_profile" hidden>
+                                <input type="file" class="form-control" id="imgCliente" name="imagenCliente" hidden>
                                 <!-- Para que tenga el mismo funcionamiento del input file le ponemos el for y le agregamos el id del input file -->
-                                <label class="btn btn-outline-secondary btn-lg" for="upload_picture_profile">Cargar
+                                <label class="btn btn-outline-secondary btn-lg" for="imgCliente">Cargar
                                     imagen</label>
                             </div>
                     </div>
@@ -51,52 +51,41 @@
                     <div class="col-lg-7 col-md-5 col-sm-8 p-5">
                         <div class="row">
                             <div class="col-12 col-md-6">
-                                <label for="nombre_cliente_editar_perfil" class="form-label fw-bold">Nombre</label>
-                                <input type="text" id="nombre_cliente_editar_perfil" name="nombreClienteEditarPerfil"
+                                <label for="nombreCliente" class="form-label fw-bold">Nombre</label>
+                                <input type="text" id="nombreCliente" name="nombreCliente"
                                     class="form-control form-control-lg shadow  rounded-3 bg-white">
                                 <br>
                             </div>
                             <div class="col-12 col-md-6">
-                                <label for="apellido_cliente_editar_perfil" class="form-label fw-bold">Apellidos</label>
-                                <input type="text" id="apellido_cliente_editar_perfil"
-                                    name="apellidoClienteEditarPerfil"
+                                <label for="apellidoCliente" class="form-label fw-bold">Apellidos</label>
+                                <input type="text" id="apellidoCliente" name="apellidoCliente"
                                     class="form-control form-control-lg shadow  rounded-3 bg-white">
                                 <br>
                             </div>
                             <div class="col-12 col-md-6">
-                                <label for="DUI_cliente_editar_perfil" class="form-label fw-bold">DUI</label>
-                                <input type="number" id="DUI_cliente_editar_perfil" name="DUIClienteEditarPerfil"
+                                <label for="duiCliente" class="form-label fw-bold">DUI</label>
+                                <input type="text" id="duiCliente" name="duiCliente"
                                     class="form-control form-control-lg shadow  rounded-3 bg-white">
                                 <br>
                             </div>
                             <div class="col-12 col-md-6">
-                                <label for="gmail_cliente_editar_perfil" class="form-label fw-bold">Correo
-                                    electrónico</label>
-                                <input type="email" id="gmail_cliente_editar_perfil" name="gmailClienteEditarPerfil"
+                                <label for="telefonoCliente" class="form-label fw-bold">Teléfono</label>
+                                <input type="text" id="telefonoCliente" name="telefonoCliente"
                                     class="form-control form-control-lg shadow  rounded-3 bg-white">
                                 <br>
                             </div>
-                            <div class="col-12 col-md-6">
-                                <label for="fecha_nacimiento_cliente_editar_perfil" class="form-label fw-bold">Fecha de
-                                    nacimiento</label>
-                                <input type="date" id="fecha_nacimiento_cliente_editar_perfil"
-                                    name="fechaNacimientoClienteEditarPerfil"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
-                                <br>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label for="direccion_cliente_editar_perfil"
-                                    class="form-label fw-bold">Dirección</label>
-                                <input type="text" id="direccion_cliente_editar_perfil"
-                                    name="direccionClienteEditarPerfil"
-                                    class="form-control form-control-lg shadow  rounded-3 bg-white">
+                            <div class="col-12 col-md-12">
+                                <label for="direccionCliente" class="form-label fw-bold">Dirección</label>
+                                <textarea class="form-control form-control-lg shadow  rounded-3 bg-white"
+                                    name="direccionCliente" id="direccionCliente" maxlength="250" required
+                                    rows="3"></textarea>
                                 <br>
                             </div>
                         </div>
                         <br>
                         <br>
                         <!-- Botones de acción (Agregar, Ocultar) -->
-                        <a href="../../views/public/perfil.html"><button type="button"
+                        <a href="../../views/public/perfil.html"><button type="submit"
                                 class="btn btn-brown-color btn-lg text-white">Actualizar</button></a>
                         <br>
                     </div>
@@ -115,8 +104,11 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
+    <script type="text/javascript" src="../../controllers/public/perfil_editar.js"></script>
 </body>
 
 </html>
