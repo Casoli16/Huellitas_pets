@@ -74,7 +74,7 @@ class ClientesHandler
         $sql = 'UPDATE clientes
                 SET clave_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->claveCliente, $this->idCliente);
+        $params = array($this->claveCliente, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 
