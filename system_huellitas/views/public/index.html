@@ -49,14 +49,14 @@
                 <div class="col-auto">
                     <img src="../../resources/img/png/perro_home.png" alt="">
                     <div class="text-center mt-3">
-                        <a href="../public/categorias_perro.html"
-                            class="btn btn-orange-color text-light d-grid grap-5">Gatos</a>
+                        <a onclick="goToCategories('Perros')"
+                            class="btn btn-orange-color text-light d-grid grap-5">Perros</a>
                     </div>
                 </div>
                 <div class="col-auto">
                     <img src="../../resources/img/png/cat_home.png" alt="">
                     <div class="text-center mt-3">
-                        <a href="../public/categorias_gatos.html"
+                        <a onclick="goToCategories('Gatos')"
                             class="btn btn-orange-color text-light d-grid grap-5">Gatos</a>
                     </div>
                 </div>
@@ -73,62 +73,19 @@
                 </div>
                 <!-- Col 2 / Tiene el carrusel de imagen -->
                 <div class="col-md-10 col-sm-12">
-                    <p class="fw-semibold mt-5 fs-5 mb-2">Todas tus marcas favoritas en un solo lugar</p>
+                    <p class="fw-semibold mt-5 fs-5">Todas tus marcas favoritas en un solo lugar</p>
 
-                    <!-- Declaramos nuestra clase de boostrap para el carrusel -->
-                    <div id="carouselMarcas" class="carousel slide d-flex justify-content-center"
-                        data-bs-ride="carousel">
+                    <div id="carouselMarcas" class="carousel slide d-flex justify-content-center">
+                        <div class="carousel-inner"></div>
 
-                        <!-- Lista que contiene los indicadores para saber cuantas slides hay -->
-                        <ul class="carousel-indicators">
-                            <li data-bs-target="#carouselMarcas" data-bs-slide-to="0" class="active"></li>
-                            <li data-bs-target="#carouselMarcas" data-bs-slide-to="1"></li>
-                        </ul>
-                        <!-- Primer slide -->
-                        <!-- Carrusel que tiene una row y dentro cuatro columnas donde ira cada imagen -->
-                        <div class="carousel-inner text-center p-5">
-                            <div class="carousel-item active">
-                                <div class="row d-flex justify-content-center gx-5 gy-4">
-                                    <div class="col-auto">
-                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="../../resources/img/png/doggi.png" class="rounded-circle">
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Segunda slide -->
-                            <!-- Carrusel que tiene una row y dentro cuatro columnas donde ira cada imagen -->
-                            <div class="carousel-item">
-                                <div class="row d-flex justify-content-center gx-5 gy-4">
-                                    <div class="col-auto">
-                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="../../resources/img/png/doggi.png" class="rounded-circle">
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="../../resources/img/png/ruffo.png" class="rounded-circle">
-                                    </div>
-                                    <div class="col-auto">
-                                        <img src="../../resources/img/png/doggi.png" class="rounded-circle">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Flechas para ver la slide anterior y siguiente -->
-                        <a class="carousel-control-prev" href="#carouselMarcas" role="button" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselMarcas" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselMarcas" role="button" data-bs-slide="next">
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselMarcas" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </a>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
             </div>
