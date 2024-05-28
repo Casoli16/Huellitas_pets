@@ -1,5 +1,4 @@
-body
-{
+body {
     background-image: url(../../img/png/fondoperrito.png);
 }
 
@@ -13,4 +12,27 @@ body
 
 .card-text {
     color: #003366 !important; /* Azul oscuro */
+}
+
+.card-img-top {
+    object-fit: cover;
+}
+
+/* Media query para pantallas medianas y grandes */
+@media (min-width: 768px) {
+    .card-img-top {
+        min-height: 400px !important;
+    }
+}
+
+/* Centrar imágenes y tarjetas en pantallas pequeñas */
+@media (max-width: 767.98px) {
+    .card {
+        display: flex;
+        justify-content: center;
+    }
+    .card img {
+        max-width: 100%;
+        height: auto;
+    }
 }
