@@ -253,6 +253,7 @@ SELECT
     c.id_categoria, 
     c.imagen_categoria, 
     c.nombre_categoria,
+    c.descripcion_categoria,
 	 p.estado_producto, 
     p.mascotas
 FROM 
