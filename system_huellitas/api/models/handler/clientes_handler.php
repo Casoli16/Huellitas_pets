@@ -46,9 +46,11 @@ class ClientesHandler
 
     public function readProfile()
     {
-        $sql = 'SELECT nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, direccion_cliente, estado_cliente, fecha_registro_cliente, imagen_cliente
+        $sql = "SELECT nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, direccion_cliente, estado_cliente, 
+        DATE_FORMAT(fecha_registro_cliente, '%d de %M del %Y') AS fecha_registro,
+        imagen_cliente
                 FROM clientes
-                WHERE id_cliente = ?';
+                WHERE id_cliente = ?";
         $params = array($_SESSION['idCliente']);
         return Database::getRow($sql, $params);
     }
