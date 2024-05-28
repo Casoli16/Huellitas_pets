@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS db_huellitas_pets;
+-- DROP DATABASE IF EXISTS db_huellitas_pets;
 
 CREATE DATABASE db_huellitas_pets;
 

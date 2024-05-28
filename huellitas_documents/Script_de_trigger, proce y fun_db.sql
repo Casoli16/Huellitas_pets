@@ -247,3 +247,19 @@ GROUP BY dp.id_producto
 ORDER BY cantidad_vendido DESC
 LIMIT 1;
 
+-- Vista para conocer las marcas de un perro o gato
+CREATE VIEW vista_categorias_mascotas AS
+SELECT 
+    c.id_categoria, 
+    c.imagen_categoria, 
+    c.nombre_categoria,
+    c.descripcion_categoria,
+	 p.estado_producto, 
+    p.mascotas
+FROM 
+    categorias c
+JOIN 
+    productos p ON c.id_categoria = p.id_categoria;
+    
+    
+SELECT * FROM vista_categorias_mascotas WHERE mascotas = 'Gato' AND estado_producto = 1;

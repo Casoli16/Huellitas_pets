@@ -2,6 +2,19 @@ const SIGNUP_FORM = document.getElementById('registro_cliente'),
        IMAGEN_CLIENTE = document.getElementById('imagenCliente');
 
 const IMAGEN = document.getElementById('imagen');
+
+// Llamada a la función para establecer la mascara del campo teléfono.
+vanillaTextMask.maskInput({
+    inputElement: document.getElementById('telefono_cliente'),
+    mask: [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+});
+// Llamada a la función para establecer la mascara del campo DUI.
+vanillaTextMask.maskInput({
+    inputElement: document.getElementById('dui_cliente'),
+    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/]
+});
+
+// Método del evento para cuando el documento ha cargado.
 document.addEventListener("DOMContentLoaded", async()=>{
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
@@ -33,7 +46,7 @@ SIGNUP_FORM.addEventListener("submit", async (event) => {
     if(DATA.status){
         sweetAlert(1, DATA.message, true, 'login.html');
     } else if(DATA.recaptcha){
-        sweetAlert(2, DATA.message, false, 'index.html');
+        sweetAlert(2, DATA.message, false);
     } else{
         sweetAlert(2, DATA.error, false)
         // Se genera un nuevo token cuando ocurre un problema.

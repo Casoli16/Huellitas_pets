@@ -2,3 +2,15 @@ body
 {
     background-image: url(../../img/png/fondoperrito.png);
 }
+
+.card-body {
+    color: #003366 !important; /* Azul oscuro */
+}
+
+.card-title {
+    color: #003366 !important; /* Azul oscuro */
+}
+
+.card-text {
+    color: #003366 !important; /* Azul oscuro */
+}
