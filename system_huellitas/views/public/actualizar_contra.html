@@ -27,20 +27,29 @@
                     <h2 class="fw-semibold">Actualizar Contraseña</h2>
                     <p class="fw-normal fs-5">Ingresar la nueva contraseña</p>
                 </div>
-                <form action="" id="recuperacion_contrasenia" class="mt-5 p-4">
+                <form action="" id="saveForm" class="mt-5 p-4">
                     <div class="mb-5">
-                        <label for="contrasenia_actual" class="form-label fw-semibold">Contraseña actual</label>
-                        <input type="password" id="contrasenia_actual" name="contraseniaActual"
+                        <label for="claveActual" class="form-label fw-semibold">Contraseña actual</label>
+                        <input type="password" id="claveActual" name="claveActual"
                             class="form-control form-control-lg shadow rounded-4 bg-white">
                     </div>
                     <div class="mb-5">
-                        <label for="contrasenia_nueva" class="form-label fw-semibold">Nueva contraseña</label>
-                        <input type="password" id="contrasenia_nueva" name="contraseniaActual"
-                            class="form-control form-control-lg shadow rounded-4 bg-white">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="claveNueva" class="form-label fw-semibold">Nueva contraseña</label>
+                                <input type="password" id="claveNueva" name="claveNueva"
+                                class="form-control form-control-lg shadow rounded-4 bg-white">
+                            </div>
+                            <div class="col-6">
+                                <label for="ConfirmarClave" class="form-label fw-semibold">Confirmar contraseña</label>
+                                <input type="password" id="ConfirmarClave" name="ConfirmarClave"
+                                class="form-control form-control-lg shadow rounded-4 bg-white">
+                            </div>
+                        </div>
                     </div>
                     <div class="text-center">
-                        <a class="btn btn-orange-color btn-lg text-light mb-2 d-grid gap-2 col-sm-12 col-md-12 mx-auto rounded-4"
-                            href="../../views/public/perfil.html">Actualizar</a>
+                        <a href="../../views/public/perfil.html"><button type="submit"
+                        class="btn btn-orange-color btn-lg text-white mb-2 gap-2 col-sm-12 col-md-12 mx-auto">Actualizar</button></a>
                         <p class="fw-semibold">Guarda tu contraseña en algun lugar seguro</p>
                     </div>
                 </form>
@@ -53,8 +62,12 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript"  src="../../node_modules/vanilla-text-mask/dist/vanillaTextMask.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
+    <script type="text/javascript" src="../../controllers/public/actualizar_contrasenia.js"></script>
 </body>
 
 </html>
