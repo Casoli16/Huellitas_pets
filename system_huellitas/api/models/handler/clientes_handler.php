@@ -55,6 +55,28 @@ class ClientesHandler
         return Database::getRow($sql, $params);
     }
 
+    //Metodo para llamar los datos del historial
+    public function readHistorial()
+    {
+        $sql = "SELECT 
+        dp.id_detalle_pedido,
+        pr.nombre_producto,
+        dp.cantidad_detalle_pedido,
+        pr.precio_producto AS precio_individual,
+        dp.precio_detalle_pedido,
+        p.id_cliente, 
+        DATE_FORMAT(p.fecha_registro_pedido, '%d de %M del %Y') AS fecha_registro
+        FROM 
+        detalles_pedidos dp
+        INNER JOIN 
+        pedidos p ON dp.id_pedido = p.id_pedido
+        INNER JOIN 
+        productos pr ON dp.id_producto = pr.id_producto
+        WHERE id_cliente = ?";
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
+    }
+
     public function checkStatus()
     {
         if ($this->estadoCliente) {

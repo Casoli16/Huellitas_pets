@@ -35,6 +35,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
+            //Con este metodo lee toda la información del cliente que esta logueado.    
+            case 'readHistorial':
+                $_POST = Validator::validateForm($_POST);
+                if ($result['dataset'] = $cliente->readHistorial()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Ocurrió un problema al leer el historial';
+                }
+                break;
             //Metódo que permite editar la información del admin que se ha logueado.    
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);

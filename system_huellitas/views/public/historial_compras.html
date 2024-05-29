@@ -19,7 +19,7 @@
 <body>
     <header>
         <!-- Encabezado de la página -->
-        <nav id="navbar_perfil"></nav><!-- Aquí se incluirá el menú -->
+        <nav id="navbar"></nav><!-- Aquí se incluirá el menú -->
     </header>
 
     <main>
@@ -34,113 +34,9 @@
 
             <!-- Contenedor principal del historial de compras -->
             <div class="container shadow p-4 mt-4 rounded-4 contenedor_historial">
-                <!-- Entradas de historial de compras -->
-                <!-- Entrada de historial de compra 1 -->
-                <h5>
-                    <b>13 de enero, 2024</b>
-                </h5>
-                <div class="row py-3">
-                    <div class="col-1 py-2">
-                        <img class="image-fluid" src="../../resources/img/png/historial_compra_img.png" alt="">
-                    </div>
-                    <div class="col-12 col-lg-10">
-                        <div class="row">
-                            <div class="col-9 col-lg-11 py-3">
-                                <h6><b>Bolsa pedigree - Perro mayor</b></h6>
-                                <div class="row">
-                                    <div class="col-8 col-lg-4">
-                                        <p class="fs-6">Cantidad: 2 Unidades</p>
-                                    </div>
-                                    <div class="col-8 col-lg-4 ">
-                                        <p class="fs-6">Precio Individual: $20.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3 col-lg-1">
-                                <h5 class="py-4"><b>$40.00</b></h5>
-                            </div>
-                        </div>
-                    </div>
+                <div id="historialContainer">
+                    
                 </div>
-                <hr>
-                <!-- Entrada de historial de compra 2 -->
-                <div class="row py-3">
-                    <div class="col-1 py-2">
-                        <img class="image-fluid" src="../../resources/img/png/historial_compra_img.png" alt="">
-                    </div>
-                    <div class="col-12 col-lg-10">
-                        <div class="row">
-                            <div class="col-9 col-lg-11 py-3">
-                                <h6><b>Bolsa pedigree - Perro mayor</b></h6>
-                                <div class="row">
-                                    <div class="col-8 col-lg-4">
-                                        <p class="fs-6">Cantidad: 2 Unidades</p>
-                                    </div>
-                                    <div class="col-8 col-lg-4 ">
-                                        <p class="fs-6">Precio Individual: $20.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3 col-lg-1">
-                                <h5 class="py-4"><b>$40.00</b></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <!-- Entrada de historial de compra 3 -->
-                <div class="row py-3">
-                    <div class="col-1 py-2">
-                        <img class="image-fluid" src="../../resources/img/png/historial_compra_img.png" alt="">
-                    </div>
-                    <div class="col-12 col-lg-10">
-                        <div class="row">
-                            <div class="col-9 col-lg-11 py-3">
-                                <h6><b>Bolsa pedigree - Perro mayor</b></h6>
-                                <div class="row">
-                                    <div class="col-8 col-lg-4">
-                                        <p class="fs-6">Cantidad: 2 Unidades</p>
-                                    </div>
-                                    <div class="col-8 col-lg-4 ">
-                                        <p class="fs-6">Precio Individual: $20.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3 col-lg-1">
-                                <h5 class="py-4"><b>$40.00</b></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Entrada de historial de compra 4 -->
-                <hr class="py-3">
-                <h5>
-                    <b>15 de enero, 2024</b>
-                </h5>
-                <div class="row py-3">
-                    <div class="col-1 py-2">
-                        <img class="image-fluid" src="../../resources/img/png/historial_compra_img.png" alt="">
-                    </div>
-                    <div class="col-12 col-lg-10">
-                        <div class="row">
-                            <div class="col-9 col-lg-11 py-3">
-                                <h6><b>Bolsa pedigree - Perro mayor</b></h6>
-                                <div class="row">
-                                    <div class="col-8 col-lg-4">
-                                        <p class="fs-6">Cantidad: 2 Unidades</p>
-                                    </div>
-                                    <div class="col-8 col-lg-4 ">
-                                        <p class="fs-6">Precio Individual: $20.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3 col-lg-1">
-                                <h5 class="py-4"><b>$40.00</b></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
             </div>
 
         </div>
@@ -155,8 +51,12 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <script type="text/javascript"  src="../../node_modules/vanilla-text-mask/dist/vanillaTextMask.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
+    <script type="text/javascript" src="../../controllers/public/historial.js"></script>
 </body>
 
 </html>
