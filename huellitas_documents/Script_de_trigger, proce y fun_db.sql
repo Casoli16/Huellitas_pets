@@ -227,7 +227,7 @@ FROM
     INNER JOIN marcas m ON m.id_marca = p.id_marca
     INNER JOIN categorias c ON c.id_categoria = p.id_categoria;
 
-
+SELECT * FROM productosVIEW;
 -- Vista que calcula los nuevos clientes que se han registrado en la tienda durante los ultimos siete dias
 CREATE VIEW nuevos_usuarios AS
 SELECT COUNT(*) AS newUsers
@@ -261,5 +261,54 @@ FROM
 JOIN 
     productos p ON c.id_categoria = p.id_categoria;
     
+-- Vista para ver las marcas en base de que si es un perro o gato
+CREATE OR REPLACE VIEW vista_mascotas_marca AS
+SELECT 
+    m.nombre_marca AS marca,
+    m.id_marca AS idMarca,
+    p.mascotas,
+    p.estado_producto AS estadoProducto
+FROM 
+    productos p
+JOIN 
+    marcas m ON p.id_marca = m.id_marca
+
+-- Vista para ver las categorias en base de que si es un perro o gato
+CREATE OR REPLACE VIEW vista_mascotas_categoria AS
+SELECT 
+    c.id_categoria AS idCategoria,
+    p.mascotas,
+    p.estado_producto AS estadoProducto,
+    c.nombre_categoria AS categoria
+FROM 
+    productos p
+JOIN 
+    categorias c ON p.id_categoria = c.id_categoria;
+
+-- Vista para ver los productos
+CREATE OR REPLACE VIEW vista_productos_puntuacion AS
+SELECT
+    c.id_categoria AS id_categoria,
+    p.id_marca AS id_marca,
+    p.precio_producto AS precio_producto,
+    m.nombre_marca AS Marca,
+    d.id_producto AS id_producto,
+    p.nombre_producto AS nombre_producto,
+    p.imagen_producto AS imagen_producto,
+    ROUND(AVG(v.calificacion_valoracion)/2) AS puntuacion_producto
+FROM
+    productos p
+JOIN
+    categorias c ON p.id_categoria = c.id_categoria
+JOIN
+    marcas m ON p.id_marca = m.id_marca
+LEFT JOIN
+    detalles_pedidos d ON p.id_producto = d.id_producto
+LEFT JOIN
+    valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido
+GROUP BY
+    p.id_producto;
     
-SELECT * FROM vista_categorias_mascotas WHERE mascotas = 'Gato' AND estado_producto = 1;
+SELECT * FROM vista_productos_puntuacion WHERE id_marca = 1;
+SELECT * FROM vista_productos_puntuacion WHERE id_categoria = 4;
+

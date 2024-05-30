@@ -4,15 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="titulazo">Huellitas pets - productos gatos comida</title>
+    <title id="titulaso">Huellitas pets - productos gatos comida</title>
     <!-- Agregamos una imagen para que se vea en la ventana -->
     <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
     <!-- Agregamos el framework de boostrap - css -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
-    <!-- Agregamos el archivo css del menu -->
-    <link type="text/css" rel="stylesheet" href="../../resources/css/public/static_components/menu_public.css">
-    <!-- Agregamos el archivo css de la página-->
-    <link type="text/css" rel="stylesheet" href="../../resources/css/public/productos.css">
 </head>
 
 <body>
@@ -32,249 +28,43 @@
         </div>
     </header>
 
-    <main class="mt-0 p-5">
-        <div class="row">
-            <div class="col-lg-4 col-sm-12 col-md-12">
+    <main class="mt-0 py-5">
+        <div class="row container">
+            <div class="col-lg-5 col-sm-12 col-md-12 px-md-5">
                 <div class="row">
                     <div class="col-12">
                         <p class="fw-bold">Filtrar por marcas</p>
                     </div>
                     <div class="col-12">
                         <div class="dropdown d-grid grap-2" id="DropDown_ModificarPed" name="DropDown_ModificarPedN">
-                            <button class="btn bg-white dropdown-toggle shadow rounded-5 text-start" type="button"
-                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <span id="MarcaS">Elige una marca</span>
-                            </button>
-
-                            <!-- Opciones del dropdown -->
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#" id="pedigreeoption"> Pedigree</a>
-                                <a class="dropdown-item" href="#" id="Rufooption"> Rufo</a>
-                                <a class="dropdown-item" href="#" id="Doguioption"> Dogui</a>
-                            </div>
+                            <select class="form-select shadow" id="selectMarcas" onchange="recargarConteiner('readProductsByMarca')">
+                                <option value="0">Selecciona una marca</option>
+                            </select>
                         </div>
                     </div>
                     <br>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-12 col-md-12">
+            <div class="col-lg-5 col-sm-12 col-md-12">
                 <div class="row">
                     <div class="col-12">
                         <p class="fw-bold">Filtrar por categorias</p>
                     </div>
                     <div class="col-12">
                         <div class="dropdown d-grid grap-2 " id="DropDown_ModificarPed" name="DropDown_ModificarPedN">
-                            <button class="btn bg-white dropdown-toggle shadow rounded-5 text-start" type="button"
-                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <span id="CategoriaS">Elige una categoria</span>
-                            </button>
-
-                            <!-- Opciones del dropdown -->
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#" id="comidaoption"> Comida</a>
-                                <a class="dropdown-item" href="#" id="saludoption"> Salud</a>
-                                <a class="dropdown-item" href="#" id="entretemientooption"> Entretenimiento</a>
-                            </div>
+                            <select class="form-select shadow" id="selectCategorias" onchange="recargarConteiner('readProductsByCategoria')">
+                                
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <br>
-        <div class="container-fluid bg-white p-5 d-flex justify-content-center rounded-5">
-            <div class="row d-flex gy-5">
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="p-3 card rounded-4 shadow">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
-                                alt="...">
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h5 class="card-title fw-bold">$15</h5>
-                                </div>
-                                <div class="col-6">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                </div>
-                            </div>
-                            <p class="card-text small fw-light mb-0 mt-1">Maxi Chucho</p>
-                            <p class="fw-bold">Bolsa Pedigree - Perro mayor</p>
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="text-start">
-                                        <a href="../../views/public/producto.html" class="btn btn-orange-color text-white .fs-6 text"
-                                            id="Ver_producto_perros">Ver producto</a>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="container text-end">
-                                        <a href="../../views/public/carrito_1.html">
-                                            <img src="../../resources/img/png/carrito_naranja.png" width="30px">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="p-3 card rounded-4 shadow">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
-                                alt="...">
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h5 class="card-title fw-bold">$50</h5>
-                                </div>
-                                <div class="col-6">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                </div>
-                            </div>
-                            <p class="card-text small fw-light mb-0 mt-1">PURINA</p>
-                            <p class="fw-bold">Bolsa Propac - Perro joven</p>
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="text-start">
-                                        <button type="button" class="btn btn-orange-color text-white .fs-6 text"
-                                            id="Ver_producto_perros">Ver producto</button>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="container text-end">
-                                        <img src="../../resources/img/png/carrito_naranja.png" width="30px">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="p-3 card rounded-4 shadow">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
-                                alt="...">
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h5 class="card-title fw-bold">$15</h5>
-                                </div>
-                                <div class="col-6">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                </div>
-                            </div>
-                            <p class="card-text small fw-light mb-0 mt-1">PEDIGREE</p>
-                            <p class="fw-bold">Bolsa Pedigree - Perro mayor</p>
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="text-start">
-                                        <button type="button" class="btn btn-orange-color text-white .fs-6 text"
-                                            id="Ver_producto_perros">Ver producto</button>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="container text-end">
-                                        <img src="../../resources/img/png/carrito_naranja.png" width="30px">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="p-3 card rounded-4 shadow">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
-                                alt="...">
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h5 class="card-title fw-bold">$15</h5>
-                                </div>
-                                <div class="col-6">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                </div>
-                            </div>
-                            <p class="card-text small fw-light mb-0 mt-1">Maxi Chucho</p>
-                            <p class="fw-bold">Bolsa Pedigree - Perro mayor</p>
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="text-start">
-                                        <button type="button" class="btn btn-orange-color text-white .fs-6 text"
-                                            id="Ver_producto_perros">Ver producto</button>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="container text-end">
-                                        <img src="../../resources/img/png/carrito_naranja.png" width="30px">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="p-3 card rounded-4 shadow">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <img src="../../resources/img/png/producto2.png" width="250px" height="290px" class="p-3"
-                                alt="...">
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h5 class="card-title fw-bold">$15</h5>
-                                </div>
-                                <div class="col-6">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                    <img src="../../resources/img/png/start_on.png" width="14px" height="14px">
-                                </div>
-                            </div>
-                            <p class="card-text small fw-light mb-0 mt-1">Maxi Chucho</p>
-                            <p class="fw-bold">Bolsa Pedigree - Perro mayor</p>
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="text-start">
-                                        <button type="button" class="btn btn-orange-color text-white .fs-6 text"
-                                            id="Ver_producto_perros">Ver producto</button>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="container text-end">
-                                        <img src="../../resources/img/png/carrito_naranja.png" width="30px">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="container bg-white p-5 rounded-5">
+            <div class="row" id="contenedorPadre">
+                <!-- Aquí iran los productos -->
             </div>
-        </div>
-
         </div>
     </main>
 
@@ -283,10 +73,12 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la ruta para agregar el footer -->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
     <!-- Agregamos el js de la página-->
-    <script src="../../controllers/public/productos.js"></script>
+    <script src="../../controllers/public/productos_categoria.js"></script>
 </body>
 
 </html>

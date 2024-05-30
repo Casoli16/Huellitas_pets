@@ -1,7 +1,7 @@
 <?php
 
 // Clase para trabajar con la base de datos
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 
 // Declaración de atributos para el manejo de los datos
 class productosHandler
@@ -17,6 +17,8 @@ class productosHandler
     protected $mascotas = null;
     protected $idCategoria = null;
     protected $idMarca = null;
+    protected $categoria = null;
+    protected $marca = null;
 
     const RUTA_IMAGEN = '../../images/productos/';
 
@@ -79,6 +81,40 @@ class productosHandler
     {
         $sql = 'SELECT * FROM productos WHERE id_producto = ?';
         $params = array($this->idProducto);
+        return Database::getRows($sql, $params);
+    }
+
+    //    Leer las marcas en base a su estado y animal
+    public function readOneMarcas()
+    {
+        $sql = 'SELECT DISTINCT idMarca, marca, mascotas, estadoProducto FROM vista_mascotas_marca WHERE mascotas = ? AND estadoProducto = 1';
+        $params = array($this->mascotas);
+        return Database::getRows($sql, $params);
+    }
+
+    //    Leer las marcas en base a su estado y animal
+    public function readOneCategorias()
+    {
+        $sql = 'SELECT DISTINCT idCategoria, mascotas, estadoProducto, categoria
+            FROM vista_mascotas_categoria
+            WHERE mascotas = ? AND estadoProducto = 1;';
+        $params = array($this->mascotas);
+        return Database::getRows($sql, $params);
+    }
+
+    //    Leer las marcas en base a su estado y animal
+    public function readOneMarca()
+    {
+        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE id_marca = ? ORDER BY puntuacion_producto DESC';
+        $params = array($this->marca);
+        return Database::getRows($sql, $params);
+    }
+
+    //    Leer las marcas en base a su estado y animal
+    public function readOneCategoria()
+    {
+        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE id_categoria = ? ORDER BY puntuacion_producto DESC';
+        $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
 

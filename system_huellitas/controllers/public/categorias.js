@@ -59,5 +59,5 @@ const fillConteiner = async (animal) => {
 
 // Función para cargar la siguiente pantalla dependiendo de la categoria elegida
 const navigateToPage = (categoria) => {
-    window.location.href = `../../views/public/productos.html?categoria=${categoria}`;
+    window.location.href = `../../views/public/productos_categoria.html?categoria=${categoria}&mascota=${MASCOTA}`;
 };

@@ -95,6 +95,18 @@ class productosData extends productosHandler{
         }
     }
 
+    public function setMarca($value)
+    {
+            $this->marca = $value;
+            return true;
+    }
+
+    public function setCategoria($value)
+    {
+            $this->categoria = $value;
+            return true;
+    }
+
     public function setImagenProducto($file, $filename = null)
     {
         if(Validator::validateImageFile($file, 1000)){
