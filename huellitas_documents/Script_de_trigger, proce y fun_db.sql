@@ -216,7 +216,7 @@ FROM
     productos p
     INNER JOIN marcas m ON m.id_marca = p.id_marca
     INNER JOIN categorias c ON c.id_categoria = p.id_categoria;
-
+SELECT id_producto, nombre_producto, descripcion_producto, precio_producto, imagen_producto, existencia_producto, nombre_marca, nombre_categoria  FROM productosView;
 -- Vista que calcula los nuevos clientes que se han registrado en la tienda durante los ultimos siete dias
 CREATE VIEW nuevos_usuarios AS
 SELECT COUNT(*) AS newUsers

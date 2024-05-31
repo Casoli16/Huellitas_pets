@@ -142,5 +142,5 @@ const fillEncabezado = (mascota) => {
 
 // Función para cargar la siguiente pantalla dependiendo de la categoria elegida
 const navigateToPage = (idProducto) => {
-    window.location.href = `../../views/public/producto.html?producto=${idProducto}`;
+    window.location.href = `../../views/public/producto.html?producto=${idProducto}&categoria=${CATEGORIA}&mascota=${MASCOTA}`;
 };

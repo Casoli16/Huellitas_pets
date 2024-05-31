@@ -66,6 +66,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Aún no hay productos registrados';
                 }
                 break;
+            case 'readOneProduct':
+                if (!$productos->setIdProducto($_POST['idProducto'])) {
+                    $result['error'] = $productos->getDataError();
+                } elseif ($result['dataset'] = $productos->readOneProduct()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Producto inexistente';
+                }
+                break;
         }
         // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
         $result['exception'] = Database::getException();
