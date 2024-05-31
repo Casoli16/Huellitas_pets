@@ -6,7 +6,8 @@ const PRODUCTOS_API = 'services/public/productos.php';
 const CONTENEDOR = document.getElementById('contenedorPadre'),
     TITULO_PAGINA = document.getElementById('titulaso'),
     SELECTMARCA = document.getElementById('selectMarcas'),
-    SELECTCATEGORIA = document.getElementById('selectCategorias');
+    SELECTCATEGORIA = document.getElementById('selectCategorias'),
+    ENCABEZADO = document.getElementById('encabezado');
 // Variable para saber en qué página estamos
 const PARAMS = new URLSearchParams(window.location.search);
 
@@ -19,14 +20,15 @@ const MASCOTA = PARAMS.get("mascota");
 document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate();
     TITULO_PAGINA.innerHTML = `Huellitas pets - productos`;
+    fillEncabezado(MASCOTA);
     const FORM = new FormData();
     FORM.append('mascota', MASCOTA);
     //fuerza a que CATEGORIA sea int
     const CATEGORIA2 = parseInt(CATEGORIA);
     console.log(SELECTCATEGORIA);
     console.log(SELECTMARCA);
-    await fillSelectPost(PRODUCTOS_API, 'readCategorias', FORM, SELECTCATEGORIA, CATEGORIA2);
-    await fillSelectPost(PRODUCTOS_API, 'readMarcas', FORM, SELECTMARCA);
+    await fillSelectPost(PRODUCTOS_API, 'readCategorias', FORM, 'selectCategorias', CATEGORIA2);
+    await fillSelectPost(PRODUCTOS_API, 'readMarcas', FORM, 'selectMarcas');
     await fillConteiner('readProductsByCategoria', CATEGORIA2);
 });
 
@@ -107,6 +109,35 @@ const renderStars = (puntuacion) => {
     console.log(starsHTML);
     return starsHTML;
 };
+
+// Función para cargar el encabezado de la página
+const fillEncabezado = (mascota) => {
+    if(mascota == 'Perros' || mascota == 'Perro'){
+    ENCABEZADO.innerHTML = `
+                <div class="col-auto">
+                    <img src="../../resources/img/png/dog_products.png" width="90px">
+                </div>
+                <div class="col-auto">
+                    <h1 class="p-3 text-start">
+                        Perros
+                    </h1>
+                </div>
+    `;
+    }
+    else
+    {
+        ENCABEZADO.innerHTML = `
+                <div class="col-auto">
+                    <img src="../../resources/img/png/cat_products.png" width="90px">
+                </div>
+                <div class="col-auto">
+                    <h1 class="p-3 text-start">
+                        Gatos
+                    </h1>
+                </div>
+    `;
+    }
+}
 
 
 // Función para cargar la siguiente pantalla dependiendo de la categoria elegida

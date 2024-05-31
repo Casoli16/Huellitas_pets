@@ -144,8 +144,18 @@ class productosData extends productosHandler{
 
     public  function setMascotas($value)
     {
-        $this->mascotas = $value;
+        if($value == 'Perro' || $value == 'Perros'){
+        $this->mascotas = 'Perro';
         return true;
+        }
+        elseif($value == 'Gato' || $value == 'Gatos'){
+        $this->mascotas = 'Gato';
+        return true;
+        }
+        else{
+            $this->data_error = 'No es una mascota';
+            return false;
+        }
     }
 
     public function setFilename()

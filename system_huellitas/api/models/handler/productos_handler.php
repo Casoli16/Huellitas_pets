@@ -87,7 +87,7 @@ class productosHandler
     //    Leer las marcas en base a su estado y animal
     public function readOneMarcas()
     {
-        $sql = 'SELECT DISTINCT idMarca, marca, mascotas, estadoProducto FROM vista_mascotas_marca WHERE mascotas = ? AND estadoProducto = 1';
+        $sql = 'SELECT DISTINCT idMarca, mascotas, estadoProducto, marca FROM vista_mascotas_marca WHERE mascotas = ? AND estadoProducto = 1';
         $params = array($this->mascotas);
         return Database::getRows($sql, $params);
     }

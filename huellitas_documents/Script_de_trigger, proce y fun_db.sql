@@ -16,7 +16,6 @@ END //
 
 DELIMITER ;
 
-CALL agregar_cupon_PA ('TREBOR', 30, 1);
 
 DELIMITER //
 
@@ -31,7 +30,6 @@ END //
 
 DELIMITER ;
 
-CALL actualizar_cupon_PA ('POPOTE', 35, 1, 2);
 -- Función para calcular precio total de varios productos
 DELIMITER //
 
@@ -79,8 +77,6 @@ END;
 
 //
 DELIMITER ;
-DELETE FROM valoraciones WHERE id_detalle_pedido = 1;
-DELETE FROM detalles_pedidos WHERE id_detalle_pedido = 1;
 
 -- Vista para ver el GET de los pedidos, contiene nombre de los clientes, fecha en cadena de texto y cantidad de productos llevada --
 CREATE VIEW pedidos_view AS
@@ -94,8 +90,6 @@ INNER JOIN pedidos p ON c.id_cliente = p.id_cliente
 INNER JOIN detalles_pedidos dp ON p.id_pedido = dp.id_pedido
 GROUP BY c.nombre_cliente, p.fecha_registro_pedido, p.estado_pedido, p.id_pedido;
 
-SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view;
-SET lc_time_names = 'es_ES'; SELECT * FROM pedidos_view WHERE cliente LIKE '%Carlos%' OR fecha LIKE '$ $';
 
 
 -- Vista para ver la parte 1 de los productos del detalle pedido, es del GET parte I
@@ -114,7 +108,6 @@ FROM
     INNER JOIN productos pr ON dp.id_producto = pr.id_producto
     INNER JOIN marcas m ON pr.id_marca = m.id_marca;
 
-SELECT * FROM pedido_view_one_I WHERE Id_pedido = 2;
 
 -- Vista para ver la paerte 1.2 de los productos del detalle pedido, este entrega el precio sin el signo $, solo eso cambia:
 
@@ -148,7 +141,6 @@ FROM
     pedidos p
     INNER JOIN clientes c ON p.id_cliente = c.id_cliente;
 
-SELECT * FROM pedido_view_two_II WHERE id_pedido = 2;
 
 -- Vista para poder ver el tipo de permiso que tiene un usuario
 CREATE VIEW admin_permisos_view AS
@@ -163,7 +155,6 @@ FROM
     INNER JOIN asignacion_permisos ap ON a.id_admin = ap.id_admin
     INNER JOIN permisos p ON p.id_permiso = ap.id_permiso;
 
-SELECT * FROM admin_permisos_view;
 
 
 -- Vista para poder ver los permisos de un administrador
@@ -203,7 +194,6 @@ FROM
 ORDER BY 
     fecha_ingreso_cupon DESC;
 
-SELECT * FROM cupones_oferta_vista;
 
 -- Vista para ver todos los detalles de un producto.
 CREATE VIEW  productosView AS
@@ -227,14 +217,13 @@ FROM
     INNER JOIN marcas m ON m.id_marca = p.id_marca
     INNER JOIN categorias c ON c.id_categoria = p.id_categoria;
 
-SELECT * FROM productosVIEW;
 -- Vista que calcula los nuevos clientes que se han registrado en la tienda durante los ultimos siete dias
 CREATE VIEW nuevos_usuarios AS
 SELECT COUNT(*) AS newUsers
-FROM clientes
+FROM clientes WHERE clientes.fecha_registro_cliente >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY);
+
 -- Filtra la fecha que sea mayor a la de hace siete días, para eso utilizamos la función DATE_SUB,
 -- que permite restarle siete días a la fecha actual.
-WHERE clientes.fecha_registro_cliente >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY);
 
 -- Vista que permite saber el producto mas vendido.
 CREATE VIEW producto_ventas_view AS
@@ -262,7 +251,7 @@ JOIN
     productos p ON c.id_categoria = p.id_categoria;
     
 -- Vista para ver las marcas en base de que si es un perro o gato
-CREATE OR REPLACE VIEW vista_mascotas_marca AS
+CREATE VIEW vista_mascotas_marca AS
 SELECT 
     m.nombre_marca AS marca,
     m.id_marca AS idMarca,
@@ -274,7 +263,7 @@ JOIN
     marcas m ON p.id_marca = m.id_marca
 
 -- Vista para ver las categorias en base de que si es un perro o gato
-CREATE OR REPLACE VIEW vista_mascotas_categoria AS
+CREATE VIEW vista_mascotas_categoria AS
 SELECT 
     c.id_categoria AS idCategoria,
     p.mascotas,
@@ -286,7 +275,7 @@ JOIN
     categorias c ON p.id_categoria = c.id_categoria;
 
 -- Vista para ver los productos
-CREATE OR REPLACE VIEW vista_productos_puntuacion AS
+CREATE VIEW vista_productos_puntuacion AS
 SELECT
     c.id_categoria AS id_categoria,
     p.id_marca AS id_marca,
@@ -309,6 +298,4 @@ LEFT JOIN
 GROUP BY
     p.id_producto;
     
-SELECT * FROM vista_productos_puntuacion WHERE id_marca = 1;
-SELECT * FROM vista_productos_puntuacion WHERE id_categoria = 4;
 
