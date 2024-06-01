@@ -161,7 +161,7 @@ const enviarCodigo = async (precio_producto) => {
         const FORM = new FormData(SAVE_FORM);
         const DATA = await fetchData(PRODUCTOS_API, 'readCuponDisponible', FORM);
         console.log(DATA);
-        if (DATA.status) {
+        if (DATA.status == 1) {
             SPAN.classList.remove('text-danger');
             SPAN.classList.remove('d-none');
             SPAN.classList.add('text-success');
@@ -174,8 +174,10 @@ const enviarCodigo = async (precio_producto) => {
            console.log(DATA.dataset.id_cupon);
            console.log(precio);
         }
-        else {
+        // engloba lo de abajo en un else if
+        else if (DATA.status == 2) {
             // Quiero que las 3 clases de abajo se activen si las clases en sí existen dentro del código, las remove, add no dará problemas
+            console.log(DATA.error)
             SPAN.classList.remove('text-success');
             SPAN.classList.add('text-danger');
             PRECIO.classList.remove('text-decoration-line-through');
@@ -183,6 +185,13 @@ const enviarCodigo = async (precio_producto) => {
             SPAN.classList.remove('d-none');
             SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
         }
+
+        else if (!DATA.status) {
+            console.log('Enrte al else de no logueado');
+            sweetAlert(2, 'Inicia sesión o crea una cuenta para utilizar un código', true, 'login.html');
+            
+        }
+
     
     });
 };

@@ -74,6 +74,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Cupón no disponible o no encontrado';
+                    $result['status'] = 2;
                 }
                 break;
             case 'readOneProduct':
