@@ -67,7 +67,8 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readCuponDisponible':
-                if (!$productos->setCodigo($_POST['cupon']) && !$productos->setIdCliente($_SESSION['idCliente'])) {
+                if (!$productos->setCodigo($_POST['cupon']) or
+                    !$productos->setIdCliente($_SESSION['idCliente'])) {
                     $result['error'] = $productos->getDataError();
                 } elseif ($result['dataset'] = $productos->readOneCupon()) {
                     $result['status'] = 1;

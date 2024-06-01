@@ -37,11 +37,11 @@ const fillConteiner = async (id) => {
                             <h2 class="fw-bold">${row.nombre_producto}</h2>
                             <p class="fs-6 fw-light">${row.nombre_marca}</p>
                             <div class="row">
-                                <div class="col-2">
-                                    <h2 class="fw-bold py-2" id="precioactual">$${row.precio_producto}</h2>
+                                <div class="col-md-2 col-sm-12">
+                                    <h2 class="fw-bold py-2" id="precio">$${row.precio_producto}</h2>
                                 </div>
-                                <div class="col-10 text-start d-none">
-                                    <h2 class="fw-bold py-2" id="newprecio">$${row.precio_producto}</h2>
+                                <div class="col-md-10 col-sm-12 text-start d-none" id="divnewprecio">
+                                    <h2 class="fw-bold py-2 text-success" id="newprecio"></h2>
                                 </div>
                             </div> 
                             <p class="fs-5 fw-semibold mb-2">Descripción</p>
@@ -106,7 +106,7 @@ const fillConteiner = async (id) => {
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-5 col-sm-5 text-start d-flex">
-                                    <button class="buttonn" onclick="enviarCodigo()">
+                                    <button class="buttonn" type="submit" onclick="enviarCodigo(${row.precio_producto})">
                                         <img src="../../resources/img/png/enviar_codigo.png" class="img-fluid"
                                             style="max-width: 35px;">
                                         <!-- Ajusta el tamaño máximo del icono -->
@@ -114,7 +114,7 @@ const fillConteiner = async (id) => {
                                 </div>
                             </div>
                         </form>
-                        <span class="fst-normal text-black d-none" id="respuesta">
+                        <span class="fst-normal d-none" id="respuesta">
                         </span>
                         </div>
                         <hr>
@@ -146,31 +146,49 @@ const volver = () => {
     window.location.href = `../../views/public/productos_categoria.html?categoria=${CATEGORIA}&mascota=${MASCOTA}`;
 };
 
-const enviarCodigo = async () => {
-    console.log('Entre a la función de enviar código');
-    const SPAN = document.getElementById('respuesta');
-    const PRECIO = document.getElementById('precio');
-    const NEWPRECIO = document.getElementById('newprecio');
-    PRECIO.classList.remove('text-decoration-line-through');
-    NEWPRECIO.classList.add('d-none');
-    const FORM = new FormData(document.getElementById('formCopun'));
-    const DATA = await fetchData(PRODUCTOS_API, 'readCuponDisponible', FORM);
-    console.log(DATA);
-    if (DATA.status) {
-        SPAN.classList.remove('d-none');
-        SPAN.innerHTML = 'Código válido';
-        PRECIO.classList.add('text-decoration-line-through');
-        NEWPRECIO.classList.remove('d-none');
-        let precio = parseFloat(PRECIO.innerHTML.replace('$', '')) - parseFloat(DATA.dataset[porcentaje_cupon]);
-        // Cambia el contenido de NEWPRECIO por el nuevo precio
-        NEWPRECIO.innerHTML = `$${precio}`;
-    }
-    else {
-        SPAN.classList.remove('d-none');
-        SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
-    }
-
+const enviarCodigo = async (precio_producto) => {
+    const SAVE_FORM = document.getElementById('formCopun');
+    SAVE_FORM.addEventListener('submit', async (event) => {
+        // Se evita recargar la página web después de enviar el formulario.
+        event.preventDefault();
+    
+        // Se verifica la acción a realizar.
+        console.log('Entre a la función de enviar código');
+        const SPAN = document.getElementById('respuesta');
+        const PRECIO = document.getElementById('precio');
+        const NEWPRECIO = document.getElementById('newprecio');
+        const DIV_NEWPRECIO = document.getElementById('divnewprecio');
+        const FORM = new FormData(SAVE_FORM);
+        const DATA = await fetchData(PRODUCTOS_API, 'readCuponDisponible', FORM);
+        console.log(DATA);
+        if (DATA.status) {
+            SPAN.classList.remove('text-danger');
+            SPAN.classList.remove('d-none');
+            SPAN.classList.add('text-success');
+            SPAN.innerHTML = 'Código válido';
+            PRECIO.classList.add('text-decoration-line-through');
+            DIV_NEWPRECIO.classList.remove('d-none');
+            let precio = precio_producto - ((precio_producto / 100) * parseInt(DATA.dataset.porcentaje_cupon));
+            NEWPRECIO.innerHTML = `$${precio.toFixed(2)}`;
+           console.log(DATA.dataset.porcentaje_cupon);
+           console.log(DATA.dataset.id_cupon);
+           console.log(precio);
+        }
+        else {
+            // Quiero que las 3 clases de abajo se activen si las clases en sí existen dentro del código, las remove, add no dará problemas
+            SPAN.classList.remove('text-success');
+            SPAN.classList.add('text-danger');
+            PRECIO.classList.remove('text-decoration-line-through');
+            DIV_NEWPRECIO.classList.add('d-none');
+            SPAN.classList.remove('d-none');
+            SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
+        }
+    
+    });
 };
+
+
+
 /*
 // Código de Francisco para las estrellas
 const stars = document.querySelectorAll('.star');

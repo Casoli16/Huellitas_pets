@@ -300,7 +300,7 @@ GROUP BY
     
 
 -- Vista para saber si un cupón esta disponible para el usuario:
-CREATE VIEW vista_cupones_cliente AS
+ALTER VIEW vista_cupones_cliente AS
 SELECT
     c.id_cliente,
     co.porcentaje_cupon,
@@ -309,7 +309,8 @@ SELECT
         WHEN cu.id_cliente IS NOT NULL THEN 'Cupón utilizado'
         WHEN co.estado_cupon = 1 THEN 'Cupón disponible'
         ELSE 'Cupón no encontrado'
-    END AS mensaje
+    END AS mensaje,
+    co.id_cupon
 FROM
     clientes c
 LEFT JOIN
@@ -321,7 +322,8 @@ SELECT
     c.id_cliente,
     co.porcentaje_cupon,
     co.codigo_cupon,
-    'Cupón disponible' AS mensaje
+    'Cupón disponible' AS mensaje,
+    co.id_cupon
 FROM
     clientes c
 JOIN
@@ -331,6 +333,5 @@ LEFT JOIN
 WHERE
     cu.id_cupon IS NULL;
     
-
-
+SELECT * FROM vista_cupones_cliente;
 
