@@ -260,7 +260,7 @@ SELECT
 FROM 
     productos p
 JOIN 
-    marcas m ON p.id_marca = m.id_marca
+    marcas m ON p.id_marca = m.id_marca;
 
 -- Vista para ver las categorias en base de que si es un perro o gato
 CREATE VIEW vista_mascotas_categoria AS
@@ -297,10 +297,11 @@ LEFT JOIN
     valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido
 GROUP BY
     p.id_producto;
-    
+
+SELECT * FROM vista_productos_puntuacion;
 
 -- Vista para saber si un cupón esta disponible para el usuario:
-ALTER VIEW vista_cupones_cliente AS
+CREATE VIEW vista_cupones_cliente AS
 SELECT
     c.id_cliente,
     co.porcentaje_cupon,
