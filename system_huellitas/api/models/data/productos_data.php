@@ -34,6 +34,20 @@ class productosData extends productosHandler{
         }
     }
 
+    public function setCodigo($value, $min = 3, $max = 20)
+    {
+        if (!Validator::validateString($value)) {
+            $this->data_error = 'El nombre debe ser un valor alfanumérico';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->codigo = $value;
+            return true;
+        } else {
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
+            return false;
+        }
+    }
+
     public function setDescripcionProducto($value, $min = 2, $max = 250)
     {
         if (!$value) {
@@ -169,6 +183,16 @@ class productosData extends productosHandler{
         }
     }
 
+    public function setIdCliente($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->idCliente = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador es incorrecto';
+            return false;
+        }
+    }
     public function getDataError()
     {
         return $this->data_error;

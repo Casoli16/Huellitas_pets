@@ -299,3 +299,38 @@ GROUP BY
     p.id_producto;
     
 
+-- Vista para saber si un cupón esta disponible para el usuario:
+CREATE VIEW vista_cupones_cliente AS
+SELECT
+    c.id_cliente,
+    co.porcentaje_cupon,
+    co.codigo_cupon,
+    CASE
+        WHEN cu.id_cliente IS NOT NULL THEN 'Cupón utilizado'
+        WHEN co.estado_cupon = 1 THEN 'Cupón disponible'
+        ELSE 'Cupón no encontrado'
+    END AS mensaje
+FROM
+    clientes c
+LEFT JOIN
+    cupones_utilizados cu ON c.id_cliente = cu.id_cliente
+LEFT JOIN
+    cupones_oferta co ON cu.id_cupon = co.id_cupon
+UNION
+SELECT
+    c.id_cliente,
+    co.porcentaje_cupon,
+    co.codigo_cupon,
+    'Cupón disponible' AS mensaje
+FROM
+    clientes c
+JOIN
+    cupones_oferta co ON co.estado_cupon = 1
+LEFT JOIN
+    cupones_utilizados cu ON c.id_cliente = cu.id_cliente AND cu.id_cupon = co.id_cupon
+WHERE
+    cu.id_cupon IS NULL;
+    
+
+
+

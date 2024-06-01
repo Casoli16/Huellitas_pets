@@ -36,7 +36,14 @@ const fillConteiner = async (id) => {
                             <!--Aqui esta la información del producto, nombre, marca, precio, descripcion, sección-->
                             <h2 class="fw-bold">${row.nombre_producto}</h2>
                             <p class="fs-6 fw-light">${row.nombre_marca}</p>
-                            <h2 class="fw-bold py-2">$${row.precio_producto}</h2>
+                            <div class="row">
+                                <div class="col-2">
+                                    <h2 class="fw-bold py-2" id="precioactual">$${row.precio_producto}</h2>
+                                </div>
+                                <div class="col-10 text-start d-none">
+                                    <h2 class="fw-bold py-2" id="newprecio">$${row.precio_producto}</h2>
+                                </div>
+                            </div> 
                             <p class="fs-5 fw-semibold mb-2">Descripción</p>
                             <p class="fs-6">${row.descripcion_producto}</p>
                             <div class="bg-orange-color text-light col-12 col-md-3 text-center rounded-3 p-1">
@@ -90,28 +97,32 @@ const fillConteiner = async (id) => {
                             </div>
                         </div>
                         <div class="col-12 py-3 ">
+                        <form id="formCopun">
                             <div class="row align-items-start">
                                 <div class="col-lg-7 col-md-7 col-sm-7">
                                     <div class="mb-3">
-                                        <input type="text" placeholder="Escribe el código de tu cupón" name="text"
+                                        <input type="text" placeholder="Escribe el código de tu cupón" name="cupon"
                                             class="input form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-5 col-sm-5 text-start d-flex">
-                                    <button class="buttonn">
+                                    <button class="buttonn" onclick="enviarCodigo()">
                                         <img src="../../resources/img/png/enviar_codigo.png" class="img-fluid"
                                             style="max-width: 35px;">
                                         <!-- Ajusta el tamaño máximo del icono -->
                                     </button>
                                 </div>
                             </div>
+                        </form>
+                        <span class="fst-normal text-black d-none" id="respuesta">
+                        </span>
                         </div>
                         <hr>
                     </div>
             `;
         });
     } else {
-        sweetAlert(3, DATA.error, true);
+        await sweetAlert(3, 'Ummm', false, null);
     }
 };
 
@@ -133,6 +144,32 @@ const restar = () => {
 
 const volver = () => {
     window.location.href = `../../views/public/productos_categoria.html?categoria=${CATEGORIA}&mascota=${MASCOTA}`;
+};
+
+const enviarCodigo = async () => {
+    console.log('Entre a la función de enviar código');
+    const SPAN = document.getElementById('respuesta');
+    const PRECIO = document.getElementById('precio');
+    const NEWPRECIO = document.getElementById('newprecio');
+    PRECIO.classList.remove('text-decoration-line-through');
+    NEWPRECIO.classList.add('d-none');
+    const FORM = new FormData(document.getElementById('formCopun'));
+    const DATA = await fetchData(PRODUCTOS_API, 'readCuponDisponible', FORM);
+    console.log(DATA);
+    if (DATA.status) {
+        SPAN.classList.remove('d-none');
+        SPAN.innerHTML = 'Código válido';
+        PRECIO.classList.add('text-decoration-line-through');
+        NEWPRECIO.classList.remove('d-none');
+        let precio = parseFloat(PRECIO.innerHTML.replace('$', '')) - parseFloat(DATA.dataset[porcentaje_cupon]);
+        // Cambia el contenido de NEWPRECIO por el nuevo precio
+        NEWPRECIO.innerHTML = `$${precio}`;
+    }
+    else {
+        SPAN.classList.remove('d-none');
+        SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
+    }
+
 };
 /*
 // Código de Francisco para las estrellas

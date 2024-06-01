@@ -19,6 +19,8 @@ class productosHandler
     protected $idMarca = null;
     protected $categoria = null;
     protected $marca = null;
+    protected $idCliente = null;
+    protected $codigo = null;
 
     const RUTA_IMAGEN = '../../images/productos/';
 
@@ -162,6 +164,14 @@ class productosHandler
         $sql = 'DELETE FROM productos WHERE id_producto = ?';
         $params = array($this->idProducto);
         return Database::executeRow($sql, $params);
+    }
+
+    // Leer si un cupon es valido
+    public function readOneCupon()
+    {
+        $sql = 'SELECT * FROM vista_cupones_cliente WHERE id_cliente = ? AND codigo_cupon = ?;';
+        $params = array($this->idCliente,$this->codigo);
+        return Database::getRow($sql, $params);
     }
 
     public function readFilename()
