@@ -54,7 +54,7 @@ const fillConteiner = async (action, id) => {
             <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="p-sm-3 card rounded-4 shadow mb-3">
                     <div class="justify-content-center">
-                        <img src="${SERVER_URL}images/productos/${row.imagen_producto}" class="img-fluid" alt="...">
+                        <img src="${SERVER_URL}images/productos/${row.imagen_producto}" width="250px" height="250px" alt="...">
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -66,8 +66,10 @@ const fillConteiner = async (action, id) => {
                             </div>
                         </div>
                         <p class="card-text small fw-light mb-0 mt-1">${row.Marca}</p>
-                        <p class="fw-bold">${row.nombre_producto}</p>
-                        <div class="row">
+                        <div class="container-title">   
+                            <p class="fw-bold">${row.nombre_producto}</p>
+                        </div>
+                        <div class="row d-flex justify-content-center align-items-center">
                             <div class="col-md-9 col-sm-12">
                                 <div class="text-start">
                                     <button onclick="navigateToPage(${row.id_producto})" class="btn btn-orange-color text-white fs-6" id="Ver_producto_perros">

@@ -208,3 +208,7 @@ a {
     outline-offset: 5px;
     background-color: #fff
 }
+
+.container-title{
+    height: 100px;
+}

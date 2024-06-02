@@ -141,16 +141,16 @@ const footer = `
             <div class="col-sm-6 col-md-2 mt-5">
                 <h3 class="fw-semibold">Servicios</h3>
                 <div class="mt-3">
-                    <a class="text-decoration-none text-dark fw-light" href="../../views/public/categorias_perro.html">Categorías</a>
+                    <p class="text-decoration-none text-dark fw-light">Categorías</p>
                 </div>
                 <div class="mt-2">
-                    <a class="text-decoration-none text-dark fw-light" href="../../views/public/productos_perros_comida.html">Productos para perros</a>
+                    <p class="text-decoration-none text-dark fw-light">Productos para perros</p>
                 </div>
                 <div class="mt-2">
-                    <a class="text-decoration-none text-dark fw-light" href="../../views/public/productos_gatos_comida.html">Productos para gatos</a>
+                    <p class="text-decoration-none text-dark fw-light">Productos para gatos</p>
                 </div>
                 <div class="mt-2">
-                    <a class="text-decoration-none text-dark fw-light">Cupones</a>
+                    <p class="text-decoration-none text-dark fw-light">Cupones</p>
                 </div>
             </div>
             <!-- Tercera columna -->
