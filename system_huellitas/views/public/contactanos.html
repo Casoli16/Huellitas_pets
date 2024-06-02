@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas pets - Contáctanos</title>
     <!-- Agregamos una imagen para que se vea en la ventana -->
-    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <link type="image/png" rel="icon" href="../../resources/img/png/huellita_logo_without_text.png">
     <!-- Agregamos el framework de boostrap - css -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Agregamos su archivo css -->
@@ -32,30 +32,33 @@
                 <div class="col-sm-12 col-md-6">
                     <h2 class="fw-semibold text-center mb-5">Contáctanos</h2>
                     <!-- Formulario -->
-                    <form action="" id="contactanos_form">
+                    <form action="" id="formContactanos">
                         <div class="mb-4">
-                            <label for="nombre_cliente" class="form-label fw-semibold">Nombre</label>
-                            <input type="text" id="nombre_cliente" name="nonmbreCliente"
-                                class="form-control form-control-lg shadow rounded-4 bg-white">
+                            <label for="nombreCliente" class="form-label fw-semibold">Nombre</label>
+                            <input type="text" id="nombreCliente" name="nombreCliente"
+                                class="form-control form-control-lg shadow rounded-4 bg-white" required>
                         </div>
                         <div class="mb-4">
-                            <label for="email_cliente" class="form-label fw-semibold">Correo electrónico</label>
-                            <input type="email" id="email_cliente" name="emailCliente"
-                                class="form-control form-control-lg shadow  rounded-4 bg-white">
+                            <label for="correoCliente" class="form-label fw-semibold">Correo electrónico</label>
+                            <input type="email" id="correoCliente" name="correoCliente"
+                                class="form-control form-control-lg shadow  rounded-4 bg-white" required>
                         </div>
                         <div class="mb-4">
-                            <label for="tel_cliente" class="form-label fw-semibold">Teléfono</label>
-                            <input type="email" id="tel_cliente" name="telCliente"
-                                class="form-control form-control-lg shadow  rounded-4 bg-white">
-                        </div>
-                        <div class="mb-4">
-                            <label for="comentario_cliente" class="form-label fw-semibold">Mensaje</label>
+                            <label for="mensajeCorreo" class="form-label fw-semibold">Mensaje</label>
                             <textarea class="form-control form-control-lg bg-white shadow rounded-4"
-                                id="comentario_cliente" name="comentarioCliente" rows="3"></textarea>
+                                id="mensajeCorreo" name="mensajeCorreo" rows="3" required></textarea>
                         </div>
 
-                        <a class="btn btn-orange-color btn-lg mb-2 text-light col-md-4" href=""
-                            id="btn_enviar">Envíar</a>
+                        <div id="cargaContainer" class="d-flex justify-content-center d-none">
+                            <div class="spinner-border text-warning " role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-orange-color mb-2 text-light col-md-4"
+                                    id="btn_enviar">Envíar</button>
+                        </div>
                     </form>
                 </div>
                 <!-- Columna 3, la imagen se ocultará en pantallas pequeñas -->
