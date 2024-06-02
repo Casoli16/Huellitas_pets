@@ -275,16 +275,16 @@ JOIN
     categorias c ON p.id_categoria = c.id_categoria;
 
 -- Vista para ver los productos
-CREATE VIEW vista_productos_puntuacion AS
+ALTER VIEW vista_productos_puntuacion AS
 SELECT
     c.id_categoria AS id_categoria,
     p.id_marca AS id_marca,
     p.precio_producto AS precio_producto,
     m.nombre_marca AS Marca,
-    d.id_producto AS id_producto,
+    p.id_producto AS id_producto,
     p.nombre_producto AS nombre_producto,
     p.imagen_producto AS imagen_producto,
-    ROUND(AVG(v.calificacion_valoracion)/2) AS puntuacion_producto
+    COALESCE(ROUND(AVG(v.calificacion_valoracion) / 2), 5) AS puntuacion_producto
 FROM
     productos p
 JOIN
@@ -298,7 +298,8 @@ LEFT JOIN
 GROUP BY
     p.id_producto;
 
-SELECT * FROM vista_productos_puntuacion;
+
+SELECT * FROM vista_productos_puntuacion WHERE id_producto = 7;
 
 -- Vista para saber si un cupón esta disponible para el usuario:
 CREATE VIEW vista_cupones_cliente AS
@@ -335,4 +336,4 @@ WHERE
     cu.id_cupon IS NULL;
     
 SELECT * FROM vista_cupones_cliente;
-
+SELECT * FROM productos;
