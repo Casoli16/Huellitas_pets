@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas pet's - Carrito</title>
     <!-- Agregamos una imagen para que se vea en la ventana -->
-    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <link type="image/png" rel="icon" href="../../resources/img/png/huellita_logo_without_text.png">
     <!-- Agregamos el framework de boostrap - css -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Agregamos su archivo css -->
@@ -19,7 +19,7 @@
 
     <!-- Agregamos nuestro navbar -->
     <header class="p-5 mt-5">
-        <nav id="navbar_perfil"></nav>
+        <nav id="navbar"></nav>
         <div class="container">
             <div class="row mt-4 d-flex align-items-center">
                 <div class="col-auto">
@@ -137,8 +137,12 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la libreria para alertas -->
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
+    <script type="text/javascript" src="../../controllers/public/carrito_1.js"></script>
 </body>
 
 </html>

@@ -45,6 +45,39 @@ class PedidosData extends PedidosHandler{
         }
     }
 
+    public function setProducto($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->producto = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del producto es incorrecto';
+            return false;
+        }
+    }
+
+    public function setCantidad($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->cantidad = $value;
+            return true;
+        } else {
+            $this->data_error = 'La cantidad del producto debe ser mayor o igual a 1';
+            return false;
+        }
+    }
+
+    public function setIdDetalle($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->idDetalle = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del detalle pedido es incorrecto';
+            return false;
+        }
+    }
+
     public function setMonth($value)
     {
         $this->monthNumber = $value;
@@ -60,4 +93,6 @@ class PedidosData extends PedidosHandler{
     {
         return $this->filename;
     }
+
+
 }
