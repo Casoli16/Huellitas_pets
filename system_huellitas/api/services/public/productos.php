@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
             // Método que permite leer los productos en base a una categoría.
             case 'readProductsByCategoria':
                 if (!$productos->setCategoria($_POST['condition'])or
-                !$productos->setMascotas($_POST['mascota'])
+                    !$productos->setMascotas($_POST['mascota'])
                 ) {
                     $result['error'] = $productos->getDataError();
                 } elseif ($result['dataset'] = $productos->readOneCategoria()) {
