@@ -46,6 +46,7 @@ const fillConteiner = async (action, id) => {
     CONTENEDOR.innerHTML = '';
     const FORM = new FormData();
     FORM.append('condition', id);
+    FORM.append('mascota', MASCOTA);
     const DATA = await fetchData(PRODUCTOS_API, action, FORM);
 
     if (DATA.status) {

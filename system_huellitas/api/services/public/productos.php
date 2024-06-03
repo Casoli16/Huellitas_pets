@@ -38,7 +38,9 @@ if (isset($_GET['action'])) {
                 break;
             // Método que permite leer los productos en base a una marca.
             case 'readProductsByMarca':
-                if (!$productos->setMarca($_POST['condition'])) {
+                if (!$productos->setMarca($_POST['condition']) or
+                    !$productos->setMascotas($_POST['mascota'])
+                    ) {
                     $result['error'] = $productos->getDataError();
                 } elseif ($result['dataset'] = $productos->readOneMarca()) {
                     $result['status'] = 1;
@@ -48,7 +50,9 @@ if (isset($_GET['action'])) {
                 break;
             // Método que permite leer los productos en base a una categoría.
             case 'readProductsByCategoria':
-                if (!$productos->setCategoria($_POST['condition'])) {
+                if (!$productos->setCategoria($_POST['condition'])or
+                !$productos->setMascotas($_POST['mascota'])
+                ) {
                     $result['error'] = $productos->getDataError();
                 } elseif ($result['dataset'] = $productos->readOneCategoria()) {
                     $result['status'] = 1;

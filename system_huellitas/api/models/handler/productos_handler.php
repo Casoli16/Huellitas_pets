@@ -116,16 +116,16 @@ class productosHandler
     //    Leer las marcas en base a su estado y animal
     public function readOneMarca()
     {
-        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE id_marca = ? ORDER BY puntuacion_producto DESC';
-        $params = array($this->marca);
+        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE id_marca = ? AND mascota = ? ORDER BY puntuacion_producto DESC';
+        $params = array($this->marca, $this->mascotas);
         return Database::getRows($sql, $params);
     }
 
     //    Leer las marcas en base a su estado y animal
     public function readOneCategoria()
     {
-        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE id_categoria = ? ORDER BY puntuacion_producto DESC';
-        $params = array($this->categoria);
+        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE id_categoria = ? AND mascota = ?  ORDER BY puntuacion_producto DESC';
+        $params = array($this->categoria, $this->mascotas);
         return Database::getRows($sql, $params);
     }
 

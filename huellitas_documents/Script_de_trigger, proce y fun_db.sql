@@ -275,7 +275,7 @@ JOIN
     categorias c ON p.id_categoria = c.id_categoria;
 
 -- Vista para ver los productos
-ALTER VIEW vista_productos_puntuacion AS
+CREATE VIEW vista_productos_puntuacion AS
 SELECT
     c.id_categoria AS id_categoria,
     p.id_marca AS id_marca,
@@ -284,6 +284,7 @@ SELECT
     p.id_producto AS id_producto,
     p.nombre_producto AS nombre_producto,
     p.imagen_producto AS imagen_producto,
+    p.mascotas AS mascota,
     COALESCE(ROUND(AVG(v.calificacion_valoracion) / 2), 5) AS puntuacion_producto
 FROM
     productos p
