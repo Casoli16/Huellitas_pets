@@ -361,3 +361,59 @@ LEFT JOIN
     valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido
 
 SELECT * FROM vista_productos_comentarios WHERE id_producto = 2 AND estado = 1 ORDER BY calificacion DESC;
+
+/*Metodo para guardar un comentario en valoraciones*/
+DELIMITER //
+
+CREATE PROCEDURE crear_detalle_pedido (
+    IN p_id_pedido INT,
+    IN p_cantidad_detalle_pedido INT,
+    IN p_id_producto INT,
+    IN p_id_cupon INT,
+    IN p_id_cliente INT
+)
+BEGIN
+    -- Declarar las variables para almacenar los valores necesarios
+    DECLARE p_cupon_porcentaje INT;
+    DECLARE p_precio_unitario DECIMAL(10,2);
+    DECLARE p_precio_total DECIMAL(10,2);
+    DECLARE p_precio_total_con_cupon DECIMAL(10,2);
+
+    -- Obtener el precio unitario del producto
+    SELECT precio_producto INTO p_precio_unitario
+    FROM productos
+    WHERE id_producto = p_id_producto;
+
+    -- Calcular el precio total sin aplicar el cupón
+    SET p_precio_total = p_cantidad_detalle_pedido * p_precio_unitario;
+
+    -- Verificar si el cupón es válido (id_cupon != 0)
+    IF p_id_cupon != 0 THEN
+        -- Obtener el porcentaje de descuento del cupón
+        SELECT porcentaje_cupon INTO p_cupon_porcentaje
+        FROM cupones_oferta
+        WHERE id_cupon = p_id_cupon;
+
+        -- Calcular el precio total con el descuento del cupón
+        SET p_precio_total_con_cupon = p_precio_total * (1 - p_cupon_porcentaje / 100);
+
+        -- Registrar el cupón como utilizado por el cliente
+        INSERT INTO cupones_utilizados (id_cupon, id_cliente) 
+        VALUES (p_id_cupon, p_id_cliente);
+
+        -- Insertar el detalle del pedido con el precio con descuento
+        INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
+        VALUES(p_id_producto, p_precio_total_con_cupon, p_cantidad_detalle_pedido, p_id_pedido);
+    ELSE
+        -- Insertar el detalle del pedido sin aplicar ningún descuento
+        INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
+        VALUES(p_id_producto, p_precio_total, p_cantidad_detalle_pedido, p_id_pedido);
+    END IF;
+
+END //
+
+DELIMITER ;
+
+
+CALL crear_detalle_pedido ?,?,?,?,?;
+

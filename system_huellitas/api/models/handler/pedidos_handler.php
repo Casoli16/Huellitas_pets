@@ -11,7 +11,7 @@ class PedidosHandler
      */
     protected $idPedido = null;
     protected $idDetalle = null;
-
+    protected $idProducto = null;
     protected $cliente = null;
 
     protected $precio = null;
@@ -19,6 +19,7 @@ class PedidosHandler
     protected $producto = null;
 
     protected $cantidad = null;
+    protected $idCupon = null;
     protected $estadoPedido = null;
     protected  $monthNumber = null;
 
@@ -157,9 +158,8 @@ class PedidosHandler
     public function createDetail()
     {
         // Se realiza una subconsulta para obtener el precio del producto.
-        $sql = 'INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
-                VALUES(?, ?, ?, ?)';
-        $params = array($this->producto, $this->precio, $this->cantidad, $_SESSION['idPedido']);
+        $sql = 'CALL crear_detalle_pedido (?,?,?,?,?);';
+        $params = array($_SESSION['idPedido'], $this->cantidad, $this->producto, $this->idCupon, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 

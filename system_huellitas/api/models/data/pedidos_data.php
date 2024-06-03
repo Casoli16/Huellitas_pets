@@ -20,6 +20,23 @@ class PedidosData extends PedidosHandler{
         }
     }
 
+    public function setIdCupon($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->idCupon = $value;
+            return true;
+        } 
+        else if ($value == 0)
+        {
+            $this->idCupon = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del cupón es incorrecto';
+            return false;
+        }
+    }
+
+
     public function setIdDetallePedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {

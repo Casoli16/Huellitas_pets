@@ -22,7 +22,7 @@ if(isset($_GET['action'])){
                 }elseif (
                     !$pedidos->setProducto($_POST['idProducto']) or
                     !$pedidos->setCantidad($_POST['cantidadProducto']) or
-                    !$pedidos->setPrecio($_POST['precioProducto'])
+                    !$pedidos->setIdCupon($_POST['idCupon'])
                 ){
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($pedidos->createDetail()){
