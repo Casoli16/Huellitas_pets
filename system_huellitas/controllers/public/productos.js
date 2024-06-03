@@ -1,9 +1,13 @@
 const PRODUCTOS_API = 'services/public/productos.php';
+// API'S UTILIZADAS EN LA PANTALLA
+const PEDIDOS_API = 'services/public/pedidos.php';
 
 // ELEMENTOS DE LA PÁGINA
 const CONTENEDOR = document.getElementById('contenedorinformacion'),
     TITULO_PAGINA = document.getElementById('titulo'),
     INPUTCANTIDAD = document.getElementById('cantidad');
+
+let precioProducto;
 
 // Variable para saber en qué página estamos
 const PARAMS = new URLSearchParams(window.location.search);
@@ -27,6 +31,8 @@ const fillConteiner = async (id) => {
     FORM.append('idProducto', id);
     const DATA = await fetchData(PRODUCTOS_API, 'readOneProduct', FORM);
     if (DATA.status) {
+        precioProducto = DATA.dataset[0].precio_producto;
+        console.log(precioProducto)
         DATA.dataset.forEach(row => {
             TITULO_PAGINA.innerHTML = `Huellitas pets - ${row.nombre_producto}`;
             CONTENEDOR.innerHTML += `
@@ -68,17 +74,13 @@ const fillConteiner = async (id) => {
                             </div>
                             <!--Boton para añadir el producto al carrito-->
                             <div class="col-sm-12 col-md-8 col-lg-3 px-2 align-items-start ">
-                                <button class="buton d-flex">
-                                    <a href="../public/carrito_1.html"
-                                        class="btn btn-orange-color text-light me-md-5 d-flex align-items-center py-2 btn-small rounded-3">
-
+                                <button class="buton btn btn-orange-color text-light me-md-5 d-flex align-items-center py-2 btn-small rounded-3" onclick="sendToCart()">
                                         <div class="col-auto d-none d-sm-block">
                                             <img src="../../resources/img/svg/carro_redondo.svg" width="40px">
                                         </div>
                                         <div class="col-auto">
                                             Añadir al carrito
                                         </div>
-                                    </a>
                                 </button>
                             </div>
                         </div>
@@ -202,6 +204,24 @@ const enviarCodigo = async (precio_producto) => {
 };
 
 
+const sendToCart = async () =>{
+    const CANTIDAD = document.getElementById('cantidad');
+    let cant = CANTIDAD.value;
+    const FORM = new FormData();
+    FORM.append('idProducto', IDPRODUCTO);
+    FORM.append('cantidadProducto', cant);
+    FORM.append('precioProducto', precioProducto)
+
+    const DATA = await fetchData(PEDIDOS_API, 'createDetail', FORM);
+
+    if(DATA.status){
+        sweetAlert(1, DATA.message, false, 'carrito_1.html');
+    } else if(DATA.session){
+        sweetAlert(2, DATA.error, false);
+    } else {
+        sweetAlert(3, DATA.error, true, 'login.html');
+    }
+}
 
 /*
 // Código de Francisco para las estrellas

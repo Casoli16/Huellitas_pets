@@ -14,6 +14,8 @@ class PedidosHandler
 
     protected $cliente = null;
 
+    protected $precio = null;
+
     protected $producto = null;
 
     protected $cantidad = null;
@@ -156,8 +158,8 @@ class PedidosHandler
     {
         // Se realiza una subconsulta para obtener el precio del producto.
         $sql = 'INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
-                VALUES(?, (SELECT precio_producto FROM productos WHERE id_producto = ?), ?, ?)';
-        $params = array($this->producto, $this->producto, $this->cantidad, $_SESSION['idPedido']);
+                VALUES(?, ?, ?, ?)';
+        $params = array($this->producto, $this->precio, $this->cantidad, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
 

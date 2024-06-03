@@ -21,7 +21,8 @@ if(isset($_GET['action'])){
                     $result['error'] = 'Ocurrió un problema al iniciar el pedido';
                 }elseif (
                     !$pedidos->setProducto($_POST['idProducto']) or
-                    !$pedidos->setCantidad($_POST['cantidadProducto'])
+                    !$pedidos->setCantidad($_POST['cantidadProducto']) or
+                    !$pedidos->setPrecio($_POST['precioProducto'])
                 ){
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($pedidos->createDetail()){

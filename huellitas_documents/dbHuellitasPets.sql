@@ -91,14 +91,16 @@ CREATE TABLE IF NOT EXISTS productos (
   CONSTRAINT fk_productos_categoria FOREIGN KEY (id_categoria) REFERENCES categorias (id_categoria)
 );
 
+
 CREATE TABLE IF NOT EXISTS pedidos (
   id_pedido INT AUTO_INCREMENT PRIMARY KEY,
-  estado_pedido ENUM('Pendiente', 'Completado', 'Cancelado'),
+  estado_pedido ENUM('Pendiente', 'Completado', 'Cancelado') DEFAULT 'Pendiente',
   fecha_registro_pedido DATE DEFAULT NOW(),
   direccion_pedido VARCHAR(250) NOT NULL,
   id_cliente INT,
   CONSTRAINT fk_pedidos_clientes FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
 );
+ALTER TABLE pedidos MODIFY column estado_pedido ENUM ('Pendiente', 'Completado', 'Cancelado') DEFAULT 'Pendiente';
 
 CREATE TABLE IF NOT EXISTS cupones_oferta(
  id_cupon INT AUTO_INCREMENT PRIMARY KEY,

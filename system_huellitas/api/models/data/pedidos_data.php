@@ -45,6 +45,17 @@ class PedidosData extends PedidosHandler{
         }
     }
 
+    public function setPrecio($value)
+    {
+        if (Validator::validateMoney($value)) {
+            $this->precio = $value;
+            return true;
+        } else {
+            $this->data_error = 'El precio debe ser un valor numérico';
+            return false;
+        }
+    }
+
     public function setProducto($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -93,6 +104,8 @@ class PedidosData extends PedidosHandler{
     {
         return $this->filename;
     }
+
+
 
 
 }
