@@ -365,28 +365,55 @@ SELECT * FROM vista_productos_comentarios WHERE id_producto = 2 AND estado = 1 O
 /*Metodo para guardar un comentario en valoraciones*/
 DELIMITER //
 
-CREATE PROCEDURE insertar_valoracion (
-    IN p_calificacion_valoracion INT,
-    IN p_comentario_valoracion VARCHAR(250),
-    IN p_estado_valoracion BOOL,
-    IN p_id_cliente INT,
-    IN p_id_producto INT
+CREATE PROCEDURE crear_detalle_pedido (
+    IN p_id_pedido INT,
+    IN p_cantidad_detalle_pedido INT,
+    IN p_id_producto INT,
+    IN p_id_cupon INT,
+    IN p_id_cliente INT
 )
 BEGIN
-    DECLARE v_id_detalle_pedido INT;
+    -- Declarar las variables para almacenar los valores necesarios
+    DECLARE p_cupon_porcentaje INT;
+    DECLARE p_precio_unitario DECIMAL(10,2);
+    DECLARE p_precio_total DECIMAL(10,2);
+    DECLARE p_precio_total_con_cupon DECIMAL(10,2);
 
-    -- Obtener el id_detalle_pedido correspondiente al id_cliente y id_producto
-    SELECT dp.id_detalle_pedido
-    INTO v_id_detalle_pedido
-    FROM detalles_pedidos dp
-    INNER JOIN pedidos p ON dp.id_pedido = p.id_pedido
-    WHERE p.id_cliente = p_id_cliente AND dp.id_producto = p_id_producto
-    ORDER BY dp.id_detalle_pedido DESC
-    LIMIT 1;
+    -- Obtener el precio unitario del producto
+    SELECT precio_producto INTO p_precio_unitario
+    FROM productos
+    WHERE id_producto = p_id_producto;
 
-    -- Insertar el nuevo registro en la tabla valoraciones
-    INSERT INTO valoraciones (calificacion_valoracion, comentario_valoracion, estado_valoracion, id_detalle_pedido)
-    VALUES (p_calificacion_valoracion, p_comentario_valoracion, p_estado_valoracion, v_id_detalle_pedido);
+    -- Calcular el precio total sin aplicar el cupón
+    SET p_precio_total = p_cantidad_detalle_pedido * p_precio_unitario;
+
+    -- Verificar si el cupón es válido (id_cupon != 0)
+    IF p_id_cupon != 0 THEN
+        -- Obtener el porcentaje de descuento del cupón
+        SELECT porcentaje_cupon INTO p_cupon_porcentaje
+        FROM cupones_oferta
+        WHERE id_cupon = p_id_cupon;
+
+        -- Calcular el precio total con el descuento del cupón
+        SET p_precio_total_con_cupon = p_precio_total * (1 - p_cupon_porcentaje / 100);
+
+        -- Registrar el cupón como utilizado por el cliente
+        INSERT INTO cupones_utilizados (id_cupon, id_cliente) 
+        VALUES (p_id_cupon, p_id_cliente);
+
+        -- Insertar el detalle del pedido con el precio con descuento
+        INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
+        VALUES(p_id_producto, p_precio_total_con_cupon, p_cantidad_detalle_pedido, p_id_pedido);
+    ELSE
+        -- Insertar el detalle del pedido sin aplicar ningún descuento
+        INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
+        VALUES(p_id_producto, p_precio_total, p_cantidad_detalle_pedido, p_id_pedido);
+    END IF;
+
 END //
 
 DELIMITER ;
+
+
+CALL crear_detalle_pedido ?,?,?,?,?;
+

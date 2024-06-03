@@ -15,7 +15,7 @@ const PARAMS = new URLSearchParams(window.location.search);
 const CATEGORIA = PARAMS.get("categoria");
 const MASCOTA = PARAMS.get("mascota");
 const IDPRODUCTO = PARAMS.get("producto");
-let IDCUPON = 0;
+let idcupon = 0;
 
 // Función que se carga cuando se abre la página
 document.addEventListener('DOMContentLoaded', async () => {
@@ -165,7 +165,7 @@ const enviarCodigo = async (precio_producto) => {
         const FORM = new FormData(SAVE_FORM);
         const DATA = await fetchData(PRODUCTOS_API, 'readCuponDisponible', FORM);
         console.log(DATA);
-        if (DATA.status == 1) {
+        if (DATA.status == 1 && DATA.dataset.mensaje == 'Cupón disponible') {
             SPAN.classList.remove('text-danger');
             SPAN.classList.remove('d-none');
             SPAN.classList.add('text-success');
@@ -175,8 +175,9 @@ const enviarCodigo = async (precio_producto) => {
             let precio = precio_producto - ((precio_producto / 100) * parseInt(DATA.dataset.porcentaje_cupon));
             NEWPRECIO.innerHTML = `$${precio.toFixed(2)}`;
            console.log(DATA.dataset.porcentaje_cupon);
-           IDCUPON = DATA.dataset.id_cupon;
-           console.log(IDCUPON);
+           idcupon = DATA.dataset.id_cupon;
+           console.log(DATA.dataset.mensaje);
+           console.log(idcupon);
         }
         // engloba lo de abajo en un else if
         else if (DATA.status == 2) {
@@ -188,15 +189,29 @@ const enviarCodigo = async (precio_producto) => {
             DIV_NEWPRECIO.classList.add('d-none');
             SPAN.classList.remove('d-none');
             SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
-            IDCUPON = 0;
-            console.log(IDCUPON);
+            idcupon = 0;
+            console.log(idcupon);
         }
 
         else if (!DATA.status) {
-            console.log('Enrte al else de no logueado');
-            IDCUPON = 0;
-            console.log(IDCUPON);
-            sweetAlert(2, 'Inicia sesión o crea una cuenta para utilizar un código', true, 'login.html');
+            console.log('Entre al else de no logueado');
+            idcupon = 0;
+            console.log(idcupon);
+            sweetAlert(3, 'Inicia sesión o crea una cuenta para utilizar un código', true, 'login.html');
+        }
+
+        // engloba lo de abajo en un else if
+        else {
+            // Quiero que las 3 clases de abajo se activen si las clases en sí existen dentro del código, las remove, add no dará problemas
+            console.log(DATA.error)
+            SPAN.classList.remove('text-success');
+            SPAN.classList.add('text-danger');
+            PRECIO.classList.remove('text-decoration-line-through');
+            DIV_NEWPRECIO.classList.add('d-none');
+            SPAN.classList.remove('d-none');
+            SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
+            idcupon = 0;
+            console.log(idcupon);
         }
 
     
@@ -210,7 +225,8 @@ const sendToCart = async () =>{
     const FORM = new FormData();
     FORM.append('idProducto', IDPRODUCTO);
     FORM.append('cantidadProducto', cant);
-    FORM.append('precioProducto', precioProducto)
+    FORM.append('idCupon', idcupon);
+    console.log(idcupon);
 
     const DATA = await fetchData(PEDIDOS_API, 'createDetail', FORM);
 
