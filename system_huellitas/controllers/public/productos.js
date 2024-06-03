@@ -2,7 +2,8 @@ const PRODUCTOS_API = 'services/public/productos.php';
 
 // ELEMENTOS DE LA PÁGINA
 const CONTENEDOR = document.getElementById('contenedorinformacion'),
-    TITULO_PAGINA = document.getElementById('titulo');
+    TITULO_PAGINA = document.getElementById('titulo'),
+    INPUTCANTIDAD = document.getElementById('cantidad');
 
 // Variable para saber en qué página estamos
 const PARAMS = new URLSearchParams(window.location.search);
@@ -10,6 +11,7 @@ const PARAMS = new URLSearchParams(window.location.search);
 const CATEGORIA = PARAMS.get("categoria");
 const MASCOTA = PARAMS.get("mascota");
 const IDPRODUCTO = PARAMS.get("producto");
+let IDCUPON = 0;
 
 // Función que se carga cuando se abre la página
 document.addEventListener('DOMContentLoaded', async () => {
@@ -171,8 +173,8 @@ const enviarCodigo = async (precio_producto) => {
             let precio = precio_producto - ((precio_producto / 100) * parseInt(DATA.dataset.porcentaje_cupon));
             NEWPRECIO.innerHTML = `$${precio.toFixed(2)}`;
            console.log(DATA.dataset.porcentaje_cupon);
-           console.log(DATA.dataset.id_cupon);
-           console.log(precio);
+           IDCUPON = DATA.dataset.id_cupon;
+           console.log(IDCUPON);
         }
         // engloba lo de abajo en un else if
         else if (DATA.status == 2) {
@@ -184,12 +186,15 @@ const enviarCodigo = async (precio_producto) => {
             DIV_NEWPRECIO.classList.add('d-none');
             SPAN.classList.remove('d-none');
             SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
+            IDCUPON = 0;
+            console.log(IDCUPON);
         }
 
         else if (!DATA.status) {
             console.log('Enrte al else de no logueado');
+            IDCUPON = 0;
+            console.log(IDCUPON);
             sweetAlert(2, 'Inicia sesión o crea una cuenta para utilizar un código', true, 'login.html');
-            
         }
 
     

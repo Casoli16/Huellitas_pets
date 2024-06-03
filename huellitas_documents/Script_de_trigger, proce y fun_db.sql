@@ -337,3 +337,27 @@ WHERE
     
 SELECT * FROM vista_cupones_cliente;
 SELECT * FROM productos;
+
+
+CREATE VIEW vista_productos_comentarios AS
+SELECT
+    p.id_producto AS id_producto,
+    v.calificacion_valoracion AS calificacion,
+    v.comentario_valoracion AS comentario,
+    v.fecha_valoracion AS fecha,
+   DATE_FORMAT(v.fecha_valoracion, 'Publicado el %d de %M del %Y')  AS fecha_formato,
+    v.estado_valoracion AS estado,
+    cl.nombre_cliente AS nombre_cliente,
+    cl.imagen_cliente AS imagen_cliente
+FROM
+    productos p
+LEFT JOIN
+    detalles_pedidos d ON p.id_producto = d.id_producto
+JOIN
+	pedidos pd ON d.id_pedido = pd.id_pedido
+JOIN
+	clientes cl ON pd.id_cliente = cl.id_cliente
+LEFT JOIN
+    valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido
+
+SELECT * FROM vista_productos_comentarios WHERE id_producto = 2 AND estado = 1 ORDER BY calificacion DESC;
