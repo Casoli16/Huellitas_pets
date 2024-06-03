@@ -361,3 +361,32 @@ LEFT JOIN
     valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido
 
 SELECT * FROM vista_productos_comentarios WHERE id_producto = 2 AND estado = 1 ORDER BY calificacion DESC;
+
+/*Metodo para guardar un comentario en valoraciones*/
+DELIMITER //
+
+CREATE PROCEDURE insertar_valoracion (
+    IN p_calificacion_valoracion INT,
+    IN p_comentario_valoracion VARCHAR(250),
+    IN p_estado_valoracion BOOL,
+    IN p_id_cliente INT,
+    IN p_id_producto INT
+)
+BEGIN
+    DECLARE v_id_detalle_pedido INT;
+
+    -- Obtener el id_detalle_pedido correspondiente al id_cliente y id_producto
+    SELECT dp.id_detalle_pedido
+    INTO v_id_detalle_pedido
+    FROM detalles_pedidos dp
+    INNER JOIN pedidos p ON dp.id_pedido = p.id_pedido
+    WHERE p.id_cliente = p_id_cliente AND dp.id_producto = p_id_producto
+    ORDER BY dp.id_detalle_pedido DESC
+    LIMIT 1;
+
+    -- Insertar el nuevo registro en la tabla valoraciones
+    INSERT INTO valoraciones (calificacion_valoracion, comentario_valoracion, estado_valoracion, id_detalle_pedido)
+    VALUES (p_calificacion_valoracion, p_comentario_valoracion, p_estado_valoracion, v_id_detalle_pedido);
+END //
+
+DELIMITER ;
