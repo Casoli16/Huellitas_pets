@@ -42,6 +42,15 @@ if(isset($_GET['action'])){
                     $result['error'] = 'No existen productos en el carrito';
                 }
                 break;
+            case 'readFinishDetail':
+                if (!$pedidos->setIdPedido($_POST['idPedido'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->readFinishDetail()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No existe el pedido';
+                }
+                break;
             // Acción para actualizar la cantidad de un producto en el carrito de compras.
             case 'updateDetail':
                 $_POST = Validator::validateForm($_POST);

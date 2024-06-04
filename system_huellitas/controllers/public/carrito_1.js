@@ -8,12 +8,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 })
 
 let id;
-let total = 0;
-let subtotal = 0;
+
+//Variable del total que se enviara como parametro a la siguiente pagina
+let totalOrder;
 
 const fillCard = async ()=> {
     const DATA = await fetchData(PEDIDO_API, 'readDetail');
     if(DATA.status){
+        let total = 0;
+        let subtotal = 0;
         CARDS.innerHTML = '';
         DATA.dataset.forEach(row => {
             subtotal = row.precio_detalle_pedido * row.cantidad_detalle_pedido;
@@ -52,6 +55,7 @@ const fillCard = async ()=> {
         });
         PRICE_TOTAL.textContent = "$" + total.toFixed(2);
         PRICE_TOTAL.style.color = 'red'
+        totalOrder= total.toFixed(2);
     } else{
         sweetAlert(4, DATA.error, false, 'index.html');
         const ANY_PRODUCTS = document.getElementById('anyProducts');
@@ -114,5 +118,5 @@ const deleteProduct = async (id) => {
 }
 
 const goToPage = async () => {
-    window.location.href = `../../views/public/carrito_2.html?total=${total}`;
+    window.location.href = `../../views/public/carrito_2.html?total=${totalOrder}`;
 }

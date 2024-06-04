@@ -16,11 +16,14 @@ document.addEventListener("DOMContentLoaded", async ()=>{
         .then(getAddress);
 })
 
+let idPedido;
+
 const getAddress = async ()=>{
     const DATA = await fetchData(PEDIDO_API, 'readDetail');
     if(DATA.status){
         ADDRESS.value = DATA.dataset[0].direccion_pedido;
-        TOTAL_PRICE.textContent = '$'+ TOTAL + '.00';
+        TOTAL_PRICE.textContent = '$'+ TOTAL;
+        idPedido = DATA.dataset[0].id_pedido;
     } else{
         console.log('Ocurrió un error');
     }
@@ -52,9 +55,14 @@ const finishOrder = async () => {
         const DATA = await fetchData(PEDIDO_API, 'finishOrder');
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (DATA.status) {
-            sweetAlert(1, DATA.message, true, 'carrito_3.html');
+            sweetAlert(1, DATA.message, true);
+            await goToPage();
         } else {
             sweetAlert(2, DATA.error, false);
         }
     }
+}
+
+const goToPage = async () => {
+    window.location.href = `../../views/public/carrito_3.html?total=${TOTAL}&idPedido=${idPedido}`;
 }
