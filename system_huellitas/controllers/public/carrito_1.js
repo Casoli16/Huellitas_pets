@@ -34,7 +34,7 @@ const fillCard = async ()=> {
                             </div>
                             <div class="d-flex w-100 justify-content-between">
                                 <p class="fw-semibold fs-6">${row.nombre_producto}</p>
-                                <p class="fw-bold">$${subtotal.toFixed(2)}</p>
+                                <p class="fw-bold">$${subtotal.toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2,})}</p>
                             </div>
                             <div
                                 class="contador d-flex justify-content-between col-md-3 col-sm-12 rounded-5 shadow mb-3">
@@ -52,9 +52,9 @@ const fillCard = async ()=> {
                 </li>
             `
         });
-        PRICE_TOTAL.textContent = "$" + total.toFixed(2);
+        PRICE_TOTAL.textContent = "$" + total.toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2,});
         PRICE_TOTAL.style.color = 'red'
-        totalOrder= total.toFixed(2);
+        totalOrder= total.toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2,});
     } else{
         sweetAlert(4, DATA.error, false, 'index.html');
         const ANY_PRODUCTS = document.getElementById('anyProducts');

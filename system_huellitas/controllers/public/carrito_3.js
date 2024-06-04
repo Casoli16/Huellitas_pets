@@ -22,7 +22,7 @@ const getUser = async () => {
     const DATA = await fetchData(USER_API, 'getUser');
     if (DATA.status) {
         NAME_CLIENT.textContent = DATA.name + ' ' + DATA.lastName;
-        TOTAL_PRICE.textContent = 'Total: ' + '$' + TOTAL.toString();
+        TOTAL_PRICE.textContent = 'Total: ' + '$' + TOTAL;
     }
 }
 
@@ -51,7 +51,7 @@ const getOrder = async () => {
                             </div>
                             <div class="d-flex w-100 justify-content-between">
                                 <p class="fw-semibold fs-6">${row.nombre_producto}</p>
-                                <p class="fw-bold">$${subtotal.toFixed(2)}</p>
+                                <p class="fw-bold">$${subtotal.toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2,})}</p>
                             </div>
                             <div
                                 class="contador d-flex justify-content-between col-md-2 col-sm-12 rounded-5 shadow mb-3">

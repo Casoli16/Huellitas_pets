@@ -101,6 +101,8 @@ if(isset($_GET['action'])){
             // Acción para finalizar el carrito de compras.
             case 'finishOrder':
                 if ($pedidos->finishOrder()) {
+                    //Eliminamos el idPedido que se encontraba activo.
+                    unset($_SESSION['idPedido']);
                     $result['status'] = 1;
                     $result['message'] = 'Pedido finalizado correctamente';
                 } else {
