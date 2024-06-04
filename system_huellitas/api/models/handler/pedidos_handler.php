@@ -206,3 +206,4 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 }
+

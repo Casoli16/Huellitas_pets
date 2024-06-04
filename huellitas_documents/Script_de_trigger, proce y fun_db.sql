@@ -359,7 +359,7 @@ JOIN
 JOIN
 	clientes cl ON pd.id_cliente = cl.id_cliente
 LEFT JOIN
-    valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido
+    valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido;
 
 SELECT * FROM vista_productos_comentarios WHERE id_producto = 2 AND estado = 1 ORDER BY calificacion DESC;
 
@@ -416,5 +416,4 @@ END //
 DELIMITER ;
 
 
-CALL crear_detalle_pedido ?,?,?,?,?;
 
