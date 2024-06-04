@@ -54,21 +54,23 @@ DELIMITER ;
 DELIMITER //
 
 CREATE TRIGGER actualizar_existencias
-AFTER INSERT OR UPDATE ON detalles_pedidos
+AFTER INSERT ON detalles_pedidos
 FOR EACH ROW
-BEGIN 
-      UPDATE productos
-      SET existencia_producto = existencia_producto - NEW.cantidad_detalle_pedido
-      WHERE id_producto = NEW.id_producto;
+BEGIN
+  UPDATE productos
+   SET existencia_producto = existencia_producto - NEW.cantidad_detalle_pedido
+  WHERE id_producto = NEW.id_producto;
 
-      DECLARE existencias;
-      SET existencias = (SELECT existencia_producto FROM productos WHERE id_producto = NEW.id_producto);
-      
-      IF  existencias == 0 THEN
-          UPDATE productos 
-          SET estado_producto = 0
-          WHERE id_producto = NEW.id_producto;
-      END IF;
+
+   IF ((SELECT existencia_producto FROM productos WHERE id_producto = NEW.id_producto) != 0) THEN
+    UPDATE productos
+   SET estado_producto = 1
+   WHERE id_producto = NEW.id_producto;
+    ELSE
+       UPDATE productos
+   SET estado_producto = 0
+   WHERE id_producto = NEW.id_producto;
+   END IF;
 END
 
 //
@@ -76,8 +78,7 @@ DELIMITER ;
 
 -- ALTER para que la tabla productos acepte numeros de 0:
 ALTER TABLE productos
-MODIFY COLUMN existencia_producto INT NOT NULL,
-ALTER CONSTRAINT existencia_producto CHECK(existencia_producto >= 0);
+ADD CONSTRAINT existencia_producto_check CHECK(existencia_producto >= 0);
 
 
 -- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE ELIMINA UN PEDIDO --
@@ -453,7 +454,7 @@ BEGIN
     -- Insertar el nuevo registro en la tabla valoraciones
     INSERT INTO valoraciones (calificacion_valoracion, comentario_valoracion, estado_valoracion, id_detalle_pedido)
     VALUES (p_calificacion_valoracion, p_comentario_valoracion, p_estado_valoracion, v_id_detalle_pedido);
-END //
+END;
 
 DELIMITER ;
 
