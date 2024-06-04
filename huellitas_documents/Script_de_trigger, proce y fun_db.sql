@@ -76,8 +76,8 @@ DELIMITER ;
 
 -- ALTER para que la tabla productos acepte numeros de 0:
 ALTER TABLE productos
-MODIFY COLUMN precio_producto DECIMAL(5,2) NOT NULL,
-ALTER CONSTRAINT precio_producto_check CHECK(precio_producto >= 0);
+MODIFY COLUMN existencia_producto INT NOT NULL,
+ALTER CONSTRAINT existencia_producto CHECK(existencia_producto >= 0);
 
 
 -- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE ELIMINA UN PEDIDO --
