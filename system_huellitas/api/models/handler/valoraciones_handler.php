@@ -84,13 +84,13 @@ class ValoracionesHandler
             $sql = 'SELECT COUNT(*)
                     FROM detalles_pedidos dp
                     INNER JOIN pedidos p ON dp.id_pedido = p.id_pedido
-                    INNER JOIN valoraciones v ON dp.id_detalle_pedido = v.id_detalle_pedido
+                    LEFT JOIN valoraciones v ON dp.id_detalle_pedido = v.id_detalle_pedido
                     WHERE p.id_cliente = ?
-                    AND dp.id_producto = ?;
-            ';
+                    AND dp.id_producto = ?;';
             $params = array($this->idCliente, $this->idProducto);
-            return Database::getRow($sql, $params);
+            return Database::getRow($sql, $params)['COUNT(*)'];
         }
+        
     
             //    Crear producto
         public function createValoracion()

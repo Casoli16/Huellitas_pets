@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS productos (
   imagen_producto VARCHAR(50) DEFAULT 'imagen_producto.png',
   estado_producto BOOL,
   existencia_producto INT,
-  CONSTRAINT existencia_producto_check CHECK(existencia_producto > 0),
+  CONSTRAINT existencia_producto_check CHECK(existencia_producto >= 0),
   fecha_registro_producto DATE DEFAULT NOW(),
   mascotas ENUM('Perro', 'Gato'),
   id_categoria INT,
