@@ -106,6 +106,12 @@ class PedidosData extends PedidosHandler{
         }
     }
 
+    public function setDireccion($value)
+    {
+            $this->direccion = $value;
+            return true;
+    }
+
     public function setMonth($value)
     {
         $this->monthNumber = $value;

@@ -57,6 +57,19 @@ if(isset($_GET['action'])){
                     $result['error'] = 'Ocurrió un problema al modificar la cantidad';
                 }
                 break;
+            case 'updateAddress':
+                $_POST = Validator::validateForm($_POST);
+                if(
+                    !$pedidos->setDireccion($_POST['direccion'])
+                ){
+                    $result['error'] = $pedidos->getDataError();
+                } else if($pedidos->updateAddress()){
+                    $result['status'] = 1;
+                    $result['message'] = 'Dirección actualizada correctamente';
+                } else{
+                    $result['error'] = 'Ocurrió un problema al modificar tú dirección';
+                }
+                break;
             // Acción para remover un producto del carrito de compras.
             case 'deleteDetail':
                 if (!$pedidos->setIdDetalle($_POST['idDetalle'])) {

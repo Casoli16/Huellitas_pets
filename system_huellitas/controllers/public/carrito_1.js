@@ -8,11 +8,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 })
 
 let id;
+let total = 0;
+let subtotal = 0;
+
 const fillCard = async ()=> {
     const DATA = await fetchData(PEDIDO_API, 'readDetail');
     if(DATA.status){
-        let total = 0;
-        let subtotal = 0;
         CARDS.innerHTML = '';
         DATA.dataset.forEach(row => {
             subtotal = row.precio_detalle_pedido * row.cantidad_detalle_pedido;
@@ -112,3 +113,6 @@ const deleteProduct = async (id) => {
     }
 }
 
+const goToPage = async () => {
+    window.location.href = `../../views/public/carrito_2.html?total=${total}`;
+}

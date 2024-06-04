@@ -11,9 +11,8 @@ class PedidosHandler
      */
     protected $idPedido = null;
     protected $idDetalle = null;
-    protected $idProducto = null;
-    protected $cliente = null;
 
+    protected $direccion = null;
     protected $precio = null;
 
     protected $producto = null;
@@ -166,7 +165,7 @@ class PedidosHandler
     // Método para obtener los productos que se encuentran en el carrito de compras.
     public function readDetail()
     {
-        $sql = 'SELECT id_detalle_pedido, imagen_producto, nombre_producto, existencia_producto, detalles_pedidos.precio_detalle_pedido, detalles_pedidos.cantidad_detalle_pedido, nombre_marca
+        $sql = 'SELECT id_detalle_pedido, imagen_producto, nombre_producto, existencia_producto, direccion_pedido, detalles_pedidos.precio_detalle_pedido, detalles_pedidos.cantidad_detalle_pedido, nombre_marca
                 FROM detalles_pedidos
                 INNER JOIN pedidos USING(id_pedido)
                 INNER JOIN productos USING(id_producto)
@@ -179,7 +178,7 @@ class PedidosHandler
     // Método para finalizar un pedido por parte del cliente.
     public function finishOrder()
     {
-        $this->estadoPedido = 'Finalizado';
+        $this->estadoPedido = 'Completado';
         $sql = 'UPDATE pedidos
                 SET estado_pedido = ?
                 WHERE id_pedido = ?';
@@ -197,6 +196,12 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function updateAddress()
+    {
+        $sql = 'UPDATE pedidos SET direccion_pedido = ? WHERE id_pedido = ?';
+        $params =  array($this->direccion, $_SESSION['idPedido']);
+        return Database::executeRow($sql, $params);
+    }
     // Método para eliminar un producto que se encuentra en el carrito de compras.
     public function deleteDetail()
     {

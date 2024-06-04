@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas pet's - Carrito</title>
     <!-- Agregamos una imagen para que se vea en la ventana -->
-    <link type="image/png" rel="icon" href="../../resources/img/huellita_logo_without_text.png">
+    <link type="image/png" rel="icon" href="../../resources/img/png/huellita_logo_without_text.png">
     <!-- Agregamos el framework de boostrap - css -->
     <link type="text/css" rel="stylesheet" href="../../resources/scss/main.css">
     <!-- Agregamos su archivo css -->
@@ -19,7 +19,7 @@
 
     <!-- Agregamos nuestro navbar -->
     <header class="p-5 mt-3">
-        <nav id="navbar_perfil"></nav>
+        <nav id="navbar"></nav>
     </header>
 
     <main>
@@ -39,28 +39,32 @@
                             dirección donde sera envíado tu pedido</p>
                     </div>
                     <hr>
-                    <form action="">
                         <div class="mt-5 mb-4">
-                            <label for="direccion_cliente" class="form-label fw-semibold">Dirección</label>
-                            <select class="form-select bg-white shadow" id="direccion_cliente" name="direccionCliente"
+                            <label for="direccionCliente" class="form-label fw-semibold">Dirección</label>
+                            <div class="mb-3">
+                                <small>Esta es la dirección que se encuentra registrada a tu cuenta</small>
+                            </div>
+                            <input class="form-control bg-white shadow" id="direccionCliente" name="direccionCliente" disabled
                                 required>
-                                <option>Selecciona la dirección</option>
-                            </select>
-                            <div class="d-flex justify-content-start mt-3 form-text">
+                            <div class="d-flex justify-content-start mt-3 form-text fw-semibold text-decoration-underline" onclick="updateAddress()" >
                                 <img src="../../resources/img/png/place_marker.png" class="me-2" width="23px"
                                     height="23px">
                                 ¿Tienes una nueva dirección, no se encuentra tú dirección?
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <label for="new_direccion_cliente" class="form-label fw-semibold">Agrega tu nueva
+                    <form id="formAddress">
+                        <div class="mb-4 d-none" id="showDiv">
+                            <label for="newDireccionCliente" class="form-label fw-semibold">Agrega tu nueva
                                 dirección</label>
-                            <input type="text" id="new_direccion_cliente" name="newDireccionCliente"
-                                class="form-control shadow bg-white">
+                            <div class="d-flex justify-content-evenly">
+                                <input type="text" id="newDireccionCliente" name="direccion"
+                                       class="form-control shadow bg-white me-5">
+                                <button type="submit" class="btn btn-red-color text-light btn-sm">Actualizar dirección</button>
+                            </div>
                         </div>
-                        <a href="../../views/public/carrito_3.html"
-                            class="btn btn-orange-color text-light col-md-4 col-sm-12">Comprar ahora</a>
                     </form>
+                        <button onclick="finishOrder()"
+                            class="btn btn-orange-color text-light col-md-4 col-sm-12 mt-4">Comprar ahora</button>
                 </div>
                 <!-- Col 2 - Contiene el total a pagar de productos-->
                 <div class="col-sm-12 col-md-4">
@@ -68,8 +72,8 @@
                         <p class="fw-semibold mb-5">Total productos</p>
                         <hr>
                         <div class="d-flex justify-content-between mb-5">
-                            <p class="fw-bold fs-5">Subtotal</p>
-                            <p class="fw-bold fs-5">$100.00</p>
+                            <p class="fw-bold fs-5">Total</p>
+                            <p class="fw-bold fs-4 text-red-color" id="totalPrice"></p>
                         </div>
                         <div class="text-center">
                             <img src="../../resources/img/png/huellitas_logo.png" width="100px">
@@ -85,8 +89,12 @@
 
     <!-- Agregamos el framework de boostrap - js -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Agregamos la libreria para alertas -->
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
     <!-- Agregamos la ruta para agregar el menu -->
     <script src="../../controllers/utils/public.js"></script>
+    <script type="text/javascript" src="../../controllers/public/carrito_2.js"></script>
 </body>
 
 </html>
