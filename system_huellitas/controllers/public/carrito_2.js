@@ -1,4 +1,3 @@
-const PEDIDO_API = 'services/public/pedidos.php';
 const TOTAL_PRICE = document.getElementById('totalPrice');
 const ADDRESS = document.getElementById('direccionCliente');
 const SHOW_DIV = document.getElementById('showDiv');
@@ -41,6 +40,7 @@ ADDRESS_FORM.addEventListener("submit", async (event) => {
         sweetAlert(1, DATA.message, true);
         await getAddress();
         SHOW_DIV.classList.add('d-none');
+        ADDRESS_FORM.reset();
     } else{
         sweetAlert(2, DATA.error, true);
     }

@@ -175,6 +175,15 @@ class PedidosHandler
         return Database::getRows($sql, $params);
     }
 
+    //Metodo para contar la cantidad de productos que hay en el carrito
+    public function countCart()
+    {
+        $sql = 'SELECT SUM(cantidad_detalle_pedido) AS totalProductos FROM detalles_pedidos WHERE id_pedido = ?';
+        $params =  array($_SESSION['idPedido']);
+        return Database::getRows($sql, $params);
+    }
+
+    //Metodo para obtener los productos que se encuentran en el carrito luego de su compra
     public function readFinishDetail()
     {
         $sql = 'SELECT id_detalle_pedido, imagen_producto, estado_pedido, nombre_producto, existencia_producto, fecha_registro_producto, direccion_pedido, detalles_pedidos.precio_detalle_pedido, detalles_pedidos.cantidad_detalle_pedido, nombre_marca

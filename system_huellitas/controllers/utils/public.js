@@ -5,6 +5,7 @@
 
 // Constante para completar la ruta de la API.
 const USER_API = 'services/public/clientes.php';
+const PEDIDO_API = 'services/public/pedidos.php';
 
 const navbar = `
 <nav class="navbar navbar-expand-lg bg-beige-color fixed-top shadow">
@@ -42,7 +43,7 @@ const navbar = `
                 <a class="position-relative me-md-5 me-4" href="../../views/public/carrito_1.html">
                     <img src="../../resources/img/png/carrito_naranja.png" width="40px">
                     <span
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-orange-color">0</span>
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-orange-color" id="countTotal"></span>
                 </a>
             </div>
                 <a href="../../views/public/login.html" class="btn btn-orange-color text-light me-md-5">Iniciar
@@ -91,7 +92,7 @@ const navbarPerfil=`
                 <a class="position-relative me-md-5 me-4" href="../../views/public/carrito_1.html">
                     <img src="../../resources/img/png/carrito_naranja.png" width="40px">
                     <span
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-orange-color">0</span>
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-orange-color" id="countTotal"></span>
                 </a>
             </div>
             <div class="row">
@@ -195,6 +196,16 @@ const loadTemplate = async () => {
                 //Dentro del navbarPerfil remplazamos los string dados y se coloca el nombre del usuario, asi como la imagen.
                 .replace('name', DATA.name.split(' ')[0] + ' ' + DATA.lastName.split(' ')[0]) // Split nos sirve para cortar un string y que solo aparezca en este caso el primer nombre y primer apellido.
                 .replace('../../resources/img/svg/img_perfil_navbar.svg', `${SERVER_URL}images/clientes/${DATA.picture}` );
+
+            //Petición para saber la cantidad de productos que hay en el carrito de compras
+            const CART = document.getElementById('countTotal');
+            const DATA_2 = await fetchData(PEDIDO_API, 'countCart');
+            //Revisamos si viene con datos, de ser asi entonces le mandamos el total de productos, pero si no cera cero.
+            if (DATA_2 && DATA_2.dataset?.[0]?.totalProductos) {
+                CART.textContent = DATA_2.dataset[0].totalProductos;
+            } else {
+                CART.textContent = '0';
+            }
 
         } else {
             location.href = 'index.html';

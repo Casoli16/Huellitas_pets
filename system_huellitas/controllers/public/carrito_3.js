@@ -1,5 +1,3 @@
-const PEDIDO_API = 'services/public/pedidos.php';
-
 const NAME_CLIENT = document.getElementById('nameClient');
 
 //Obtenemos los parametros de la mascota que se selecciono en la pantalla menu_productos.html
@@ -33,6 +31,7 @@ const getOrder = async () => {
     FORM.append('idPedido', PEDIDO)
     const DATA = await fetchData(PEDIDO_API, 'readFinishDetail', FORM);
     if (DATA.status) {
+        loadTemplate();
         DATE.textContent = 'Compra realizada el ' + DATA.dataset[0].fecha_registro_producto;
         STATE.textContent = DATA.dataset[0].estado_pedido;
         let subtotal = 0;
@@ -70,25 +69,3 @@ const getOrder = async () => {
         });
     }
 }
-//
-// <li className="list-group-item mb-4 rounded-4 shadow">
-//     <div className="row d-flex align-items-center">
-//         <div className="col-auto">
-//             <img src="../../resources/img/png/product1.png" width="80px"/>
-//         </div>
-//         <div className="col">
-//             <div className="d-flex w-100 justify-content-between">
-//                 <small className="text-body-secondary mt-4">Maxi Chucho</small>
-//             </div>
-//             <div className="d-flex w-100 justify-content-between">
-//                 <p className="mb-1 fw-semibold fs-6">Bolsa Maxxi Chucho - Perro adulto</p>
-//                 <p className="fw-bold">$40.50</p>
-//             </div>
-//             <div
-//                 className="contador d-flex justify-content-between col-md-2 col-sm-12 rounded-5 shadow mb-3">
-//                 <input type="number" value="1" id="cantidad" min="1"
-//                        className="form-control text-center sin-barra bg-white" disabled/>
-//             </div>
-//         </div>
-//     </div>
-// </li>

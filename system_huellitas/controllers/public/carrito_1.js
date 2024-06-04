@@ -1,4 +1,3 @@
-const PEDIDO_API = 'services/public/pedidos.php';
 const CARDS = document.getElementById('cardProducts');
 const PRICE_TOTAL = document.getElementById('totalPrice');
 
@@ -38,7 +37,7 @@ const fillCard = async ()=> {
                                 <p class="fw-bold">$${subtotal.toFixed(2)}</p>
                             </div>
                             <div
-                                class="contador d-flex justify-content-between col-md-2 col-sm-12 rounded-5 shadow mb-3">
+                                class="contador d-flex justify-content-between col-md-3 col-sm-12 rounded-5 shadow mb-3">
                                 <button class="btn mas text-red-color fw-bolder" onClick="restar(${id})">-</button>
                                 <input type="number" value="${row.cantidad_detalle_pedido}" id="cantidad-${id}" min="1"
                                        class="form-control text-center sin-barra bg-white" onchange="updateProduct(${id})"/>
@@ -95,6 +94,7 @@ const updateProduct = async (idDetalle) => {
 
     if(DATA.status){
         fillCard();
+        loadTemplate();
     } else{
         sweetAlert(2, DATA.error, true);
     }
@@ -111,6 +111,7 @@ const deleteProduct = async (id) => {
         if(DATA.status){
             await sweetAlert(1, DATA.message, true);
             await fillCard();
+            loadTemplate();
         }else{
             sweetAlert(2, DATA.error, false);
         }
