@@ -97,10 +97,14 @@ if (isset($_GET['action'])) {
             //Metódo que permite editar la información del admin que se ha logueado.    
             case 'createValoracion':
                 $_POST = Validator::validateForm($_POST);
-                if (
-                    !$valoraciones->setCalificaionValoracion($_POST['calificacionValoracion']) or
-                    !$valoraciones->setComentarioValoracion($_POST['comentarioValoracion']) or
-                    !$valoraciones->setIdProducto($_POST['idProducto'])
+                // Verificar si el cliente ha comprado el producto antes de permitir la valoración
+                if (!$valoraciones->setIdCliente($_SESSION['idCliente']) || !$valoraciones->setIdProducto($_POST['idProducto'])) {
+                    $result['error'] = 'Datos inválidos';
+                } elseif ($valoraciones->readCountValoracion() == 0) {
+                    $result['error'] = 'No puedes valorar este producto porque no lo has comprado';
+                } elseif (
+                    !$valoraciones->setCalificaionValoracion($_POST['calificacionValoracion']) ||
+                    !$valoraciones->setComentarioValoracion($_POST['comentarioValoracion'])
                 ) {
                     $result['error'] = $valoraciones->getDataError();
                 } elseif ($valoraciones->createValoracion()) {
