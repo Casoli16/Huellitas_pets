@@ -1,6 +1,6 @@
 USE db_huellitas_pets;
 
- -- TRIGGER, PROCEDIMIENTO Y FUNCION
+ -- TRIGGER, PROCEDIMIENTOS, ALTER Y FUNCION
 
 DELIMITER //
 
@@ -53,16 +53,32 @@ DELIMITER ;
 -- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE HACE UN PEDIDO --
 DELIMITER //
 
-CREATE TRIGGER actualizar_existencias AFTER INSERT ON detalles_pedidos
+CREATE TRIGGER actualizar_existencias
+AFTER INSERT OR UPDATE ON detalles_pedidos
 FOR EACH ROW
 BEGIN 
-	UPDATE productos
-	SET existencia_producto = existencia_producto - NEW.cantidad_detalle_pedido
-	WHERE id_producto = NEW.id_producto;
+      UPDATE productos
+      SET existencia_producto = existencia_producto - NEW.cantidad_detalle_pedido
+      WHERE id_producto = NEW.id_producto;
+
+      DECLARE existencias;
+      SET existencias = (SELECT existencia_producto FROM productos WHERE id_producto = NEW.id_producto);
+      
+      IF  existencias == 0 THEN
+          UPDATE productos 
+          SET estado_producto = 0
+          WHERE id_producto = NEW.id_producto;
+      END IF;
 END
 
 //
 DELIMITER ;
+
+-- ALTER para que la tabla productos acepte numeros de 0:
+ALTER TABLE productos
+MODIFY COLUMN precio_producto DECIMAL(5,2) NOT NULL,
+ALTER CONSTRAINT precio_producto_check CHECK(precio_producto >= 0);
+
 
 -- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE ELIMINA UN PEDIDO --
 DELIMITER //
