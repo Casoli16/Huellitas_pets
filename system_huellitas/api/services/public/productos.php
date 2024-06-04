@@ -114,6 +114,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al guardar la valoración';
                 }
                 break;
+            case 'readComentarios':
+                if (!$valoraciones->setIdProducto($_POST['idProducto'])) {
+                    $result['error'] = $valoraciones->getDataError();
+                } elseif ($result['dataset'] = $valoraciones->readComentarios()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Este producto no ha sido comentado';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible';
                 break;
@@ -180,6 +189,15 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Producto inexistente';
+                }
+                break;
+            case 'readComentarios':
+                if (!$valoraciones->setIdProducto($_POST['idProducto'])) {
+                    $result['error'] = $valoraciones->getDataError();
+                } elseif ($result['dataset'] = $valoraciones->readComentarios()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Este producto no ha sido comentado';
                 }
                 break;
             default:

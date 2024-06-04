@@ -9,6 +9,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
 // ELEMENTOS DE LA PÁGINA
 const CONTENEDOR = document.getElementById('contenedorinformacion'),
     TITULO_PAGINA = document.getElementById('titulo'),
+    COMENTARIOS = document.getElementById('comentariosValoraciones'),
     INPUTCANTIDAD = document.getElementById('cantidad');
 
 let precioProducto;
@@ -25,6 +26,7 @@ let idcupon = 0;
 document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate();
     fillConteiner(IDPRODUCTO);
+    fillComentarios(IDPRODUCTO);
 
 });
 
@@ -276,8 +278,73 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message);
         console.log(DATA.message);
+        COMENTARIO_VALORACION.value = '';  // Borra el texto del comentario
+        stars.forEach(function(star) {
+            star.classList.remove('checked');  // Reinicia las estrellas a 0
+        });
+        rating = 0;  // Reinicia la variable de rating a 0
     } else {
         sweetAlert(2, DATA.error, false);
         console.log(DATA.message);
     }
 });
+
+const fillComentarios = async (id) => {
+    COMENTARIOS.innerHTML = '';
+    const FORM = new FormData();
+    FORM.append('idProducto', id);
+    const DATA = await fetchData(PRODUCTOS_API, 'readComentarios', FORM);
+
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
+            COMENTARIOS.innerHTML += `
+                <div class="row py-3">
+                    <div class="col-1 py-2">
+                        <img class="rounded-circle" alt="${row.nombre_cliente}" src="${SERVER_URL}images/clientes/${row.imagen_cliente}">
+                    </div>
+                    <!-- Contenedor de comentarios -->
+                    <div class="col-12 col-lg-10 comentarios_clientes">
+                        <div class="row">
+                            <div class="col-9 col-lg-12 py-2 px-4">
+                                <!-- Comentario del usuario -->
+                                <p>${row.comentario}</p>
+                                <div class="row">
+                                    <!-- Estrellas de la valoración -->
+                                    <div class="col-8 col-lg-8">
+                                        ${generateStars(row.calificacion)}
+                                    </div>
+                                    <!-- Fecha de publicación del comentario -->
+                                    <div class="col-8 col-lg-4 ">
+                                        <p class="fs-6"><b>${row.fecha_formato}</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    } else {
+        alert('Error: ' + DATA.error);
+    }
+};
+
+const generateStars = (rating) => {
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+            starsHTML += `
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-star-fill estrella_ejemplo" viewBox="0 0 16 16"> 
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+            `;
+        } else {
+            starsHTML += `
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-star-fill estrella_ejemplo_apagada" viewBox="0 0 16 16"> 
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+            `;
+        }
+    }
+    return starsHTML;
+};
