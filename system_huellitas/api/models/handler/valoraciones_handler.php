@@ -14,7 +14,9 @@ class ValoracionesHandler
     protected $comentarioValoracion = null;
     protected $fechaValoracion = null;
     protected $estadoValoracion = null;
-    protected $idDetalleedido = null;
+    protected $idDetallespedido = null;
+    protected $idCliente = null;
+    protected $idProducto = null;
 
     const RUTA_IMAGEN = '../../images/productos/';
 
@@ -76,5 +78,31 @@ class ValoracionesHandler
         );
         return Database::executeRow($sql, $params);
     }
+
+         //    Leer si existen registros de una valoracion, por medio de cliente y producto
+        public function readCountValoracion(){
+            $sql = 'SELECT COUNT(*)
+                    FROM detalles_pedidos dp
+                    INNER JOIN pedidos p ON dp.id_pedido = p.id_pedido
+                    INNER JOIN valoraciones v ON dp.id_detalle_pedido = v.id_detalle_pedido
+                    WHERE p.id_cliente = ?
+                    AND dp.id_producto = ?;
+            ';
+            $params = array($this->idCliente, $this->idProducto);
+            return Database::getRow($sql, $params);
+        }
+    
+            //    Crear producto
+        public function createValoracion()
+        {
+            $sql = 'CALL insertar_valoracion(?, ?, TRUE, ?, ?)';
+            $params = array(
+                $this->calificacionValoracion,
+                $this->comentarioValoracion,
+                $_SESSION['idCliente'],
+                $this->idProducto
+            );
+            return Database::executeRow($sql, $params);
+        }
 }
 

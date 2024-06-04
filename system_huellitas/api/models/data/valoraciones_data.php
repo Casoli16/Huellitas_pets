@@ -20,6 +20,28 @@ class ValoracionesData extends ValoracionesHandler{
         }
     }
 
+    public function setIdCliente($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->idCliente = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador es incorrecto';
+            return false;
+        }
+    }
+
+    public function setIdProducto($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->idProducto = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador es incorrecto';
+            return false;
+        }
+    }
+
     public function setComentarioValoracion($value, $min = 2, $max = 250)
     {
         if (!$value) {

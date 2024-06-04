@@ -2,6 +2,10 @@ const PRODUCTOS_API = 'services/public/productos.php';
 // API'S UTILIZADAS EN LA PANTALLA
 const PEDIDOS_API = 'services/public/pedidos.php';
 
+//FORMULARIO PARA GUARDAR VALORACIONES
+const SAVE_FORM = document.getElementById('saveForm'), 
+    COMENTARIO_VALORACION = document.getElementById('comentarioValoracion');
+
 // ELEMENTOS DE LA PÁGINA
 const CONTENEDOR = document.getElementById('contenedorinformacion'),
     TITULO_PAGINA = document.getElementById('titulo'),
@@ -218,7 +222,7 @@ const enviarCodigo = async (precio_producto) => {
     });
 };
 
-
+const stars = document.querySelectorAll('.star');
 const sendToCart = async () =>{
     const CANTIDAD = document.getElementById('cantidad');
     let cant = CANTIDAD.value;
@@ -239,18 +243,41 @@ const sendToCart = async () =>{
     }
 }
 
-/*
-// Código de Francisco para las estrellas
-const stars = document.querySelectorAll('.star');
+let rating = 0;  // Variable global para almacenar el valor del rating
 
-stars.forEach(function(star, producto){
-    star.addEventListener('click', function(){
-        for (let i=0; i<=producto; i++){
+stars.forEach(function(star, index) {
+    star.addEventListener('click', function() {
+        for (let i = 0; i <= index; i++) {
             stars[i].classList.add('checked');
-        }  
-        for (let i=producto+1; i<stars.length; i++){
+        }
+        for (let i = index + 1; i < stars.length; i++) {
             stars[i].classList.remove('checked');
-        }        
-    })
-})
-*/ 
+        }
+        // Asignar la variable con el valor de la estrella seleccionada
+        rating = index + 1;
+        // Imprimir la variable en la consola
+        console.log('Rating seleccionado:', rating);
+    });
+});
+
+SAVE_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Se verifica la acción a realizar.
+    const action = 'createValoracion';
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(SAVE_FORM);
+    FORM.append('idProducto', IDPRODUCTO);
+    FORM.append('calificacionValoracion', rating);  // Utiliza la variable global rating
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(PRODUCTOS_API, action, FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message);
+        console.log(DATA.message);
+    } else {
+        sweetAlert(2, DATA.error, false);
+        console.log(DATA.message);
+    }
+});

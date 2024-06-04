@@ -1,6 +1,8 @@
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/productos_data.php');
+// Se incluye la clase de modelo de valoraciones.
+require_once('../../models/data/valoraciones_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -8,6 +10,8 @@ if (isset($_GET['action'])) {
 
     // Se instancia la clase correspondiente.
     $productos = new productosData;
+    // Se agrega la clase de valoraciones
+    $valoraciones = new ValoracionesData;
 
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
@@ -88,6 +92,22 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Producto inexistente';
+                }
+                break;
+            //Metódo que permite editar la información del admin que se ha logueado.    
+            case 'createValoracion':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$valoraciones->setCalificaionValoracion($_POST['calificacionValoracion']) or
+                    !$valoraciones->setComentarioValoracion($_POST['comentarioValoracion']) or
+                    !$valoraciones->setIdProducto($_POST['idProducto'])
+                ) {
+                    $result['error'] = $valoraciones->getDataError();
+                } elseif ($valoraciones->createValoracion()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Valoración agregada';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al guardar la valoración';
                 }
                 break;
             default:
