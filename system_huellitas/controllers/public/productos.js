@@ -325,7 +325,6 @@ const fillComentarios = async (id) => {
             `;
         });
     } else {
-        alert('Error: ' + DATA.error);
     }
 };
 
