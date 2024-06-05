@@ -6,6 +6,7 @@
 // Constante para completar la ruta de la API.
 const USER_API = 'services/public/clientes.php';
 const PEDIDO_API = 'services/public/pedidos.php';
+const PRODUCTS_API = 'services/public/productos.php';
 
 const navbar = `
 <nav class="navbar navbar-expand-lg bg-beige-color fixed-top shadow">
@@ -55,7 +56,7 @@ const navbar = `
 `;
 
 
-const navbarPerfil=`
+const navbarPerfil = `
 <nav class="navbar navbar-expand-lg bg-beige-color fixed-top shadow">
     <div class="container-fluid">
         <a class="navbar-brand" href="../public/index.html">
@@ -83,11 +84,29 @@ const navbarPerfil=`
             </ul>
             <form class="d-flex me-md-5" role="search">
                 <div class="search-input position-relative">
-                    <input type="search" class="search form-control bg-beige-color ps-5" placeholder="Productos...">
+                    <input type="search" class="search form-control bg-beige-color ps-5" id="inputSearch" placeholder="Productos...">
                     <img src="../../resources/img/svg/search_public.svg"
-                        class="position-absolute top-50 translate-middle-y search-icon" width="25px" height="25px">
+                        class="position-absolute top-50 translate-middle-y search-icon" width="25px" height="25px">                
                 </div>
+                            
+                <!--Container para el search-->
+                <div class="bg-white p-4 me-5 ms-3 overflow-auto d-none" id="searchDiv">
+                    <div class="row d-flex justify-content-center align-items-center" id="rowProducts">
+                                                       
+                    </div>
+                </div>
+                
+                <!--Container para el search en caso de que no se exista busqueda-->
+                <div class="bg-white p-4 me-5 ms-3 overflow-auto d-none" id="notFound">
+                    <div class="p-2 rounded-3 text-center">
+                        <p>No existen resultados de tú búsqueda</p>
+                    </div> 
+                </div>                
+                
+
+            
             </form>
+                      
             <div class="py-md-0 py-4">
                 <a class="position-relative me-md-5 me-4" href="../../views/public/carrito_1.html">
                     <img src="../../resources/img/png/carrito_naranja.png" width="40px">
@@ -188,14 +207,14 @@ const loadTemplate = async () => {
     //Peticion a la Api para revisar si hay un usuario autenticado
     const DATA = await fetchData(USER_API, 'getUser');
     //Si hay un usuario autenticado entonces le mostrara su navbar pero si no, entonces caera en el else y le mostrara el segundo navbar.
-    if(DATA.session){
+    if (DATA.session) {
         //Revisa si no se encuentra en el login para mostrarle su navbar, de lo contrario si esta en el login lo redireccionara al home.
-        if(!location.pathname.endsWith('login.html')){
+        if (!location.pathname.endsWith('login.html')) {
             //Insertamos el menu en la etiqueta navbar de las paginas.
             document.getElementById('navbar').innerHTML = navbarPerfil
                 //Dentro del navbarPerfil remplazamos los string dados y se coloca el nombre del usuario, asi como la imagen.
                 .replace('name', DATA.name.split(' ')[0] + ' ' + DATA.lastName.split(' ')[0]) // Split nos sirve para cortar un string y que solo aparezca en este caso el primer nombre y primer apellido.
-                .replace('../../resources/img/svg/img_perfil_navbar.svg', `${SERVER_URL}images/clientes/${DATA.picture}` );
+                .replace('../../resources/img/svg/img_perfil_navbar.svg', `${SERVER_URL}images/clientes/${DATA.picture}`);
 
             //Petición para saber la cantidad de productos que hay en el carrito de compras
             const CART = document.getElementById('countTotal');
@@ -206,12 +225,67 @@ const loadTemplate = async () => {
             } else {
                 CART.textContent = '0';
             }
+            const inputSearch = document.getElementById('inputSearch');
+            inputSearch.addEventListener('input', searchProduct);
 
         } else {
             location.href = 'index.html';
         }
-    }else{
+    } else {
         document.getElementById('navbar').innerHTML = navbar;
     }
     document.getElementById('footer').innerHTML = footer;
+}
+
+//Codigo para el buscador
+
+let idProducto;
+let categoria;
+let mascota;
+const searchProduct = async () => {
+    const INPUT_SEARCH = document.getElementById('inputSearch').value;
+    const SEARCH_DIV = document.getElementById('searchDiv');
+    const SEARCH_ROW = document.getElementById('rowProducts');
+    const SEARCH_NOT_FOUND = document.getElementById('notFound');
+
+    const FORM = new FormData();
+    FORM.append('search', INPUT_SEARCH);
+
+    const DATA = await fetchData(PRODUCTS_API, 'searchProducts', FORM);
+
+    if(DATA.status){
+        SEARCH_ROW.innerHTML = '';
+        SEARCH_DIV.classList.remove('d-none')
+        DATA.dataset.forEach(row => {
+            id_producto = row.id_producto;
+            categoria = row.id_categoria;
+            mascota = row.mascotas + 's';
+
+            SEARCH_ROW.innerHTML += `
+                <div class="col-md-3 col-sm-12 d-flex align-self-center">
+                    <div class=" p-2 rounded-3 text-center box ">
+                        <input id="idProducto" class="form-control" value="${row.id_producto}" hidden/>
+                        <img src="${SERVER_URL}images/productos/${row.imagen_producto}" width="60px" height="70px"/>
+                        <p class="mb-0 mt-2">${row.nombre_producto}</p>
+                        <p class="fw-semibold mt-1">$${row.precio_producto}</p>
+                        <button class="btn btn-orange-color btn-sm text-light rounded-3" onclick="goToProduct(${row.id_producto}, categoria, mascota)">Ver producto</button>
+                    </div>
+                </div>                           
+            `
+        })
+    }else{
+        SEARCH_DIV.classList.add('d-none');
+        SEARCH_NOT_FOUND.classList.remove('d-none');
+        setTimeout(() => {
+            SEARCH_NOT_FOUND.classList.add('d-none'); // Hide after 2 seconds
+        }, 1000);
+
+    }
+}
+
+
+
+const goToProduct = (id, categoria, mascota) =>{
+    event.preventDefault();
+    window.location.href = `../../views/public/producto.html?producto=${id}&categoria=${categoria}&mascota=${mascota}`;
 }
