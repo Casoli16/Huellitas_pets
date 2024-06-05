@@ -58,13 +58,13 @@ class ValoracionesData extends ValoracionesHandler{
         }
     }
 
-    public function setCalificaionValoracion($value)
+    public function setCalificaionValoracion($value, $min = 1, $max = 5)
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->calificacionValoracion = $value;
             return true;
         } else {
-            $this->data_error = 'El valor de las existencias debe ser numérico entero';
+            $this->data_error = 'La valoración debe tener al menos una estrella';
             return false;
         }
     }

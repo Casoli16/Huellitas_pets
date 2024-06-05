@@ -300,7 +300,7 @@ const fillComentarios = async (id) => {
             COMENTARIOS.innerHTML += `
                 <div class="row py-3">
                     <div class="col-1 py-2">
-                        <img class="rounded-circle" alt="${row.nombre_cliente}" src="${SERVER_URL}images/clientes/${row.imagen_cliente}">
+                        <img class="rounded-circle" width="75" height="75" alt="${row.nombre_cliente}" src="${SERVER_URL}images/clientes/${row.imagen_cliente}">
                     </div>
                     <!-- Contenedor de comentarios -->
                     <div class="col-12 col-lg-10 comentarios_clientes">
