@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     fillEncabezado(MASCOTA);
     const FORM = new FormData();
     FORM.append('mascota', MASCOTA);
-    FORM.append('mascota', MASCOTA);
+    FORM.append('mascota', MASCOTA); 
     //fuerza a que CATEGORIA sea int
     const CATEGORIA2 = parseInt(CATEGORIA);
     console.log(SELECTCATEGORIA);

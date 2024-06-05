@@ -76,6 +76,38 @@ END
 //
 DELIMITER ;
 
+-- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE HACE UN PEDIDO --
+DELIMITER //
+
+CREATE TRIGGER actualizar_existencias_update
+BEFORE UPDATE ON detalles_pedidos
+FOR EACH ROW
+BEGIN
+    -- Devolver la cantidad del detalle pedido a las existencias (sumar la cantidad antigua)
+    UPDATE productos
+    SET existencia_producto = existencia_producto + OLD.cantidad_detalle_pedido
+    WHERE id_producto = OLD.id_producto;
+
+    -- Actualizar las existencias restando la nueva cantidad del detalle pedido
+    UPDATE productos
+    SET existencia_producto = existencia_producto - NEW.cantidad_detalle_pedido
+    WHERE id_producto = NEW.id_producto;
+
+    -- Controlar el estado del producto en función de las existencias
+    IF ((SELECT existencia_producto FROM productos WHERE id_producto = NEW.id_producto) != 0) THEN
+        UPDATE productos
+        SET estado_producto = 1
+        WHERE id_producto = NEW.id_producto;
+    ELSE
+        UPDATE productos
+        SET estado_producto = 0
+        WHERE id_producto = NEW.id_producto;
+    END IF;
+END//
+
+DELIMITER ;
+
+
 -- ALTER para que la tabla productos acepte numeros de 0:
 ALTER TABLE productos
 ADD CONSTRAINT existencia_producto_check CHECK(existencia_producto >= 0);
@@ -428,9 +460,12 @@ BEGIN
         VALUES(p_id_producto, p_precio_total, p_cantidad_detalle_pedido, p_id_pedido);
     END IF;
 
-END //
+END 
 
 DELIMITER ;
+
+
+DELIMITER //
 
 CREATE PROCEDURE insertar_valoracion (
     IN p_calificacion_valoracion INT,
@@ -457,4 +492,9 @@ BEGIN
 END;
 
 DELIMITER ;
+
+
+SELECT * FROM productos;
+SELECT * FROM pedidos;
+SELECT * FROM detalles_pedidos;
 
