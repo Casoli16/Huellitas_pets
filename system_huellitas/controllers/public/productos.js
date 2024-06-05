@@ -12,6 +12,8 @@ const CONTENEDOR = document.getElementById('contenedorinformacion'),
     COMENTARIOS = document.getElementById('comentariosValoraciones'),
     INPUTCANTIDAD = document.getElementById('cantidad');
 
+const BUTTON = document.getElementById('productoEspecifico');
+
 let precioProducto;
 
 // Variable para saber en qué página estamos
@@ -25,9 +27,15 @@ let idcupon = 0;
 // Función que se carga cuando se abre la página
 document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate();
-    fillConteiner(IDPRODUCTO);
-    fillComentarios(IDPRODUCTO);
+    await fillConteiner(IDPRODUCTO);
+    await fillComentarios(IDPRODUCTO);
 
+    //Revisa si en la url traer las variable o mascota, si las trae entonces muestra el boton pero sino lo esconde.
+    if(CATEGORIA == null || MASCOTA == null){
+        BUTTON.classList.add('d-none');
+    } else {
+        BUTTON.classList.remove('d-none');
+    }
 });
 
 // Función para cargar la información del producto

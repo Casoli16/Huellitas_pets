@@ -257,10 +257,6 @@ const searchProduct = async () => {
         SEARCH_ROW.innerHTML = '';
         SEARCH_DIV.classList.remove('d-none')
         DATA.dataset.forEach(row => {
-            id_producto = row.id_producto;
-            categoria = row.id_categoria;
-            mascota = row.mascotas + 's';
-
             SEARCH_ROW.innerHTML += `
                 <div class="col-md-3 col-sm-12 d-flex align-self-center">
                     <div class=" p-2 rounded-3 text-center box ">
@@ -268,7 +264,7 @@ const searchProduct = async () => {
                         <img src="${SERVER_URL}images/productos/${row.imagen_producto}" width="60px" height="70px"/>
                         <p class="mb-0 mt-2">${row.nombre_producto}</p>
                         <p class="fw-semibold mt-1">$${row.precio_producto}</p>
-                        <button class="btn btn-orange-color btn-sm text-light rounded-3" onclick="goToProduct(${row.id_producto}, categoria, mascota)">Ver producto</button>
+                        <button class="btn btn-orange-color btn-sm text-light rounded-3" onclick="goToProduct(${row.id_producto})">Ver producto</button>
                     </div>
                 </div>                           
             `
@@ -285,7 +281,7 @@ const searchProduct = async () => {
 
 
 
-const goToProduct = (id, categoria, mascota) =>{
+const goToProduct = (id) =>{
     event.preventDefault();
-    window.location.href = `../../views/public/producto.html?producto=${id}&categoria=${categoria}&mascota=${mascota}`;
+    window.location.href = `../../views/public/producto.html?producto=${id}`;
 }

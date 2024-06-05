@@ -129,6 +129,13 @@ class productosHandler
         return Database::getRows($sql, $params);
     }
 
+    //    Leer las marcas en base a su estado y animal
+    public function readAllProducts()
+    {
+        $sql = 'SELECT * FROM vista_productos_puntuacion ORDER BY puntuacion_producto DESC';
+        return Database::getRows($sql);
+    }
+
     //Muestra el producto mas vendido
     public function readTopProduct()
     {

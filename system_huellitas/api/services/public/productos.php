@@ -30,6 +30,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
+            //Metodo para leer todos los productos
+            case 'readAllProducts':
+                if ($result['dataset'] = $productos->readAllProducts()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen registros';
+                } else {
+                    $result['error'] = 'No existen registros';
+                }
+                break;
             // Método que permite leer categorías de productos.
             case 'readCategorias':
                 if (!$productos->setMascotas($_POST['mascota'])) {
@@ -208,6 +217,15 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Este producto no ha sido comentado';
+                }
+                break;
+            //Metodo para leer todos los productos
+            case 'readAllProducts':
+                if ($result['dataset'] = $productos->readAllProducts()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen registros';
+                } else {
+                    $result['error'] = 'No existen registros';
                 }
                 break;
             case 'searchProducts':
