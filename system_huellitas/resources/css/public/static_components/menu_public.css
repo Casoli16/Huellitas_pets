@@ -37,6 +37,18 @@
 
 }
 
+#notFound{
+    height: 100px;
+    position: absolute;
+    top: calc(100% + 0.5rem); /* Position below the navbar */
+    left: 10%; /* Align to the left side of the container */
+    width: 80%; /* Match the container width */
+    background-color: white; /* Set background color */
+    border: 1px solid #ddd; /* Add a border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a light shadow */
+
+}
+
 .box{
     height: 240px;
 }

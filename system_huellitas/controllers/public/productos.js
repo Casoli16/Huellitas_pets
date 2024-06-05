@@ -285,7 +285,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message);
-        console.log(DATA.message);
+        await fillComentarios(IDPRODUCTO);
         COMENTARIO_VALORACION.value = '';  // Borra el texto del comentario
         stars.forEach(function(star) {
             star.classList.remove('checked');  // Reinicia las estrellas a 0

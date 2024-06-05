@@ -35,10 +35,25 @@ const navbar = `
             </ul>
             <form class="d-flex me-md-5" role="search">
                 <div class="search-input position-relative">
-                    <input type="search" class="search form-control bg-beige-color ps-5" placeholder="Productos...">
+                    <input type="search" class="search form-control bg-beige-color ps-5" id="inputSearch" placeholder="Productos...">
                     <img src="../../resources/img/svg/search_public.svg"
                         class="position-absolute top-50 translate-middle-y search-icon" width="25px" height="25px">
                 </div>
+                
+                <!--Container para el search-->
+                <div class="bg-white p-4 me-5 ms-3 overflow-auto d-none" id="searchDiv">
+                    <div class="row d-flex justify-content-center align-items-center" id="rowProducts">
+                                                       
+                    </div>
+                </div>
+                
+                <!--Container para el search en caso de que no se exista busqueda-->
+                <div class="bg-white p-4 me-5 ms-3 overflow-auto d-none" id="notFound">
+                    <div class="p-2 rounded-3 text-center">
+                        <p>No existen resultados de tú búsqueda</p>
+                    </div> 
+                </div> 
+                
             </form>
             <div class="py-md-0 py-4">
                 <a class="position-relative me-md-5 me-4" href="../../views/public/carrito_1.html">
@@ -225,9 +240,6 @@ const loadTemplate = async () => {
             } else {
                 CART.textContent = '0';
             }
-            const inputSearch = document.getElementById('inputSearch');
-            inputSearch.addEventListener('input', searchProduct);
-
         } else {
             location.href = 'index.html';
         }
@@ -235,6 +247,8 @@ const loadTemplate = async () => {
         document.getElementById('navbar').innerHTML = navbar;
     }
     document.getElementById('footer').innerHTML = footer;
+    const inputSearch = document.getElementById('inputSearch');
+    inputSearch.addEventListener('input', searchProduct);
 }
 
 //Codigo para el buscador

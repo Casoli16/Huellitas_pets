@@ -46,9 +46,6 @@ class ValoracionesData extends ValoracionesHandler{
     {
         if (!$value) {
             return true;
-        } elseif (!Validator::validateString($value)) {
-            $this->data_error = 'La descripción contiene caracteres prohibidos';
-            return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
             $this->comentarioValoracion = $value;
             return true;

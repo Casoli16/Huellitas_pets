@@ -191,6 +191,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Producto inexistente';
                 }
+                break;
             // Método que permite leer un producto dependiendo de la mascota que se pase. (Perro o gato)
             case 'readSpecificProduct':
                 if (!$productos->setMascotas($_POST['mascota'])) {
