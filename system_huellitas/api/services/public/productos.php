@@ -123,6 +123,16 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Este producto no ha sido comentado';
                 }
                 break;
+            case 'searchProducts':
+                if (!Validator::validateSearch($_POST['search'])) {
+                    $result['error'] = Validator::getSearchError();
+                } elseif ($result['dataset'] = $productos->searchProducts()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen coincidencias';
+                } else {
+                    $result['error'] = 'No hay coincidencias';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible';
                 break;
@@ -198,6 +208,16 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Este producto no ha sido comentado';
+                }
+                break;
+            case 'searchProducts':
+                if (!Validator::validateSearch($_POST['search'])) {
+                    $result['error'] = Validator::getSearchError();
+                } elseif ($result['dataset'] = $productos->searchProducts()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen coincidencias';
+                } else {
+                    $result['error'] = 'No hay coincidencias';
                 }
                 break;
             default:

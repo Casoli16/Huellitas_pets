@@ -25,13 +25,13 @@ class productosHandler
     const RUTA_IMAGEN = '../../images/productos/';
 
     //    Buscar un producto
-    public function searchRows()
+    public function searchProducts()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, mascotas, fecha_registro_producto, nombre_categoria, estado_producto, mascotas
-                FROM productosview
-                WHERE nombre_producto LIKE ? OR mascotas LIKE ?
-                ORDER BY nombre_producto';
+        $sql = 'SELECT id_producto, nombre_producto, precio_producto, nombre_categoria
+            FROM productos
+            INNER JOIN categorias USING(id_categoria)
+            WHERE productos.nombre_producto LIKE ? OR nombre_categoria LIKE ?';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }

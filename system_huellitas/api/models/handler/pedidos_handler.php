@@ -165,7 +165,7 @@ class PedidosHandler
     // Método para obtener los productos que se encuentran en el carrito de compras.
     public function readDetail()
     {
-        $sql = 'SELECT id_detalle_pedido, id_pedido, imagen_producto, nombre_producto, existencia_producto, direccion_pedido, detalles_pedidos.precio_detalle_pedido, detalles_pedidos.cantidad_detalle_pedido, nombre_marca
+        $sql = 'SELECT id_detalle_pedido, id_pedido, precio_producto, imagen_producto, nombre_producto, existencia_producto, direccion_pedido, detalles_pedidos.precio_detalle_pedido, detalles_pedidos.cantidad_detalle_pedido, nombre_marca
                 FROM detalles_pedidos
                 INNER JOIN pedidos USING(id_pedido)
                 INNER JOIN productos USING(id_producto)
