@@ -14,6 +14,8 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/public/static_components/menu_public.css">
     <!-- Agregamos el archivo css del historial -->
     <link type="text/css" rel="stylesheet" href="../../resources/css/public/historial_compras.css">
+    <!-- Agregamos un archivo css para el estilo de cards de pedido-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/pedidos.css">
 </head>
 
 <body>
@@ -31,7 +33,14 @@
                 <h3><b>Historial de compras</b></h3>
                 <h6>Mis Compras</h6>
             </div>
-
+            <div class="container">
+                <!-- py-4 agrega un margin vertical entre el boton y el buscador -->
+                <div class="row align-items-center gy-4">
+                    <div>
+                        <h6>Para poder ver más detalladamente los detalles del pedido, presionar el pedido que desea ver.</h6>
+                    </div>
+                </div>
+            </div>
             <!-- Contenedor principal del historial de compras -->
             <div class="container shadow p-4 mt-4 rounded-4 contenedor_historial">
                 <div id="historialContainer">
@@ -39,6 +48,79 @@
                 </div>
             </div>
 
+        </div>
+        <!-- Modal para mostrar información detallada del pedido -->
+        <div class="modal" id="viewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <!-- Encabezado del modal -->
+                    <div class="modal-header bg-orange-color">
+                        <!-- Título del modal -->
+                        <div class="container text-center">
+                            <h1 class="modal-title fs-5 text-white fw-bold" id="exampleModalLabel">Información
+                                del
+                                pedido
+                            </h1>
+                        </div>
+                        <!-- Botón para cerrar el modal -->
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close" onclick=resetDataTable()></button>
+                    </div>
+                    <!-- Cuerpo del modal -->
+                    <div class="modal-body mt-3">
+                        <div class="row">
+                            <input type="hidden" id="idPedidoView" name="idPedidoView">
+                            <div class="col-sm-12">
+                                <ol class="list-group" id="tarjetas">
+                                    <!-- Elemento de la lista representando los productos -->
+                                </ol>
+                            </div>
+                            <!-- Información adicional del pedido -->
+                            <div class="col-sm-12 col-md-6">
+                                <!-- Etiqueta para el nombre -->
+                                <label class="form-check-label custom-bold-label" for="nombreCliente"><b>Nombre</b></label>
+                                <br>
+                                <!-- Nombre del cliente -->
+                                <label class="form-check-label" id="nombreCliente" name="nombreCliente"></label>
+                            </div>
+                            <!-- Más información adicional -->
+                            <br>
+                            <!-- Información de la dirección -->
+                            <div class="col-sm-12 col-md-6">
+                                <label class="form-check-label custom-bold-label" for="direccion"><b>Dirección</b></label>
+                                <br>
+                                <label class="form-check-label" id="direccion" name="direccion"></label>
+                            </div>
+                            <!-- Más información de la dirección -->
+                            <br>
+                            <!-- Estado del pedido -->
+                            <div class="col-sm-12 col-md-6">
+                                <label class="form-check-label custom-bold-label"
+                                    for="estestadoPedidoado"><b>Estado</b></label>
+                                <br>
+                                <!-- Estado del pedido -->
+                                <label class="form-check-label" id="estadoPedido" name="estadoPedido"></label>
+                            </div>
+                            <!-- Total a pagar -->
+                            <br>
+                            <div class="col-sm-12 col-md-6">
+                                <label class="form-check-label custom-bold-label" for="totalAPagar"><b>Total
+                                    a
+                                    pagar</b></label>
+                                <br>
+                                <!-- Monto total a pagar por el pedido -->
+                                <label class="form-check-label" id="totalAPagar" name="totalAPagar"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pie del modal -->
+                    <div class="container text-center mb-3">
+                        <!-- Botón para salir del modal -->
+                        <button type="button" class="btn btn-orange-color text-white" data-bs-dismiss="modal"
+                            onclick=resetDataTable()>Salir</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 

@@ -59,20 +59,25 @@ class ClientesHandler
     public function readHistorial()
     {
         $sql = "SELECT 
-        dp.id_detalle_pedido,
-        pr.nombre_producto,
-        dp.cantidad_detalle_pedido,
-        pr.precio_producto AS precio_individual,
-        dp.precio_detalle_pedido,
-        p.id_cliente, 
-        DATE_FORMAT(p.fecha_registro_pedido, '%d de %M del %Y') AS fecha_registro
-        FROM 
-        detalles_pedidos dp
-        INNER JOIN 
-        pedidos p ON dp.id_pedido = p.id_pedido
-        INNER JOIN 
-        productos pr ON dp.id_producto = pr.id_producto
-        WHERE id_cliente = ?";
+                c.nombre_cliente AS cliente,
+                DATE_FORMAT(p.fecha_registro_pedido, '%e de %M del %Y') AS fecha,
+                SUM(dp.cantidad_detalle_pedido) AS cantidad,
+                (SELECT SUM(precio) 
+                FROM pedido_view_two_I 
+                WHERE id_pedido = p.id_pedido
+                ) AS precio_total,
+                p.estado_pedido,
+                p.id_pedido AS id_pedido
+                FROM 
+                clientes c
+                INNER JOIN 
+                pedidos p ON c.id_cliente = p.id_cliente
+                INNER JOIN 
+                detalles_pedidos dp ON p.id_pedido = dp.id_pedido
+                WHERE 
+                c.id_cliente = ?
+                GROUP BY 
+                c.nombre_cliente, p.fecha_registro_pedido, p.estado_pedido, p.id_pedido;";
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
     }

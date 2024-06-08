@@ -1,6 +1,16 @@
 const CLIENTES_API = 'services/public/clientes.php';
 const HISTORIAL = document.getElementById('historialContainer');
 
+const VIEW_MODAL = new bootstrap.Modal('#viewModal'),
+    ID_PEDIDO_VIEW = document.getElementById('idPedidoView'),
+    NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
+    DIRECCION = document.getElementById('direccion'),
+    ESTADO_PEDIDO = document.getElementById('estadoPedido'),
+    TOTAL_A_PAGAR = document.getElementById('totalAPagar')
+
+// CARTAS QUE SE MUESTRAN AL ABRIR EL MODAL DE PERMISOS
+const CARDS = document.getElementById('tarjetas');
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener("DOMContentLoaded", () => {
     loadTemplate();
@@ -14,26 +24,23 @@ const fillHistorial = async () => {
         HISTORIAL.innerHTML = '';
         DATA.dataset.forEach(row => {
             HISTORIAL.innerHTML += `
-                <h5><b>${row.fecha_registro}</b></h5>
-                <div class="row py-3">
+                <h5><b>${row.fecha}</b></h5>
+                <div class="row py-3" onclick="openView(${row.id_pedido})" style="cursor: pointer;">
                     <div class="col-1 py-2">
                         <img class="image-fluid" src="../../resources/img/png/historial_compra_img.png" alt="">
                     </div>
                     <div class="col-12 col-lg-10">
                         <div class="row">
                             <div class="col-9 col-lg-11 py-3">
-                                <h6><b>${row.nombre_producto}</b></h6>
+                                <h6><b>Estado del pedido: ${row.estado_pedido}</b></h6>
                                 <div class="row">
                                     <div class="col-8 col-lg-4">
-                                        <p class="fs-6">Cantidad: ${row.cantidad_detalle_pedido} Unidades</p>
+                                        <p class="fs-6">Cantidad: ${row.cantidad} Unidades</p>
                                     </div>
                                     <div class="col-8 col-lg-4 ">
-                                        <p class="fs-6">Precio Individual: $${row.precio_individual}</p>
+                                        <p class="fs-6">Precio total: $${row.precio_total}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-3 col-lg-1">
-                                <h5 class="py-4"><b>$${row.precio_detalle_pedido}</b></h5>
                             </div>
                         </div>
                     </div>
@@ -45,3 +52,88 @@ const fillHistorial = async () => {
         alert('Error: ' + DATA.error);
     }
 };
+
+
+//Funcion que cargara los productos de ese cliente en el modal de viewModal.
+const fillCards = async (id) => {
+    CARDS.innerHTML = '';
+    const FORM = new FormData();
+    FORM.append('id_pedido', id);
+    const DATA = await fetchData(CLIENTES_API, 'readOne', FORM);
+
+    if (DATA.status) {
+        const cantidad_registros = DATA.dataset.length;
+        console.log(cantidad_registros);
+        DATA.dataset.forEach(row => {
+            CARDS.innerHTML += `
+            <li
+            class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
+            <img src="${SERVER_URL}images/productos/${row.imagen_producto}" width="90" height="100">
+            <!-- Información del producto -->
+            <div class="ms-2 me-auto">
+                <span class="badge badge-custom text-dark shadow mb-4"
+                    id="Cantidad_InformacionPedidos"
+                    name="Cantidad__InformacionPedidosN">${row.cantidad}</span>
+                <div class="marca" id="Marca_InformacionPedidos"
+                    name="Marca_InformacionPedidosN"> ${row.nombre_marca}</div>
+                <div class="producto" id="Producto_InformacionPedidos"
+                    name="Producto__InformacionPedidosN"> ${row.nombre_producto}
+                </div>
+            </div>
+            <!-- Opciones para el producto -->
+            <div class="d-flex flex-column mb-3">
+                <div class="p-2">
+                    <label class="fw-bold" id="Precio_InformacionPedidosN">${row.precio}</label>
+                </div>
+            </div>
+        </li>
+            `
+        });
+    } else {
+        sweetAlert(3, DATA.error, true);
+    }
+}
+
+// Preparamos el metodo para llenar los datos del modal, en este caso primero se llenan los datos generales del pedido
+const openView = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_pedido', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(CLIENTES_API, 'readTwo', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        const [ROW] = DATA.dataset;
+        ID_PEDIDO_VIEW.value = ROW.id_pedido;
+        NOMBRE_CLIENTE.textContent = ROW.nombre_cliente;
+        DIRECCION.textContent = ROW.direccion;
+        ESTADO_PEDIDO.textContent = ROW.estado;
+        TOTAL_A_PAGAR.textContent = ROW.precio_total;
+
+        await fillCards(id);
+        VIEW_MODAL.show();
+
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
+const openViewMini = async (id) => {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_pedido', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(CLIENTES_API, 'readTwo', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        const [ROW] = DATA.dataset;
+        ID_PEDIDO_VIEW.value = ROW.id_pedido;
+        NOMBRE_CLIENTE.textContent = ROW.nombre_cliente;
+        DIRECCION.textContent = ROW.direccion;
+        ESTADO_PEDIDO.textContent = ROW.estado;
+        TOTAL_A_PAGAR.textContent = ROW.precio_total;
+
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}

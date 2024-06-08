@@ -2,12 +2,17 @@
 // Se incluye la clase del modelo.
 require_once('../../models/data/clientes_data.php');
 
+// Se incluye la API para leer los productos para el historial
+require_once('../../models/data/pedidos_data.php');
+
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
     $cliente = new ClientesData();
+    // Se instancia la clase correspondiente.
+    $pedidos = new PedidosData();
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'recaptcha' => 0, 'message' => null, 'error' => null, 'exception' => null, 'username' => null, 'name' => null, 'lastName' => null, 'picture' => null);
     // Se verifica si existe una sesión iniciada como cliente para realizar las acciones correspondientes.
@@ -42,6 +47,24 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Ocurrió un problema al leer el historial';
+                }
+                break;
+            case 'readOne':
+                if (!$pedidos->setIdPedido($_POST['id_pedido'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->readOne1()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Pedido inexistente';
+                }
+                break;
+            case 'readTwo':
+                if (!$pedidos->setIdPedido($_POST['id_pedido'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->readOne2()) {
+                    $result['status'] = 1;
+                } else {
+                $result['error'] = 'Pedido inexistente';
                 }
                 break;
             //Metódo que permite editar la información del admin que se ha logueado.    
