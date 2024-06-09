@@ -34,7 +34,7 @@ const getData = async (form = null) => {
         //Manda el teléfono del usuario.
         CLIENTE_TELEFONO.textContent = ROW.telefono_cliente;
         //Manda el teléfono del usuario.
-        CLIENTE_DIRECCION.textContent = ROW.telefono_cliente;
+        CLIENTE_DIRECCION.textContent = ROW.direccion_cliente;
         //Manda la fecha en que se registro el usuario.
         CLIENTE_FECHA_REGISTRO.textContent = ROW.fecha_registro;
     } else {

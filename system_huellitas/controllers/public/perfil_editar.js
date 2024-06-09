@@ -63,9 +63,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
-        sweetAlert(1, DATA.message, true, 'perfil.html');
-        console.log(DATA.message)
-
+        sweetAlert(1, 'Tus cambios se verán afectados cuando vuelvas a ingresar sesión', false, 'perfil.html');
     } else {
         sweetAlert(2, DATA.error, false);
         console.log(DATA.message)

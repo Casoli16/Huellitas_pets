@@ -131,7 +131,7 @@ const navbarPerfil = `
             </div>
             <div class="row">
                 <div class="col-3">
-                    <a href="../../views/public/perfil.html" class="me-md-5"><img class="rounded-circle" src="../../resources/img/svg/img_perfil_navbar.svg" width="55px" height="55px" alt=""></a>
+                    <a href="../../views/public/perfil.html" class="me-md-5"><img class="rounded-circle" src="../../resources/img/png/rectangulo.png" width="55px" height="55px" alt=""></a>
                 </div>
                 <div class="col-6">
                     <div class="dropdown me-md-5">
@@ -229,7 +229,7 @@ const loadTemplate = async () => {
             document.getElementById('navbar').innerHTML = navbarPerfil
                 //Dentro del navbarPerfil remplazamos los string dados y se coloca el nombre del usuario, asi como la imagen.
                 .replace('name', DATA.name.split(' ')[0] + ' ' + DATA.lastName.split(' ')[0]) // Split nos sirve para cortar un string y que solo aparezca en este caso el primer nombre y primer apellido.
-                .replace('../../resources/img/svg/img_perfil_navbar.svg', `${SERVER_URL}images/clientes/${DATA.picture}`);
+                .replace('../../resources/img/png/rectangulo.png', `${SERVER_URL}images/clientes/${DATA.picture}`);
 
             //Petición para saber la cantidad de productos que hay en el carrito de compras
             const CART = document.getElementById('countTotal');
@@ -245,6 +245,8 @@ const loadTemplate = async () => {
         }
     } else {
         document.getElementById('navbar').innerHTML = navbar;
+        const CART = document.getElementById('countTotal');
+        CART.textContent = '0';
     }
     document.getElementById('footer').innerHTML = footer;
     const inputSearch = document.getElementById('inputSearch');

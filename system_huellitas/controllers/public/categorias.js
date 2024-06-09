@@ -33,11 +33,11 @@ const fillConteiner = async (animal) => {
         DATA.dataset.forEach(row => {
             CONTENEDOR.innerHTML += `
             <div class="col d-flex justify-content-center">
-                <div class="card text-center border-0 h-100" name="${row.id_categoria}">
+                <div class="card text-center border-0 h-100 shadow rounded-4" name="${row.id_categoria}">
                     <img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" 
-                         class="rounded mx-auto d-block" width="300px" height="300px">
+                         class="rounded mx-auto d-block mt-3" width="200px" height="200px">
                     <div class="card-body text-center">
-                        <h5 class="card-title">${row.nombre_categoria}</h5>
+                        <p class="fw-semibold bg-skin-color p-2 rounded-3 text-dark fs-5">${row.nombre_categoria}</>
                         <p class="card-text">${row.descripcion_categoria}</p>
                     </div>
                 </div>
