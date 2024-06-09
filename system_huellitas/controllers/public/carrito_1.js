@@ -16,9 +16,11 @@ const fillCard = async ()=> {
     if(DATA.status){
         let total = 0;
         let subtotal = 0;
+        let price = 0;
         CARDS.innerHTML = '';
         DATA.dataset.forEach(row => {
-            subtotal = (row.precio_detalle_pedido/row.cantidad_detalle_pedido) * row.cantidad_detalle_pedido;
+            subtotal = row.precio_detalle_pedido * row.cantidad_detalle_pedido;
+            price = subtotal / row.cantidad_detalle_pedido;
             total += subtotal
             id = row.id_detalle_pedido;
             CARDS.innerHTML += `
@@ -45,7 +47,7 @@ const fillCard = async ()=> {
                             </div>
                                                         <div class="mt-0 d-flex mb-3">
                                 <small class="fw-light me-2">Precio unitario:</small>
-                                <small class="fw-semibold">$${row.precio_detalle_pedido/row.cantidad_detalle_pedido}</small>
+                                <small class="fw-semibold">$${price.toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2,})}</small>
                             </div>
                         </div>
                     </div>

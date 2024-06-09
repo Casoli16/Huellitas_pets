@@ -435,7 +435,7 @@ BEGIN
     WHERE id_producto = p_id_producto;
 
     -- Calcular el precio total sin aplicar el cupón
-    SET p_precio_total = p_cantidad_detalle_pedido * p_precio_unitario;
+    SET p_precio_total = (p_cantidad_detalle_pedido * p_precio_unitario) / p_cantidad_detalle_pedido;
 
     -- Verificar si el cupón es válido (id_cupon != 0)
     IF p_id_cupon != 0 THEN
@@ -460,7 +460,7 @@ BEGIN
         VALUES(p_id_producto, p_precio_total, p_cantidad_detalle_pedido, p_id_pedido);
     END IF;
 
-END 
+END;
 
 DELIMITER ;
 
