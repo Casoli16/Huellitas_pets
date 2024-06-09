@@ -46,8 +46,8 @@ class ClientesHandler
 
     public function readProfile()
     {
-        $sql = "SELECT nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, direccion_cliente, estado_cliente, 
-        DATE_FORMAT(fecha_registro_cliente, '%d de %M del %Y') AS fecha_registro,
+        $sql = "SELECT nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, nacimiento_cliente, telefono_cliente, direccion_cliente, estado_cliente, 
+        DATE_FORMAT(fecha_registro_cliente, '%d de %M de %Y') AS fecha_registro,
         imagen_cliente
                 FROM clientes
                 WHERE id_cliente = ?";
@@ -84,7 +84,7 @@ class ClientesHandler
 
     public function checkStatus()
     {
-        if ($this->estadoCliente) {
+        if ($this->estadoCliente == 'Activo') {
             $_SESSION['idCliente'] = $this->idCliente;
             $_SESSION['correoCliente'] = $this->correoCliente;
             $_SESSION['nombreCliente'] = $this->nombreCliente;

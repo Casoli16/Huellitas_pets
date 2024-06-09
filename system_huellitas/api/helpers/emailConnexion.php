@@ -1,16 +1,21 @@
 <?php
-
+//Librerias a utilizar para PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
+//Llamamos la carpeta que tiene la libreria de PHPMailer y sus dependencias
 require('C:/xampp/htdocs/Huellitas_pets/system_huellitas/vendor/autoload.php');
 
-class Email {
+//Creamos la clase Email
+class Email
+{
+    //Creamos la funcion sendEmail que recibe como paramentro el addres, subject, name y message
     public static function sendMail($address, $subject, $name, $message)
     {
+        //Creamos la instancia de PHPMailer
         $mail = new PHPMailer(true);
-
+        //En caso no haya ningun error entonces entraria al bloque de try, retornando un true, pero sino entonces entraria en el catch y retornaria un false.
         try {
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                    //Muestra los posibles errores
             $mail->isSMTP();                                            //Send using SMTP
@@ -32,10 +37,10 @@ class Email {
                               <div style="text-align: center">
                                 <img src="https://serving.photos.photobox.com/898252010919df605cc039d068688ed4cd5f09e85e1991ef9b5fff224dca7254f3225b22.jpg" style="width: 150px; height: 150px" alt=""> 
                               </div>
-                                <h2 style="background-color: #f4d35e; color: #000000; margin-top: 0; text-align: center; padding: 10px">'.$name. '</h2>
+                                <h2 style="background-color: #f4d35e; color: #000000; margin-top: 0; text-align: center; padding: 10px">' . $name . '</h2>
                                 <hr style="border-top: 1px solid #ddd;">
                                 <div style="line-height: 1.5; padding: 15px; background-color: #FAF0CAFF; font-size: 17px">
-                                  ' .$message. '
+                                  ' . $message . '
                                 </div>
                                   <div style="text-align: center; padding: 10px; background-color: #ff8b4d;">
                                   <p style="color: white; font-size: 15px ">Copyright &copy; <?php echo date("Y"); ?> Huellitas Pets. Todos los derechos reservados.</p>
@@ -45,7 +50,7 @@ class Email {
                             ';
             $mail->send();
             return true;
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return false;
         }
     }

@@ -7,7 +7,7 @@ const CLIENTE_NAME = document.getElementById('nombreCliente'),
     CLIENTE_CORREO = document.getElementById('correoCliente'),
     CLIENTE_DIRECCION = document.getElementById('direccionCliente'),
     CLIENTE_FECHA_REGISTRO =  document.getElementById('fechaInicioCliente'),
-
+    CLIENTE_NACIMIENTO = document.getElementById('nacimiento'),
     CLIENTE_DUI = document.getElementById('duiCliente');
 
 // Método del evento para cuando el documento ha cargado.
@@ -24,7 +24,7 @@ const getData = async (form = null) => {
     if (DATA.status) {
         const ROW = DATA.dataset;
         //Manda el nombre del usuario.
-        CLIENTE_NAME.textContent = ROW.nombre_cliente;
+        CLIENTE_NAME.textContent = ROW.nombre_cliente + ' ' + ROW.apellido_cliente;
         //Manda la imagen del usuario.
         CLIENTE_IMAGE.src = SERVER_URL + 'images/clientes/' + ROW.imagen_cliente;
         //Manda el correo del usuario.
@@ -35,6 +35,8 @@ const getData = async (form = null) => {
         CLIENTE_TELEFONO.textContent = ROW.telefono_cliente;
         //Manda el teléfono del usuario.
         CLIENTE_DIRECCION.textContent = ROW.direccion_cliente;
+        //Manda la fecha fecha de nacimiento del usuario
+        CLIENTE_NACIMIENTO.textContent = ROW.nacimiento_cliente;
         //Manda la fecha en que se registro el usuario.
         CLIENTE_FECHA_REGISTRO.textContent = ROW.fecha_registro;
     } else {

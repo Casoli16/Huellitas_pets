@@ -240,7 +240,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                $result['error'] = 'Acción no disponible';
+                $result['error'] = 'Acción no disponible fuera de la sesión';
                 break;
         }
     }
