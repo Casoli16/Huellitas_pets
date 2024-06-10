@@ -39,32 +39,33 @@
                             dirección donde sera envíado tu pedido</p>
                     </div>
                     <hr>
-                        <div class="mt-5 mb-4">
-                            <label for="direccionCliente" class="form-label fw-semibold">Dirección</label>
-                            <div class="mb-3">
-                                <small>Esta es la dirección que se encuentra registrada a tu cuenta</small>
-                            </div>
-                            <input class="form-control bg-white shadow" id="direccionCliente" name="direccionCliente" disabled
-                                required>
-                            <div class="d-flex justify-content-start mt-3 form-text fw-semibold text-decoration-underline" onclick="updateAddress()" >
-                                <img src="../../resources/img/png/place_marker.png" class="me-2" width="23px"
-                                    height="23px">
-                                ¿Tienes una nueva dirección, no se encuentra tú dirección?
-                            </div>
+                    <div class="mt-5 mb-4">
+                        <label for="direccionCliente" class="form-label fw-semibold">Dirección</label>
+                        <div class="mb-3">
+                            <small>Esta es la dirección que se encuentra registrada a tu cuenta</small>
                         </div>
+                        <input class="form-control bg-white shadow" id="direccionCliente" name="direccionCliente"
+                            disabled required>
+                        <div class="d-flex justify-content-start mt-3 form-text fw-semibold text-decoration-underline"
+                            onclick="updateAddress()">
+                            <img src="../../resources/img/png/place_marker.png" class="me-2" width="23px" height="23px">
+                            ¿Tienes una nueva dirección, no se encuentra tú dirección?
+                        </div>
+                    </div>
                     <form id="formAddress">
                         <div class="mb-4 d-none" id="showDiv">
                             <label for="newDireccionCliente" class="form-label fw-semibold">Agrega tu nueva
                                 dirección</label>
                             <div class="d-flex justify-content-evenly">
                                 <input type="text" id="newDireccionCliente" name="direccion"
-                                       class="form-control shadow bg-white me-5" required>
-                                <button type="submit" class="btn btn-red-color text-light btn-sm">Actualizar dirección</button>
+                                    class="form-control shadow bg-white me-5" required>
+                                <button type="submit" class="btn btn-red-color text-light btn-sm">Actualizar
+                                    dirección</button>
                             </div>
                         </div>
                     </form>
-                        <button onclick="finishOrder()"
-                            class="btn btn-orange-color text-light col-md-4 col-sm-12 mt-4">Comprar ahora</button>
+                    <button onclick="finishOrder()"
+                        class="btn btn-orange-color text-light col-md-4 col-sm-12 mt-4">Comprar ahora</button>
                 </div>
                 <!-- Col 2 - Contiene el total a pagar de productos-->
                 <div class="col-sm-12 col-md-4">
