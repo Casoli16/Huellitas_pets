@@ -69,7 +69,7 @@ const fillCards = async (id) => {
         DATA.dataset.forEach(row => {
             subtotal = row.cantidad * row.precio;
             total_pedido += subtotal;
-            TOTAL_A_PAGAR.textContent = total_pedido;
+            TOTAL_A_PAGAR.textContent = '$' + total_pedido;
             CARDS.innerHTML += `
             <li
             class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
