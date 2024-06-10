@@ -92,6 +92,7 @@ if (isset($_GET['action'])) {
                     !$productos->setIdCliente($_SESSION['idCliente'])
                 ) {
                     $result['error'] = $productos->getDataError();
+                    $result['status'] = 3;
                 } elseif ($result['dataset'] = $productos->readOneCupon()) {
                     $result['status'] = 1;
                 } else {

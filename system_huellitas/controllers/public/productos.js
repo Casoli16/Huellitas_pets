@@ -120,7 +120,7 @@ const fillConteiner = async (id) => {
                                 <div class="col-lg-7 col-md-7 col-sm-7">
                                     <div class="mb-3">
                                         <input type="text" placeholder="Escribe el código de tu cupón" name="cupon"
-                                            class="input form-control">
+                                            class="input form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-5 col-sm-5 text-start d-flex">
@@ -205,6 +205,13 @@ const enviarCodigo = async (precio_producto) => {
             SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
             idcupon = 0;
             console.log(idcupon);
+        }
+
+        else if (DATA.status == 3) {
+            console.log('Entre al else de cupon vacío');
+            idcupon = 0;
+            console.log(idcupon);
+            sweetAlert(3, 'Cupón vacio', false);
         }
 
         else if (!DATA.status) {

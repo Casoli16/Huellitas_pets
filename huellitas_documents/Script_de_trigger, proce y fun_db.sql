@@ -334,6 +334,7 @@ SELECT
     p.nombre_producto AS nombre_producto,
     p.imagen_producto AS imagen_producto,
     p.mascotas AS mascota,
+    p.existencia_producto AS existencias,
     COALESCE(ROUND(AVG(v.calificacion_valoracion) / 2), 5) AS puntuacion_producto
 FROM
     productos p
