@@ -1,0 +1,18 @@
+** Estándares de programación **
+
+JAVASCRIPT:
+- Nombre de las funciones: camelCase
+- Constantes: Mayúsculas
+- Todos los nombres de las variables empiezan con una letra.
+- Al terminar cada sentencia de código se termina con punto y coma ;
+- Variables let: minúsculas.
+- Identación de sangría en el código (es de 4).
+- Código comentado
+
+PHP:
+- Nombre de clases: StudlyCaps (No lleva espacios y cada palabra comienza en mayúscula)
+- Nombre de metódos: camelCase (No lleva espacios y solo la primera letra de la palabra es minúscula.)
+- Nombre para las constantes de la clase: Mayúsculas
+- Los archivos DEBEN usar sólo etiquetas <?php y <?=.
+- Identación de sangría en el código (Es de 4)
+- Código comentado
