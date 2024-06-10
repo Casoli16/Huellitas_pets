@@ -53,22 +53,26 @@ const fillHistorial = async () => {
             `;
         });
     } else {
-        alert('Error: ' + DATA.error);
+        sweetAlert(3, 'Aún no tienes pedidos', true);
     }
 };
 
+let total_pedido;
 
 //Funcion que cargara los productos de ese cliente en el modal de viewModal.
 const fillCards = async (id) => {
+    let subtotal = 0;
     CARDS.innerHTML = '';
     const FORM = new FormData();
     FORM.append('id_pedido', id);
     const DATA = await fetchData(CLIENTES_API, 'readOne', FORM);
-
     if (DATA.status) {
         const cantidad_registros = DATA.dataset.length;
         console.log(cantidad_registros);
         DATA.dataset.forEach(row => {
+            subtotal = row.cantidad * row.precio;
+            total_pedido += subtotal;
+            console.log(total_pedido)
             CARDS.innerHTML += `
             <li
             class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
@@ -87,7 +91,7 @@ const fillCards = async (id) => {
             <!-- Opciones para el producto -->
             <div class="d-flex flex-column mb-3">
                 <div class="p-2">
-                    <label class="fw-bold" id="Precio_InformacionPedidosN">${row.precio}</label>
+                    <label class="fw-bold" id="Precio_InformacionPedidosN">$${subtotal}</label>
                 </div>
             </div>
         </li>
@@ -112,7 +116,7 @@ const openView = async (id) => {
         NOMBRE_CLIENTE.textContent = ROW.nombre_cliente;
         DIRECCION.textContent = ROW.direccion;
         ESTADO_PEDIDO.textContent = ROW.estado;
-        TOTAL_A_PAGAR.textContent = ROW.precio_total;
+        TOTAL_A_PAGAR.textContent = total_pedido;
 
         await fillCards(id);
         VIEW_MODAL.show();
