@@ -84,6 +84,9 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil actualizado correctamente';
                     $result['fileStatus'] = Validator::changeFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN, $cliente->getFilename());
+                    $_SESSION['nombreCliente'] = $_POST['nombreCliente'];
+                    $_SESSION['apellidoCliente'] = $_POST['apellidoCliente'];
+                    //$_SESSION['imagenCliente'] = $cliente->readFilename();
                 } else {
                     $result['error'] = 'Ocurrió un problema al actualizar el perfil';
                 }
