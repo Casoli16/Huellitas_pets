@@ -85,7 +85,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Aún no hay productos registrados';
                 }
                 break;
-            // Método que permite saber si el código esta disponible para el usuario.
+                // Método que permite saber si el código esta disponible para el usuario.
             case 'readCuponDisponible':
                 if (
                     !$productos->setCodigo($_POST['cupon']) or
@@ -101,7 +101,7 @@ if (isset($_GET['action'])) {
                 }
                 //Permite leer la información de un producto en especifico por medio de su id
                 break;
-            // Método que permite leer un producto en base a su id producto, se usa para ver el producto especifico
+                // Método que permite leer un producto en base a su id producto, se usa para ver el producto especifico
             case 'readOneProduct':
                 if (!$productos->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $productos->getDataError();
@@ -131,7 +131,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al guardar la valoración';
                 }
                 break;
-            //Metodo para leer los comentarios de un producto
+                //Metodo para leer los comentarios de un producto
             case 'readComentarios':
                 if (!$valoraciones->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $valoraciones->getDataError();
@@ -141,7 +141,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Este producto no ha sido comentado';
                 }
                 break;
-            //Metodo para buscar productos en base a su nombre
+                //Metodo para buscar productos en base a su nombre
             case 'searchProducts':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -214,7 +214,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Aún no hay productos registrados';
                 }
                 break;
-            // Método que permite leer la información de un producto en base a su id.
+                // Método que permite leer la información de un producto en base a su id.
             case 'readOneProduct':
                 if (!$productos->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $productos->getDataError();
@@ -224,7 +224,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            //Metodo para leer los comentarios de un producto
+                //Metodo para leer los comentarios de un producto
             case 'readComentarios':
                 if (!$valoraciones->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $valoraciones->getDataError();
@@ -243,7 +243,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen registros';
                 }
                 break;
-            // Método que permite buscar productos en base a un criterio de búsqueda.
+                // Método que permite buscar productos en base a un criterio de búsqueda.
             case 'searchProducts':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();

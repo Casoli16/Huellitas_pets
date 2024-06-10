@@ -399,6 +399,7 @@ SELECT
    DATE_FORMAT(v.fecha_valoracion, 'Publicado el %d de %M del %Y')  AS fecha_formato,
     v.estado_valoracion AS estado,
     cl.nombre_cliente AS nombre_cliente,
+    cl.apellido_cliente,
     cl.imagen_cliente AS imagen_cliente
 FROM
     productos p

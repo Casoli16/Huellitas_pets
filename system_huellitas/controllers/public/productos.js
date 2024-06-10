@@ -330,6 +330,7 @@ const fillComentarios = async (id) => {
                         <div class="row">
                             <div class="col-9 col-lg-12 py-2 px-4">
                                 <!-- Comentario del usuario -->
+                                <p class="fw-semibold">${row.nombre_cliente + ' ' + row.apellido_cliente}</p>
                                 <p>${row.comentario}</p>
                                 <div class="row">
                                     <!-- Estrellas de la valoración -->
