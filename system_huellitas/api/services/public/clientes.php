@@ -75,8 +75,10 @@ if (isset($_GET['action'])) {
                     !$cliente->setApellidoCliente($_POST['apellidoCliente']) or
                     !$cliente->setFilename() or
                     !$cliente->setDuiCliente($_POST['duiCliente']) or
-                    !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
                     !$cliente->setDireccionCliente($_POST['direccionCliente']) or
+                    !$cliente->setFechaNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
+                    !$cliente->setCorreoCliente($_POST['correoCliente']) or
                     !$cliente->setImagenCliente($_FILES['imagenCliente'], $cliente->getFilename())
                 ) {
                     $result['error'] = $cliente->getDataError();

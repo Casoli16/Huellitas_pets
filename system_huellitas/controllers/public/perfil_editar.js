@@ -2,12 +2,14 @@ const CLIENTES_API = 'services/public/clientes.php';
 
 const CLIENTE_IMAGE = document.getElementById('imagen');
 
-const SAVE_FORM = document.getElementById('saveForm'), 
+const SAVE_FORM = document.getElementById('saveForm'),
     CLIENTE_NAME = document.getElementById('nombreCliente'),
     CLIENTE_APELLIDO = document.getElementById('apellidoCliente'),
     CLIENTE_TELEFONO = document.getElementById('telefonoCliente'),
     CLIENTE_DIRECCION = document.getElementById('direccionCliente'),
     CLIENTE_DUI = document.getElementById('duiCliente'),
+    CLIENTE_CORREO = document.getElementById('correoCliente'),
+    CLIENTE_NACIMIENTO = document.getElementById('nacimientoCliente'),
     IMAGEN_CLIENTE = document.getElementById('imgCliente');
 
 // Llamada a la función para establecer la mascara del campo teléfono.
@@ -20,12 +22,22 @@ vanillaTextMask.maskInput({
     inputElement: document.getElementById('duiCliente'),
     mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/]
 });
-    
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener("DOMContentLoaded", async () =>{
-    loadTemplate();
-    
-    getData();
+    loadTemplate()
+        .then(getData);
+    // Constante tipo objeto para obtener la fecha y hora actual.
+    const TODAY = new Date();
+    // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
+    let day = ('0' + TODAY.getDate()).slice(-2);
+    // Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
+    let month = ('0' + (TODAY.getMonth() + 1)).slice(-2);
+    // Se declara e inicializa una variable para guardar el año con la mayoría de edad.
+    let year = TODAY.getFullYear() - 18;
+    // Se declara e inicializa una variable para establecer el formato de la fecha.
+    const DATE = `${year}-${month}-${day}`;
+    CLIENTE_NACIMIENTO.max = DATE;
 })
 
 const getData = async (form = null) => {
@@ -42,6 +54,10 @@ const getData = async (form = null) => {
         CLIENTE_TELEFONO.value = ROW.telefono_cliente;
         //Manda la direccion del usuario.
         CLIENTE_DIRECCION.value = ROW.direccion_cliente;
+        CLIENTE_CORREO.value = ROW.correo_cliente;
+        let parts = ROW.nacimiento_cliente.split('-');
+        let formattedDate = `${parts[0]}-${parts[1]}-${parts[2]}`
+        CLIENTE_NACIMIENTO.value = formattedDate;
         //Manda el DUI del usuario.
         CLIENTE_DUI.value = ROW.dui_cliente;
         //Manda la imagen del usuario.
@@ -54,12 +70,10 @@ const getData = async (form = null) => {
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    // Se verifica la acción a realizar.
-    action = 'editProfile';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(CLIENTES_API, action, FORM);
+    const DATA = await fetchData(CLIENTES_API, 'editProfile', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
