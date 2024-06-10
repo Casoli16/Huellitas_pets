@@ -22,7 +22,7 @@ const goToCategories = (mascota) => {
 const readMarcas = async () => {
     const DATA = await fetchData(MARCAS_API, 'readAll');
 
-    if(DATA.status){
+    if (DATA.status) {
         const IMAGES = DATA.dataset;
 
         // Dividir las imágenes en grupos de cuatro
@@ -81,7 +81,8 @@ const renderStars = (puntuacion) => {
     return starsHTML;
 };
 
-const fillProducts = async ()=> {
+//Función que permite mostrar los productos 
+const fillProducts = async () => {
     const DATA = await fetchData(PRODUCTOS_API, 'readAllProducts');
     if (DATA.status) {
         DATA.dataset.forEach(row => {
@@ -133,7 +134,7 @@ const fillProducts = async ()=> {
     }
 }
 
-
+//Función que permite ir a la pantalla de productos y pasa un id producto.
 const navigateToPage = (idProducto) => {
     window.location.href = `../../views/public/producto.html?producto=${idProducto}`;
 };

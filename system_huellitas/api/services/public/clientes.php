@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Correo de usuario indefinido';
                 }
                 break;
-            //Con este metodo lee toda la información del cliente que esta logueado.    
+                //Con este metodo lee toda la información del cliente que esta logueado.    
             case 'readProfile':
                 $_POST = Validator::validateForm($_POST);
                 if ($result['dataset'] = $cliente->readProfile()) {
@@ -40,7 +40,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al leer el perfil';
                 }
                 break;
-            //Con este metodo lee toda la información del cliente que esta logueado.    
+                //Con este metodo lee toda la información del cliente que esta logueado.    
             case 'readHistorial':
                 $_POST = Validator::validateForm($_POST);
                 if ($result['dataset'] = $cliente->readHistorial()) {
@@ -58,16 +58,17 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Pedido inexistente';
                 }
                 break;
+                //Permite leer la información del pedido que recién se ha comprado
             case 'readTwo':
                 if (!$pedidos->setIdPedido($_POST['id_pedido'])) {
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($result['dataset'] = $pedidos->readOne2()) {
                     $result['status'] = 1;
                 } else {
-                $result['error'] = 'Pedido inexistente';
+                    $result['error'] = 'Pedido inexistente';
                 }
                 break;
-            //Metódo que permite editar la información del admin que se ha logueado.    
+                //Metódo que permite editar la información del admin que se ha logueado.    
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -93,21 +94,23 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el perfil';
                 }
                 break;
+                //Metodo que permite cambiar la contraseña del cliente
             case 'changePassword':
-                    $_POST = Validator::validateForm($_POST);
-                    if (!$cliente->checkPassword($_POST['claveActual'])) {
-                        $result['error'] = 'Contraseña actual incorrecta';
-                    } elseif ($_POST['claveNueva'] != $_POST['ConfirmarClave']) {
-                        $result['error'] = 'Confirmación de contraseña diferente';
-                    } elseif (!$cliente->setClaveCliente($_POST['claveNueva'])) {
-                        $result['error'] = $cliente->getDataError();
-                    } elseif ($cliente->changePassword()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'La constraseña ha sido cambiada exitosamente';
-                    } else {
-                        $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
-                    }
-            break;
+                $_POST = Validator::validateForm($_POST);
+                if (!$cliente->checkPassword($_POST['claveActual'])) {
+                    $result['error'] = 'Contraseña actual incorrecta';
+                } elseif ($_POST['claveNueva'] != $_POST['ConfirmarClave']) {
+                    $result['error'] = 'Confirmación de contraseña diferente';
+                } elseif (!$cliente->setClaveCliente($_POST['claveNueva'])) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->changePassword()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'La constraseña ha sido cambiada exitosamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
+                }
+                break;
+                //Permite cerrar la sesión del cliente
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -119,7 +122,7 @@ if (isset($_GET['action'])) {
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
-    } else{
+    } else {
         // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'signUp':
@@ -144,7 +147,7 @@ if (isset($_GET['action'])) {
                 if (!$captcha['success']) {
                     $result['recaptcha'] = 1;
                     $result['error'] = 'No eres humano';
-                } elseif(!isset($_POST['condicion'])) {
+                } elseif (!isset($_POST['condicion'])) {
                     $result['error'] = 'Debe marcar la aceptación de términos y condiciones';
                 } elseif (
                     !$cliente->setNombreCliente($_POST['nombreCliente']) or
@@ -190,6 +193,6 @@ if (isset($_GET['action'])) {
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print(json_encode($result));
-} else{
+} else {
     print(json_encode('Recurso no disponible'));
 }

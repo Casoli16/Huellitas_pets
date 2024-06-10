@@ -6,14 +6,14 @@ const CLIENTE_NAME = document.getElementById('nombreCliente'),
     CLIENTE_TELEFONO = document.getElementById('telefonoCliente'),
     CLIENTE_CORREO = document.getElementById('correoCliente'),
     CLIENTE_DIRECCION = document.getElementById('direccionCliente'),
-    CLIENTE_FECHA_REGISTRO =  document.getElementById('fechaInicioCliente'),
+    CLIENTE_FECHA_REGISTRO = document.getElementById('fechaInicioCliente'),
     CLIENTE_NACIMIENTO = document.getElementById('nacimiento'),
     CLIENTE_DUI = document.getElementById('duiCliente');
 
 // Método del evento para cuando el documento ha cargado.
-document.addEventListener("DOMContentLoaded", async () =>{
+document.addEventListener("DOMContentLoaded", async () => {
     loadTemplate();
-    
+
     getData();
 })
 

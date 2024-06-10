@@ -24,7 +24,7 @@ vanillaTextMask.maskInput({
 });
 
 // Método del evento para cuando el documento ha cargado.
-document.addEventListener("DOMContentLoaded", async () =>{
+document.addEventListener("DOMContentLoaded", async () => {
     loadTemplate()
         .then(getData);
     // Constante tipo objeto para obtener la fecha y hora actual.

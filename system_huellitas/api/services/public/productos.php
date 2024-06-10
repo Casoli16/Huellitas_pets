@@ -20,7 +20,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idCliente'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            // Método que permite leer marcas de productos.
+                // Método que permite leer marcas de productos.
             case 'readMarcas':
                 if (!$productos->setMascotas($_POST['mascota'])) {
                     $result['error'] = $productos->getDataError();
@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            //Metodo para leer todos los productos
+                //Metodo para leer todos los productos
             case 'readAllProducts':
                 if ($result['dataset'] = $productos->readAllProducts()) {
                     $result['status'] = 1;
@@ -39,7 +39,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen registros';
                 }
                 break;
-            // Método que permite leer categorías de productos.
+                // Método que permite leer categorías de productos.
             case 'readCategorias':
                 if (!$productos->setMascotas($_POST['mascota'])) {
                     $result['error'] = $productos->getDataError();
@@ -49,11 +49,12 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            // Método que permite leer los productos en base a una marca.
+                // Método que permite leer los productos en base a una marca.
             case 'readProductsByMarca':
-                if (!$productos->setMarca($_POST['condition']) or
+                if (
+                    !$productos->setMarca($_POST['condition']) or
                     !$productos->setMascotas($_POST['mascota'])
-                    ) {
+                ) {
                     $result['error'] = $productos->getDataError();
                 } elseif ($result['dataset'] = $productos->readOneMarca()) {
                     $result['status'] = 1;
@@ -61,9 +62,10 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            // Método que permite leer los productos en base a una categoría.
+                // Método que permite leer los productos en base a una categoría.
             case 'readProductsByCategoria':
-                if (!$productos->setCategoria($_POST['condition'])or
+                if (
+                    !$productos->setCategoria($_POST['condition']) or
                     !$productos->setMascotas($_POST['mascota'])
                 ) {
                     $result['error'] = $productos->getDataError();
@@ -73,7 +75,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            // Método que permite leer un producto dependiendo de la mascota que se pase. (Perro o gato)
+                // Método que permite leer un producto dependiendo de la mascota que se pase. (Perro o gato)
             case 'readSpecificProduct':
                 if (!$productos->setMascotas($_POST['mascota'])) {
                     $result['error'] = $productos->getDataError();
@@ -83,9 +85,12 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Aún no hay productos registrados';
                 }
                 break;
+                //Metodo que permite leer si un cupón esta disponible o no
             case 'readCuponDisponible':
-                if (!$productos->setCodigo($_POST['cupon']) or
-                    !$productos->setIdCliente($_SESSION['idCliente'])) {
+                if (
+                    !$productos->setCodigo($_POST['cupon']) or
+                    !$productos->setIdCliente($_SESSION['idCliente'])
+                ) {
                     $result['error'] = $productos->getDataError();
                 } elseif ($result['dataset'] = $productos->readOneCupon()) {
                     $result['status'] = 1;
@@ -93,6 +98,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Cupón no disponible o no encontrado';
                     $result['status'] = 2;
                 }
+                //Permite leer la información de un producto en especifico por medio de su id
                 break;
             case 'readOneProduct':
                 if (!$productos->setIdProducto($_POST['idProducto'])) {
@@ -103,7 +109,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            //Metódo que permite editar la información del admin que se ha logueado.    
+                //Metódo que permite editar la información del admin que se ha logueado.    
             case 'createValoracion':
                 $_POST = Validator::validateForm($_POST);
                 // Verificar si el cliente ha comprado el producto antes de permitir la valoración
@@ -123,6 +129,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al guardar la valoración';
                 }
                 break;
+                //Metodo que permite leer las valoraciones de un producto en especifico
             case 'readComentarios':
                 if (!$valoraciones->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $valoraciones->getDataError();
@@ -132,6 +139,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Este producto no ha sido comentado';
                 }
                 break;
+                //Metodo que permite buscar un producto en especifico
             case 'searchProducts':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -148,7 +156,7 @@ if (isset($_GET['action'])) {
         }
     } else {
         switch ($_GET['action']) {
-            // Método que permite leer marcas de productos.
+                // Método que permite leer marcas de productos.
             case 'readMarcas':
                 if (!$productos->setMascotas($_POST['mascota'])) {
                     $result['error'] = $productos->getDataError();
@@ -158,7 +166,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            // Método que permite leer categorías de productos.
+                // Método que permite leer categorías de productos.
             case 'readCategorias':
                 if (!$productos->setMascotas($_POST['mascota'])) {
                     $result['error'] = $productos->getDataError();
@@ -168,11 +176,12 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-             // Método que permite leer los productos en base a una marca.
-             case 'readProductsByMarca':
-                if (!$productos->setMarca($_POST['condition']) or
+                // Método que permite leer los productos en base a una marca.
+            case 'readProductsByMarca':
+                if (
+                    !$productos->setMarca($_POST['condition']) or
                     !$productos->setMascotas($_POST['mascota'])
-                    ) {
+                ) {
                     $result['error'] = $productos->getDataError();
                 } elseif ($result['dataset'] = $productos->readOneMarca()) {
                     $result['status'] = 1;
@@ -180,9 +189,10 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            // Método que permite leer los productos en base a una categoría.
+                // Método que permite leer los productos en base a una categoría.
             case 'readProductsByCategoria':
-                if (!$productos->setCategoria($_POST['condition'])or
+                if (
+                    !$productos->setCategoria($_POST['condition']) or
                     !$productos->setMascotas($_POST['mascota'])
                 ) {
                     $result['error'] = $productos->getDataError();
@@ -192,7 +202,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Producto inexistente';
                 }
                 break;
-            // Método que permite leer un producto dependiendo de la mascota que se pase. (Perro o gato)
+                // Método que permite leer un producto dependiendo de la mascota que se pase. (Perro o gato)
             case 'readSpecificProduct':
                 if (!$productos->setMascotas($_POST['mascota'])) {
                     $result['error'] = $productos->getDataError();
@@ -220,7 +230,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Este producto no ha sido comentado';
                 }
                 break;
-            //Metodo para leer todos los productos
+                //Metodo para leer todos los productos
             case 'readAllProducts':
                 if ($result['dataset'] = $productos->readAllProducts()) {
                     $result['status'] = 1;

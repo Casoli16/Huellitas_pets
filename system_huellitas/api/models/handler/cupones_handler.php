@@ -21,7 +21,7 @@ class CuponesHandler
      * Aunque ahorita solo haré el de agregar cupones
      */
 
-     public function searchRows()
+    public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT * FROM cupones_oferta_vista 
@@ -39,7 +39,7 @@ class CuponesHandler
 
     public function readAll()
     {
-        $sql2 ='SET lc_time_names = ?;';
+        $sql2 = 'SET lc_time_names = ?;';
         $params = array('es_ES');
         Database::executeRow($sql2, $params);
         $sql = 'SELECT * FROM cupones_oferta_vista';
@@ -67,6 +67,4 @@ class CuponesHandler
         $params = array($this->idCupon);
         return Database::getRows($sql, $params);
     }
-
-    
 }

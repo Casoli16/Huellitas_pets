@@ -3,7 +3,7 @@ const PRODUCTOS_API = 'services/public/productos.php';
 const PEDIDOS_API = 'services/public/pedidos.php';
 
 //FORMULARIO PARA GUARDAR VALORACIONES
-const SAVE_FORM = document.getElementById('saveForm'), 
+const SAVE_FORM = document.getElementById('saveForm'),
     COMENTARIO_VALORACION = document.getElementById('comentarioValoracion');
 
 // ELEMENTOS DE LA PÁGINA
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await fillComentarios(IDPRODUCTO);
 
     //Revisa si en la url traer las variable o mascota, si las trae entonces muestra el boton pero sino lo esconde.
-    if(CATEGORIA == null || MASCOTA == null){
+    if (CATEGORIA == null || MASCOTA == null) {
         BUTTON.classList.add('d-none');
     } else {
         BUTTON.classList.remove('d-none');
@@ -169,7 +169,7 @@ const enviarCodigo = async (precio_producto) => {
     SAVE_FORM.addEventListener('submit', async (event) => {
         // Se evita recargar la página web después de enviar el formulario.
         event.preventDefault();
-    
+
         // Se verifica la acción a realizar.
         console.log('Entre a la función de enviar código');
         const SPAN = document.getElementById('respuesta');
@@ -188,10 +188,10 @@ const enviarCodigo = async (precio_producto) => {
             DIV_NEWPRECIO.classList.remove('d-none');
             let precio = precio_producto - ((precio_producto / 100) * parseInt(DATA.dataset.porcentaje_cupon));
             NEWPRECIO.innerHTML = `$${precio.toFixed(2)}`;
-           console.log(DATA.dataset.porcentaje_cupon);
-           idcupon = DATA.dataset.id_cupon;
-           console.log(DATA.dataset.mensaje);
-           console.log(idcupon);
+            console.log(DATA.dataset.porcentaje_cupon);
+            idcupon = DATA.dataset.id_cupon;
+            console.log(DATA.dataset.mensaje);
+            console.log(idcupon);
         }
         // engloba lo de abajo en un else if
         else if (DATA.status == 2) {
@@ -228,12 +228,12 @@ const enviarCodigo = async (precio_producto) => {
             console.log(idcupon);
         }
 
-    
+
     });
 };
 
 const stars = document.querySelectorAll('.star');
-const sendToCart = async () =>{
+const sendToCart = async () => {
     const CANTIDAD = document.getElementById('cantidad');
     let cant = CANTIDAD.value;
     const FORM = new FormData();
@@ -244,9 +244,9 @@ const sendToCart = async () =>{
 
     const DATA = await fetchData(PEDIDOS_API, 'createDetail', FORM);
 
-    if(DATA.status){
+    if (DATA.status) {
         sweetAlert(1, DATA.message, false, 'carrito_1.html');
-    } else if(DATA.session){
+    } else if (DATA.session) {
         sweetAlert(2, DATA.error, false);
     } else {
         sweetAlert(3, DATA.error, true, 'login.html');
@@ -255,8 +255,8 @@ const sendToCart = async () =>{
 
 let rating = 0;  // Variable global para almacenar el valor del rating
 
-stars.forEach(function(star, index) {
-    star.addEventListener('click', function() {
+stars.forEach(function (star, index) {
+    star.addEventListener('click', function () {
         for (let i = 0; i <= index; i++) {
             stars[i].classList.add('checked');
         }
@@ -287,7 +287,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         sweetAlert(1, DATA.message);
         await fillComentarios(IDPRODUCTO);
         COMENTARIO_VALORACION.value = '';  // Borra el texto del comentario
-        stars.forEach(function(star) {
+        stars.forEach(function (star) {
             star.classList.remove('checked');  // Reinicia las estrellas a 0
         });
         rating = 0;  // Reinicia la variable de rating a 0

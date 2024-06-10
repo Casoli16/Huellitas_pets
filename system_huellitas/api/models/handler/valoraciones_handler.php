@@ -55,7 +55,8 @@ class ValoracionesHandler
     }
 
     //    Leer un registro de una valoracion
-    public function readOne(){
+    public function readOne()
+    {
         $sql = 'SELECT id_valoracion, nombre_producto, imagen_producto, calificacion_valoracion, comentario_valoracion, fecha_valoracion, estado_valoracion, nombre_cliente, apellido_cliente
                 FROM valoraciones v
                 INNER JOIN detalles_pedidos dp ON v.id_detalle_pedido = dp.id_detalle_pedido
@@ -68,7 +69,8 @@ class ValoracionesHandler
     }
 
     //    Actualizar una valoracion
-    public function updateRow(){
+    public function updateRow()
+    {
         $sql = 'UPDATE valoraciones 
                 SET estado_valoracion = ?
                 WHERE id_valoracion = ?';
@@ -79,41 +81,41 @@ class ValoracionesHandler
         return Database::executeRow($sql, $params);
     }
 
-         //    Leer si existen registros de una valoracion, por medio de cliente y producto
-        public function readCountValoracion(){
-            $sql = 'SELECT COUNT(*)
+    //    Leer si existen registros de una valoracion, por medio de cliente y producto
+    public function readCountValoracion()
+    {
+        $sql = 'SELECT COUNT(*)
                     FROM detalles_pedidos dp
                     INNER JOIN pedidos p ON dp.id_pedido = p.id_pedido
                     LEFT JOIN valoraciones v ON dp.id_detalle_pedido = v.id_detalle_pedido
                     WHERE p.id_cliente = ?
                     AND dp.id_producto = ?;';
-            $params = array($this->idCliente, $this->idProducto);
-            return Database::getRow($sql, $params)['COUNT(*)'];
-        }
-        
-    
-            //    Crear producto
-        public function createValoracion()
-        {
-            $sql = 'CALL insertar_valoracion(?, ?, TRUE, ?, ?)';
-            $params = array(
-                $this->calificacionValoracion,
-                $this->comentarioValoracion,
-                $_SESSION['idCliente'],
-                $this->idProducto
-            );
-            return Database::executeRow($sql, $params);
-        }
+        $params = array($this->idCliente, $this->idProducto);
+        return Database::getRow($sql, $params)['COUNT(*)'];
+    }
 
-        public function readComentarios()
-        {
-            $sql = "SELECT * 
+
+    //    Crear producto
+    public function createValoracion()
+    {
+        $sql = 'CALL insertar_valoracion(?, ?, TRUE, ?, ?)';
+        $params = array(
+            $this->calificacionValoracion,
+            $this->comentarioValoracion,
+            $_SESSION['idCliente'],
+            $this->idProducto
+        );
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readComentarios()
+    {
+        $sql = "SELECT * 
             FROM vista_productos_comentarios 
             WHERE id_producto = ? AND estado = 1 
             ORDER BY calificacion DESC;
             ";
-            $params = array($this->idProducto);
-            return Database::getRows($sql, $params);
-        }
+        $params = array($this->idProducto);
+        return Database::getRows($sql, $params);
+    }
 }
-

@@ -1,7 +1,7 @@
 <?php
 
 // Clase para trabajar con la base de datos
-require_once ('../../helpers/database.php');
+require_once('../../helpers/database.php');
 
 // Declaración de atributos para el manejo de los datos
 class productosHandler
@@ -177,7 +177,7 @@ class productosHandler
     public function readOneCupon()
     {
         $sql = 'SELECT * FROM vista_cupones_cliente WHERE id_cliente = ? AND codigo_cupon = ?;';
-        $params = array($this->idCliente,$this->codigo);
+        $params = array($this->idCliente, $this->codigo);
         return Database::getRow($sql, $params);
     }
 
@@ -189,5 +189,4 @@ class productosHandler
         $params = array($this->idProducto);
         return Database::getRow($sql, $params);
     }
-
 }

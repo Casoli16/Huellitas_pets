@@ -1,4 +1,7 @@
+// API'S UTILIZADAS EN LA PANTALLA
 const CLIENTES_API = 'services/public/clientes.php';
+
+//Elementos html utilizados en esta pantalla.
 const HISTORIAL = document.getElementById('historialContainer');
 
 const VIEW_MODAL = new bootstrap.Modal('#viewModal'),
@@ -17,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fillHistorial();
 });
 
+//Método que permite cargar los comentarios del producto
 const fillHistorial = async () => {
     const DATA = await fetchData(CLIENTES_API, 'readHistorial');
 

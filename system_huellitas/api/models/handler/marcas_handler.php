@@ -33,7 +33,8 @@ class MarcasHandler
     }
 
     //    Crear producto
-    public function createRow(){
+    public function createRow()
+    {
         $sql = 'INSERT INTO marcas (nombre_marca, imagen_marca) 
         VALUES (?, ?)';
         $params = array(
@@ -53,7 +54,8 @@ class MarcasHandler
     }
 
     //    Leer un registro de un producto
-    public function readOne(){
+    public function readOne()
+    {
         $sql = 'SELECT * FROM marcas WHERE id_marca = ?';
         $params = array($this->idMarca);
         return Database::getRows($sql, $params);
@@ -70,7 +72,8 @@ class MarcasHandler
     }
 
     //    Actualizar un producto
-    public function updateRow(){
+    public function updateRow()
+    {
         $sql = 'UPDATE marcas 
                 SET nombre_marca = ?, imagen_marca = ? 
                 WHERE id_marca = ?';
@@ -83,10 +86,10 @@ class MarcasHandler
     }
 
     //    Eliminar producto
-    public function deleteRow(){
+    public function deleteRow()
+    {
         $sql = 'DELETE FROM marcas WHERE id_marca = ?';
         $params = array($this->idMarca);
         return Database::executeRow($sql, $params);
     }
 }
-

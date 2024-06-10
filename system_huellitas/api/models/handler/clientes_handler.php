@@ -155,7 +155,8 @@ class ClientesHandler
             $this->fechaNacimientoCliente,
             $this->direccionCliente,
             $this->claveCliente,
-            $this->imagenCliente);
+            $this->imagenCliente
+        );
         return Database::executeRow($sql, $params);
     }
 

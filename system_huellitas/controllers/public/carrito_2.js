@@ -10,38 +10,42 @@ const PARAMS = new URLSearchParams(window.location.search);
 
 //Guarda en una variable el parametro obtenido
 const TOTAL = PARAMS.get("total");
-document.addEventListener("DOMContentLoaded", async ()=>{
+document.addEventListener("DOMContentLoaded", async () => {
     loadTemplate()
         .then(getAddress);
 })
 
+//Variable que permitirá guardar el idPedido
 let idPedido;
 
-const getAddress = async ()=>{
+//Funcion que permite obtener la dirección registrada en el pedido y se lo pasa al input de la dirección.
+const getAddress = async () => {
     const DATA = await fetchData(PEDIDO_API, 'readDetail');
-    if(DATA.status){
+    if (DATA.status) {
         ADDRESS.value = DATA.dataset[0].direccion_pedido;
-        TOTAL_PRICE.textContent = '$'+ TOTAL;
+        TOTAL_PRICE.textContent = '$' + TOTAL;
         idPedido = DATA.dataset[0].id_pedido;
-    } else{
+    } else {
         console.log('Ocurrió un error');
     }
 }
 
-const updateAddress = async ()=>{
+//Función que permite mostrar el input, en caso se desee cambiar la dirección del pedido.
+const updateAddress = async () => {
     SHOW_DIV.classList.remove('d-none');
 }
 
+//Función que permite actualizar la dirección del pedido.
 ADDRESS_FORM.addEventListener("submit", async (event) => {
     event.preventDefault();
     const FORM = new FormData(ADDRESS_FORM);
     const DATA = await fetchData(PEDIDO_API, 'updateAddress', FORM);
-    if(DATA.status){
+    if (DATA.status) {
         sweetAlert(1, DATA.message, true);
         await getAddress();
         SHOW_DIV.classList.add('d-none');
         ADDRESS_FORM.reset();
-    } else{
+    } else {
         sweetAlert(2, DATA.error, true);
     }
 })
@@ -63,6 +67,7 @@ const finishOrder = async () => {
     }
 }
 
+//Función que permite ir a la pantalla de carrito_3.html, pasando el total del pedido y id del pedido.
 const goToPage = async () => {
     window.location.href = `../../views/public/carrito_3.html?total=${TOTAL}&idPedido=${idPedido}`;
 }

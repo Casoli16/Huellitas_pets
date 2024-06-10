@@ -24,7 +24,7 @@ class AdminHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-                $sql = "SELECT id_admin, nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, 
+        $sql = "SELECT id_admin, nombre_admin, apellido_admin, correo_admin, alias_admin, clave_admin, 
                 DATE_FORMAT(fecha_registro_admin, '%d de %M del %Y') AS fecha_registro_admin_formato,
                 imagen_admin 
                 FROM administradores
@@ -45,7 +45,8 @@ class AdminHandler
             $this->correoAdmin,
             $this->aliasAdmin,
             $this->claveAdmin,
-            $this->imagenAdmin);
+            $this->imagenAdmin
+        );
         return Database::executeRow($sql, $params);
     }
 
@@ -78,17 +79,17 @@ class AdminHandler
     }
 
     // UPDATE
-    public function updateRow ()
+    public function updateRow()
     {
         $sql = 'UPDATE administradores
         SET nombre_admin = ?, apellido_admin = ?, correo_admin = ?, imagen_admin = ?
         WHERE id_admin = ?';
         $params = array(
-          $this->nombreAdmin,
-          $this->apellidoAdmin,
-          $this->correoAdmin,
-          $this->imagenAdmin,
-          $this->idAdministrador
+            $this->nombreAdmin,
+            $this->apellidoAdmin,
+            $this->correoAdmin,
+            $this->imagenAdmin,
+            $this->idAdministrador
         );
         return Database::executeRow($sql, $params);
     }
@@ -112,12 +113,12 @@ class AdminHandler
         $params = array($username);
         $data = Database::getRow($sql, $params);
         //Verificamos que la contraseña $password coincida con la contraseña hasheada en la base de datos.
-        if(password_verify($password, $data['clave_admin'])){
+        if (password_verify($password, $data['clave_admin'])) {
             // Si coincide entonces se le asigna el id_admin de la base al idAdministrador y lo mismo ocurre con el alias_admin, devolviendo un true
             $_SESSION['idAdministrador'] = $data['id_admin'];
             $_SESSION['aliasAdmin'] = $data['alias_admin'];
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -131,9 +132,9 @@ class AdminHandler
                 WHERE id_admin = ?';
         $params = array($_SESSION['idAdministrador']);
         $data = Database::getRow($sql, $params);
-        if (password_verify($password, $data['clave_admin'])){
+        if (password_verify($password, $data['clave_admin'])) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }

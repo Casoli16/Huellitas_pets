@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     fillEncabezado(MASCOTA);
     const FORM = new FormData();
     FORM.append('mascota', MASCOTA);
-    FORM.append('mascota', MASCOTA); 
+    FORM.append('mascota', MASCOTA);
     //fuerza a que CATEGORIA sea int
     const CATEGORIA2 = parseInt(CATEGORIA);
     console.log(SELECTCATEGORIA);
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 const recargarConteiner = async (action) => {
     if (action == 'readProductsByCategoria' && SELECTCATEGORIA.value != 0) {
-    await fillConteiner(action, SELECTCATEGORIA.value);
+        await fillConteiner(action, SELECTCATEGORIA.value);
     }
     else {
         await fillConteiner(action, SELECTMARCA.value);
@@ -116,8 +116,8 @@ const renderStars = (puntuacion) => {
 
 // Función para cargar el encabezado de la página
 const fillEncabezado = (mascota) => {
-    if(mascota == 'Perros' || mascota == 'Perro'){
-    ENCABEZADO.innerHTML = `
+    if (mascota == 'Perros' || mascota == 'Perro') {
+        ENCABEZADO.innerHTML = `
                 <div class="col-auto">
                     <img src="../../resources/img/png/dog_products.png" width="90px">
                 </div>
@@ -128,8 +128,7 @@ const fillEncabezado = (mascota) => {
                 </div>
     `;
     }
-    else
-    {
+    else {
         ENCABEZADO.innerHTML = `
                 <div class="col-auto">
                     <img src="../../resources/img/png/cat_products.png" width="90px">
