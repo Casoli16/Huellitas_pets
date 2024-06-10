@@ -28,6 +28,7 @@ class Email
 
             $mail->setFrom($address); // Quien lo envía
             $mail->addAddress('susancasoli@gmail.com', 'Equipo de Huellitas Pets');
+            $mail->addCC($address);
             $mail->CharSet = 'UTF-8';
             $mail->isHTML(true);
             $mail->Subject = $subject;
