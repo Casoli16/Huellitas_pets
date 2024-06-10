@@ -22,7 +22,7 @@ const PARAMS = new URLSearchParams(window.location.search);
 const CATEGORIA = PARAMS.get("categoria");
 const MASCOTA = PARAMS.get("mascota");
 const IDPRODUCTO = PARAMS.get("producto");
-let idcupon = 0;
+let idCupon = 0;
 
 // Función que se carga cuando se abre la página
 document.addEventListener('DOMContentLoaded', async () => {
@@ -144,6 +144,7 @@ const fillConteiner = async (id) => {
     }
 };
 
+// Función para el botón de sumar del producto, verifica que no se pase de la cantidad de existencias
 const sumar = (existencia) => {
     let cantidad = parseInt(document.getElementById('cantidad').value);
     if (cantidad < existencia) {
@@ -151,7 +152,7 @@ const sumar = (existencia) => {
         document.getElementById('cantidad').value = cantidad;
     }
 };
-
+// Función para el botón de restar del producto, verifica que no sea menos que 1
 const restar = () => {
     let cantidad = parseInt(document.getElementById('cantidad').value);
     if (cantidad > 1) {
@@ -160,10 +161,12 @@ const restar = () => {
     }
 }
 
+//Función para pasar a la pantalla anterior
 const volver = () => {
     window.location.href = `../../views/public/productos_categoria.html?categoria=${CATEGORIA}&mascota=${MASCOTA}`;
 };
 
+// Función para enviar el código del cupón
 const enviarCodigo = async (precio_producto) => {
     const SAVE_FORM = document.getElementById('formCopun');
     SAVE_FORM.addEventListener('submit', async (event) => {
@@ -189,9 +192,9 @@ const enviarCodigo = async (precio_producto) => {
             let precio = precio_producto - ((precio_producto / 100) * parseInt(DATA.dataset.porcentaje_cupon));
             NEWPRECIO.innerHTML = `$${precio.toFixed(2)}`;
            console.log(DATA.dataset.porcentaje_cupon);
-           idcupon = DATA.dataset.id_cupon;
+           idCupon = DATA.dataset.id_cupon;
            console.log(DATA.dataset.mensaje);
-           console.log(idcupon);
+           console.log(idCupon);
         }
         // engloba lo de abajo en un else if
         else if (DATA.status == 2) {
@@ -203,21 +206,21 @@ const enviarCodigo = async (precio_producto) => {
             DIV_NEWPRECIO.classList.add('d-none');
             SPAN.classList.remove('d-none');
             SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
-            idcupon = 0;
-            console.log(idcupon);
+            idCupon = 0;
+            console.log(idCupon);
         }
 
         else if (DATA.status == 3) {
             console.log('Entre al else de cupon vacío');
-            idcupon = 0;
-            console.log(idcupon);
+            idCupon = 0;
+            console.log(idCupon);
             sweetAlert(3, 'Cupón vacio', false);
         }
 
         else if (!DATA.status) {
             console.log('Entre al else de no logueado');
-            idcupon = 0;
-            console.log(idcupon);
+            idCupon = 0;
+            console.log(idCupon);
             sweetAlert(3, 'Inicia sesión o crea una cuenta para utilizar un código', true, 'login.html');
         }
 
@@ -231,14 +234,15 @@ const enviarCodigo = async (precio_producto) => {
             DIV_NEWPRECIO.classList.add('d-none');
             SPAN.classList.remove('d-none');
             SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
-            idcupon = 0;
-            console.log(idcupon);
+            idCupon = 0;
+            console.log(idCupon);
         }
 
     
     });
 };
 
+// Función para enviar el producto al carrito
 const stars = document.querySelectorAll('.star');
 const sendToCart = async () =>{
     const CANTIDAD = document.getElementById('cantidad');
@@ -246,8 +250,8 @@ const sendToCart = async () =>{
     const FORM = new FormData();
     FORM.append('idProducto', IDPRODUCTO);
     FORM.append('cantidadProducto', cant);
-    FORM.append('idCupon', idcupon);
-    console.log(idcupon);
+    FORM.append('idCupon', idCupon);
+    console.log(idCupon);
 
     const DATA = await fetchData(PEDIDOS_API, 'createDetail', FORM);
 
@@ -262,6 +266,7 @@ const sendToCart = async () =>{
 
 let rating = 0;  // Variable global para almacenar el valor del rating
 
+// Ciclo para seleccionar todas las estrellas
 stars.forEach(function(star, index) {
     star.addEventListener('click', function() {
         for (let i = 0; i <= index; i++) {
@@ -277,6 +282,7 @@ stars.forEach(function(star, index) {
     });
 });
 
+// Evento para enviar la valoración
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
@@ -304,6 +310,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+// Función para llenar los comentarios de los productos
 const fillComentarios = async (id) => {
     COMENTARIOS.innerHTML = '';
     const FORM = new FormData();
@@ -343,6 +350,7 @@ const fillComentarios = async (id) => {
     }
 };
 
+// Función para generar las estrellas de la valoración
 const generateStars = (rating) => {
     let starsHTML = '';
     for (let i = 1; i <= 5; i++) {

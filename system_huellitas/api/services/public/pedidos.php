@@ -29,7 +29,7 @@ if(isset($_GET['action'])){
                     $result['status'] = 1;
                     $result['message'] = 'Producto agregado correctamente';
                 } else{
-                    $result['error'] = 'Ocurrió un problema al agregar el producto';
+                    $result['error'] = 'Tu pedido excede las existencias actuales';
                 }
                 break;
             // Acción para obtener los productos agregados en el carrito de compras.
@@ -42,6 +42,7 @@ if(isset($_GET['action'])){
                     $result['error'] = 'No existen productos en el carrito';
                 }
                 break;
+            // Acción para obtener todo el pedido pendiente.
             case 'readFinishDetail':
                 if (!$pedidos->setIdPedido($_POST['idPedido'])) {
                     $result['error'] = $pedidos->getDataError();
@@ -51,6 +52,7 @@ if(isset($_GET['action'])){
                     $result['error'] = 'No existe el pedido';
                 }
                 break;
+            // Acción para obtener el total del pedido pendiente.
             case 'countCart':
                 if ($result['dataset'] = $pedidos->countCart()){
                     $result['status'] = 1;
@@ -74,6 +76,7 @@ if(isset($_GET['action'])){
                     $result['error'] = 'Ocurrió un problema al modificar la cantidad';
                 }
                 break;
+            // Acción para actualizar la dirección de envío del pedido.
             case 'updateAddress':
                 $_POST = Validator::validateForm($_POST);
                 if(
@@ -115,6 +118,7 @@ if(isset($_GET['action'])){
     } else{
         // Se compara la acción a realizar cuando un cliente no ha iniciado sesión.
         switch ($_GET['action']) {
+            // Acción para agregar un producto al carrito de compras, se referirá al login desde el web porque este case siempré dará error.
             case 'createDetail':
                 $result['error'] = 'Debe iniciar sesión para agregar el producto al carrito';
                 break;

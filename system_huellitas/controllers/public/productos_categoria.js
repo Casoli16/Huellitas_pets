@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await fillConteiner('readProductsByCategoria', CATEGORIA2);
 });
 
+// Función para cargar el los productos en base a la categoría o marca seleccionada
 const recargarConteiner = async (action) => {
     if (action == 'readProductsByCategoria' && SELECTCATEGORIA.value != 0) {
     await fillConteiner(action, SELECTCATEGORIA.value);
