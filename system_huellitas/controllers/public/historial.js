@@ -41,9 +41,6 @@ const fillHistorial = async () => {
                                     <div class="col-8 col-lg-4">
                                         <p class="fs-6">Cantidad: ${row.cantidad} Unidades</p>
                                     </div>
-                                    <div class="col-8 col-lg-4 ">
-                                        <p class="fs-6">Precio total: $${row.precio_total}</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -57,11 +54,11 @@ const fillHistorial = async () => {
     }
 };
 
-let total_pedido;
 
 //Funcion que cargara los productos de ese cliente en el modal de viewModal.
 const fillCards = async (id) => {
     let subtotal = 0;
+    let total_pedido = 0;
     CARDS.innerHTML = '';
     const FORM = new FormData();
     FORM.append('id_pedido', id);
@@ -72,7 +69,7 @@ const fillCards = async (id) => {
         DATA.dataset.forEach(row => {
             subtotal = row.cantidad * row.precio;
             total_pedido += subtotal;
-            console.log(total_pedido)
+            TOTAL_A_PAGAR.textContent = total_pedido;
             CARDS.innerHTML += `
             <li
             class="list-group-item d-flex justify-content-between align-items-start shadow mb-4">
@@ -116,7 +113,6 @@ const openView = async (id) => {
         NOMBRE_CLIENTE.textContent = ROW.nombre_cliente;
         DIRECCION.textContent = ROW.direccion;
         ESTADO_PEDIDO.textContent = ROW.estado;
-        TOTAL_A_PAGAR.textContent = total_pedido;
 
         await fillCards(id);
         VIEW_MODAL.show();
