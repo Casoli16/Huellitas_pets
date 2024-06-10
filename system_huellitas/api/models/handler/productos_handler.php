@@ -48,7 +48,7 @@ class productosHandler
     public function readOneProduct()
     {
         $sql = 'SELECT id_producto, nombre_producto, descripcion_producto, precio_producto, imagen_producto, 
-        existencia_producto, nombre_marca, nombre_categoria  FROM productosView WHERE id_producto = ?';
+        existencia_producto, nombre_marca, nombre_categoria, existencia_producto  FROM productosView WHERE id_producto = ?';
         $params = array($this->idProducto);
         return Database::getRows($sql, $params);
     }

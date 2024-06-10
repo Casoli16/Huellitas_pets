@@ -71,7 +71,7 @@ const fillConteiner = async (action, id) => {
                         <p class="card-text small fw-light mb-0 mt-1">${row.Marca}</p>
                         <div class="container-title py-md-3 py-2">   
                             <p class="fw-bold">${row.nombre_producto}</p>
-                            <p class="fw-light">Existencias actuales ${row.existencias}</p>
+                            <p class="fw-light">${row.existencias} existencias</p>
                         </div>
                         <div class="row d-flex justify-content-center align-items-center">
                             <div class="col-md-9 col-sm-12">

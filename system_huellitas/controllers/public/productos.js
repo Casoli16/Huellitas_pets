@@ -70,6 +70,7 @@ const fillConteiner = async (id) => {
                             <p class="fs-6">${row.descripcion_producto}</p>
                             <div class="bg-orange-color text-light col-12 col-md-3 text-center rounded-3 p-1">
                                 ${row.nombre_categoria}</div>
+                            <p class="fw-semibold mt-3">${row.existencia_producto} existencias</p>    
                         </div>
                         <!--Aqui estan los divs para ajustar el contenido y que siempre permanezaca con 7 espacios a la derecha en lg-->
                         <div class="col-lg-2 col-sm-0 col-md-0"></div>
@@ -191,10 +192,10 @@ const enviarCodigo = async (precio_producto) => {
             DIV_NEWPRECIO.classList.remove('d-none');
             let precio = precio_producto - ((precio_producto / 100) * parseInt(DATA.dataset.porcentaje_cupon));
             NEWPRECIO.innerHTML = `$${precio.toFixed(2)}`;
-           console.log(DATA.dataset.porcentaje_cupon);
-           idCupon = DATA.dataset.id_cupon;
-           console.log(DATA.dataset.mensaje);
-           console.log(idCupon);
+            console.log(DATA.dataset.porcentaje_cupon);
+            idCupon = DATA.dataset.id_cupon;
+            console.log(DATA.dataset.mensaje);
+            console.log(idCupon);
         }
         // engloba lo de abajo en un else if
         else if (DATA.status == 2) {
@@ -267,8 +268,8 @@ const sendToCart = async () => {
 let rating = 0;  // Variable global para almacenar el valor del rating
 
 // Ciclo para seleccionar todas las estrellas
-stars.forEach(function(star, index) {
-    star.addEventListener('click', function() {
+stars.forEach(function (star, index) {
+    star.addEventListener('click', function () {
         for (let i = 0; i <= index; i++) {
             stars[i].classList.add('checked');
         }

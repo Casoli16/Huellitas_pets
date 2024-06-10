@@ -40,9 +40,6 @@ class productosData extends productosHandler
         if (!$value) {
             $this->data_error = 'Cupón vacío';
             return false;
-        } elseif (Validator::validateString($value)) {
-            $this->data_error = 'El nombre debe ser un valor alfanumérico';
-            return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
             $this->codigo = $value;
             return true;
