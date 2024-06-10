@@ -7,17 +7,20 @@ const PARAMS = new URLSearchParams(window.location.search);
 const TOTAL = PARAMS.get("total");
 const PEDIDO = PARAMS.get("idPedido");
 
+//Obtenemos los elementos html que se van a manejar.
 const TOTAL_PRICE = document.getElementById('totalPrice');
 const DATE = document.getElementById('date');
 const STATE = document.getElementById('status');
 const CARDS = document.getElementById('cardProducts');
 
+//Cuando cargue la pantalla se van a llamar la funciones getUser y getOrder.
 document.addEventListener("DOMContentLoaded", async () => {
     loadTemplate()
         .then(getUser)
         .then(getOrder);
 });
 
+//Función que permite obtener el nombre del cliente logueado y además enviamos al frontend el total del pedido.
 const getUser = async () => {
     const DATA = await fetchData(USER_API, 'getUser');
     if (DATA.status) {
@@ -26,10 +29,13 @@ const getUser = async () => {
     }
 }
 
+//Permite obtener información del pedido previamente finalizado.
 const getOrder = async () => {
     const FORM = new FormData();
     FORM.append('idPedido', PEDIDO)
+    //Se envía la petición al servidor
     const DATA = await fetchData(PEDIDO_API, 'readFinishDetail', FORM);
+    //Si la petición viene correctamente, entonces se insertará el siguiente código html.
     if (DATA.status) {
         loadTemplate();
         DATE.textContent = 'Compra realizada el ' + DATA.dataset[0].fecha_registro_producto;
@@ -51,7 +57,7 @@ const getOrder = async () => {
                             </div>
                             <div class="d-flex w-100 justify-content-between">
                                 <p class="fw-semibold fs-6">${row.nombre_producto}</p>
-                                <p class="fw-bold">$${subtotal.toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2,})}</p>
+                                <p class="fw-bold">$${subtotal.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2, })}</p>
                             </div>
                             <div
                                 class="contador d-flex justify-content-between col-md-2 col-sm-12 rounded-5 shadow mb-3">

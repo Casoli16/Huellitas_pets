@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once ('../../helpers/database.php');
+require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla cupones.
  */
@@ -40,7 +40,7 @@ class PedidosHandler
     public function readAll()
     {
         $ssql = 'SET lc_time_names = "es_ES";';
-        $sql ='SELECT *
+        $sql = 'SELECT *
             FROM pedidos_view;';
         return Database::getRows($sql);
     }
@@ -62,10 +62,10 @@ class PedidosHandler
     {
         $sql = 'DELETE FROM valoraciones  WHERE id_detalle_pedido = ?; 
                 DELETE FROM detalles_pedidos  WHERE id_detalle_pedido = ?;';
-       $params = array(
-        $this->idDetalle,
-        $this->idDetalle
-    );
+        $params = array(
+            $this->idDetalle,
+            $this->idDetalle
+        );
         return Database::executeRow($sql, $params);
     }
 
@@ -232,4 +232,3 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 }
-

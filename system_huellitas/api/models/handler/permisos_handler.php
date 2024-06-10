@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once ('../../helpers/database.php');
+require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla permisos.
  */
@@ -86,16 +86,16 @@ class PermisosHandler
 
         // Se crea el arreglo con los parámetros para la consulta
         $params = array(
-            $this->nombrePermiso, 
-            $this->verUsuario, 
-            $this->verCliente, 
-            $this->verMarca, 
-            $this->verPedido, 
-            $this->verComentario, 
-            $this->verProducto, 
-            $this->verCategoria, 
-            $this->verCupon, 
-            $this->verPermiso, 
+            $this->nombrePermiso,
+            $this->verUsuario,
+            $this->verCliente,
+            $this->verMarca,
+            $this->verPedido,
+            $this->verComentario,
+            $this->verProducto,
+            $this->verCategoria,
+            $this->verCupon,
+            $this->verPermiso,
             $this->idPermiso
         );
 
@@ -123,5 +123,4 @@ class PermisosHandler
         $params = array($this->idPermiso);
         return Database::executeRow($sql, $params);
     }
-
 }

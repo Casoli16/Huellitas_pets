@@ -4,7 +4,8 @@ require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/valoraciones_handler.php');
 
-class ValoracionesData extends ValoracionesHandler{
+class ValoracionesData extends ValoracionesHandler
+{
 
     private $data_error = null;
     private $filename = null;
@@ -71,8 +72,7 @@ class ValoracionesData extends ValoracionesHandler{
         if (Validator::validateBoolean($value)) {
             $this->estadoValoracion = $value;
             return true;
-        } 
-        else {
+        } else {
             $this->data_error = 'Esto no es un booleano';
             return false;
         }

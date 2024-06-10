@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     fillEncabezado(MASCOTA);
     const FORM = new FormData();
     FORM.append('mascota', MASCOTA);
-    FORM.append('mascota', MASCOTA); 
+    FORM.append('mascota', MASCOTA);
     //fuerza a que CATEGORIA sea int
     const CATEGORIA2 = parseInt(CATEGORIA);
     console.log(SELECTCATEGORIA);
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Función para cargar el los productos en base a la categoría o marca seleccionada
 const recargarConteiner = async (action) => {
     if (action == 'readProductsByCategoria' && SELECTCATEGORIA.value != 0) {
-    await fillConteiner(action, SELECTCATEGORIA.value);
+        await fillConteiner(action, SELECTCATEGORIA.value);
     }
     else {
         await fillConteiner(action, SELECTMARCA.value);
@@ -57,7 +57,7 @@ const fillConteiner = async (action, id) => {
             <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="p-sm-3 card rounded-4 shadow mb-3">
                     <div class="justify-content-center">
-                        <img src="${SERVER_URL}images/productos/${row.imagen_producto}" class="img-fluid" alt="...">
+                        <img src="${SERVER_URL}images/productos/${row.imagen_producto}" width="250px" height="250px" alt="...">
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -118,8 +118,8 @@ const renderStars = (puntuacion) => {
 
 // Función para cargar el encabezado de la página
 const fillEncabezado = (mascota) => {
-    if(mascota == 'Perros' || mascota == 'Perro'){
-    ENCABEZADO.innerHTML = `
+    if (mascota == 'Perros' || mascota == 'Perro') {
+        ENCABEZADO.innerHTML = `
                 <div class="col-auto">
                     <img src="../../resources/img/png/dog_products.png" width="90px">
                 </div>
@@ -130,8 +130,7 @@ const fillEncabezado = (mascota) => {
                 </div>
     `;
     }
-    else
-    {
+    else {
         ENCABEZADO.innerHTML = `
                 <div class="col-auto">
                     <img src="../../resources/img/png/cat_products.png" width="90px">

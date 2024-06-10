@@ -1,9 +1,9 @@
 <?php
 
 //Clase que validara los datos de entrada.
-require_once ('../../helpers/validator.php');
+require_once('../../helpers/validator.php');
 //Se incluye la clase padre
-require_once ('../../models/handler/asignacionPermisos_handler.php');
+require_once('../../models/handler/asignacionPermisos_handler.php');
 
 class AsignacionPermisosData extends  AsignacionPermisosHandler
 {

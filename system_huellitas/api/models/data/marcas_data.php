@@ -29,23 +29,23 @@ class MarcasData extends MarcasHandler
             $this->nombreMarca = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max .' caracteres';
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max . ' caracteres';
             return false;
         }
     }
 
     public function setImagenMarca($file, $filename = null)
     {
-        if(Validator::validateImageFile($file, 1000)){
+        if (Validator::validateImageFile($file, 1000)) {
             $this->imagenMarca = Validator::getFilename();
             return true;
-        } elseif (Validator::getFileError()){
+        } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
             return false;
-        } elseif ($filename){
+        } elseif ($filename) {
             $this->imagenMarca = $filename;
             return true;
-        } else{
+        } else {
             $this->imagenMarca = 'default.png';
             return true;
         }

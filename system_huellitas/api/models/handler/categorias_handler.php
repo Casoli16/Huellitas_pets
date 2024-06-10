@@ -15,7 +15,7 @@ class CategoriasHandler
     protected $imagenCategoria = null;
 
     protected $nombreAnimal = null;
-    
+
     const RUTA_IMAGEN = '../../images/categorias/';
 
 
@@ -36,7 +36,8 @@ class CategoriasHandler
     }
 
     //    Crear producto
-    public function createRow(){
+    public function createRow()
+    {
         $sql = 'INSERT INTO categorias (nombre_categoria, descripcion_categoria, imagen_categoria) 
         VALUES (?, ?, ?)';
         $params = array(
@@ -66,21 +67,24 @@ class CategoriasHandler
     }
 
     //    Leer un registro de un producto
-    public function readOne(){
+    public function readOne()
+    {
         $sql = 'SELECT * FROM categorias WHERE id_categoria = ?';
         $params = array($this->idCategoria);
         return Database::getRows($sql, $params);
     }
 
     //    Leer una categoria por nombre de mascota
-    public function readOnePublic(){
+    public function readOnePublic()
+    {
         $sql = 'SELECT * FROM vista_categorias_mascotas WHERE mascotas = ? AND estado_producto = 1';
         $params = array($this->nombreAnimal);
         return Database::getRows($sql, $params);
     }
 
     //    Actualizar un producto
-    public function updateRow(){
+    public function updateRow()
+    {
         $sql = 'UPDATE categorias 
                 SET nombre_categoria = ?, descripcion_categoria = ?, imagen_categoria = ? 
                 WHERE id_categoria = ?';
@@ -94,11 +98,10 @@ class CategoriasHandler
     }
 
     //    Eliminar producto
-    public function deleteRow(){
+    public function deleteRow()
+    {
         $sql = 'DELETE FROM categorias WHERE id_categoria = ?';
         $params = array($this->idCategoria);
         return Database::executeRow($sql, $params);
     }
 }
-
-

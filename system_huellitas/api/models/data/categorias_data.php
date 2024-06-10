@@ -1,8 +1,8 @@
 <?php
 // Se incluye la clase para validar los datos de entrada.
-require_once ('../../helpers/validator.php');
+require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
-require_once ('../../models/handler/categorias_handler.php');
+require_once('../../models/handler/categorias_handler.php');
 
 class CategoriasData extends CategoriasHandler
 {
@@ -51,7 +51,6 @@ class CategoriasData extends CategoriasHandler
                 $this->data_error = 'El nombre de la mascota debe ser Perro o Gato';
                 return false;
             }
-
         } else {
             $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max . ' caracteres';
             return false;

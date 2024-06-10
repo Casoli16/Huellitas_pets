@@ -2,7 +2,7 @@
 require_once('../../models/data/pedidos_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
-if(isset($_GET['action'])){
+if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
@@ -14,25 +14,25 @@ if(isset($_GET['action'])){
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
-            // Acción para agregar un producto al carrito de compras.
+                // Acción para agregar un producto al carrito de compras.
             case 'createDetail':
                 $_POST = Validator::validateForm($_POST);
-                if(!$pedidos->startOrder()){
+                if (!$pedidos->startOrder()) {
                     $result['error'] = 'Ocurrió un problema al iniciar el pedido';
-                }elseif (
+                } elseif (
                     !$pedidos->setProducto($_POST['idProducto']) or
                     !$pedidos->setCantidad($_POST['cantidadProducto']) or
                     !$pedidos->setIdCupon($_POST['idCupon'])
-                ){
+                ) {
                     $result['error'] = $pedidos->getDataError();
-                } elseif ($pedidos->createDetail()){
+                } elseif ($pedidos->createDetail()) {
                     $result['status'] = 1;
                     $result['message'] = 'Producto agregado correctamente';
                 } else{
                     $result['error'] = 'Tu pedido excede las existencias actuales';
                 }
                 break;
-            // Acción para obtener los productos agregados en el carrito de compras.
+                // Acción para obtener los productos agregados en el carrito de compras.
             case 'readDetail':
                 if (!$pedidos->getOrder()) {
                     $result['error'] = 'No ha agregado productos al carrito';
@@ -52,16 +52,16 @@ if(isset($_GET['action'])){
                     $result['error'] = 'No existe el pedido';
                 }
                 break;
-            // Acción para obtener el total del pedido pendiente.
+                //Permite contar la cantidad de productos que se lleva en el carrito
             case 'countCart':
-                if ($result['dataset'] = $pedidos->countCart()){
+                if ($result['dataset'] = $pedidos->countCart()) {
                     $result['status'] = 1;
                     $result['message'] = 'Si hay productos agregados a tu carrito';
-                } else{
+                } else {
                     $result['error'] = 'Ocurrió un problema';
                 }
                 break;
-            // Acción para actualizar la cantidad de un producto en el carrito de compras.
+                // Acción para actualizar la cantidad de un producto en el carrito de compras.
             case 'updateDetail':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -79,18 +79,18 @@ if(isset($_GET['action'])){
             // Acción para actualizar la dirección de envío del pedido.
             case 'updateAddress':
                 $_POST = Validator::validateForm($_POST);
-                if(
+                if (
                     !$pedidos->setDireccion($_POST['direccion'])
-                ){
+                ) {
                     $result['error'] = $pedidos->getDataError();
-                } else if($pedidos->updateAddress()){
+                } else if ($pedidos->updateAddress()) {
                     $result['status'] = 1;
                     $result['message'] = 'Dirección actualizada correctamente';
-                } else{
+                } else {
                     $result['error'] = 'Ocurrió un problema al modificar tú dirección';
                 }
                 break;
-            // Acción para remover un producto del carrito de compras.
+                // Acción para remover un producto del carrito de compras.
             case 'deleteDetail':
                 if (!$pedidos->setIdDetalle($_POST['idDetalle'])) {
                     $result['error'] = $pedidos->getDataError();
@@ -101,7 +101,7 @@ if(isset($_GET['action'])){
                     $result['error'] = 'Ocurrió un problema al remover el producto';
                 }
                 break;
-            // Acción para finalizar el carrito de compras.
+                // Acción para finalizar el carrito de compras.
             case 'finishOrder':
                 if ($pedidos->finishOrder()) {
                     //Eliminamos el idPedido que se encontraba activo.
@@ -115,7 +115,7 @@ if(isset($_GET['action'])){
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
-    } else{
+    } else {
         // Se compara la acción a realizar cuando un cliente no ha iniciado sesión.
         switch ($_GET['action']) {
             // Acción para agregar un producto al carrito de compras, se referirá al login desde el web porque este case siempré dará error.
@@ -132,6 +132,6 @@ if(isset($_GET['action'])){
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print(json_encode($result));
-} else{
+} else {
     print(json_encode('Recurso no disponible'));
 }

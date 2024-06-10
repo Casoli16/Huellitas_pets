@@ -8,6 +8,8 @@ const USER_API = 'services/public/clientes.php';
 const PEDIDO_API = 'services/public/pedidos.php';
 const PRODUCTS_API = 'services/public/productos.php';
 
+
+//Plantilla de navbar que se insertará en las pantallas - Nabvar cuando el usuario no se ha logueado.
 const navbar = `
 <nav class="navbar navbar-expand-lg bg-beige-color fixed-top shadow">
     <div class="container-fluid">
@@ -71,6 +73,7 @@ const navbar = `
 `;
 
 
+//Plantilla de navbar que se insertará en las pantallas - Nabvar cuando el usuario ya se ha logueado.
 const navbarPerfil = `
 <nav class="navbar navbar-expand-lg bg-beige-color fixed-top shadow">
     <div class="container-fluid">
@@ -117,9 +120,7 @@ const navbarPerfil = `
                         <p>No existen resultados de tú búsqueda</p>
                     </div> 
                 </div>                
-                
-
-            
+                   
             </form>
                       
             <div class="py-md-0 py-4">
@@ -254,22 +255,25 @@ const loadTemplate = async () => {
 }
 
 //Codigo para el buscador
-
 let idProducto;
 let categoria;
 let mascota;
 const searchProduct = async () => {
+    //Obtenemos los elementos del html que vamos a utilizar para el buscador
     const INPUT_SEARCH = document.getElementById('inputSearch').value;
     const SEARCH_DIV = document.getElementById('searchDiv');
     const SEARCH_ROW = document.getElementById('rowProducts');
     const SEARCH_NOT_FOUND = document.getElementById('notFound');
 
+    //Creamos la instancia de FormData y le agregamos al form el valor de search, que se encarga de guardar el texto que se ingrese en el input
     const FORM = new FormData();
     FORM.append('search', INPUT_SEARCH);
 
+    //Mandamos la petición al servidor
     const DATA = await fetchData(PRODUCTS_API, 'searchProducts', FORM);
 
-    if(DATA.status){
+    //Si la respuesta viene sin problemas entonces se insertará el código html para el buscador, pero si no entonces se va mostrar otro bloque del codigo html.
+    if (DATA.status) {
         SEARCH_ROW.innerHTML = '';
         SEARCH_DIV.classList.remove('d-none')
         DATA.dataset.forEach(row => {
@@ -285,7 +289,7 @@ const searchProduct = async () => {
                 </div>                           
             `
         })
-    }else{
+    } else {
         SEARCH_DIV.classList.add('d-none');
         SEARCH_NOT_FOUND.classList.remove('d-none');
         setTimeout(() => {
@@ -295,9 +299,8 @@ const searchProduct = async () => {
     }
 }
 
-
-
-const goToProduct = (id) =>{
+//Metodo que permite redirejirse a un producto en especifico por medio del idProducto
+const goToProduct = (id) => {
     event.preventDefault();
     window.location.href = `../../views/public/producto.html?producto=${id}`;
 }

@@ -14,7 +14,8 @@ class AsignacionPermisosHandler
                 VALUE (?,?)';
         $params = array(
             $this->idPermiso,
-            $this->idAdmin);
+            $this->idAdmin
+        );
         return Database::executeRow($sql, $params);
     }
 
@@ -42,7 +43,7 @@ class AsignacionPermisosHandler
     }
 
     // UPDATE
-    public function updateRow ()
+    public function updateRow()
     {
         $sql = 'UPDATE asignacion_permisos
         SET id_admin = ?, id_permiso = ? WHERE id_asignacion_permiso = ?';
