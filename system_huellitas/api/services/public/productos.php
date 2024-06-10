@@ -233,7 +233,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Este producto no ha sido comentado';
                 }
-                break;
+                break;°
                 //Metodo para leer todos los productos
             case 'readAllProducts':
                 if ($result['dataset'] = $productos->readAllProducts()) {
