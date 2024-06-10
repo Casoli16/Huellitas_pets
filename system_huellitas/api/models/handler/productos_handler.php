@@ -132,7 +132,7 @@ class productosHandler
     //    Leer las marcas en base a su estado y animal
     public function readAllProducts()
     {
-        $sql = 'SELECT * FROM vista_productos_puntuacion ORDER BY puntuacion_producto DESC';
+        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE estado_producto = 1 ORDER BY puntuacion_producto DESC';
         return Database::getRows($sql);
     }
 
