@@ -1,9 +1,9 @@
 <?php
 
 //Clase que validara los datos de entrada.
-require_once ('../../helpers/validator.php');
+require_once('../../helpers/validator.php');
 //Se incluye la clase padre
-require_once ('../../models/handler/admin_handler.php');
+require_once('../../models/handler/admin_handler.php');
 
 class AdminData extends AdminHandler
 {
@@ -12,51 +12,49 @@ class AdminData extends AdminHandler
 
     public function setIdAdmin($value)
     {
-        if (Validator::validateNaturalNumber($value)){
+        if (Validator::validateNaturalNumber($value)) {
             $this->idAdministrador = $value;
             return true;
-        } else{
-            $this->data_error= 'El identificador es incorrecto';
+        } else {
+            $this->data_error = 'El identificador es incorrecto';
             return  false;
         }
     }
 
     public function setNombreAdmin($value, $min = 2, $max = 50)
     {
-        if (!Validator::validateAlphanumeric($value)){
+        if (!Validator::validateAlphanumeric($value)) {
             $this->data_error = 'El nombre debe ser un valor alfanúmerico';
             return false;
-        } elseif (Validator::validateLength($value, $min, $max)){
+        } elseif (Validator::validateLength($value, $min, $max)) {
             $this->nombreAdmin = $value;
             return true;
-        }
-        else{
-            $this->data_error= 'El nombre debe debe tener una longitud entre ' . $min . ' y ' . $max;
+        } else {
+            $this->data_error = 'El nombre debe debe tener una longitud entre ' . $min . ' y ' . $max;
             return  false;
         }
     }
 
     public function setApellidoAdmin($value, $min = 2, $max = 50)
     {
-        if (!Validator::validateAlphanumeric($value)){
+        if (!Validator::validateAlphanumeric($value)) {
             $this->data_error = 'El apellido debe ser un valor alfanúmerico';
             return false;
-        } elseif (Validator::validateLength($value, $min, $max)){
+        } elseif (Validator::validateLength($value, $min, $max)) {
             $this->apellidoAdmin = $value;
             return true;
-        }
-        else{
-            $this->data_error= 'El apellido debe debe tener una longitud entre ' . $min . ' y ' . $max;
+        } else {
+            $this->data_error = 'El apellido debe debe tener una longitud entre ' . $min . ' y ' . $max;
             return  false;
         }
     }
 
     public function setCorreoAdmin($value)
     {
-        if(!Validator::validateEmail($value)){
+        if (!Validator::validateEmail($value)) {
             $this->data_error = 'Ingrese un correo válido';
             return false;
-        } else{
+        } else {
             $this->correoAdmin = $value;
             return true;
         }
@@ -64,13 +62,13 @@ class AdminData extends AdminHandler
 
     public function setAliasAdmin($value, $min = 5, $max = 50)
     {
-        if (!Validator::validateAlphanumeric($value)){
+        if (!Validator::validateAlphanumeric($value)) {
             $this->data_error = 'El alías debe ser un valor alfanumerico';
             return false;
-        }elseif (Validator::validateLength($value, $min, $max)){
+        } elseif (Validator::validateLength($value, $min, $max)) {
             $this->aliasAdmin = $value;
             return true;
-        } else{
+        } else {
             $this->data_error = 'El alías debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
         }
@@ -78,10 +76,10 @@ class AdminData extends AdminHandler
 
     public function setClaveAdmin($value)
     {
-        if(Validator::validatePassword($value)){
+        if (Validator::validatePassword($value)) {
             $this->claveAdmin = password_hash($value, PASSWORD_DEFAULT);
             return true;
-        } else{
+        } else {
             $this->data_error = Validator::getPasswordError();
             return false;
         }
@@ -95,16 +93,16 @@ class AdminData extends AdminHandler
 
     public function setImagenAdmin($file, $filename = null)
     {
-        if(Validator::validateImageFile($file, 1000)){
+        if (Validator::validateImageFile($file, 1000)) {
             $this->imagenAdmin = Validator::getFilename();
             return true;
-        } elseif (Validator::getFileError()){
+        } elseif (Validator::getFileError()) {
             $this->data_error = Validator::getFileError();
             return false;
-        } elseif ($filename){
+        } elseif ($filename) {
             $this->imagenAdmin = $filename;
             return true;
-        } else{
+        } else {
             $this->imagenAdmin = 'default.png';
             return true;
         }

@@ -47,11 +47,10 @@ class CuponesData extends CuponesHandler
         if (Validator::validateNaturalNumber($value) && Validator::validateMaxAdnMinNumber($value, $min, $max)) {
             $this->porcentajeCupon = $value;
             return true;
-        }  
-     else {
-        $this->data_error = '¡El máximo de porcentaje de un cupón es 80%, modificalo por favor!';
-        return false;
-    }
+        } else {
+            $this->data_error = '¡El máximo de porcentaje de un cupón es 80%, modificalo por favor!';
+            return false;
+        }
     }
 
     public function setestado_cupon($value)
@@ -59,8 +58,7 @@ class CuponesData extends CuponesHandler
         if (Validator::validateBoolean($value)) {
             $this->estadoCupon = $value;
             return true;
-        } 
-         else {
+        } else {
             $this->data_error = 'Esto no es un booleano';
             return false;
         }
@@ -71,8 +69,7 @@ class CuponesData extends CuponesHandler
         if (Validator::validateDate($value)) {
             $this->fechaCupon = $value;
             return true;
-        } 
-         else {
+        } else {
             $this->data_error = 'Digite la fecha de correctamente';
             return false;
         }

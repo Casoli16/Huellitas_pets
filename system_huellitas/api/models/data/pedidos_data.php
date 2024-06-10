@@ -4,7 +4,8 @@ require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/pedidos_handler.php');
 
-class PedidosData extends PedidosHandler{
+class PedidosData extends PedidosHandler
+{
 
     private $data_error = null;
     private $filename = null;
@@ -25,9 +26,7 @@ class PedidosData extends PedidosHandler{
         if (Validator::validateNaturalNumber($value)) {
             $this->idCupon = $value;
             return true;
-        } 
-        else if ($value == 0)
-        {
+        } else if ($value == 0) {
             $this->idCupon = $value;
             return true;
         } else {
@@ -108,8 +107,8 @@ class PedidosData extends PedidosHandler{
 
     public function setDireccion($value)
     {
-            $this->direccion = $value;
-            return true;
+        $this->direccion = $value;
+        return true;
     }
 
     public function setMonth($value)
@@ -127,8 +126,4 @@ class PedidosData extends PedidosHandler{
     {
         return $this->filename;
     }
-
-
-
-
 }
