@@ -36,7 +36,11 @@ class productosData extends productosHandler{
 
     public function setCodigo($value, $min = 3, $max = 20)
     {
-        if (!Validator::validateString($value)) {
+        if(!$value) {
+            $this->data_error = 'Cupón vacío';
+            return false;
+        }
+        elseif (Validator::validateString($value)) {
             $this->data_error = 'El nombre debe ser un valor alfanumérico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
