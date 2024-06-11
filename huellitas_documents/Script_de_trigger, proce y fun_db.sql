@@ -107,12 +107,6 @@ END//
 
 DELIMITER ;
 
-
--- ALTER para que la tabla productos acepte numeros de 0:
-ALTER TABLE productos
-ADD CONSTRAINT existencia_producto_check CHECK(existencia_producto >= 0);
-
-
 -- TRIGGER PARA ACTUALIZAR EXISTENCIAS DE PRODUCTO SI SE ELIMINA UN PEDIDO --
 DELIMITER //
 
@@ -142,12 +136,12 @@ GROUP BY c.nombre_cliente, p.fecha_registro_pedido, p.estado_pedido, p.id_pedido
 
 
 -- Vista para ver la parte 1 de los productos del detalle pedido, es del GET parte I
-CREATE VIEW pedido_view_one_I AS
+ALTER VIEW pedido_view_one_I AS
 SELECT 
     p.id_pedido,
     dp.id_detalle_pedido,
     dp.cantidad_detalle_pedido AS cantidad,
-    CONCAT('$', dp.precio_detalle_pedido) AS precio,
+    dp.precio_detalle_pedido AS precio,
     m.nombre_marca,
     pr.nombre_producto,
     pr.imagen_producto
@@ -298,7 +292,8 @@ FROM
     categorias c
 JOIN 
     productos p ON c.id_categoria = p.id_categoria;
-    
+
+SELECT * FROM vista_categorias_mascotas;
 -- Vista para ver las marcas en base de que si es un perro o gato
 CREATE VIEW vista_mascotas_marca AS
 SELECT 
@@ -324,7 +319,7 @@ JOIN
     categorias c ON p.id_categoria = c.id_categoria;
 
 -- Vista para ver los productos
-CREATE VIEW vista_productos_puntuacion AS
+ALTER VIEW vista_productos_puntuacion AS
 SELECT
     c.id_categoria AS id_categoria,
     p.id_marca AS id_marca,
@@ -334,6 +329,7 @@ SELECT
     p.nombre_producto AS nombre_producto,
     p.imagen_producto AS imagen_producto,
     p.mascotas AS mascota,
+    p.estado_producto,
     p.existencia_producto AS existencias,
     COALESCE(ROUND(AVG(v.calificacion_valoracion) / 2), 5) AS puntuacion_producto
 FROM

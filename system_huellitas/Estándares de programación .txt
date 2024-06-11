@@ -12,6 +12,6 @@ JAVASCRIPT:
 PHP:
 - Nombre de clases: StudlyCaps (No lleva espacios y cada palabra comienza en mayúscula)
 - Nombre de metódos: camelCase (No lleva espacios y solo la primera letra de la palabra es minúscula.)
-- Los archivos DEBEN usar sólo etiquetas <?php y <?=.
+- Los archivos DEBEN usar sólo etiquetas <?php.
 - Identación de sangría en el código (Es de 4)
 - Código comentado

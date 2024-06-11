@@ -57,7 +57,7 @@ const fillConteiner = async (action, id) => {
             <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="p-sm-3 card rounded-4 shadow mb-3">
                     <div class="justify-content-center">
-                        <img src="${SERVER_URL}images/productos/${row.imagen_producto}" width="250px" height="250px" alt="...">
+                        <img class="img-fluid productoDropShadow" src="${SERVER_URL}images/productos/${row.imagen_producto}" width="250px" height="250px" alt="...">
                     </div>
                     <div class="card-body">
                         <div class="row">

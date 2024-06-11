@@ -192,15 +192,11 @@ const enviarCodigo = async (precio_producto) => {
             DIV_NEWPRECIO.classList.remove('d-none');
             let precio = precio_producto - ((precio_producto / 100) * parseInt(DATA.dataset.porcentaje_cupon));
             NEWPRECIO.innerHTML = `$${precio.toFixed(2)}`;
-            console.log(DATA.dataset.porcentaje_cupon);
             idCupon = DATA.dataset.id_cupon;
-            console.log(DATA.dataset.mensaje);
-            console.log(idCupon);
         }
         // engloba lo de abajo en un else if
         else if (DATA.status == 2) {
             // Quiero que las 3 clases de abajo se activen si las clases en sí existen dentro del código, las remove, add no dará problemas
-            console.log(DATA.error)
             SPAN.classList.remove('text-success');
             SPAN.classList.add('text-danger');
             PRECIO.classList.remove('text-decoration-line-through');
@@ -208,27 +204,21 @@ const enviarCodigo = async (precio_producto) => {
             SPAN.classList.remove('d-none');
             SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
             idCupon = 0;
-            console.log(idCupon);
         }
 
         else if (DATA.status == 3) {
-            console.log('Entre al else de cupon vacío');
             idCupon = 0;
-            console.log(idCupon);
             sweetAlert(3, 'Cupón vacio', false);
         }
 
         else if (!DATA.status) {
-            console.log('Entre al else de no logueado');
             idCupon = 0;
-            console.log(idCupon);
             sweetAlert(3, 'Inicia sesión o crea una cuenta para utilizar un código', true, 'login.html');
         }
 
         // engloba lo de abajo en un else if
         else {
             // Quiero que las 3 clases de abajo se activen si las clases en sí existen dentro del código, las remove, add no dará problemas
-            console.log(DATA.error)
             SPAN.classList.remove('text-success');
             SPAN.classList.add('text-danger');
             PRECIO.classList.remove('text-decoration-line-through');
@@ -236,7 +226,6 @@ const enviarCodigo = async (precio_producto) => {
             SPAN.classList.remove('d-none');
             SPAN.innerHTML = 'Código no válido o ya ha sido utilizado';
             idCupon = 0;
-            console.log(idCupon);
         }
 
 
@@ -252,7 +241,6 @@ const sendToCart = async () => {
     FORM.append('idProducto', IDPRODUCTO);
     FORM.append('cantidadProducto', cant);
     FORM.append('idCupon', idCupon);
-    console.log(idCupon);
 
     const DATA = await fetchData(PEDIDOS_API, 'createDetail', FORM);
 
@@ -279,7 +267,6 @@ stars.forEach(function (star, index) {
         // Asignar la variable con el valor de la estrella seleccionada
         rating = index + 1;
         // Imprimir la variable en la consola
-        console.log('Rating seleccionado:', rating);
     });
 });
 
@@ -307,7 +294,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         rating = 0;  // Reinicia la variable de rating a 0
     } else {
         sweetAlert(2, DATA.error, false);
-        console.log(DATA.message);
     }
 });
 
