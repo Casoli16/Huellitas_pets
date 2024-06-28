@@ -172,6 +172,28 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al registrar la cuenta';
                 }
                 break;
+            case 'signUpPhone':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$cliente->setNombreCliente($_POST['nombreCliente']) or
+                        !$cliente->setApellidoCliente($_POST['apellidoCliente']) or
+                        !$cliente->setCorreoCliente($_POST['correoCliente']) or
+                        !$cliente->setDireccionCliente($_POST['direccionCliente']) or
+                        !$cliente->setDuiCliente($_POST['duiCliente']) or
+                        !$cliente->setFechaNacimiento($_POST['nacimientoCliente']) or
+                        !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
+                        !$cliente->setClaveCliente($_POST['claveCliente'])
+                    ) {
+                        $result['error'] = $cliente->getDataError();
+                    } elseif ($_POST['claveCliente'] != $_POST['confirmarClave']) {
+                        $result['error'] = 'Contraseñas diferentes';
+                    } elseif ($cliente->createRowPhone()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Cuenta registrada correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al registrar la cuenta';
+                    }
+                    break;
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
                 if (!$cliente->checkUser($_POST['correo'], $_POST['clave'])) {

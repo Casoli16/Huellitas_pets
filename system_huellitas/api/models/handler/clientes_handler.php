@@ -160,6 +160,24 @@ class ClientesHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function createRowPhone()
+    {
+        $sql = 'INSERT INTO clientes(nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, clave_cliente, imagen_cliente)
+                VALUE (?,?,?,?,?,?,?,?,?)';
+        $params = array(
+            $this->nombreCliente,
+            $this->apellidoCliente,
+            $this->duiCliente,
+            $this->correoCliente,
+            $this->telefonoCliente,
+            $this->fechaNacimientoCliente,
+            $this->direccionCliente,
+            $this->claveCliente,
+            'DefaultPerfil.png'
+        );
+        return Database::executeRow($sql, $params);
+    }
+
     // READ ALL
     public function readAll()
     {
