@@ -115,6 +115,15 @@ class ClientesHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function editProfilePhone()
+    {
+        $sql = 'UPDATE clientes
+                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente =?, telefono_cliente = ?, nacimiento_cliente = ?, direccion_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->nombreCliente, $this->apellidoCliente, $this->duiCliente, $this->correoCliente, $this->telefonoCliente, $this->fechaNacimientoCliente, $this->direccionCliente, $_SESSION['idCliente']);
+        return Database::executeRow($sql, $params);
+    }
+
     public function changeStatus()
     {
         $sql = 'UPDATE clientes

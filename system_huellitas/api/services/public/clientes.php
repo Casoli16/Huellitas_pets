@@ -94,6 +94,25 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el perfil';
                 }
                 break;
+            case 'editProfilePhone':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$cliente->setNombreCliente($_POST['nombreCliente']) or
+                    !$cliente->setApellidoCliente($_POST['apellidoCliente']) or
+                    !$cliente->setDuiCliente($_POST['duiCliente']) or
+                    !$cliente->setDireccionCliente($_POST['direccionCliente']) or
+                    !$cliente->setFechaNacimiento($_POST['nacimientoCliente']) or
+                    !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
+                    !$cliente->setCorreoCliente($_POST['correoCliente'])
+                ) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($cliente->editProfilePhone()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Perfil actualizado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al actualizar el perfil';
+                }
+                break;
                 //Metodo que permite cambiar la contraseña del cliente
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
