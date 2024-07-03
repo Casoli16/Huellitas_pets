@@ -136,7 +136,7 @@ GROUP BY c.nombre_cliente, p.fecha_registro_pedido, p.estado_pedido, p.id_pedido
 
 
 -- Vista para ver la parte 1 de los productos del detalle pedido, es del GET parte I
-ALTER VIEW pedido_view_one_I AS
+CREATE VIEW pedido_view_one_I AS
 SELECT 
     p.id_pedido,
     dp.id_detalle_pedido,
@@ -319,7 +319,7 @@ JOIN
     categorias c ON p.id_categoria = c.id_categoria;
 
 -- Vista para ver los productos
-ALTER VIEW vista_productos_puntuacion AS
+CREATE VIEW vista_productos_puntuacion AS
 SELECT
     c.id_categoria AS id_categoria,
     p.id_marca AS id_marca,
