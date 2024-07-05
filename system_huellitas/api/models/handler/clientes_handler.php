@@ -77,7 +77,7 @@ class ClientesHandler
                 WHERE 
                 c.id_cliente = ?
                 GROUP BY 
-                c.nombre_cliente, p.fecha_registro_pedido, p.estado_pedido, p.id_pedido;";
+                c.nombre_cliente, p.fecha_registro_pedido, p.estado_pedido, p.id_pedido ORDER BY fecha DESC;";
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
     }
