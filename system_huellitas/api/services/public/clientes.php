@@ -201,14 +201,17 @@ if (isset($_GET['action'])) {
                         !$cliente->setDuiCliente($_POST['duiCliente']) or
                         !$cliente->setFechaNacimiento($_POST['nacimientoCliente']) or
                         !$cliente->setTelefonoCliente($_POST['telefonoCliente']) or
-                        !$cliente->setClaveCliente($_POST['claveCliente'])
+                        !$cliente->setClaveCliente($_POST['claveCliente']) or
+                        !$cliente->setImagenCliente($_FILES['imagenCliente'])
                     ) {
                         $result['error'] = $cliente->getDataError();
                     } elseif ($_POST['claveCliente'] != $_POST['confirmarClave']) {
                         $result['error'] = 'Contraseñas diferentes';
                     } elseif ($cliente->createRowPhone()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Cuenta registrada correctamente';
+                        $result['message'] = 'Tú cuenta ha sido registrada éxitosamente';
+                        // Se asigna el estado del archivo después de insertar.
+                        $result['fileStatus'] = Validator::saveFile($_FILES['imagenCliente'], $cliente::RUTA_IMAGEN);
                     } else {
                         $result['error'] = 'Ocurrió un problema al registrar la cuenta';
                     }

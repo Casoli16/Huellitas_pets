@@ -182,7 +182,7 @@ class ClientesHandler
             $this->fechaNacimientoCliente,
             $this->direccionCliente,
             $this->claveCliente,
-            'DefaultPerfil.png'
+            $this->imagenCliente
         );
         return Database::executeRow($sql, $params);
     }
