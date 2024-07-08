@@ -28,10 +28,11 @@ class productosHandler
     public function searchProducts()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_producto, nombre_producto, precio_producto, nombre_categoria, imagen_producto, mascotas, id_categoria
-            FROM productos
-            INNER JOIN categorias USING(id_categoria)
-            WHERE productos.nombre_producto LIKE ? OR nombre_categoria LIKE ?';
+        $sql = "SELECT id_producto, nombre_producto, precio_producto, nombre_categoria, imagen_producto, mascotas, id_categoria
+        FROM productos
+        INNER JOIN categorias USING(id_categoria)
+        WHERE (productos.nombre_producto LIKE ? OR nombre_categoria LIKE ?)
+        AND estado_producto = 1";
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
@@ -39,7 +40,7 @@ class productosHandler
     // Selecciona los productos de perros
     public function readEspecificProducts()
     {
-        $sql = 'SELECT * FROM productosView WHERE mascotas = ?';
+        $sql = 'SELECT * FROM productosView WHERE mascotas = ? AND estado_producto = 1';
         $params = array($this->mascotas);
         return Database::getRows($sql, $params);
     }
@@ -124,7 +125,7 @@ class productosHandler
     //    Leer las marcas en base a su estado y animal
     public function readOneCategoria()
     {
-        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE id_categoria = ? AND mascota = ?  ORDER BY puntuacion_producto DESC';
+        $sql = 'SELECT * FROM vista_productos_puntuacion WHERE id_categoria = ? AND mascota = ? AND estado_producto = 1  ORDER BY puntuacion_producto DESC';
         $params = array($this->categoria, $this->mascotas);
         return Database::getRows($sql, $params);
     }

@@ -411,6 +411,12 @@ LEFT JOIN
 SELECT * FROM vista_productos_comentarios WHERE id_producto = 2 AND estado = 1 ORDER BY calificacion DESC;
 
 /*Metodo para guardar un comentario en valoraciones*/
+SELECT * FROM pedidos;
+SELECT * FROM cupones_utilizados;
+USE db_huellitas_pets;
+CALL crear_detalle_pedido (1, 2, 1, 1, 1);
+
+DROP PROCEDURE IF EXISTS crear_detalle_pedido;
 DELIMITER //
 
 CREATE PROCEDURE crear_detalle_pedido (
@@ -422,7 +428,7 @@ CREATE PROCEDURE crear_detalle_pedido (
 )
 BEGIN
     -- Declarar las variables para almacenar los valores necesarios
-    DECLARE p_cupon_porcentaje INT;
+    DECLARE p_cupon_porcentaje INT DEFAULT 0;
     DECLARE p_precio_unitario DECIMAL(10,2);
     DECLARE p_precio_total DECIMAL(10,2);
     DECLARE p_precio_total_con_cupon DECIMAL(10,2);
@@ -433,7 +439,7 @@ BEGIN
     WHERE id_producto = p_id_producto;
 
     -- Calcular el precio total sin aplicar el cupón
-    SET p_precio_total = (p_cantidad_detalle_pedido * p_precio_unitario) / p_cantidad_detalle_pedido;
+    SET p_precio_total = p_cantidad_detalle_pedido * p_precio_unitario;
 
     -- Verificar si el cupón es válido (id_cupon != 0)
     IF p_id_cupon != 0 THEN
@@ -458,9 +464,10 @@ BEGIN
         VALUES(p_id_producto, p_precio_total, p_cantidad_detalle_pedido, p_id_pedido);
     END IF;
 
-END;
+END //
 
 DELIMITER ;
+
 
 
 DELIMITER //
@@ -495,4 +502,4 @@ DELIMITER ;
 SELECT * FROM productos;
 SELECT * FROM pedidos;
 SELECT * FROM detalles_pedidos;
-
+SELECT * FROM cupones_oferta;
