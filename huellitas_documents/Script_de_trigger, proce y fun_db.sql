@@ -498,8 +498,71 @@ END;
 
 DELIMITER ;
 
+-- -Vista para los clientes con mayores pedidos
+CREATE VIEW top5_clientes_mayores_pedidos AS
+SELECT 
+    c.id_cliente,
+    CONCAT(c.nombre_cliente, ' ', c.apellido_cliente) AS nombre_completo,
+    COUNT(p.id_pedido) AS cantidad_pedidos
+FROM 
+    clientes c
+JOIN 
+    pedidos p ON c.id_cliente = p.id_cliente
+WHERE 
+    p.estado_pedido = 'Completado'
+GROUP BY 
+    c.id_cliente, nombre_completo
+ORDER BY 
+    cantidad_pedidos DESC
+LIMIT 5;
 
+-- -Vista para los clientes con mayore volumenes de productosd comprados
+CREATE VIEW top5_clientes_mayoria_productos AS
+SELECT 
+    c.id_cliente,
+    CONCAT(c.nombre_cliente, ' ', c.apellido_cliente) AS nombre_completo,
+    SUM(dp.cantidad_detalle_pedido) AS cantidad_productos
+FROM 
+    clientes c
+JOIN 
+    pedidos p ON c.id_cliente = p.id_cliente
+JOIN 
+    detalles_pedidos dp ON p.id_pedido = dp.id_pedido
+WHERE 
+    p.estado_pedido = 'Completado'
+GROUP BY 
+    c.id_cliente, nombre_completo
+ORDER BY 
+    cantidad_productos DESC
+LIMIT 5;
+
+-- -.Vista para los productos más comprados por mes
+CREATE VIEW productos_mas_vendidos_por_mes AS
+SELECT 
+    DATE_FORMAT(p.fecha_registro_pedido, '%m') AS anio_mes,
+    DATE_FORMAT(p.fecha_registro_pedido, '%M') AS nombre_mes,
+    pr.nombre_producto,
+    SUM(dp.cantidad_detalle_pedido) AS cantidad_compras
+FROM 
+    pedidos p
+JOIN 
+    detalles_pedidos dp ON p.id_pedido = dp.id_pedido
+JOIN 
+    productos pr ON dp.id_producto = pr.id_producto
+WHERE 
+    p.estado_pedido = 'Completado'
+GROUP BY 
+    DATE_FORMAT(p.fecha_registro_pedido, '%Y-%m'),
+    DATE_FORMAT(p.fecha_registro_pedido, '%M'),
+    pr.nombre_producto
+ORDER BY 
+    anio_mes DESC, cantidad_compras DESC;
+
+|	C>
+SELECT * FROM top5_clientes_mayoria_productos;
+SELECT * FROM top5_clientes_mayores_pedidos;
 SELECT * FROM productos;
 SELECT * FROM pedidos;
 SELECT * FROM detalles_pedidos;
+SELECT * FROM clientes;
 SELECT * FROM cupones_oferta;

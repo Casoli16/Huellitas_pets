@@ -21,6 +21,7 @@ class productosHandler
     protected $marca = null;
     protected $idCliente = null;
     protected $codigo = null;
+    protected $Mes = null;
 
     const RUTA_IMAGEN = '../../images/productos/';
 
@@ -189,5 +190,12 @@ class productosHandler
                 WHERE id_producto= ?';
         $params = array($this->idProducto);
         return Database::getRow($sql, $params);
+    }
+
+    public function Top5ProductosPorMes()
+    {
+        $sql = 'SELECT * FROM productos_mas_vendidos_por_mes WHERE anio_mes = ? ORDER BY cantidad_compras DESC LIMIT 5;';
+        $params = array($this->Mes);
+        return Database::getRows($sql, $params);
     }
 }

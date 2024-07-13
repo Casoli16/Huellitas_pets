@@ -156,6 +156,12 @@ class productosData extends productosHandler
         return true;
     }
 
+    public  function setMes($value)
+    {
+        $this->Mes = $value;
+        return true;
+    }
+
     public  function setMascotas($value)
     {
         if ($value == 'Perro' || $value == 'Perros') {

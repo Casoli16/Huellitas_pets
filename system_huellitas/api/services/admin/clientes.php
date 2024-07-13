@@ -107,6 +107,26 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar al cliente';
                 }
                 break;
+                //Metódo que permite leer la gráfica de los clientes con más pedidos realizados, entrega
+                // nombre_cliente y cantidad_pedidos
+            case 'readTop5Pedidos':
+                if ($result['dataset'] = $clientes->readTop5Pedidos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen pedidos registrados';
+                }
+                break;
+                //Metódo que permite leer la gráfica de los clientes con más productos comprados, entrega
+                // nombre_cliente y cantidad_productos
+            case 'readTop5Productos':
+                if ($result['dataset'] = $clientes->readTop5Productos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen pedidos registrados';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión';
         }

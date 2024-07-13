@@ -261,4 +261,20 @@ class ClientesHandler
         $params = array($_SESSION['idCliente']);
         return Database::getRow($sql, $params);
     }
+
+    // Vista para conocer el TOP 5 de los clientes que más pedidos han hecho
+    public function readTop5Pedidos()
+    {
+        $sql = 'SELECT * FROM top5_clientes_mayores_pedidos;';
+        return Database::getRows($sql);
+    }
+
+    // Vista para conocer el TOP 5 de los clientes que más productos han comprado
+    public function readTop5Productos()
+    {
+        $sql = 'SELECT * FROM top5_clientes_mayoria_productos;';
+        return Database::getRows($sql);
+    }
+
+    //
 }
