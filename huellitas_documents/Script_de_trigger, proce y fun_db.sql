@@ -566,3 +566,15 @@ SELECT * FROM pedidos;
 SELECT * FROM detalles_pedidos;
 SELECT * FROM clientes;
 SELECT * FROM cupones_oferta;
+
+
+CREATE VIEW cantidad_productos_marcas AS
+SELECT
+    m.nombre_marca AS marca,
+    COUNT(p.id_producto) AS cantidad_total_productos
+FROM productos p
+INNER JOIN marcas m ON p.id_marca = m.id_marca GROUP BY m.id_marca;
+
+
+SELECT * FROM cantidad_productos_marcas;
+SELECT * FROM cantidad_productos_marcas ORDER BY cantidad_total_productos DESC LIMIT 1;
