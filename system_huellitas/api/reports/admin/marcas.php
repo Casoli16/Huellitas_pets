@@ -7,7 +7,7 @@ require_once('../../models/data/marcas_data.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report();
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Cantidad de productos por marcas');
+$pdf->startReport('Cantidad de productos por marcas ocupadas');
 // Se instancia el módelo marca para obtener los datos.
 $marcas = new MarcasData();
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
