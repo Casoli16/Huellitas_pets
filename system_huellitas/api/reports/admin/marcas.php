@@ -26,7 +26,7 @@ if($dataMarcas = $marcas->readAll()){
     // Se recorren los registros fila por fila.
     foreach ($dataMarcas as $rowMarcas){
     // Se imprime una celda con el nombre de la categoría.
-    $pdf->cell(0, 10, $pdf->encodeString('Marca: ' . $rowMarcas['nombre_marca']), 1, 1, 'C', 1);
+    $pdf->cell(0, 10, $pdf->encodeString('Marca: ' . $rowMarcas['nombre_marca']), 1, 1, 'C');
     }
 } else {
     $pdf->cell(0, 10, $pdf->encodeString('No hay marcas para mostrar'), 1, 1);

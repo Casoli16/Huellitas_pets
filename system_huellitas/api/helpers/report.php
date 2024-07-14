@@ -27,7 +27,7 @@ class Report extends FPDF
         if(isset($_SESSION['idAdministrador'])){
             $this->title = $title;
             $this->setTitle('Huellitas pets - Reporte', true);
-            $this->setMargins(15, 15, 15);
+            $this->setMargins(15, 40, 15);
             $this->addPage('p', 'letter');
             $this->aliasNbPages();
         } else{
@@ -52,7 +52,10 @@ class Report extends FPDF
     */
     public function header()
     {
-        $this->image('../../images/report/header.png', 15, 15, 20);
+        $this->image('../../images/report/header.png', 15, 15, 60);
+        $this->image('../../images/report/one.png', 146, -2, 70);
+        $this->image('../../images/report/second.png', 0, 210, 220);
+        $this->image('../../images/report/logo.png', 30, 40, 150);
         $this->cell(20);
         $this->setFont('Arial', 'B', 15);
         $this->cell(166, 10, $this->encodeString($this->title), 0, 1,'C');
