@@ -92,4 +92,18 @@ class MarcasHandler
         $params = array($this->idMarca);
         return Database::executeRow($sql, $params);
     }
+
+
+    /// Funciones para reportes
+    public function productsByMarcas()
+    {
+        $sql =  'SELECT * FROM cantidad_productos_marcas';
+        return Database::getRows($sql);
+    }
+
+    public function marca_con_mas_productos()
+    {
+        $sql =  'SELECT * FROM cantidad_productos_marcas ORDER BY cantidad_total_productos DESC LIMIT 1;';
+        return Database::getRow($sql);
+    }
 }

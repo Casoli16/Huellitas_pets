@@ -16,7 +16,7 @@ class Report extends FPDF
 
     /*
 *   Método para iniciar el reporte con el encabezado del documento.
-*   Parámetros: $title (título del reporte).
+*   Parámetros: $title (título del reporte) $description(descripcion del reporte).
 *   Retorno: ninguno.
 */
     public function startReport($title)
@@ -52,14 +52,19 @@ class Report extends FPDF
     */
     public function header()
     {
+        //Imagenes para el diseño del reporte
         $this->image('../../images/report/header.png', 15, 15, 60);
-        $this->image('../../images/report/one.png', 146, -2, 70);
+        $this->image('../../images/report/one.png', 146, -3, 70);
         $this->image('../../images/report/second.png', 0, 210, 220);
         $this->image('../../images/report/logo.png', 30, 40, 150);
-        $this->cell(20);
+
+        //Titulo del reporte
         $this->setFont('Arial', 'B', 15);
-        $this->cell(166, 10, $this->encodeString($this->title), 0, 1,'C');
-        $this->ln(10);
+        $this->cell(0, 10, $this->encodeString($this->title), 0, 1,'C');
+        $this->setFont('Arial', '', 10);
+        $this->cell(0, 10, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
+        //Espacio
+        $this->ln(5);
     }
 
     /*
@@ -69,10 +74,13 @@ class Report extends FPDF
     public function footer()
     {
         // Se establece la posición para el número de página (a 15 milímetros del final).
-        $this->setY(-50);
+        $this->setY(-15);
+        $this->setTextColor(0, 0, 0 );
         // Se establece la fuente para el número de página.
-        $this->setFont('Arial', 'I', 8);
+        $this->setFont('Arial', 'I', 9);
+        $this->cell(0, 0, 'Generado por: ' . $this->encodeString($_SESSION['nombreAdmin']), 0, 1, 'R');
         // Se imprime una celda con el número de página.
-        $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
+        $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 1, 'C');
+
     }
 }

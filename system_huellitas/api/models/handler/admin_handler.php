@@ -107,7 +107,7 @@ class AdminHandler
     // CHECK USER - Valida las credenciales del usuario en el inicio de sesion.
     public function checkUser($username, $password)
     {
-        $sql = 'SELECT id_admin, alias_admin, clave_admin
+        $sql = 'SELECT id_admin, alias_admin, clave_admin, nombre_admin, apellido_admin
                 FROM administradores
                 WHERE alias_admin = ?';
         $params = array($username);
@@ -117,6 +117,7 @@ class AdminHandler
             // Si coincide entonces se le asigna el id_admin de la base al idAdministrador y lo mismo ocurre con el alias_admin, devolviendo un true
             $_SESSION['idAdministrador'] = $data['id_admin'];
             $_SESSION['aliasAdmin'] = $data['alias_admin'];
+            $_SESSION['nombreAdmin'] = $data['nombre_admin'] . ' ' . $data['apellido_admin'];
             return true;
         } else {
             return false;
