@@ -3,7 +3,10 @@ const CLIENTE_API = 'services/admin/clientes.php'
 
 // ELEMENTOS DE LA TABLA
 const TABLE_BODY = document.getElementById('tableBody'),
-    ROWS_FOUND = document.getElementById('rowsFound');
+    ROWS_FOUND = document.getElementById('rowsFound'),
+    CONTAINER_GRAPHICS = document.getElementById('ContenedorG'),
+    BTN1_GRAPHICS = document.getElementById('btn1G'),
+    BTN2_GRAPHICS = document.getElementById('btn2G');
 
 const INFO_MODAL = new bootstrap.Modal('#seeModal'),
     TITLE_MODAL = document.getElementById("modalTitle");
@@ -31,7 +34,66 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTemplate()
     //Espera a que fillTable termine de ejecutarse, para luego llamar a la funcion initializeDataTable;
     fillTable().then(initializeDataTable);
-})
+
+    //Función que permite darle click al boton de ver los graficos 1
+BTN1_GRAPHICS.addEventListener('click', async () => {
+    BTN1_GRAPHICS.classList.add('active');
+    BTN2_GRAPHICS.classList.remove('active');
+    CONTAINER_GRAPHICS.classList.remove('d-none');
+    
+    const DATA = await fetchData(CLIENTE_API, 'readTop5Pedidos', null);
+    if (DATA.status) {
+        let clientes = [];
+        let pedidos = [];
+        DATA.dataset.forEach(row => {
+            clientes.push(row.nombre_completo);
+            pedidos.push(row.cantidad_pedidos);
+        });
+        console.log(clientes, pedidos);
+        console.log('Llegue hasta aqui');
+        pieGraph('myChart', clientes, pedidos, 'Total de pedidos', `Top 5 clientes con mayores pedidos completados`);
+        console.log('Llegue después de pieGraph');
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+        
+});
+
+//Función que permite darle click al boton de ver los graficos 2
+BTN2_GRAPHICS.addEventListener('click', async () => {
+    BTN2_GRAPHICS.classList.add('active');
+    BTN1_GRAPHICS.classList.remove('active');
+    CONTAINER_GRAPHICS.classList.remove('d-none');
+    
+    const DATA = await fetchData(CLIENTE_API, 'readTop5Productos', null);
+    if (DATA.status) {
+        let clientes = [];
+        let producto = [];
+        DATA.dataset.forEach(row => {
+            clientes.push(row.nombre_completo);
+            producto.push(row.cantidad_productos);
+        });
+        console.log(clientes, producto);
+        console.log('Llegue hasta aqui');
+        pieGraph('myChart', clientes, producto, 'Total de productos', `Top 5 clientes con más productos comprados`);
+        console.log('Llegue después de pieGraph');
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+        
+});
+
+BTN1_GRAPHICS.addEventListener('dblclick', () => {
+    CONTAINER_GRAPHICS.classList.add('d-none');
+});
+
+BTN2_GRAPHICS.addEventListener('dblclick', () => {
+    CONTAINER_GRAPHICS.classList.add('d-none');
+
+});
+
+
+});
 
 // Función asincrona para inicializar la instancia de DataTable(Paginacion en las tablas)
 const initializeDataTable = async () => {
@@ -53,6 +115,7 @@ const resetDataTable = async () => {
     await fillTable();
     //Espera a que se ejecute completamente la funcion antes de seguir.
     await initializeDataTable();
+
 };
 
 //Función que permite actualizar el estado del cliente
@@ -96,6 +159,7 @@ const seeInfo = async (id) => {
         sweetAlert(2, DATA.error, false);
     }
 }
+
 
 //Función que llena la tabla de datos.
 const fillTable = async (form = null) => {

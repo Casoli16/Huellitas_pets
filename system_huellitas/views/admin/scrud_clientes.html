@@ -17,6 +17,8 @@
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/switch_styles.css">
     <!--Personalizamos los botones de la paginacion-->
     <link type="text/css" rel="stylesheet" href="../../resources/css/admin/pagination_styles.css">
+    <!--Personalizamos la dimensión de las gráficas-->
+    <link type="text/css" rel="stylesheet" href="../../resources/css/admin/scrud_clientes.css">
     <!--Se agrega la libreria de DataTables para la paginación-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
 </head>
@@ -47,6 +49,28 @@
                     <p>Observa los clientes que se han registrado en Huellitas pet's.</p>
                 </div>
             </div>
+        </div>
+        <!-- Gráfica-->
+        <div class="container mt-4 ">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <h3 class="fw-bold">Gráficas de clientes</h2>
+                        <p>Elige una opción para visualizar la gráfica.</p>
+                </div>
+                <div class="col-12">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn active" data-bs-toggle="button" id="btn1G">Clientes con más pedidos</button>
+                        <button type="button" class="btn" data-bs-toggle="button" aria-pressed="true" id="btn2G">Clientes con más productos</button>
+                    </div>
+                </div>
+                <div class="col-12 d-none align-items-center" id="ContenedorG">
+                    <!-- Gráfica -->
+                    <div class="canvas-container">
+                        <canvas id="myChart" class="container-fluid"></canvas>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!-- Tabla -->
         <div class="container mt-5">
@@ -188,6 +212,7 @@
                 </form>
             </div>
         </div>
+        <script type="text/javascript" src="../../resources/js/chart.umd.js"></script>
         </div>
     </main>
 

@@ -229,6 +229,32 @@ const fetchData = async (filename, action, form = null) => {
     }
 }
 
+/*
+    Arreglo constante con colores de la paleta de colores en formato hexadecimal.
+*/
+const coloresPaleta = [
+    "#0D3B66", // Color de la paleta original
+    "#FAF0CA", // Color de la paleta original
+    "#F4D35E", // Color de la paleta original
+    "#EE964B", // Color de la paleta original
+    "#F95738", // Color de la paleta original
+    "#123C7B", // Derivado de #0D3B66
+    "#E9E2B3", // Derivado de #FAF0CA
+    "#EAC246", // Derivado de #F4D35E
+    "#E27A33", // Derivado de #EE964B
+    "#E0492F", // Derivado de #F95738
+    "#15406F", // Derivado de #0D3B66
+    "#FDF3E0", // Derivado de #FAF0CA
+    "#F5D76E", // Derivado de #F4D35E
+    "#F19A6C", // Derivado de #EE964B
+    "#F86A59", // Derivado de #F95738
+    "#194578", // Derivado de #0D3B66
+    "#FEF4D7", // Derivado de #FAF0CA
+    "#F8D981", // Derivado de #F4D35E
+    "#EDA77F", // Derivado de #EE964B
+    "#FA806E", // Derivado de #F95738
+];
+
 
 /*
 *   Función para generar un gráfico de barras verticales.
@@ -244,7 +270,7 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
     let colors = [];
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
     xAxis.forEach(() => {
-        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+        colors.push(coloresPaleta[Math.floor(Math.random() * coloresPaleta.length)]);
     });
 
     //Verifica si la variable graph cuenta con una grafica previamente creada, si es si entonces la va destruir
@@ -272,6 +298,54 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
                 },
                 legend: {
                     display: false
+                }
+            }
+        }
+    });
+}
+
+/*
+*   Función para generar un gráfico de pastel.
+*   Requiere la librería chart.js para funcionar.
+*   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
+*   Retorno: ninguno.
+*/
+
+// Variable que guardará la gráfica que se cree
+let graph2 = null;
+const pieGraph = (canvas, xAxis, yAxis, legend, title) => {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    let colors = [];
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
+    xAxis.forEach(() => {
+        colors.push(coloresPaleta[Math.floor(Math.random() * coloresPaleta.length)]);
+    });
+
+    // Verifica si la variable graph cuenta con una gráfica previamente creada, si es así entonces la va a destruir.
+    if (graph2) {
+        graph2.destroy();
+    }
+
+    // Vuelve a guardar la nueva gráfica en la variable graph
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    graph2 = new Chart(document.getElementById(canvas), {
+        type: 'pie',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: true
                 }
             }
         }
