@@ -558,7 +558,7 @@ GROUP BY
 ORDER BY 
     anio_mes DESC, cantidad_compras DESC;
 
-|	C>
+
 SELECT * FROM top5_clientes_mayoria_productos;
 SELECT * FROM top5_clientes_mayores_pedidos;
 SELECT * FROM productos;

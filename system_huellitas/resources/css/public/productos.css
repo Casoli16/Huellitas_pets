@@ -41,9 +41,9 @@ a {
     /* Color del borde */
 }
  
-.productoDropShadow{
-    filter:  drop-shadow( 1px 1px 10px rgb(238, 150, 75));
-}
+/*.productoDropShadow{*/
+/*    filter:  drop-shadow( 1px 1px 10px rgb(238, 150, 75));*/
+/*}*/
 
 .buton {
     border-radius: 1em;
