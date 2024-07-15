@@ -95,34 +95,23 @@ class MarcasHandler
 
 
     /// Funciones para reportes
-
-    ///Funcion que devuelve la cantidad de productos por marcas.
     public function productsByMarcas()
     {
         $sql =  'SELECT * FROM cantidad_productos_marcas';
         return Database::getRows($sql);
     }
 
-    //Funcion que devuelve la marca con mas productos
     public function marca_con_mas_productos()
     {
         $sql =  'SELECT * FROM cantidad_productos_marcas ORDER BY cantidad_total_productos DESC LIMIT 1;';
         return Database::getRow($sql);
     }
-
-    //Funcion que devuelve los productos de una marca
-    public function productosMarca()
+    public function marcasProductos()
     {
-        $sql =  'SELECT * FROM productos_by_marca WHERE idMarca = ?;';
-        $params = array($this->idMarca);
-        return Database::getRows($sql, $params);
-    }
-
-    //Funcion que devuelve la cantidad total de productos de una marca por el idMarca
-    public function productsTotalByIdMarca()
-    {
-        $sql =  'SELECT SUM(cantidad) AS total FROM productos_by_marca WHERE idMarca= ?;';
-        $params = array($this->idMarca);
-        return Database::getRow($sql, $params);
+        $sql =  'SELECT m.nombre_marca, COUNT(p.id_producto) AS total_productos
+                FROM marcas m
+                LEFT JOIN productos p ON m.id_marca = p.id_marca
+                GROUP BY m.id_marca, m.nombre_marca;';
+        return Database::getRows($sql);
     }
 }

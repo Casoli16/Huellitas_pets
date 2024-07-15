@@ -539,26 +539,23 @@ LIMIT 5;
 -- -.Vista para los productos más comprados por mes
 CREATE VIEW productos_mas_vendidos_por_mes AS
 SELECT 
-    DATE_FORMAT(p.fecha_registro_pedido, '%m') AS anio_mes,
-    DATE_FORMAT(p.fecha_registro_pedido, '%M') AS nombre_mes,
-    pr.nombre_producto,
-    SUM(dp.cantidad_detalle_pedido) AS cantidad_compras
+    DATE_FORMAT(p.fecha_registro_pedido, '%Y-%m') AS anio_mes,
+    DATE_FORMAT(p.fecha_registro_pedido, '%M-%Y') AS nombre_mes,
+    SUM(dp.cantidad_detalle_pedido) AS cantidad_total
 FROM 
     pedidos p
 JOIN 
     detalles_pedidos dp ON p.id_pedido = dp.id_pedido
-JOIN 
-    productos pr ON dp.id_producto = pr.id_producto
 WHERE 
     p.estado_pedido = 'Completado'
 GROUP BY 
     DATE_FORMAT(p.fecha_registro_pedido, '%Y-%m'),
-    DATE_FORMAT(p.fecha_registro_pedido, '%M'),
-    pr.nombre_producto
+    DATE_FORMAT(p.fecha_registro_pedido, '%M-%Y')
 ORDER BY 
-    anio_mes DESC, cantidad_compras DESC;
+    anio_mes ASC;
 
 
+SELECT * FROM productos_mas_vendidos_por_mes;
 SELECT * FROM top5_clientes_mayoria_productos;
 SELECT * FROM top5_clientes_mayores_pedidos;
 SELECT * FROM productos;
@@ -576,18 +573,34 @@ FROM productos p
 INNER JOIN marcas m ON p.id_marca = m.id_marca GROUP BY m.id_marca;
 
 
-CREATE VIEW productos_by_marca AS
-    SELECT
-        m.id_marca AS idMarca,
-        m.nombre_marca AS marca,
-        p.id_producto AS idProducto,
-        COUNT(p.id_producto) AS cantidad,
-        p.nombre_producto AS nombre,
-        p.imagen_producto AS imagenP,
-        m.imagen_marca AS imagenM
-FROM productos p
-INNER JOIN marcas m ON p.id_marca = m.id_marca GROUP BY p.id_producto;
+SELECT * FROM cantidad_productos_marcas;
+SELECT * FROM cantidad_productos_marcas ORDER BY cantidad_total_productos DESC LIMIT 1;
 
-SELECT * FROM productos_by_marca WHERE idMarca = 4;
+Create VIEW clientes_grafica AS
+SELECT 
+    mes.mes AS Mes,
+    COALESCE(COUNT(c.id_cliente), 0) AS total_clientes
+FROM 
+    (
+        SELECT 'Enero' AS mes, 1 AS mes_num UNION ALL
+        SELECT 'Febrero' AS mes, 2 AS mes_num UNION ALL
+        SELECT 'Marzo' AS mes, 3 AS mes_num UNION ALL
+        SELECT 'Abril' AS mes, 4 AS mes_num UNION ALL
+        SELECT 'Mayo' AS mes, 5 AS mes_num UNION ALL
+        SELECT 'Junio' AS mes, 6 AS mes_num UNION ALL
+        SELECT 'Julio' AS mes, 7 AS mes_num UNION ALL
+        SELECT 'Agosto' AS mes, 8 AS mes_num UNION ALL
+        SELECT 'Septiembre' AS mes, 9 AS mes_num UNION ALL
+        SELECT 'Octubre' AS mes, 10 AS mes_num UNION ALL
+        SELECT 'Noviembre' AS mes, 11 AS mes_num UNION ALL
+        SELECT 'Diciembre' AS mes, 12 AS mes_num
+    ) AS mes
+LEFT JOIN 
+    clientes c ON MONTH(c.fecha_registro_cliente) = mes.mes_num
+    AND YEAR(c.fecha_registro_cliente) = 2024
+GROUP BY 
+    mes.mes, mes.mes_num
+ORDER BY 
+    mes.mes_num;
 
-SELECT SUM(cantidad) AS total FROM productos_by_marca WHERE idMarca= 7;
+SELECT * FROM clientes_grafica

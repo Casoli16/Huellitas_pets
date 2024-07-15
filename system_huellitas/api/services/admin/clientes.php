@@ -127,6 +127,16 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen pedidos registrados';
                 }
                 break;
+                //Metódo que permite leer la gráfica cuantos clientes se han registrado, entrega
+                // Mes y cantidad de clientes
+            case 'readClientesMensuales':
+                if ($result['dataset'] = $clientes->readClientesMensuales()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
+                } else {
+                    $result['error'] = 'No existen clientes registrados';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión';
         }

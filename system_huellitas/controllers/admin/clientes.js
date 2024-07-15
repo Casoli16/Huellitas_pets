@@ -6,7 +6,8 @@ const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound'),
     CONTAINER_GRAPHICS = document.getElementById('ContenedorG'),
     BTN1_GRAPHICS = document.getElementById('btn1G'),
-    BTN2_GRAPHICS = document.getElementById('btn2G');
+    BTN2_GRAPHICS = document.getElementById('btn2G'),
+    BTN3_GRAPHICS = document.getElementById('btn3G');
 
 const INFO_MODAL = new bootstrap.Modal('#seeModal'),
     TITLE_MODAL = document.getElementById("modalTitle");
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 BTN1_GRAPHICS.addEventListener('click', async () => {
     BTN1_GRAPHICS.classList.add('active');
     BTN2_GRAPHICS.classList.remove('active');
+    BTN3_GRAPHICS.classList.remove('active');
     CONTAINER_GRAPHICS.classList.remove('d-none');
     
     const DATA = await fetchData(CLIENTE_API, 'readTop5Pedidos', null);
@@ -61,6 +63,7 @@ BTN1_GRAPHICS.addEventListener('click', async () => {
 
 //Función que permite darle click al boton de ver los graficos 2
 BTN2_GRAPHICS.addEventListener('click', async () => {
+    BTN3_GRAPHICS.classList.remove('active');
     BTN2_GRAPHICS.classList.add('active');
     BTN1_GRAPHICS.classList.remove('active');
     CONTAINER_GRAPHICS.classList.remove('d-none');
@@ -83,11 +86,41 @@ BTN2_GRAPHICS.addEventListener('click', async () => {
         
 });
 
+//Función que permite darle click al boton de ver los graficos 3
+BTN3_GRAPHICS.addEventListener('click', async () => {
+    BTN3_GRAPHICS.classList.add('active');
+    BTN2_GRAPHICS.classList.remove('active');
+    BTN1_GRAPHICS.classList.remove('active');
+    CONTAINER_GRAPHICS.classList.remove('d-none');
+    
+    const DATA = await fetchData(CLIENTE_API, 'readClientesMensuales', null);
+    if (DATA.status) {
+        let mes = [];
+        let registros = [];
+        DATA.dataset.forEach(row => {
+            mes.push(row.Mes);
+            registros.push(row.total_clientes);
+        });
+        console.log(mes, registros);
+        console.log('Llegue hasta aqui');
+        linearScale('myChart', mes, registros, 'Total clientes registrados', `Total clientes registrados en 2024`);
+        console.log('Llegue después de pieGraph'); 
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+        
+});
+
 BTN1_GRAPHICS.addEventListener('dblclick', () => {
     CONTAINER_GRAPHICS.classList.add('d-none');
 });
 
 BTN2_GRAPHICS.addEventListener('dblclick', () => {
+    CONTAINER_GRAPHICS.classList.add('d-none');
+
+});
+
+BTN3_GRAPHICS.addEventListener('dblclick', () => {
     CONTAINER_GRAPHICS.classList.add('d-none');
 
 });

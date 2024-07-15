@@ -2,7 +2,9 @@
 const MARCAS_API = 'services/admin/marcas.php';
 
 // Constante para establecer el formulario de buscar.
-const SEARCH_INPUT = document.getElementById('searchInput');
+const SEARCH_INPUT = document.getElementById('searchInput'),
+CONTAINER_GRAPHICS = document.getElementById('ContenedorG'),
+BTN1_GRAPHICS = document.getElementById('btn1G');
 
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
@@ -56,6 +58,32 @@ const resetDataTable = async () => {
     //Espera a que se ejecute completamente la funcion antes de seguir.
     await initializeDataTable();
 };
+
+//Función que permite darle click al boton de ver los graficos 1
+BTN1_GRAPHICS.addEventListener('click', async () => {
+    CONTAINER_GRAPHICS.classList.remove('d-none');
+    
+    const DATA = await fetchData(MARCAS_API, 'marcasProductos', null);
+    if (DATA.status) {
+        let nombremarca = [];
+        let totalproducto = [];
+        DATA.dataset.forEach(row => {
+            nombremarca.push(row.nombre_marca);
+            totalproducto.push(row.total_productos);
+        });
+        console.log(nombremarca, totalproducto);
+        console.log('Llegue hasta aqui');
+        doughnutGraph('myChart', nombremarca, totalproducto, 'Total de productos por marca', `Productos por marca`);
+        console.log('Llegue después de pieGraph');
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
+BTN1_GRAPHICS.addEventListener('dblclick', () => {
+    CONTAINER_GRAPHICS.classList.add('d-none');
+});
+
 
 // Agregamos el evento change al input de tipo file que selecciona la imagen
 IMAGEN_MARCA.addEventListener('change', function (event) {

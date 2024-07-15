@@ -351,3 +351,120 @@ const pieGraph = (canvas, xAxis, yAxis, legend, title) => {
         }
     });
 }
+
+
+/*
+*   Función para generar un gráfico de lineal.
+*   Requiere la librería chart.js para funcionar.
+*   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
+*   Retorno: ninguno.
+*/
+
+// Variable que guardará la gráfica que se cree
+let graph3 = null;
+const lineGraph = (canvas, xAxis, yAxis, legend, title) => {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    let colors = [];
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
+    xAxis.forEach(() => {
+        colors.push(coloresPaleta[Math.floor(Math.random() * coloresPaleta.length)]);
+    });
+
+    // Verifica si la variable graph cuenta con una gráfica previamente creada, si es así entonces la va a destruir.
+    if (graph3) {
+        graph3.destroy();
+    }
+
+    // Vuelve a guardar la nueva gráfica en la variable graph
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    graph3 = new Chart(document.getElementById(canvas), {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+const linearScale = (canvas, xAxis, yAxis, legend, title) => {
+    let colors = [];
+    xAxis.forEach(() => {
+        colors.push(coloresPaleta[Math.floor(Math.random() * coloresPaleta.length)]);
+    });
+
+    if (graph2) {
+        graph2.destroy();
+    }
+
+    graph2 = new Chart(document.getElementById(canvas), {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+const doughnutGraph = (canvas, xAxis, yAxis, legend, title) => {
+    let colors = [];
+    xAxis.forEach(() => {
+        colors.push(coloresPaleta[Math.floor(Math.random() * coloresPaleta.length)]);
+    });
+
+    if (graph2) {
+        graph2.destroy();
+    }
+
+    graph2 = new Chart(document.getElementById(canvas), {
+        type: 'doughnut',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
