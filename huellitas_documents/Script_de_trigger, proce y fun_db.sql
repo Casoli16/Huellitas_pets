@@ -537,7 +537,7 @@ ORDER BY
 LIMIT 5;
 
 -- -.Vista para los productos más comprados por mes
-ALTER VIEW productos_mas_vendidos_por_mes AS
+CREATE VIEW productos_mas_vendidos_por_mes AS
 SELECT 
     DATE_FORMAT(p.fecha_registro_pedido, '%Y-%m') AS anio_mes,
     DATE_FORMAT(p.fecha_registro_pedido, '%M-%Y') AS nombre_mes,
