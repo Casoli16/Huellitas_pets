@@ -362,7 +362,8 @@ const pieGraph = (canvas, xAxis, yAxis, legend, title) => {
 
 // Variable que guardará la gráfica que se cree
 let graph3 = null;
-const lineGraph = (canvas, xAxis, yAxis, legend, title) => {
+
+const lineGraph = (canvas, xAxis, yAxis, legend, title, callback) => {
     // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
     let colors = [];
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
@@ -396,10 +397,16 @@ const lineGraph = (canvas, xAxis, yAxis, legend, title) => {
                 legend: {
                     display: false
                 }
+            },
+            animation: {
+                onComplete: () => {
+                    if (callback) callback();
+                }
             }
         }
     });
 }
+
 
 const linearScale = (canvas, xAxis, yAxis, legend, title) => {
     let colors = [];

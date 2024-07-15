@@ -145,6 +145,8 @@ const openDelete = async (id) => {
 
 // Funcion para llenar la tabla con los registros de la base
 const fillTable = async (form = null) => {
+    const DATA =  await fetchData(CUPONES_API, 'readReport');
+    console.log(DATA);
     try {
         ROWS_FOUND.textContent = '';
         TABLE_BODY.innerHTML = '';
@@ -183,5 +185,16 @@ const fillTable = async (form = null) => {
     } catch (error) {
         console.error('Error:', error);
     }
+}
+/*
+*   Función para abrir un reporte automático de productos por categoría.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openReport = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/cupones.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
 

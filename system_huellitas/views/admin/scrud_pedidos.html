@@ -49,6 +49,14 @@
                     <p>Observa todos los pedidos que se han tenido en Huellitas Pet's, recuerda cambiar el estado de los
                         pedidos.</p>
                 </div>
+                <div class="col-12">
+                    <button
+                            class="btn btn-orange-color btn-sm text-light float-sm-left float-md-end float-lg-end rounded-3"
+                            data-bs-toggle="modal" type="button" id="reporte">
+                            <img class="me-1" src="../../resources/img/png/report.png" width="20px">
+                            Generar reporte
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -65,10 +73,14 @@
                     </div>
                 </div>
                 <div class="col-12 d-none align-items-center" id="ContenedorG">
-                    <!-- Gráfica -->
                     <div class="canvas-container">
                         <canvas id="myChart" class="container-fluid"></canvas>
                     </div>
+                </div>
+                <!-- Contenedor para mostrar la imagen generada -->
+                <div id="imageContainer" style="display: none;">
+                    <h3 class="fw-bold">Imagen generada a partir de la gráfica</h3>
+                    <img id="generatedImage" alt="Imagen generada de la gráfica" class="img-fluid" />
                 </div>
             </div>
         </div>

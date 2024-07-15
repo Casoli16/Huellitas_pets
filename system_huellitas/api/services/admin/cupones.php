@@ -89,6 +89,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar el cupón';
                 }
                 break;
+            // Case para el reporte que entrega los cupones y las veces que han sido utlizados
+            case 'readReport':
+                if ($result['dataset'] = $cupones->readReport()) {
+                    $result['status'] = 1;
+                    $result['message'] = ' Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen cupones registrados';
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

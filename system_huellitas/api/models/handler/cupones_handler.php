@@ -46,6 +46,11 @@ class CuponesHandler
         return Database::getRows($sql);
     }
 
+    public function readReport()
+    {
+        $sql = 'SELECT codigo_cupon, cantidad_utilizado FROM cupones_usados ORDER BY cantidad_utilizado DESC;';
+        return Database::getRows($sql);
+    }
     public function updateRow()
     {
         $sql = 'CALL actualizar_cupon_PA (?, ?, ?, ?);';
