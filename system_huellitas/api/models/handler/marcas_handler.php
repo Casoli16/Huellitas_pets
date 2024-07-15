@@ -114,4 +114,20 @@ class MarcasHandler
                 GROUP BY m.id_marca, m.nombre_marca;';
         return Database::getRows($sql);
     }
+
+    //Funcion que devuelve los productos de una marca
+    public function productosMarca()
+    {
+        $sql =  'SELECT * FROM productos_by_marca WHERE idMarca = ?;';
+        $params = array($this->idMarca);
+        return Database::getRows($sql, $params);
+    }
+
+    //Funcion que devuelve la cantidad total de productos de una marca por el idMarca
+    public function productsTotalByIdMarca()
+    {
+        $sql =  'SELECT SUM(cantidad) AS total FROM productos_by_marca WHERE idMarca= ?;';
+        $params = array($this->idMarca);
+        return Database::getRow($sql, $params);
+    }
 }

@@ -603,4 +603,18 @@ GROUP BY
 ORDER BY 
     mes.mes_num;
 
-SELECT * FROM clientes_grafica
+SELECT * FROM clientes_grafica;
+
+CREATE VIEW productos_by_marca AS
+    SELECT
+        m.id_marca AS idMarca,
+        m.nombre_marca AS marca,
+        p.id_producto AS idProducto,
+        COUNT(p.id_producto) AS cantidad,
+        p.nombre_producto AS nombre,
+        p.imagen_producto AS imagenP,
+        m.imagen_marca AS imagenM
+FROM productos p
+INNER JOIN marcas m ON p.id_marca = m.id_marca GROUP BY p.id_producto;
+
+
