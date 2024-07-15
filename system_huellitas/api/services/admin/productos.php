@@ -140,16 +140,17 @@ if (isset($_GET['action'])) {
                 break;
             //Metódo que permite leer el top 5 de productos más vendidos por mes, se debe pasar un dato de este tipo [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12], 
             // O sea no un arreglo pero era pa que se entediera perro
-            // Esto entrega los siguientes campos: nombre_producto, cantidad_compras
+            // Esto entrega los siguientes campos: nombre_mes, cantidad_compras
             case 'Top5ProductosPorMes':
-                if (!$productos->setMes($_POST['mes'])) {
-                    $result['error'] = $productos->getDataError();
-                } elseif ($result['dataset'] = $productos->Top5ProductosPorMes()) {
+                if ($result['dataset'] = $productos->Top5ProductosPorMes()) {
                     $result['status'] = 1;
+                    $result['message'] = 'Petición exitosa';
                 } else {
-                    $result['error'] = 'Este mes no se vendieron productos';
+                    $result['error'] = 'No tienes ventas, no podemos mostrarte nada.';
                 }
                 break;
+                default:
+                $result['error'] = 'Acción no disponible fuera de la sesión';
         }
         // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
         $result['exception'] = Database::getException();

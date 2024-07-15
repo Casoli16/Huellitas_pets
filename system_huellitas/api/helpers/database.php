@@ -13,6 +13,8 @@ class Database
         try{
             self::$connection = new PDO('mysql:host=' . SERVER . ';dbname=' . DATABASE, USERNAME, PASSWORD);
             self::$statement = self::$connection->prepare($query);
+            // Establece lc_time_names(Fechas) a español.
+            self::$connection->exec("SET lc_time_names = 'es_ES';");
             return self::$statement->execute($values);
         } catch (PDOException $error) {
             // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.

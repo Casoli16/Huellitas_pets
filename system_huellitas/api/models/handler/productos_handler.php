@@ -194,8 +194,7 @@ class productosHandler
 
     public function Top5ProductosPorMes()
     {
-        $sql = 'SELECT * FROM productos_mas_vendidos_por_mes WHERE anio_mes = ? ORDER BY cantidad_compras DESC LIMIT 5;';
-        $params = array($this->Mes);
-        return Database::getRows($sql, $params);
+        $sql = 'SELECT nombre_mes, cantidad_total FROM productos_mas_vendidos_por_mes;';
+        return Database::getRows($sql);
     }
 }

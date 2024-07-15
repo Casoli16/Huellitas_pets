@@ -1,9 +1,12 @@
 // API'S UTILIZADAS EN LA PANTALLA
 const PEDIDOS_API = 'services/admin/pedidos.php';
+const PRODUCTOS_API = 'services/admin/productos.php';
 
 // ELEMENTOS DE LA TABLA
 const TABLE_BODY = document.getElementById('tableBody'),
+CONTAINER_GRAPHICS = document.getElementById('ContenedorG'),
     ROWS_FOUND = document.getElementById('rowsFound');
+    BTN2_GRAPHICS = document.getElementById('btn2G');
 
 // CARTAS QUE SE MUESTRAN AL ABRIR EL MODAL DE PERMISOS
 const CARDS = document.getElementById('tarjetas');
@@ -34,6 +37,33 @@ document.addEventListener("DOMContentLoaded", () => {
     loadTemplate();
     //Muestra los registros que hay en la tabla
     fillTable().then(initializeDataTable);
+
+    //Función que permite darle click al boton de ver los graficos 2
+BTN2_GRAPHICS.addEventListener('click', async () => {
+    CONTAINER_GRAPHICS.classList.remove('d-none');
+    
+    const DATA = await fetchData(PRODUCTOS_API, 'Top5ProductosPorMes', null);
+    if (DATA.status) {
+        let mes = [];
+        let cantidad = [];
+        DATA.dataset.forEach(row => {
+            mes.push(row.nombre_mes);
+            cantidad.push(row.cantidad_total);
+        });
+        console.log(mes, cantidad);
+        console.log('Llegue hasta aqui');
+        lineGraph('myChart', mes,  cantidad, 'Pedidos completados', `Ventas completadas en los últimos meses`);
+        console.log('Llegue después de la grafica');
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+        
+});
+
+BTN2_GRAPHICS.addEventListener('dblclick', () => {
+    CONTAINER_GRAPHICS.classList.add('d-none');
+    BTN2_GRAPHICS.classList.add('active');
+});
 });
 
 // Función asincrona para inicializar la instancia de DataTable(Paginacion en las tablas)

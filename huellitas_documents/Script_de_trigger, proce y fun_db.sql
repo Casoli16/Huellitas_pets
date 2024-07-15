@@ -537,28 +537,25 @@ ORDER BY
 LIMIT 5;
 
 -- -.Vista para los productos más comprados por mes
-CREATE VIEW productos_mas_vendidos_por_mes AS
+ALTER VIEW productos_mas_vendidos_por_mes AS
 SELECT 
-    DATE_FORMAT(p.fecha_registro_pedido, '%m') AS anio_mes,
-    DATE_FORMAT(p.fecha_registro_pedido, '%M') AS nombre_mes,
-    pr.nombre_producto,
-    SUM(dp.cantidad_detalle_pedido) AS cantidad_compras
+    DATE_FORMAT(p.fecha_registro_pedido, '%Y-%m') AS anio_mes,
+    DATE_FORMAT(p.fecha_registro_pedido, '%M-%Y') AS nombre_mes,
+    SUM(dp.cantidad_detalle_pedido) AS cantidad_total
 FROM 
     pedidos p
 JOIN 
     detalles_pedidos dp ON p.id_pedido = dp.id_pedido
-JOIN 
-    productos pr ON dp.id_producto = pr.id_producto
 WHERE 
     p.estado_pedido = 'Completado'
 GROUP BY 
     DATE_FORMAT(p.fecha_registro_pedido, '%Y-%m'),
-    DATE_FORMAT(p.fecha_registro_pedido, '%M'),
-    pr.nombre_producto
+    DATE_FORMAT(p.fecha_registro_pedido, '%M-%Y')
 ORDER BY 
-    anio_mes DESC, cantidad_compras DESC;
+    anio_mes ASC;
 
 
+SELECT * FROM productos_mas_vendidos_por_mes;
 SELECT * FROM top5_clientes_mayoria_productos;
 SELECT * FROM top5_clientes_mayores_pedidos;
 SELECT * FROM productos;
