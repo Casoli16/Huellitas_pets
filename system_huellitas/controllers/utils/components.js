@@ -428,7 +428,41 @@ const linearScale = (canvas, xAxis, yAxis, legend, title) => {
                     text: title
                 },
                 legend: {
-                    display: true
+                    display: false
+                }
+            }
+        }
+    });
+}
+
+const doughnutGraph = (canvas, xAxis, yAxis, legend, title) => {
+    let colors = [];
+    xAxis.forEach(() => {
+        colors.push(coloresPaleta[Math.floor(Math.random() * coloresPaleta.length)]);
+    });
+
+    if (graph2) {
+        graph2.destroy();
+    }
+
+    graph2 = new Chart(document.getElementById(canvas), {
+        type: 'doughnut',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false
                 }
             }
         }

@@ -36,3 +36,17 @@ th{
     --bs-table-color: var(--bs-light);
     background-image: linear-gradient(180deg, rgb(238, 150, 75), rgba(235, 195, 81, 1));
 }
+
+.canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 270px;
+    min-height: 50px;
+}
+
+canvas {
+    max-height: 270px;
+    min-height: 50px;
+    width: auto;
+}

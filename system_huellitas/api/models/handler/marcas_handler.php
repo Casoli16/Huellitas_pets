@@ -106,4 +106,12 @@ class MarcasHandler
         $sql =  'SELECT * FROM cantidad_productos_marcas ORDER BY cantidad_total_productos DESC LIMIT 1;';
         return Database::getRow($sql);
     }
+    public function marcasProductos()
+    {
+        $sql =  'SELECT m.nombre_marca, COUNT(p.id_producto) AS total_productos
+                FROM marcas m
+                LEFT JOIN productos p ON m.id_marca = p.id_marca
+                GROUP BY m.id_marca, m.nombre_marca;';
+        return Database::getRows($sql);
+    }
 }

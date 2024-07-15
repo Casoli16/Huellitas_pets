@@ -77,6 +77,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Marca inexistente';
                 }
                 break;
+            // Case para leer cuantos productos tiene cada marca
+            case 'marcasProductos':
+                if ($result['dataset'] = $marcas->marcasProductos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen' . count($result['dataset']) . 'registros';
+                } else {
+                    $result['error'] = 'No existen clientes registrados';
+                }
+                break;    
             // Case para eliminar una marca que no tenga relaciones, en caso de tenerlas no se le dejará eliminar esta marca
             case 'deleteRow':
                 if (
