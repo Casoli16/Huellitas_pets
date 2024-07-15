@@ -4,9 +4,9 @@ const PRODUCTOS_API = 'services/admin/productos.php';
 
 // ELEMENTOS DE LA TABLA
 const TABLE_BODY = document.getElementById('tableBody'),
-CONTAINER_GRAPHICS = document.getElementById('ContenedorG'),
+    CONTAINER_GRAPHICS = document.getElementById('ContenedorG'),
     ROWS_FOUND = document.getElementById('rowsFound');
-    BTN2_GRAPHICS = document.getElementById('btn2G'),
+BTN2_GRAPHICS = document.getElementById('btn2G'),
     BTN_REPORTE = document.getElementById('reporte');
 
 // CARTAS QUE SE MUESTRAN AL ABRIR EL MODAL DE PERMISOS
@@ -31,6 +31,7 @@ const VIEW_MODAL = new bootstrap.Modal('#viewModal'),
 const PAGINATION_TABLE = document.getElementById('paginationTable');
 //Declaramos una variable que permitira guardar la paginacion de la tabla
 let PAGINATION;
+let datos = [];
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
@@ -38,21 +39,21 @@ document.addEventListener("DOMContentLoaded", () => {
     loadTemplate();
     //Muestra los registros que hay en la tabla
     fillTable().then(initializeDataTable);
-    
+
     //Función que permite darle click al boton de ver los graficos 2
-BTN2_GRAPHICS.addEventListener('click', async () => {
-    CONTAINER_GRAPHICS.classList.remove('d-none');
-    generarGrafico2();    
-});
+    BTN2_GRAPHICS.addEventListener('click', async () => {
+        CONTAINER_GRAPHICS.classList.remove('d-none');
+        generarGrafico2();
+    });
 
-BTN2_GRAPHICS.addEventListener('dblclick', () => {
-    CONTAINER_GRAPHICS.classList.add('d-none');
-    BTN2_GRAPHICS.classList.add('active');
-});
+    BTN2_GRAPHICS.addEventListener('dblclick', () => {
+        CONTAINER_GRAPHICS.classList.add('d-none');
+        BTN2_GRAPHICS.classList.add('active');
+    });
 
-BTN_REPORTE.addEventListener('click', async () => {
-    await openReport();
-});
+    BTN_REPORTE.addEventListener('click', async () => {
+        await openReport();
+    });
 
 });
 
@@ -81,6 +82,8 @@ const resetDataTable = async () => {
 const generarGrafico2 = async (callback) => {
     const DATA = await fetchData(PRODUCTOS_API, 'Top5ProductosPorMes', null);
     if (DATA.status) {
+        datos = DATA.dataset;
+        console.log('Estos son los datos de la variable', datos);
         let mes = [];
         let cantidad = [];
         DATA.dataset.forEach(row => {
@@ -89,9 +92,9 @@ const generarGrafico2 = async (callback) => {
         });
         console.log(mes, cantidad);
         console.log('Llegue hasta aqui');
-        
+
         lineGraph('myChart', mes, cantidad, 'Pedidos completados', `Ventas completadas en los últimos meses`, callback);
-        
+
         console.log('Llegue después de la grafica');
     } else {
         sweetAlert(2, DATA.error, false);
@@ -350,7 +353,15 @@ const openReport = async () => {
         console.log('Grafico renderizado completamente');
         var canvas = document.getElementById('myChart');
         var dataURL = canvas.toDataURL('image/png');
-
+        const FORM = new FormData();
+        FORM.append('imagen', dataURL);
+        FORM.append('datos', datos);
+        const DATA = fetchData(PEDIDOS_API, 'readReport', FORM);
+        if (DATA.status) {
+            const PATH = new URL(`${SERVER_URL}reports/admin/pedidos.php`);
+            // Se abre el reporte en una nueva pestaña.
+            window.open(PATH.href);
+        }
     });
     CONTAINER_GRAPHICS.classList.add('d-none');
 }
