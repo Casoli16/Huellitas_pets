@@ -400,3 +400,37 @@ const lineGraph = (canvas, xAxis, yAxis, legend, title) => {
         }
     });
 }
+
+const linearScale = (canvas, xAxis, yAxis, legend, title) => {
+    let colors = [];
+    xAxis.forEach(() => {
+        colors.push(coloresPaleta[Math.floor(Math.random() * coloresPaleta.length)]);
+    });
+
+    if (graph2) {
+        graph2.destroy();
+    }
+
+    graph2 = new Chart(document.getElementById(canvas), {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+}

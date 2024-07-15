@@ -194,6 +194,13 @@ class ClientesHandler
         return Database::getRows($sql);
     }
 
+    // READ CLIENTES MENSUALES REGISTRADOS
+    public function readClientesMensuales()
+    {
+        $sql = 'SELECT * FROM clientes_grafica';
+        return Database::getRows($sql);
+    }
+
     // READ ONE
     public function readOne()
     {

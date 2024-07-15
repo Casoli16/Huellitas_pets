@@ -575,3 +575,32 @@ INNER JOIN marcas m ON p.id_marca = m.id_marca GROUP BY m.id_marca;
 
 SELECT * FROM cantidad_productos_marcas;
 SELECT * FROM cantidad_productos_marcas ORDER BY cantidad_total_productos DESC LIMIT 1;
+
+Create VIEW clientes_grafica AS
+SELECT 
+    mes.mes AS Mes,
+    COALESCE(COUNT(c.id_cliente), 0) AS total_clientes
+FROM 
+    (
+        SELECT 'Enero' AS mes, 1 AS mes_num UNION ALL
+        SELECT 'Febrero' AS mes, 2 AS mes_num UNION ALL
+        SELECT 'Marzo' AS mes, 3 AS mes_num UNION ALL
+        SELECT 'Abril' AS mes, 4 AS mes_num UNION ALL
+        SELECT 'Mayo' AS mes, 5 AS mes_num UNION ALL
+        SELECT 'Junio' AS mes, 6 AS mes_num UNION ALL
+        SELECT 'Julio' AS mes, 7 AS mes_num UNION ALL
+        SELECT 'Agosto' AS mes, 8 AS mes_num UNION ALL
+        SELECT 'Septiembre' AS mes, 9 AS mes_num UNION ALL
+        SELECT 'Octubre' AS mes, 10 AS mes_num UNION ALL
+        SELECT 'Noviembre' AS mes, 11 AS mes_num UNION ALL
+        SELECT 'Diciembre' AS mes, 12 AS mes_num
+    ) AS mes
+LEFT JOIN 
+    clientes c ON MONTH(c.fecha_registro_cliente) = mes.mes_num
+    AND YEAR(c.fecha_registro_cliente) = 2024
+GROUP BY 
+    mes.mes, mes.mes_num
+ORDER BY 
+    mes.mes_num;
+
+SELECT * FROM clientes_grafica
