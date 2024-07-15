@@ -174,6 +174,9 @@ const fillTable = async (form = null) => {
                         <button type="button" class="btn btn-light" onclick="openUpdate(${row.id_marca})">
                             <img src="../../resources/img/svg/edit_icon.svg" width="35px">
                         </button>
+                        <button type="button" class="btn btn-light" onclick="openReportWithParams(${row.id_marca})">
+                            <img src="../../resources/img/png/reportesIcons.png" width="35px">
+                        </button>
                     </td>                                                  
                 `;
         });
@@ -191,6 +194,20 @@ const fillTable = async (form = null) => {
 const openReport = () => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}reports/admin/marcas.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+}
+
+/*
+*   Función para abrir un reporte parametrizado de productos de una categoría.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openReportWithParams = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/productosPorMarcas.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idMarca', id);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 }

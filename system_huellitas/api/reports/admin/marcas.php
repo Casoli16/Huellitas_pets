@@ -71,4 +71,4 @@ if($dataMarcas = $marcas->productsByMarcas()){
 }
 
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
-$pdf->output('I', 'Marcas.pdf');
+$pdf->output('I', 'Cantidad de productos por marcas.pdf');

@@ -1,7 +1,6 @@
 <?php
 // Se incluye la clase para generar archivos PDF.
 require_once('C:/xampp/htdocs/Huellitas_pets/system_huellitas/api/libraries/fpdf185/fpdf.php');
-
 /*
 *   Clase para definir las plantillas de los reportes del sitio privado.
 *   Para más información http://www.fpdf.org/
@@ -23,6 +22,7 @@ class Report extends FPDF
     {
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
         session_start();
+
         // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a la página web principal.
         if(isset($_SESSION['idAdministrador'])){
             $this->title = $title;

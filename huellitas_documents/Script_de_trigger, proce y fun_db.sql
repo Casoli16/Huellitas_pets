@@ -576,5 +576,18 @@ FROM productos p
 INNER JOIN marcas m ON p.id_marca = m.id_marca GROUP BY m.id_marca;
 
 
-SELECT * FROM cantidad_productos_marcas;
-SELECT * FROM cantidad_productos_marcas ORDER BY cantidad_total_productos DESC LIMIT 1;
+CREATE VIEW productos_by_marca AS
+    SELECT
+        m.id_marca AS idMarca,
+        m.nombre_marca AS marca,
+        p.id_producto AS idProducto,
+        COUNT(p.id_producto) AS cantidad,
+        p.nombre_producto AS nombre,
+        p.imagen_producto AS imagenP,
+        m.imagen_marca AS imagenM
+FROM productos p
+INNER JOIN marcas m ON p.id_marca = m.id_marca GROUP BY p.id_producto;
+
+SELECT * FROM productos_by_marca WHERE idMarca = 4;
+
+SELECT SUM(cantidad) AS total FROM productos_by_marca WHERE idMarca= 7;
