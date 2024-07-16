@@ -301,14 +301,17 @@ const fillTable = async (form = null, option = null) => {
                    </div>
                 </td>
                 <td>
-                   <button type="button" class="btn btn-light"><img
-                           src="../../resources/img/svg/delete_icon.svg" width="35px" onclick="openDelete(${row.id_producto})"></button>
-                   <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                           data-bs-target="#editar_producto"><img src="../../resources/img/svg/edit_icon.svg"
-                           width="35px" onclick="openUpdate(${row.id_producto})"></button>
-                   <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                          data-bs-target="#info_producto"><img src="../../resources/img/svg/info_icon.svg"
-                   width="33px" onclick="openInfo(${row.id_producto})"></button>
+                    <button type="button" class="btn btn-light"><img
+                            src="../../resources/img/svg/delete_icon.svg" width="35px" onclick="openDelete(${row.id_producto})"></button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                            data-bs-target="#editar_producto"><img src="../../resources/img/svg/edit_icon.svg"
+                            width="35px" onclick="openUpdate(${row.id_producto})"></button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                            data-bs-target="#info_producto"><img src="../../resources/img/svg/info_icon.svg"
+                    width="33px" onclick="openInfo(${row.id_producto})"></button>
+                    <button type="button" class="btn btn-light" onclick="openReportWithParams(${row.id_producto})">
+                        <img src="../../resources/img/png/reportesIcons.png" width="35px">
+                    </button>
                 </td>
             </tr>
             `
@@ -317,4 +320,18 @@ const fillTable = async (form = null, option = null) => {
     } else {
         sweetAlert(3, DATA.error, true);
     }
+}
+
+/*
+*   Función para abrir un reporte parametrizado de productos de una categoría.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openReportWithParams = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/comentariosPorProducto.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idProducto', id);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
