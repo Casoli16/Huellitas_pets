@@ -69,7 +69,14 @@ class PedidosData extends PedidosHandler
             return true;
         }
     }
-
+    public function getReporteImagen()
+    {
+        return $this->imagen;
+    }
+    public function getReporteDatos()
+    {
+        return $this->datos;
+    }
     public function setEstadoPedido($value, $min = 6, $max = 12)
     {
         if (!Validator::validateAlphanumeric($value)) {

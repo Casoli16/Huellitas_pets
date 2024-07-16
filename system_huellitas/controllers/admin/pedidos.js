@@ -32,6 +32,7 @@ const PAGINATION_TABLE = document.getElementById('paginationTable');
 //Declaramos una variable que permitira guardar la paginacion de la tabla
 let PAGINATION;
 let datos = [];
+let nameimg = null;
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
@@ -40,22 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
     //Muestra los registros que hay en la tabla
     fillTable().then(initializeDataTable);
 
-    //Función que permite darle click al boton de ver los graficos 2
-    BTN2_GRAPHICS.addEventListener('click', async () => {
-        CONTAINER_GRAPHICS.classList.remove('d-none');
-        generarGrafico2();
-    });
-
-    BTN2_GRAPHICS.addEventListener('dblclick', () => {
-        CONTAINER_GRAPHICS.classList.add('d-none');
-        BTN2_GRAPHICS.classList.add('active');
-    });
-
-    BTN_REPORTE.addEventListener('click', async () => {
-        await openReport();
-    });
-
 });
+
+
+//Función que permite darle click al boton de ver los graficos 2
+BTN2_GRAPHICS.addEventListener('click', () => {
+    CONTAINER_GRAPHICS.classList.remove('d-none');
+    generarGrafico2();
+    deletefile(nameimg);
+});
+
+BTN2_GRAPHICS.addEventListener('dblclick', () => {
+    CONTAINER_GRAPHICS.classList.add('d-none');
+    BTN2_GRAPHICS.classList.add('active');
+});
+
+BTN_REPORTE.addEventListener('click', () => {
+    openReport();
+});
+
 
 // Función asincrona para inicializar la instancia de DataTable(Paginacion en las tablas)
 const initializeDataTable = async () => {
@@ -349,40 +353,68 @@ const fillTable = async (form = null) => {
 */
 const openReport = async () => {
     CONTAINER_GRAPHICS.classList.remove('d-none');
+
+    // Obtener el canvas y configurar el fondo beige
+    var canvas = document.getElementById('myChart');
+
     await generarGrafico2(async () => {
-        console.log('Grafico renderizado completamente');
-        
-        // Obtener el canvas y convertirlo a Data URL
-        var canvas = document.getElementById('myChart');
-        var dataURL = canvas.toDataURL('image/png');
-        
+        // Convertir el contenido del canvas a Data URL
+        var dataURL = canvas.toDataURL('image/jpeg', 0.99);
+
         // Convertir Data URL a File
         function dataURLtoFile(dataurl, filename) {
             var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
                 bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-            while(n--){
+            while (n--) {
                 u8arr[n] = bstr.charCodeAt(n);
             }
-            return new File([u8arr], filename, {type:mime});
+            return new File([u8arr], filename, { type: mime });
         }
 
         // Crear un objeto FormData y agregar la imagen y otros datos
         const FORM = new FormData();
-        const imageFile = dataURLtoFile(dataURL, 'grafico.png');
+        const imageFile = dataURLtoFile(dataURL, 'grafico.jpeg');
         FORM.append('imagen', imageFile);
         FORM.append('datos', JSON.stringify(datos));
 
         // Enviar el FormData al servidor
         const DATA = await fetchData(PEDIDOS_API, 'readReport', FORM);
-        
+
         if (DATA.status) {
             const PATH = new URL(`${SERVER_URL}reports/admin/pedidos.php`);
-            // Se abre el reporte en una nueva pestaña.
+            PATH.searchParams.append('imagen', DATA.filename);
+            // Abrir el reporte en una nueva pestaña.
+            nameimg = DATA.filename;
+            console.log('Estoy dentro de generarGrafico2 ', name);
             window.open(PATH.href);
+        } else {
+            console.error('Error en readReport: ', DATA);
         }
     });
     CONTAINER_GRAPHICS.classList.add('d-none');
 }
+
+const deletefile = async (name) => {
+    // Asegurarse de que la gráfica haya sido generada antes de continuar
+    if (name) {
+        const DELETE_FORM = new FormData();
+        DELETE_FORM.append('name', name);
+        console.log('Nombre del archivo a eliminar: ', name);
+
+        const DELETE_DATA = await fetchData(PEDIDOS_API, 'deleteimg', DELETE_FORM);
+
+        if (DELETE_DATA) {
+            console.log('¿La imagen se eliminó? ', DELETE_DATA.status);
+        } else {
+            console.error('Error en deleteimg: ', DELETE_DATA);
+        }
+    } else {
+        console.warn('No se generó ningún nombre de archivo para eliminar');
+    }
+
+}
+
+
 
 
 

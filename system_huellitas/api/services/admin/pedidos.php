@@ -1,6 +1,6 @@
 <?php
 
-require_once('../../models/data/pedidos_data.php');
+require_once ('../../models/data/pedidos_data.php');
 
 
 if (isset($_GET['action'])) {
@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente.
     $pedidos = new PedidosData();
 
-    $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
+    $result = array('filename' => null, 'status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
 
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_pedido'] == 1)) {
@@ -127,12 +127,25 @@ if (isset($_GET['action'])) {
                     !$pedidos->setImagen($_FILES['imagen'])
                 )
                     $result['error'] = $pedidos->getDataError();
-                else{
+                else {
                     $result['status'] = 1;
                     $result['message'] = 'Gráfico generado correctamente';
                     // Se asigna el estado del archivo después de insertar.
                     $result['fileStatus'] = Validator::saveFile($_FILES['imagen'], $pedidos::RUTA_IMAGEN);
+                    $result['filename'] = $pedidos->getReporteImagen();
                 }
+                break;
+            //Metódo que permite borrar la imagen insertada
+            case 'deleteimg':
+                $_POST = Validator::validateForm($_POST);
+
+                if(
+                    !Validator::deleteFile($pedidos::RUTA_IMAGEN, $_POST['name']) 
+                    )
+                    $result['status'] = 1;
+                    else{
+                        $result['status'] = 0;
+                    }
                 break;
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión';
@@ -142,8 +155,8 @@ if (isset($_GET['action'])) {
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('Content-type: application/json; charset=utf-8');
         // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print(json_encode($result));
+        print (json_encode($result));
     }
 } else {
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }

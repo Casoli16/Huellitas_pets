@@ -396,6 +396,12 @@ const lineGraph = (canvas, xAxis, yAxis, legend, title, callback) => {
                 },
                 legend: {
                     display: false
+                },
+                colors: {
+                    forceOverride: true
+                },
+                customCanvasBackgroundColor: {
+                    color: '#000000'
                 }
             },
             animation: {
@@ -418,7 +424,14 @@ const linearScale = (canvas, xAxis, yAxis, legend, title) => {
         graph2.destroy();
     }
 
-    graph2 = new Chart(document.getElementById(canvas), {
+    const ctx = document.getElementById(canvas).getContext('2d');
+    ctx.save();
+
+    // Establece el color de fondo blanco para el canvas
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    graph2 = new Chart(ctx, {
         type: 'line',
         data: {
             labels: xAxis,
@@ -436,11 +449,28 @@ const linearScale = (canvas, xAxis, yAxis, legend, title) => {
                 },
                 legend: {
                     display: false
+                },
+                colors: {
+                    forceOverride: true
+                },
+                customCanvasBackgroundColor: {
+                    color: 'green'
+                }
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
                 }
             }
         }
     });
-}
+
+    ctx.restore();
+};
+
 
 const doughnutGraph = (canvas, xAxis, yAxis, legend, title) => {
     let colors = [];
