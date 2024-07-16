@@ -289,4 +289,18 @@ class ClientesHandler
         $sql = 'SELECT * FROM listadoclientes;';
         return Database::getRows($sql);
     }
+
+    // FUNCION PARA SABER CUANTOS CLIENTES SE REGISTRARON EN EL MES ACTUAL
+    public function currentMonth()
+    {
+        $sql = 'SELECT * FROM currentmonth';
+        return Database::getRow($sql);
+    }
+
+    // FUNCION PARA SABER CUANTOS CLIENTES SE REGISTRARON EL MES PASADO.
+    public function lastMonth()
+    {
+        $sql = 'SELECT * FROM lastmonth';
+        return Database::getRow($sql);
+    }
 }

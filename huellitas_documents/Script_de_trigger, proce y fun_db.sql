@@ -627,3 +627,26 @@ FROM clientes c;
 
 SELECT * FROM listadoClientes;
 
+-- VISTA PARA SABER CUANTOS CLIENTES SE REGISTRARON EN EL MES ACTUAL
+CREATE VIEW currentMonth
+AS
+    SELECT
+        DATE_FORMAT(fecha_registro_cliente, '%M') AS mes_actual,
+        COUNT(*) AS total_clientes
+    FROM clientes
+    WHERE MONTH(fecha_registro_cliente) = MONTH(CURRENT_DATE());
+
+SELECT * FROM currentMonth;
+
+-- VISTA PARA SABER CUANTOS CLIENTES SE REGISTRARON EL MES PASADO.
+ALTER VIEW lastMonth
+AS
+    SELECT
+        MONTHNAME(CURRENT_DATE() - INTERVAL 1 MONTH ) as mes_pasado,
+        COUNT(*) AS total_clientes
+    FROM clientes
+    WHERE MONTH(fecha_registro_cliente) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH );
+
+SELECT * FROM lastMonth;
+
+
