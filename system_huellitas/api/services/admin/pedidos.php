@@ -119,6 +119,21 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar el producto';
                 }
                 break;
+            //Metódo que permite generar un reporte en base a un gráfico y haciendolo de forma analitica.
+            case 'readReport':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$pedidos->setDatos(json_decode($_POST['datos'], true)) or
+                    !$pedidos->setImagen($_FILES['imagen'])
+                )
+                    $result['error'] = $pedidos->getDataError();
+                else{
+                    $result['status'] = 1;
+                    $result['message'] = 'Gráfico generado correctamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagen'], $pedidos::RUTA_IMAGEN);
+                }
+                break;
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión';
         }
