@@ -617,4 +617,13 @@ CREATE VIEW productos_by_marca AS
 FROM productos p
 INNER JOIN marcas m ON p.id_marca = m.id_marca GROUP BY p.id_producto;
 
+CREATE VIEW listadoClientes
+AS
+    SELECT
+        CONCAT(c.nombre_cliente, ' ', c.apellido_cliente) as nombreC,
+        CONCAT(UCASE(SUBSTRING(DATE_FORMAT(c.fecha_registro_cliente, '%M'), 1, 1)),
+        LCASE(SUBSTRING(DATE_FORMAT(c.fecha_registro_cliente, '%M'), 2))) AS mes
+FROM clientes c;
+
+SELECT * FROM listadoClientes;
 

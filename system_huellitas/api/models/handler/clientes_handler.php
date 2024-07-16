@@ -283,5 +283,10 @@ class ClientesHandler
         return Database::getRows($sql);
     }
 
-    //
+    // Vista para conocer el listado de clientes registrados por mes
+    public function clientsList()
+    {
+        $sql = 'SELECT * FROM listadoclientes;';
+        return Database::getRows($sql);
+    }
 }
