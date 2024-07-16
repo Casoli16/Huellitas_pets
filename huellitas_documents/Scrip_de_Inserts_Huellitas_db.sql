@@ -187,14 +187,7 @@ VALUES
 SELECT * FROM productos;
 
 INSERT INTO clientes (nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, telefono_cliente, nacimiento_cliente, direccion_cliente, clave_cliente, estado_cliente)
-VALUES 
-  ('Carlos Steven', 'Jiménez Álvarez', '02123456-0', 'carlosSJA@gmail.com', '81221234', '1996-06-04', 'Villa Lourdes #212', 'CSJA0604', 'Activo'),
-  ('Patricia Elena', 'Rojas Miranda', '02234567-1', 'patriciaERM@gmail.com', '82332345', '1974-10-06', 'Parque Residencial Santa Lucía #223', 'PERM1006', 'Activo'),
-  ('Manuel Alejandro', 'Figueroa Zelaya', '02345678-2', 'manuelAFZ@gmail.com', '83443456', '1982-08-20', 'Col. Los Ángeles #234', 'MAFZ0820', 'Activo'),
-  ('Sofía Carolina', 'Guerrero López', '02456789-3', 'sofiaCGL@gmail.com', '84554567', '1990-12-13', 'Res. El Pedregal #245', 'SCGL1213', 'Activo'), 
-  ('Daysi Karina', 'Castillo Lemus', '12345678-9', 'daysiLemus@gmail.com', '73542312', '1975-02-16', 'Col. Delicas del norte #4', 'DL0216', 'Activo'),
-  ('Mario Alberto', 'Rodríguez Paz', '00123456-0', 'marioRPaz@gmail.com', '70011234', '1984-03-21', 'Urb. Los Pinos #12', 'MAR0321', 'Activo'),
-  ('Luisa Fernanda', 'Morán Quintana', '00234567-1', 'luisaFQ@gmail.com', '71022345', '1990-07-08', 'Res. La Esperanza #23', 'LFQ0708', 'Activo'),
+VALUES
   ('Carlos Eduardo', 'Hernández Solís', '00345678-2', 'carlosEHS@gmail.com', '72033456', '1982-11-14', 'Col. Santa Mónica #34', 'CEHS1114', 'Activo'),
   ('Ana Patricia', 'Santos Marroquín', '00456789-3', 'anaPSM@gmail.com', '73044567', '1978-05-22', 'Lotif. El Paraíso #45', 'APSM0522', 'Activo'),
   ('Jorge Alejandro', 'López Gómez', '00567890-4', 'jorgeALG@gmail.com', '74055678', '1985-09-30', 'Villas de San Juan #56', 'JALG0930', 'Activo'),
