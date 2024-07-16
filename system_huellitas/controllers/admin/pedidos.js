@@ -349,14 +349,32 @@ const fillTable = async (form = null) => {
 */
 const openReport = async () => {
     CONTAINER_GRAPHICS.classList.remove('d-none');
-    await generarGrafico2(() => {
+    await generarGrafico2(async () => {
         console.log('Grafico renderizado completamente');
+        
+        // Obtener el canvas y convertirlo a Data URL
         var canvas = document.getElementById('myChart');
         var dataURL = canvas.toDataURL('image/png');
+        
+        // Convertir Data URL a File
+        function dataURLtoFile(dataurl, filename) {
+            var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, {type:mime});
+        }
+
+        // Crear un objeto FormData y agregar la imagen y otros datos
         const FORM = new FormData();
-        FORM.append('imagen', dataURL);
-        FORM.append('datos', datos);
-        const DATA = fetchData(PEDIDOS_API, 'readReport', FORM);
+        const imageFile = dataURLtoFile(dataURL, 'grafico.png');
+        FORM.append('imagen', imageFile);
+        FORM.append('datos', JSON.stringify(datos));
+
+        // Enviar el FormData al servidor
+        const DATA = await fetchData(PEDIDOS_API, 'readReport', FORM);
+        
         if (DATA.status) {
             const PATH = new URL(`${SERVER_URL}reports/admin/pedidos.php`);
             // Se abre el reporte en una nueva pestaña.
@@ -365,6 +383,7 @@ const openReport = async () => {
     });
     CONTAINER_GRAPHICS.classList.add('d-none');
 }
+
 
 
 

@@ -21,7 +21,10 @@ class PedidosHandler
     protected $idCupon = null;
     protected $estadoPedido = null;
     protected  $monthNumber = null;
+    protected $imagen = null;
+    protected $datos = null;
 
+    const RUTA_IMAGEN = '../../images/graphics/';
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
      * Aunque ahorita solo haré el de agregar cupones

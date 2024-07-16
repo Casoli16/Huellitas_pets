@@ -47,6 +47,29 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    public function setDatos($value)
+    {
+        $this->datos = $value;
+        return true;
+    }
+
+    public function setImagen($file, $filename = null)
+    {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->imagen = Validator::getFilename();
+            return true;
+        } elseif (Validator::getFileError()) {
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename) {
+            $this->imagen = $filename;
+            return true;
+        } else {
+            $this->imagen = 'default.png';
+            return true;
+        }
+    }
+
     public function setEstadoPedido($value, $min = 6, $max = 12)
     {
         if (!Validator::validateAlphanumeric($value)) {
