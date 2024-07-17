@@ -30,6 +30,9 @@ class Report extends FPDF
             $this->setMargins(15, 40, 15);
             $this->addPage('p', 'letter');
             $this->aliasNbPages();
+            $this->setDrawColor( 186,186,183);
+            //Cuando llegue 50 milimetros antes del final hara un salto de pagina.
+            $this->setAutoPageBreak(true, 50);
         } else{
             header('location' . self::CLIENT_URL);
         }

@@ -15,14 +15,14 @@ $pdf->startReport('Listado de clientes por meses');
 $clientes = new ClientesData();
 $predicction = new predicctionClients();
 
-// Ancho de la tabla
-$w = 201;
-
-// Alto de las líneas divisorias
-$h = 10;
-
-// Posición inicial del cursor
-$y = 101;
+//// Ancho de la tabla
+//$w = 201;
+//
+//// Alto de las líneas divisorias
+//$h = 10;
+//
+//// Posición inicial del cursor
+//$y = 101;
 
 
 // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
@@ -60,6 +60,7 @@ if ($dataClientes = $clientes->clientsList()) {
                 $pdf->setFont('Arial', '', 11);
                 $pdf->setFillColor(255, 255, 255); // Color blanco para la celda de clientes
                 $pdf->multiCell(0, 10, $pdf->encodeString(implode("\n", $clientesPorMes)), 1, 'C');
+                $pdf->ln(5);
             }
             // Se actualiza el mes actual y se reinicia la lista de clientes.
             $currentMonth = $item['mes'];
@@ -69,9 +70,9 @@ if ($dataClientes = $clientes->clientsList()) {
         // Se agrega el cliente a la lista del mes actual.
         $clientesPorMes[] = $item['nombreC'];
 
-        $pdf->Line(15, $y, $w, $y);
-        // Incrementar la posición vertical
-        $y += $h;
+//        $pdf->Line(15, $y, $w, $y);
+//        // Incrementar la posición vertical
+//        $y += $h;
     }
 
     // Imprime la última fila con el último mes y sus clientes.
