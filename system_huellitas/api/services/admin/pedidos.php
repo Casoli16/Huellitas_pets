@@ -9,7 +9,7 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente.
     $pedidos = new PedidosData();
 
-    $result = array('filename' => null, 'status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
+    $result = array('filename2' => null, 'filename' => null, 'status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
 
     if (isset($_SESSION['idAdministrador']) && ($_SESSION['permisos']['ver_pedido'] == 1)) {
@@ -123,7 +123,6 @@ if (isset($_GET['action'])) {
             case 'readReport':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$pedidos->setDatos(json_decode($_POST['datos'], true)) or
                     !$pedidos->setImagen($_FILES['imagen'])
                 )
                     $result['error'] = $pedidos->getDataError();

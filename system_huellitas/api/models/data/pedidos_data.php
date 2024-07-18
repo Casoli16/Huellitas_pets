@@ -69,9 +69,30 @@ class PedidosData extends PedidosHandler
             return true;
         }
     }
+
+    public function setImagen2($file, $filename = null)
+    {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->imagen2 = Validator::getFilename();
+            return true;
+        } elseif (Validator::getFileError()) {
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename) {
+            $this->imagen2 = $filename;
+            return true;
+        } else {
+            $this->imagen2 = 'default.png';
+            return true;
+        }
+    }
     public function getReporteImagen()
     {
         return $this->imagen;
+    }
+    public function getReporteImagen2()
+    {
+        return $this->imagen2;
     }
     public function getReporteDatos()
     {

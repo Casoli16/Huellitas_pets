@@ -413,6 +413,58 @@ const lineGraph = (canvas, xAxis, yAxis, legend, title, callback) => {
     });
 }
 
+// Variable que guardará la gráfica que se cree
+let graph4 = null;
+
+const lineGraph2 = (canvas, xAxis, yAxis, legend, title, callback) => {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    let colors = [];
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
+    xAxis.forEach(() => {
+        colors.push(coloresPaleta[Math.floor(Math.random() * coloresPaleta.length)]);
+    });
+
+    // Verifica si la variable graph cuenta con una gráfica previamente creada, si es así entonces la va a destruir.
+    if (graph4) {
+        graph4.destroy();
+    }
+
+    // Vuelve a guardar la nueva gráfica en la variable graph
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    graph4 = new Chart(document.getElementById(canvas), {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false
+                },
+                colors: {
+                    forceOverride: true
+                },
+                customCanvasBackgroundColor: {
+                    color: '#000000'
+                }
+            },
+            animation: {
+                onComplete: () => {
+                    if (callback) callback();
+                }
+            }
+        }
+    });
+}
 
 const linearScale = (canvas, xAxis, yAxis, legend, title) => {
     let colors = [];

@@ -194,7 +194,7 @@ class productosHandler
 
     public function Top5ProductosPorMes()
     {
-        $sql = 'SELECT nombre_mes, cantidad_total FROM productos_mas_vendidos_por_mes;';
+        $sql = 'SELECT nombre_mes, cantidad_total, numero_mes FROM productos_mas_vendidos_por_mes;';
         return Database::getRows($sql);
     }
 }

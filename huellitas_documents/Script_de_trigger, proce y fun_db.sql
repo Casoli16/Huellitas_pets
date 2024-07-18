@@ -541,6 +541,7 @@ CREATE VIEW productos_mas_vendidos_por_mes AS
 SELECT 
     DATE_FORMAT(p.fecha_registro_pedido, '%Y-%m') AS anio_mes,
     DATE_FORMAT(p.fecha_registro_pedido, '%M-%Y') AS nombre_mes,
+    DATE_FORMAT(p.fecha_registro_pedido, '%m') AS numero_mes,
     SUM(dp.cantidad_detalle_pedido) AS cantidad_total
 FROM 
     pedidos p
@@ -669,3 +670,5 @@ LEFT JOIN
 GROUP BY
     p.id_producto;
 
+SELECT * FROM pedidos;
+SELECT * FROM detalles_pedidos;

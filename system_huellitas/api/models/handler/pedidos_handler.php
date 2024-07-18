@@ -22,6 +22,7 @@ class PedidosHandler
     protected $estadoPedido = null;
     protected  $monthNumber = null;
     protected $imagen = null;
+    protected $imagen2 = null;
     protected $datos = null;
 
     const RUTA_IMAGEN = '../../images/graphics/';

@@ -33,6 +33,8 @@ const PAGINATION_TABLE = document.getElementById('paginationTable');
 let PAGINATION;
 let datos = [];
 let nameimg = null;
+let variable_x = []; // ventas de cada mes
+let variable_y = []; // numeros del mes
 
 //Metodo del evento para cuando el documento ha cargago.
 document.addEventListener("DOMContentLoaded", () => {
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 BTN2_GRAPHICS.addEventListener('click', () => {
     CONTAINER_GRAPHICS.classList.remove('d-none');
     generarGrafico2();
-    deletefile(nameimg);
+    //deletefile(nameimg);
 });
 
 BTN2_GRAPHICS.addEventListener('dblclick', () => {
@@ -93,9 +95,11 @@ const generarGrafico2 = async (callback) => {
         DATA.dataset.forEach(row => {
             mes.push(row.nombre_mes);
             cantidad.push(row.cantidad_total);
+            variable_y.push(row.numero_mes);
         });
+        variable_x = cantidad;
         console.log(mes, cantidad);
-        console.log('Llegue hasta aqui');
+        console.log('Llegue hasta aqui, variable en x: ', variable_x, ' variable en y: ', variable_y);
 
         lineGraph('myChart', mes, cantidad, 'Pedidos completados', `Ventas completadas en los últimos meses`, callback);
 
@@ -105,7 +109,33 @@ const generarGrafico2 = async (callback) => {
     }
 }
 
+const generarGraficoPredictivo = async (callback) => {
+    const DATA = await fetchData(PRODUCTOS_API, 'Top5ProductosPorMes', null); 
+    if (DATA.status) {
+        datos = DATA.dataset;
+        console.log('Estos son los datos de la variable', datos);
+        let mes = [];
+        let cantidad = [];
+        DATA.dataset.forEach(row => {
+            mes.push(row.nombre_mes);
+            cantidad.push(row.cantidad_total);
+            variable_y.push(row.numero_mes);
+        });
+        variable_x = cantidad;
+        console.log(mes, cantidad);
+        let result = predictNextMonth(cantidad, variable_y);
+        console.log('el siguiente mes, será así ', result.nextMonth, ' y sus ventas serán así: ', result.predictedSales);
+        console.log('Llegue hasta aqui, variable en x: ', variable_x, ' variable en y: ', variable_y);
+        mes.push("Próximo mes");
+        cantidad.push(result.predictedSales);
 
+        lineGraph('myChart', mes, cantidad, 'Pedidos completados', `Ventas completadas en los últimos meses`, callback);
+
+        console.log('Llegue después de la grafica');
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
 // Escuchamos el evento 'submit' del formulario
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -201,6 +231,40 @@ const openOrderStatus = async (id) => {
     }
 
 }
+
+//Regresión lineal, devuelve el pronostico en y para el siguiente mes y el numero del siguiente mes
+function predictNextMonth(xValues, yValues) {
+    // Convertir los elementos de los arreglos de strings a números
+    xValues = xValues.map(Number);
+    yValues = yValues.map(Number);
+
+    // Calcular las sumas necesarias para la regresión lineal
+    let n = xValues.length;
+    let sumX = xValues.reduce((acc, val) => acc + val, 0);
+    let sumY = yValues.reduce((acc, val) => acc + val, 0);
+    let sumXY = xValues.reduce((acc, val, idx) => acc + val * yValues[idx], 0);
+    let sumY2 = yValues.reduce((acc, val) => acc + val * val, 0);
+
+    // Calcular la pendiente (b)
+    let b = (n * sumXY - sumX * sumY) / (n * sumY2 - sumY * sumY);
+
+    // Calcular la ordenada al origen (a)
+    let a = (sumX - b * sumY) / n;
+
+    // Calcular el siguiente mes
+    let lastY = yValues[yValues.length - 1];
+    let nextY = lastY + 1;
+    if (nextY > 12) nextY = 1;
+
+    // Predecir la venta para el siguiente mes
+    let predictedX = a + b * nextY;
+
+    return {
+        nextMonth: nextY,
+        predictedSales: predictedX
+    };
+}
+
 
 //Funcion que cargara los productos de ese cliente en el modal de viewModal.
 const fillCards = async (id) => {
@@ -353,14 +417,13 @@ const fillTable = async (form = null) => {
 */
 const openReport = async () => {
     CONTAINER_GRAPHICS.classList.remove('d-none');
-
     // Obtener el canvas y configurar el fondo beige
     var canvas = document.getElementById('myChart');
 
-    await generarGrafico2(async () => {
+    await generarGraficoPredictivo(async () => {
         // Convertir el contenido del canvas a Data URL
-        var dataURL = canvas.toDataURL('image/jpeg', 0.99);
-
+        var dataURL = canvas.toDataURL('image/png', 0.99);
+        console.log("genere el primer to dataUrl");
         // Convertir Data URL a File
         function dataURLtoFile(dataurl, filename) {
             var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
@@ -371,28 +434,31 @@ const openReport = async () => {
             return new File([u8arr], filename, { type: mime });
         }
 
-        // Crear un objeto FormData y agregar la imagen y otros datos
-        const FORM = new FormData();
-        const imageFile = dataURLtoFile(dataURL, 'grafico.jpeg');
-        FORM.append('imagen', imageFile);
-        FORM.append('datos', JSON.stringify(datos));
-
-        // Enviar el FormData al servidor
-        const DATA = await fetchData(PEDIDOS_API, 'readReport', FORM);
-
-        if (DATA.status) {
-            const PATH = new URL(`${SERVER_URL}reports/admin/pedidos.php`);
-            PATH.searchParams.append('imagen', DATA.filename);
-            // Abrir el reporte en una nueva pestaña.
-            nameimg = DATA.filename;
-            console.log('Estoy dentro de generarGrafico2 ', name);
-            window.open(PATH.href);
-        } else {
-            console.error('Error en readReport: ', DATA);
-        }
+        const imageFile = dataURLtoFile(dataURL, 'grafico.png');
+        console.log("Genere la primera imagen con las configuraciones");
+            // Crear un objeto FormData y agregar la imagen y otros datos
+            const FORM = new FormData();
+            console.log("Genere la primera imagen con las configuraciones");
+            FORM.append('imagen', imageFile);
+    
+            // Enviar el FormData al servidor
+            const DATA = await fetchData(PEDIDOS_API, 'readReport', FORM);
+    
+            if (DATA.status) {
+                const PATH = new URL(`${SERVER_URL}reports/admin/pedidos.php`);
+                PATH.searchParams.append('imagen', DATA.filename);
+                
+                // Abrir el reporte en una nueva pestaña.
+                nameimg = DATA.filename;
+                console.log('Estoy dentro de generarGrafico2 ', nameimg);
+                window.open(PATH.href);
+            } else {
+                console.error('Error en readReport: ', DATA);
+            }
     });
     CONTAINER_GRAPHICS.classList.add('d-none');
 }
+
 
 const deletefile = async (name) => {
     // Asegurarse de que la gráfica haya sido generada antes de continuar
