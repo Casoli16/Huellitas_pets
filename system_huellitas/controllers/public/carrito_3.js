@@ -38,7 +38,7 @@ const getOrder = async () => {
     //Si la petición viene correctamente, entonces se insertará el siguiente código html.
     if (DATA.status) {
         loadTemplate();
-        DATE.textContent = 'Compra realizada el ' + DATA.dataset[0].fecha_registro_producto;
+        DATE.textContent = 'Compra realizada el ' + DATA.dataset[0].fecha;
         STATE.textContent = DATA.dataset[0].estado_pedido;
         let subtotal = 0;
         CARDS.innerHTML = '';
@@ -74,4 +74,13 @@ const getOrder = async () => {
             `
         });
     }
+}
+
+const openInvoice = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/public/factura.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idPedido', PEDIDO);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }

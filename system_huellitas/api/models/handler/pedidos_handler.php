@@ -189,11 +189,12 @@ class PedidosHandler
     //Metodo para obtener los productos que se encuentran en el carrito luego de su compra
     public function readFinishDetail()
     {
-        $sql = 'SELECT id_detalle_pedido, imagen_producto, estado_pedido, nombre_producto, existencia_producto, fecha_registro_producto, direccion_pedido, detalles_pedidos.precio_detalle_pedido, detalles_pedidos.cantidad_detalle_pedido, nombre_marca
+        $sql = 'SELECT id_detalle_pedido, imagen_producto, nombre_cliente, apellido_cliente, telefono_cliente, correo_cliente, estado_pedido, nombre_producto, existencia_producto, DATE_FORMAT(fecha_registro_pedido, "%d de %M de %Y") as fecha, direccion_pedido, detalles_pedidos.precio_detalle_pedido, detalles_pedidos.cantidad_detalle_pedido, nombre_marca
                 FROM detalles_pedidos
                 INNER JOIN pedidos USING(id_pedido)
                 INNER JOIN productos USING(id_producto)
                 INNER JOIN marcas USING (id_marca)
+                INNER JOIN clientes USING (id_cliente)
                 WHERE id_pedido = ?';
         $params = array($this->idPedido);
         return Database::getRows($sql, $params);
