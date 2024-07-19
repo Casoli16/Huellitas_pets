@@ -132,6 +132,9 @@ const generarGraficoPredictivo = async (callback) => {
         lineGraph('myChart', mes, cantidad, 'Pedidos completados', `Ventas completadas en los últimos meses`, callback);
 
         console.log('Llegue después de la grafica');
+        // retorna el penultimo registro de cantidad y el último registro de cantidad
+        return [cantidad[cantidad.length - 2], cantidad[cantidad.length - 1]];
+        
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -232,7 +235,6 @@ const openOrderStatus = async (id) => {
 
 }
 
-//Regresión lineal, devuelve el pronostico en y para el siguiente mes y el numero del siguiente mes
 function predictNextMonth(xValues, yValues) {
     // Convertir los elementos de los arreglos de strings a números
     xValues = xValues.map(Number);
@@ -256,14 +258,48 @@ function predictNextMonth(xValues, yValues) {
     let nextY = lastY + 1;
     if (nextY > 12) nextY = 1;
 
+    // Condicional para casos en que los meses sean festivos, para agregar cierto porcentaje a las ventas
+    let porcentaje = 0;
+    switch (nextY) {
+        case 1: // Año Nuevo
+            porcentaje = 2.0;  // Ajustar al 2%
+            break;
+        case 3: // Semana Santa (puede caer en marzo o abril)
+        case 4: // Semana Santa (puede caer en marzo o abril)
+            porcentaje = 3.5;  // Ajustar al 3.5%
+            break;
+        case 5: // Día del Trabajo, Día de la Madre
+            porcentaje = 4.0;  // Ajustar al 4%
+            break;
+        case 6: // Día del Padre
+            porcentaje = 1.8;  // Ajustar al 1.8%
+            break;
+        case 8: // Fiestas Agostinas
+            porcentaje = 5.0;  // Ajustar al 5%
+            break;
+        case 9: // Día de la Independencia
+            porcentaje = 2.5;  // Ajustar al 2.5%
+            break;
+        case 12: // Navidad
+            porcentaje = 7.0;  // Ajustar al 7%
+            break;
+        default:
+            porcentaje = 0;  // Sin ajuste para otros meses
+            break;
+    }
+
     // Predecir la venta para el siguiente mes
     let predictedX = a + b * nextY;
-
+    // Calcular la media de las ventas
+    let yM = sumXY / n;
+    // Ajustar la predicción según el porcentaje haciendo uso de la media de ventas
+    let adjustedPredictedX = predictedX + (yM * porcentaje / 100);
     return {
         nextMonth: nextY,
-        predictedSales: predictedX
+        predictedSales: adjustedPredictedX
     };
 }
+
 
 
 //Funcion que cargara los productos de ese cliente en el modal de viewModal.
@@ -420,7 +456,7 @@ const openReport = async () => {
     // Obtener el canvas y configurar el fondo beige
     var canvas = document.getElementById('myChart');
 
-    await generarGraficoPredictivo(async () => {
+    const predictedValues = await generarGraficoPredictivo(async () => {
         // Convertir el contenido del canvas a Data URL
         var dataURL = canvas.toDataURL('image/png', 0.99);
         console.log("genere el primer to dataUrl");
@@ -447,7 +483,7 @@ const openReport = async () => {
             if (DATA.status) {
                 const PATH = new URL(`${SERVER_URL}reports/admin/pedidos.php`);
                 PATH.searchParams.append('imagen', DATA.filename);
-                
+            PATH.searchParams.append('ventas', JSON.stringify(predictedValues));
                 // Abrir el reporte en una nueva pestaña.
                 nameimg = DATA.filename;
                 console.log('Estoy dentro de generarGrafico2 ', nameimg);
