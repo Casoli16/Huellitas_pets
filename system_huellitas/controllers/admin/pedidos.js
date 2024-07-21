@@ -86,6 +86,8 @@ const resetDataTable = async () => {
 };
 
 const generarGrafico2 = async (callback) => {
+    variable_x = null;
+    variable_y = null;
     const DATA = await fetchData(PRODUCTOS_API, 'Top5ProductosPorMes', null);
     if (DATA.status) {
         datos = DATA.dataset;
@@ -110,10 +112,13 @@ const generarGrafico2 = async (callback) => {
 }
 
 const generarGraficoPredictivo = async (callback) => {
+    // Reinicializar las variables antes de usarlas
+    variable_x = [];
+    variable_y = [];
+    
     const DATA = await fetchData(PRODUCTOS_API, 'Top5ProductosPorMes', null); 
     if (DATA.status) {
         datos = DATA.dataset;
-        console.log('Estos son los datos de la variable', datos);
         let mes = [];
         let cantidad = [];
         DATA.dataset.forEach(row => {
@@ -122,23 +127,20 @@ const generarGraficoPredictivo = async (callback) => {
             variable_y.push(row.numero_mes);
         });
         variable_x = cantidad;
-        console.log(mes, cantidad);
+
         let result = predictNextMonth(cantidad, variable_y);
-        console.log('el siguiente mes, será así ', result.nextMonth, ' y sus ventas serán así: ', result.predictedSales);
-        console.log('Llegue hasta aqui, variable en x: ', variable_x, ' variable en y: ', variable_y);
         mes.push("Próximo mes");
         cantidad.push(result.predictedSales);
 
-        lineGraph('myChart', mes, cantidad, 'Pedidos completados', `Ventas completadas en los últimos meses`, callback);
+        lineGraph('myChart', mes, cantidad, 'Pedidos completados', 'Ventas completadas en los últimos meses', callback);
 
-        console.log('Llegue después de la grafica');
-        // retorna el penultimo registro de cantidad y el último registro de cantidad
         return [cantidad[cantidad.length - 2], cantidad[cantidad.length - 1]];
         
     } else {
         sweetAlert(2, DATA.error, false);
     }
 }
+
 // Escuchamos el evento 'submit' del formulario
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
