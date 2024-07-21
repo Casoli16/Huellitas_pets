@@ -653,6 +653,7 @@ SELECT * FROM lastMonth;
 CREATE VIEW vista_conteo_valoraciones_producto AS
 SELECT
     p.id_producto AS id_producto,
+    p.nombre_producto AS nombre_producto,
     COUNT(*) AS total_valoraciones,
     SUM(CASE WHEN v.calificacion_valoracion = 5 THEN 1 ELSE 0 END) AS calif_5,
     SUM(CASE WHEN v.calificacion_valoracion = 4 THEN 1 ELSE 0 END) AS calif_4,

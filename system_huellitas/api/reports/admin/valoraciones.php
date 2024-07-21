@@ -44,13 +44,45 @@ try {
 
     // Se recorren los registros fila por fila.
     foreach ($dataValoraciones as $rowValoraciones) {
-        $pdf->cell(50, 10, $pdf->encodeString($rowValoraciones['nombre_producto']), 1, 0, 'C');
-        $pdf->cell(40, 10, $pdf->encodeString($rowValoraciones['total_valoraciones']), 1, 0, 'C');
-        $pdf->cell(20, 10, $pdf->encodeString($rowValoraciones['calif_5']), 1, 0, 'C');
-        $pdf->cell(20, 10, $pdf->encodeString($rowValoraciones['calif_4']), 1, 0, 'C');
-        $pdf->cell(20, 10, $pdf->encodeString($rowValoraciones['calif_3']), 1, 0, 'C');
-        $pdf->cell(20, 10, $pdf->encodeString($rowValoraciones['calif_2']), 1, 0, 'C');
-        $pdf->cell(20, 10, $pdf->encodeString($rowValoraciones['calif_1']), 1, 1, 'C');
+        // Guardar la posición actual X y Y
+        $xPos = $pdf->GetX();
+        $yPos = $pdf->GetY();
+
+        // Guardar posición X y Y para el nombre del producto
+        $xPosProducto = $xPos;
+        $yPosProducto = $yPos;
+
+        // Ajustar posición X y Y para el nombre del producto y calcular la altura
+        $pdf->MultiCell(50, 8, $pdf->encodeString($rowValoraciones['nombre_producto']), 1, 'C');
+
+        // Guardar posición Y actual después del nombre del producto
+        $yPosProductoEnd = $pdf->GetY();
+
+        // Calcular la altura de la celda basada en el nombre del producto
+        $cellHeight = $yPosProductoEnd - $yPosProducto;
+
+        // Ajustar posición X y Y para las demás celdas de la fila
+        $pdf->SetXY($xPos + 50, $yPos);
+        $pdf->Cell(40, $cellHeight, $pdf->encodeString($rowValoraciones['total_valoraciones']), 1, 0, 'C');
+        $pdf->Cell(20, $cellHeight, $pdf->encodeString($rowValoraciones['calif_5']), 1, 0, 'C');
+        $pdf->Cell(20, $cellHeight, $pdf->encodeString($rowValoraciones['calif_4']), 1, 0, 'C');
+        $pdf->Cell(20, $cellHeight, $pdf->encodeString($rowValoraciones['calif_3']), 1, 0, 'C');
+        $pdf->Cell(20, $cellHeight, $pdf->encodeString($rowValoraciones['calif_2']), 1, 0, 'C');
+        $pdf->Cell(20, $cellHeight, $pdf->encodeString($rowValoraciones['calif_1']), 1, 1, 'C');
+
+        // Verificar si se necesita agregar una nueva página antes de continuar con las filas siguientes
+        if ($pdf->getY() > 250) { // 250 es un valor aproximado, ajusta según tus necesidades
+            $pdf->AddPage();
+            // Agregar encabezados nuevamente después de añadir una nueva página
+            $pdf->SetFont('Arial', 'B', 11);
+            $pdf->Cell(50, 10, 'Nombre del producto', 1, 0, 'C', true);
+            $pdf->Cell(40, 10, 'Total de valoraciones', 1, 0, 'C', true);
+            $pdf->Cell(20, 10, '5 Est.', 1, 0, 'C', true);
+            $pdf->Cell(20, 10, '4 Est.', 1, 0, 'C', true);
+            $pdf->Cell(20, 10, '3 Est.', 1, 0, 'C', true);
+            $pdf->Cell(20, 10, '2 Est.', 1, 0, 'C', true);
+            $pdf->Cell(20, 10, '1 Est.', 1, 1, 'C', true);
+        }
     }
 
     // Espacio
