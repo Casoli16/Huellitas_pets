@@ -129,4 +129,35 @@ class ValoracionesHandler
         $params = array($this->idProducto);
         return Database::getRows($sql, $params);
     }
+
+    public function readConteoValoraciones()
+    {
+        $sql = "SELECT * 
+            FROM vista_conteo_valoraciones_producto;
+            ";
+        return Database::getRows($sql);
+    }
+    
+    public function readProductosMasValoraciones()
+    {
+        $sql = "SELECT
+                    p.nombre_producto AS nombre_producto,
+                    COUNT(v.calificacion_valoracion) AS total_valoraciones,
+                    ROUND(SUM(v.calificacion_valoracion) / COUNT(v.calificacion_valoracion), 1) AS promedio_calificacion
+                FROM
+                    productos p
+                LEFT JOIN
+                    detalles_pedidos d ON p.id_producto = d.id_producto
+                JOIN
+                    pedidos pd ON d.id_pedido = pd.id_pedido
+                LEFT JOIN
+                    valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido
+                GROUP BY
+                    p.nombre_producto
+                ORDER BY
+                    total_valoraciones DESC
+                LIMIT 1;
+            ";
+        return Database::getRow($sql);
+    }
 }

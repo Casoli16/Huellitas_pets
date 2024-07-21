@@ -100,4 +100,3 @@ if (isset($_GET['idProducto'])) {
 } else {
     print('No se proporcionó un ID de producto.');
 }
-?>

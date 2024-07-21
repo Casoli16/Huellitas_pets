@@ -198,3 +198,15 @@ const fillTable = async (form = null) => {
         sweetAlert(3, DATA.error, true);
     }
 }
+
+/*
+*   Función para abrir un reporte automático de productos por categoría.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const openReport = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/valoraciones.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+}
