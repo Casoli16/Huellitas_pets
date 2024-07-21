@@ -20,7 +20,7 @@ try {
 
     // Descripción del reporte
     $pdf->setFont('Arial', '', 11);
-    $pdf->write(6, $pdf->encodeString('A continuación se podrán observar el total de cada calificación que tienen las valoraciones de los productos.'));
+    $pdf->write(6, $pdf->encodeString('A continuación, se podrán observar el total de cada calificación que tienen las valoraciones de los productos.'));
 
     // Espacio
     $pdf->ln(15);
@@ -59,7 +59,7 @@ try {
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Arial', 'B', 12);
 
-    $pdf->write(6, $pdf->encodeString('Producto mas comentado por la comunidad'));
+    $pdf->write(6, $pdf->encodeString('Producto más comentado por la comunidad'));
     $pdf->ln(9);
 
     // Data para saber el producto con más valoraciones
@@ -91,7 +91,7 @@ try {
 
     // Restaura la fuente a normal
     $pdf->setFont('Arial', '', 11);
-    $pdf->write(10, $pdf->encodeString('.'));
+    $pdf->write(10, $pdf->encodeString(' de nota.'));
 
     // Se llama implícitamente al método footer() y se envía el documento al navegador web.
     $pdf->output('I', 'Cantidad de productos por marcas.pdf');

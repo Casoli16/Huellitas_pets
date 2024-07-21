@@ -40,7 +40,7 @@ if (isset($_GET['idProducto'])) {
 
                 // Encabezados de las columnas
                 $pdf->cell(85, 10, 'Comentario', 1, 0, 'C', true);
-                $pdf->cell(30, 10, 'Calificacion', 1, 0, 'C', true);
+                $pdf->cell(30, 10, $pdf->encodeString('Calificación'), 1, 0, 'C', true);
                 $pdf->cell(30, 10, 'Fecha', 1, 0, 'C', true);
                 $pdf->cell(40, 10, 'Cliente', 1, 1, 'C', true);
 
