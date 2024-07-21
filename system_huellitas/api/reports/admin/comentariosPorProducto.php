@@ -31,7 +31,7 @@ if (isset($_GET['idProducto'])) {
             }
 
             // Se verifica si existen valoraciones para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataValoraciones = $valoraciones->readComentarios()) {
+            if ($dataValoraciones = $valoraciones->readComentariosReporte()) {
                 $pdf->setFont('Arial', '', 11);
                 $pdf->write(6, $pdf->encodeString('En la siguiente tabla se podrán observar todas las valoraciones del producto.'));
                 $pdf->ln(10);
@@ -40,7 +40,7 @@ if (isset($_GET['idProducto'])) {
 
                 // Encabezados de las columnas
                 $pdf->cell(85, 10, 'Comentario', 1, 0, 'C', true);
-                $pdf->cell(30, 10, 'Calificación', 1, 0, 'C', true);
+                $pdf->cell(30, 10, 'Calificacion', 1, 0, 'C', true);
                 $pdf->cell(30, 10, 'Fecha', 1, 0, 'C', true);
                 $pdf->cell(40, 10, 'Cliente', 1, 1, 'C', true);
 

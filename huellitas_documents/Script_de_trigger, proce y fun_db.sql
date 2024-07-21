@@ -672,3 +672,25 @@ GROUP BY
 
 SELECT * FROM pedidos;
 SELECT * FROM detalles_pedidos;
+
+CREATE VIEW vista_productos_comentarios_reportes AS
+SELECT
+    p.id_producto AS id_producto,
+    v.calificacion_valoracion AS calificacion,
+    v.comentario_valoracion AS comentario,
+    v.fecha_valoracion AS fecha,
+    DATE_FORMAT(v.fecha_valoracion, 'Publicado el %d de %M del %Y') AS fecha_formato,
+    v.estado_valoracion AS estado,
+    SUBSTRING_INDEX(cl.nombre_cliente, ' ', 1) AS nombre_cliente,
+    SUBSTRING_INDEX(cl.apellido_cliente, ' ', 1) AS apellido_cliente,
+    cl.imagen_cliente AS imagen_cliente
+FROM
+    productos p
+LEFT JOIN
+    detalles_pedidos d ON p.id_producto = d.id_producto
+JOIN
+    pedidos pd ON d.id_pedido = pd.id_pedido
+JOIN
+    clientes cl ON pd.id_cliente = cl.id_cliente
+LEFT JOIN
+    valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido;

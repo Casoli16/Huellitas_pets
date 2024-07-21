@@ -118,4 +118,15 @@ class ValoracionesHandler
         $params = array($this->idProducto);
         return Database::getRows($sql, $params);
     }
+
+    public function readComentariosReporte()
+    {
+        $sql = "SELECT * 
+            FROM vista_productos_comentarios_reportes 
+            WHERE id_producto = ? AND estado = 1 
+            ORDER BY calificacion DESC;
+            ";
+        $params = array($this->idProducto);
+        return Database::getRows($sql, $params);
+    }
 }
