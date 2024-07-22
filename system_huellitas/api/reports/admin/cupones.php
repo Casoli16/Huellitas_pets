@@ -40,7 +40,7 @@ if($dataCupones = $cupones->readReport()){
     }
     
 } else {
-    $pdf->cell(0, 10, $pdf->encodeString('No hay cupones para mostrar'), 1, 1);
+    $pdf->cell(0, 10, $pdf->encodeString('No hay cupones para mostrar'), 0, 1, 'C');
 }
 
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.

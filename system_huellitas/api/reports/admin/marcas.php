@@ -67,7 +67,7 @@ if($dataMarcas = $marcas->productsByMarcas()){
     $pdf->write(10, $pdf->encodeString('Tiene un total de '. $rowMarcaProducto['cantidad_total_productos']. ' productos, conviertiéndola en la marca con más productos en Huellitas Pets.'));
 
 } else {
-    $pdf->cell(0, 10, $pdf->encodeString('No hay marcas para mostrar'), 1, 1);
+    $pdf->cell(0, 10, $pdf->encodeString('No hay marcas para mostrar'), 0, 1, 'C');
 }
 
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.

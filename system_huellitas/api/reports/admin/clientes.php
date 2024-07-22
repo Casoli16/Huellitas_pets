@@ -97,7 +97,7 @@ if ($dataClientes = $clientes->clientsList()) {
     $pdf->ln(10);
     $pdf->write(6, $pdf->encodeString("Proyección futura"));
     $pdf->ln(8);
-    $pdf->setFont('Arial', '', 12);
+    $pdf->setFont('Arial', '', 11);
     $pdf->write(6, $pdf->encodeString("De acuerdo a los datos estadísticos obtenidos, se espera que para el siguiente mes se tenga un promedio de $data[0] clientes nuevos."));
 } else {
     $pdf->cell(0, 10, $pdf->encodeString('No hay marcas para mostrar'), 1, 1);
