@@ -652,9 +652,8 @@ SELECT * FROM lastMonth;
 
 CREATE VIEW vista_conteo_valoraciones_producto AS
 SELECT
-    p.id_producto AS id_producto,
     p.nombre_producto AS nombre_producto,
-    COUNT(*) AS total_valoraciones,
+    COUNT(v.id_valoracion) AS total_valoraciones,
     SUM(CASE WHEN v.calificacion_valoracion = 5 THEN 1 ELSE 0 END) AS calif_5,
     SUM(CASE WHEN v.calificacion_valoracion = 4 THEN 1 ELSE 0 END) AS calif_4,
     SUM(CASE WHEN v.calificacion_valoracion = 3 THEN 1 ELSE 0 END) AS calif_3,
@@ -664,12 +663,10 @@ FROM
     productos p
 LEFT JOIN
     detalles_pedidos d ON p.id_producto = d.id_producto
-JOIN
-    pedidos pd ON d.id_pedido = pd.id_pedido
 LEFT JOIN
     valoraciones v ON d.id_detalle_pedido = v.id_detalle_pedido
 GROUP BY
-    p.id_producto;
+    p.nombre_producto;
 
 SELECT * FROM pedidos;
 SELECT * FROM detalles_pedidos;
