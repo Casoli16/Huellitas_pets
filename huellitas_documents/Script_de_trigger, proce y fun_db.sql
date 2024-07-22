@@ -552,6 +552,7 @@ GROUP BY
 ORDER BY 
     anio_mes ASC;
 
+CREATE VIEW
 
 SELECT * FROM productos_mas_vendidos_por_mes;
 SELECT * FROM pedidos;
@@ -560,7 +561,15 @@ SELECT * FROM top5_clientes_mayoria_productos;
 SELECT * FROM top5_clientes_mayores_pedidos;
 SELECT * FROM productos;
 SELECT * FROM clientes;
-SELECT * FROM cupones_oferta;
+SELECT * FROM cupones_usados;
+
+CREATE VIEW cupones_usados AS
+SELECT 
+    dp.codigo_cupon,
+    COUNT(c.id_cupon) AS cantidad_utilizado
+FROM cupones_utilizados c
+JOIN cupones_oferta dp ON dp.id_cupon = c.id_cupon
+GROUP BY dp.codigo_cupon;
 
 
 CREATE VIEW cantidad_productos_marcas AS
