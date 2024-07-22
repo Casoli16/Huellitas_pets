@@ -77,7 +77,7 @@ $pdf->setFont('Arial', 'B', 11);
 $pdf->write(6, $pdf->encodeString('Analisis.'));
 // Se establece un color de relleno para los encabezados.
 $pdf->setFillColor(248, 225, 108);
-$pdf->ln(15);
+$pdf->ln(10);
 $pdf->setFont('Arial', '', 10);
 $pdf->write(6, $pdf->encodeString('Sus resultados en ventas del mes actual fueron de ' . $ventas[0] . ' pedidos y se predice que el siguiente mes serán ' . $ventas[1] . ' pedidos.'));
 $pdf->ln(7);
