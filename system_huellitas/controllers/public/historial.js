@@ -34,7 +34,7 @@ const fillHistorial = async () => {
                         <img class="image-fluid" src="../../resources/img/png/historial_compra_img.png" alt="">
                     </div>
                     <div class="col-12 col-lg-10">
-                        <div class="row">
+                        <div class="row align-items-center">
                             <div class="col-9 col-lg-11 py-3">
                                 <h6><b>Estado del pedido: ${row.estado_pedido}</b></h6>
                                 <div class="row">
@@ -42,6 +42,9 @@ const fillHistorial = async () => {
                                         <p class="fs-6">Cantidad: ${row.cantidad} Unidades</p>
                                     </div>
                                 </div>
+                                <button class="btn btn-orange-color text-light" onclick="openInvoice(${row.id_pedido})">
+                                    Generar factura
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -140,4 +143,13 @@ const openViewMini = async (id) => {
     } else {
         sweetAlert(2, DATA.error, false);
     }
+}
+
+const openInvoice = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/public/factura.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idPedido', id);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }

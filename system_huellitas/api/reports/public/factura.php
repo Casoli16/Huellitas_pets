@@ -55,10 +55,10 @@ if (isset($_GET['idPedido'])) {
             // Recorrer los productos del pedido y añadirlos al reporte
             foreach ($rowPedido as $item) {
                 $pdf->cell(95, 14, $pdf->encodeString($item['nombre_producto']), 1, 0, 'C', 0);
-                $pdf->cell(30, 14, "$" . $pdf->encodeString($item['precio_producto']), 1, 0, 'C', 0);
+                $pdf->cell(30, 14, "$" . $pdf->encodeString($item['precio_detalle_pedido']), 1, 0, 'C', 0);
                 $pdf->cell(30, 14, $pdf->encodeString($item['cantidad_detalle_pedido']), 1, 0, 'C', 0);
 
-                $subtotal = ($item['precio_producto']) * ($item['cantidad_detalle_pedido']);
+                $subtotal = ($item['precio_detalle_pedido']) * ($item['cantidad_detalle_pedido']);
                 $pdf->cell(30, 14, "$" . $pdf->encodeString($subtotal), 1, 1, 'C', 0);
                 $total += $subtotal;
             }

@@ -43,7 +43,7 @@ const getOrder = async () => {
         let subtotal = 0;
         CARDS.innerHTML = '';
         DATA.dataset.forEach(row => {
-            subtotal = row.precio_producto * row.cantidad_detalle_pedido;
+            subtotal = row.precio_detalle_pedido * row.cantidad_detalle_pedido;
             id = row.id_detalle_pedido;
             CARDS.innerHTML += `
              <li class="list-group-item mb-4 rounded-4 shadow">
@@ -66,7 +66,7 @@ const getOrder = async () => {
                             </div>
                                                         <div class="mt-0 d-flex mb-3">
                                 <small class="fw-light me-2">Precio unitario:</small>
-                                <small class="fw-semibold">$${row.precio_producto}</small>
+                                <small class="fw-semibold">$${row.precio_detalle_pedido}</small>
                             </div>
                         </div>
                     </div>
