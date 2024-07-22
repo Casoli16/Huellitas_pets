@@ -28,10 +28,6 @@ $imagen = $pedidos->getReporteImagen();
 $arreglodescode = $_GET['ventas'];
 $ventas = json_decode($arreglodescode, true);
 
-// Formatear las ventas a dos decimales
-$ventas[0] = number_format((float)$ventas[0], 2, '.', ''); // dato real de ventas
-$ventas[1] = number_format((float)$ventas[1], 2, '.', ''); // dato predicho de ventas
-
 // Calcular el porcentaje de cambio
 $porcentajeCambio = abs(($ventas[1] - $ventas[0]) / $ventas[0] * 100);
 $porcentajeCambio = number_format($porcentajeCambio, 2, '.', '');

@@ -86,8 +86,6 @@ const resetDataTable = async () => {
 };
 
 const generarGrafico2 = async (callback) => {
-    variable_x = null;
-    variable_y = null;
     const DATA = await fetchData(PRODUCTOS_API, 'Top5ProductosPorMes', null);
     if (DATA.status) {
         datos = DATA.dataset;
@@ -296,6 +294,11 @@ function predictNextMonth(xValues, yValues) {
     let yM = sumXY / n;
     // Ajustar la predicción según el porcentaje haciendo uso de la media de ventas
     let adjustedPredictedX = predictedX + (yM * porcentaje / 100);
+    // Quiero que nextY y adjustedPredictedX sean números enteros
+    nextY = Math.round(nextY);
+    adjustedPredictedX = Math.round(adjustedPredictedX);
+    nextY = parseInt(nextY);
+    adjustedPredictedX = parseInt(adjustedPredictedX);
     return {
         nextMonth: nextY,
         predictedSales: adjustedPredictedX
