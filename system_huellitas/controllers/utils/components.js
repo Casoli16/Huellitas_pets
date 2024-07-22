@@ -490,7 +490,12 @@ const linearScale = (canvas, xAxis, yAxis, legend, title) => {
             datasets: [{
                 label: legend,
                 data: yAxis,
-                backgroundColor: colors
+                backgroundColor: colors,
+                borderColor: 'blue',
+                borderWidth: 1,
+                fill: false,
+                pointBackgroundColor: colors,
+                pointBorderColor: colors
             }]
         },
         options: {
@@ -506,7 +511,7 @@ const linearScale = (canvas, xAxis, yAxis, legend, title) => {
                     forceOverride: true
                 },
                 customCanvasBackgroundColor: {
-                    color: 'green'
+                    color: '#000000'
                 }
             },
             layout: {
@@ -516,12 +521,26 @@ const linearScale = (canvas, xAxis, yAxis, legend, title) => {
                     top: 0,
                     bottom: 0
                 }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        precision: 0, // Asegura que solo se muestren enteros
+                        stepSize: 1,  // Define el tamaño del paso en 1
+                        callback: function(value) {
+                            return Number.isInteger(value) ? value : null;
+                        }
+                    },
+                    beginAtZero: true,
+                    suggestedMax: Math.max(...yAxis) + 1 // Ajusta el valor máximo sugerido
+                }
             }
         }
     });
 
     ctx.restore();
 };
+
 
 
 const doughnutGraph = (canvas, xAxis, yAxis, legend, title) => {
