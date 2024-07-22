@@ -23,7 +23,7 @@ const fillCard = async () => {
         CARDS.innerHTML = '';
         DATA.dataset.forEach(row => {
             //Se multiplicara el precio detalle pedido por cantidad detalle pedido y se guardara en la variable subtotal.
-            subtotal = row.precio_producto * row.cantidad_detalle_pedido;
+            subtotal = row.precio_detalle_pedido * row.cantidad_detalle_pedido;
             //Sumara todos los subtotale de los productos, para sacar el total del pedido.
             total += subtotal
             //Le pasamos el id detalle pedido a la variable id.
@@ -52,7 +52,7 @@ const fillCard = async () => {
                             </div>
                                                         <div class="mt-0 d-flex mb-3">
                                 <small class="fw-light me-2">Precio unitario:</small>
-                                <small class="fw-semibold">$${row.precio_producto.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2, })}</small>
+                                <small class="fw-semibold">$${row.precio_detalle_pedido.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2, })}</small>
                             </div>
                         </div>
                     </div>

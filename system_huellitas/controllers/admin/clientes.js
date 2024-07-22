@@ -101,7 +101,7 @@ BTN3_GRAPHICS.addEventListener('click', async () => {
             mes.push(row.Mes);
             registros.push(row.total_clientes);
         });
-        console.log(mes, registros);
+        console.log(registros);
         console.log('Llegue hasta aqui');
         linearScale('myChart', mes, registros, 'Total clientes registrados', `Total clientes registrados en 2024`);
         console.log('Llegue después de pieGraph'); 
