@@ -31,11 +31,13 @@ if (isset($_GET['idPedido'])) {
             $pdf->write(5,$pdf->encodeString("{$item['nombre_cliente']} {$item['apellido_cliente']}  "));
             $pdf->ln(15);
             $pdf->setFont('Arial', '', 11);
-            $pdf->write(5, $pdf->encodeString("Teléfono:                     {$item['telefono_cliente']}"));
+            $pdf->write(5, $pdf->encodeString("Teléfono:                      {$item['telefono_cliente']}"));
             $pdf->ln(7);
-            $pdf->write(5, $pdf->encodeString("Correo electrónico:      {$item['correo_cliente']}"));
+            $pdf->write(5, $pdf->encodeString("Correo electrónico:       {$item['correo_cliente']}"));
             $pdf->ln(7);
-            $pdf->write(5, $pdf->encodeString("Dirección:                    {$item['direccion_pedido']} "));
+            $pdf->write(5, $pdf->encodeString("Dirección:                     {$item['direccion_pedido']} "));
+            $pdf->ln(7);
+            $pdf->write(5, $pdf->encodeString("Fecha de la compra:    {$item['fecha']} "));
             $pdf->ln(12);
 
             $pdf->setFont('Arial', 'B', 10);

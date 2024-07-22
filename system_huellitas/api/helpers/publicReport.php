@@ -66,7 +66,7 @@ class Report extends FPDF
         $this->setFont('Arial', 'B', 25);
         $this->cell(185, 10, $this->encodeString($this->title), 0, 1,'R');
         $this->setFont('Arial', '', 12);
-        $this->cell(185, 10, $this->encodeString($this->encodeString($this->date)) . date(', H:i:s'), 0, 1,'R');
+        $this->cell(185, 10, date('d-m-Y, H:i:s'), 0, 1,'R');
         $this->setFont('Arial', '', 10);
         //Espacio
         $this->ln(8);
