@@ -4,14 +4,28 @@ JAVASCRIPT:
 - Nombre de las funciones: camelCase
 - Constantes: Mayúsculas
 - Todos los nombres de las variables empiezan con una letra.
-- Al terminar cada sentencia de código se termina con punto y coma ;
+- La identación de sangría (La identación utilizada es de 4) ;
 - Variables let: minúsculas.
-- Identación de sangría en el código (es de 4).
-- Código comentado
+- Al terminar cada sentencia se termina con punto y coma.
 
 PHP:
 - Nombre de clases: StudlyCaps (No lleva espacios y cada palabra comienza en mayúscula)
 - Nombre de metódos: camelCase (No lleva espacios y solo la primera letra de la palabra es minúscula.)
 - Los archivos DEBEN usar sólo etiquetas <?php.
 - Identación de sangría en el código (Es de 4)
-- Código comentado
+- Se utiliza la convención de autocarga PSR-4 para la organización de las clases.
+Las clases se encuentran en directorios con la estructura de nombres de dominio. Por ejemplo, la clase AdminData
+se encuentra en el directorio app/models/data.
+
+Estándares de programación:
+1. Hacer uso de control de versiones, en nuestro caso se usa Git hub, de esta manera se logra un código más eficiente
+y se tiene un historial de todos los cambios que ha tenido el proyecto.
+
+2. Pruebas unitarias luego de terminar un scrud o bloque de programación para verificar el correcto funcionamiento de esta,
+con el fin de corregirlos y evitar errores en un futuro.
+
+3. Se utilizan funciones y métodos para modularizar el código.
+
+4. Se utilizan contraseñas seguras y se almacenan con hash.
+
+5. Uso de comentarios
