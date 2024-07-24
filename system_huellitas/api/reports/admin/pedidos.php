@@ -82,7 +82,7 @@ $pdf->setFont('Arial', '', 10);
 $pdf->write(6, $pdf->encodeString('Sus resultados en ventas del mes actual fueron de ' . $ventas[0] . ' pedidos y se predice que el siguiente mes serán ' . $ventas[1] . ' pedidos.'));
 $pdf->ln(7);
 $pdf->setFont('Arial', '', 10);
-$pdf->write(6, $pdf->encodeString('Sus ventas han tenido'. $gravedad . $tipo . $newPorcentaje . $analisis . '. Recuerde considerar que sus ventas pueden ser influenciadas por festividades u otras circunstancias.'));
+$pdf->write(6, $pdf->encodeString('Se estima que sus ventas tendrán'. $gravedad . $tipo . $newPorcentaje . $analisis . '. Recuerde considerar que sus ventas pueden ser influenciadas por festividades u otras circunstancias.'));
 //$pdf->write(6, $pdf->encodeString($_GET['analisis']));
 //Validator::deleteFile($URL . 'images/graphics/',  $_GET['imagen']);
 // Se llama implícitamente al método footer() y se envía el documento al navegador web.
