@@ -113,7 +113,8 @@ class ValoracionesHandler
         $sql = "SELECT * 
             FROM vista_productos_comentarios 
             WHERE id_producto = ? AND estado = 1 
-            ORDER BY calificacion DESC;
+            ORDER BY calificacion DESC
+            LIMIT 10;
             ";
         $params = array($this->idProducto);
         return Database::getRows($sql, $params);
