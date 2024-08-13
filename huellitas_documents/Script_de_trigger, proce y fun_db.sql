@@ -439,7 +439,7 @@ BEGIN
     WHERE id_producto = p_id_producto;
 
     -- Calcular el precio total sin aplicar el cupón
-    SET p_precio_total = p_cantidad_detalle_pedido * p_precio_unitario;
+    SET p_precio_total = p_cantidad_detalle_pedido * p_precio_unitario / p_cantidad_detalle_pedido;
 
     -- Verificar si el cupón es válido (id_cupon != 0)
     IF p_id_cupon != 0 THEN
@@ -552,16 +552,6 @@ GROUP BY
 ORDER BY 
     anio_mes ASC;
 
-CREATE VIEW
-
-SELECT * FROM productos_mas_vendidos_por_mes;
-SELECT * FROM pedidos;
-SELECT * FROM detalles_pedidos;
-SELECT * FROM top5_clientes_mayoria_productos;
-SELECT * FROM top5_clientes_mayores_pedidos;
-SELECT * FROM productos;
-SELECT * FROM clientes;
-SELECT * FROM cupones_usados;
 
 CREATE VIEW cupones_usados AS
 SELECT 
@@ -646,7 +636,7 @@ AS
 SELECT * FROM currentMonth;
 
 -- VISTA PARA SABER CUANTOS CLIENTES SE REGISTRARON EL MES PASADO.
-ALTER VIEW lastMonth
+CREATE VIEW lastMonth
 AS
     SELECT
         MONTHNAME(CURRENT_DATE() - INTERVAL 1 MONTH ) as mes_pasado,
