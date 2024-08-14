@@ -25,6 +25,9 @@ CREATE TABLE IF NOT EXISTS clientes (
 
 ALTER TABLE clientes MODIFY COLUMN estado_cliente ENUM ('Activo', 'Inactivo') DEFAULT 'Activo';
 
+ALTER TABLE clientes
+ADD COLUMN recovery_code VARCHAR(80) DEFAULT '0000';
+
 CREATE TABLE IF NOT EXISTS permisos (
   id_permiso INT AUTO_INCREMENT PRIMARY KEY,
   nombre_permiso VARCHAR(100),
@@ -51,6 +54,9 @@ CREATE TABLE IF NOT EXISTS administradores (
   fecha_registro_admin DATE DEFAULT NOW() NOT NULL,
   imagen_admin VARCHAR(50) DEFAULT 'imagen_admin.png' NOT NULL
 );
+
+ALTER TABLE administradores
+ADD COLUMN recovery_code VARCHAR(80) DEFAULT '0000';
 
 CREATE TABLE IF NOT EXISTS asignacion_permisos (
   id_asignacion_permiso INT AUTO_INCREMENT PRIMARY KEY,
@@ -142,3 +148,4 @@ CREATE TABLE IF NOT EXISTS valoraciones (
   id_detalle_pedido INT,
   CONSTRAINT fk_valoraciones_detalles_pedidos FOREIGN KEY (id_detalle_pedido) REFERENCES detalles_pedidos(id_detalle_pedido)
 );
+SELECT * FROM clientes;
