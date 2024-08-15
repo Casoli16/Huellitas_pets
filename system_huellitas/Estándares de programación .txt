@@ -28,4 +28,4 @@ con el fin de corregirlos y evitar errores en un futuro.
 
 4. Se utilizan contraseñas seguras y se almacenan con hash.
 
-5. Uso de comentarios
+5. Uso de comentarios 
