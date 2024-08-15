@@ -79,6 +79,9 @@ class Database
                 case '23000':
                     self::$error = 'Violación de restricción de integridad';
                     break;
+            case '45000':
+                    self::$error = 'El producto ya existe en el pedido';
+                    break;
 
         }
     }

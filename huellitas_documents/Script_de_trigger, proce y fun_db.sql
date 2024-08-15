@@ -452,16 +452,35 @@ BEGIN
         SET p_precio_total_con_cupon = p_precio_total * (1 - p_cupon_porcentaje / 100);
 
         -- Registrar el cupón como utilizado por el cliente
-        INSERT INTO cupones_utilizados (id_cupon, id_cliente) 
+        INSERT INTO cupones_utilizados (id_cupon, id_cliente)
         VALUES (p_id_cupon, p_id_cliente);
 
         -- Insertar el detalle del pedido con el precio con descuento
-        INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
-        VALUES(p_id_producto, p_precio_total_con_cupon, p_cantidad_detalle_pedido, p_id_pedido);
+         IF NOT EXISTS (
+            SELECT 1
+            FROM detalles_pedidos
+            WHERE id_pedido = p_id_pedido AND id_producto = p_id_producto
+        ) THEN
+            -- Si no existe, insertar el detalle del pedido
+            INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
+            VALUES(p_id_producto, p_precio_total_con_cupon, p_cantidad_detalle_pedido, p_id_pedido);
+        ELSE
+            -- Si ya existe, mostrar un mensaje
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El producto ya existe en el pedido';
+        END IF;
     ELSE
-        -- Insertar el detalle del pedido sin aplicar ningún descuento
-        INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
-        VALUES(p_id_producto, p_precio_total, p_cantidad_detalle_pedido, p_id_pedido);
+        IF NOT EXISTS (
+            SELECT 1
+            FROM detalles_pedidos
+            WHERE id_pedido = p_id_pedido AND id_producto = p_id_producto
+        ) THEN
+            -- Insertar el detalle del pedido sin aplicar ningún descuento
+            INSERT INTO detalles_pedidos(id_producto, precio_detalle_pedido, cantidad_detalle_pedido, id_pedido)
+            VALUES(p_id_producto, p_precio_total, p_cantidad_detalle_pedido, p_id_pedido);
+        ELSE
+            -- Si ya existe, mostrar un mensaje
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El producto ya existe en el pedido';
+        END IF;
     END IF;
 
 END //
