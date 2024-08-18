@@ -37,19 +37,18 @@
                     <!-- Campo de nueva contraseña -->
                     <div class="mb-5">
                         <label for="contrasenia_actual" class="form-label fw-semibold">Nueva contraseña</label>
-                        <input type="password" id="contrasenia_actual" name="contraseniaActual"
+                        <input type="password" id="password" name="contraseniaActual"
                             class="form-control form-control-lg shadow rounded-4 bg-white">
                     </div>
                     <!-- Campo para confirmar nueva contraseña -->
                     <div class="mb-5">
                         <label for="contrasenia_nueva" class="form-label fw-semibold">Confirmar nueva contraseña</label>
-                        <input type="password" id="contrasenia_nueva" name="contraseniaActual"
+                        <input type="password" id="newpassword" name="contraseniaActual"
                             class="form-control form-control-lg shadow rounded-4 bg-white">
                     </div>
                     <!-- Botón para guardar la contraseña -->
                     <div class="text-center">
-                        <a class="btn btn-orange-color btn-lg text-light mb-2 d-grid gap-2 col-sm-12 col-md-12 mx-auto rounded-4"
-                            href="../public/login.html">Guardar</a>
+                        <button id="boton" class="btn btn-orange-color text-light p-2 rounded-3">Guardar</button>
                         <!-- Instrucciones adicionales -->
                         <p class="fw-semibold">Guarda tu contraseña en algún lugar seguro.</p>
                     </div>
@@ -62,10 +61,14 @@
     <footer id="footer"></footer>
 
     <!-- Scripts de JavaScript -->
-    <!-- Bootstrap -->
+    <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Utilidades públicas -->
-    <script src="../../controllers/utils/public.js"></script>
+    <!-- Agregamos la libreria para alertas -->
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Agregamos el controlador general de la aplicacion-->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos el controlador de la vista -->
+    <script type="text/javascript" src="../../controllers/admin/recuperacion_contra_3.js"></script>
 </body>
 
 </html>

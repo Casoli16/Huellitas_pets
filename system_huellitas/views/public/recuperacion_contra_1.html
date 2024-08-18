@@ -39,14 +39,13 @@
                     <form action="" id="recuperacion_contrasenia" class="mt-5 p-4">
                         <!-- Campo de correo electrónico -->
                         <div class="mb-5">
-                            <label for="contrasenia_nueva" class="form-label fw-semibold">Correo</label>
-                            <input type="email" id="contrasenia_nueva" name="contraseniaActual"
+                            <label for="email" class="form-label fw-semibold">Correo</label>
+                            <input type="email" id="email" name="email"
                                 class="form-control form-control-lg shadow rounded-4 bg-white">
                         </div>
                         <!-- Botón para enviar el código de recuperación -->
                         <div class="text-center">
-                            <a class="btn btn-orange-color btn-lg text-light mb-2 d-grid gap-2 col-sm-12 col-md-12 mx-auto rounded-4"
-                                href="../../views/public/recuperacion_contra2.html">Enviar código</a>
+                            <button class="btn btn-orange-color btn-lg text-light mb-2 d-grid gap-2 col-sm-12 col-md-12 mx-auto rounded-4" id="boton">Enviar código</button>
                             <!-- Instrucciones adicionales -->
                             <p class="fw-semibold">Recuerda revisar tu bandeja de correos para ver el código que
                                 debes ingresar.</p>
@@ -57,13 +56,14 @@
         </div>
     </main>
 
-    <!-- Pie de página -->
-    <footer id="footer"></footer>
-
-    <!-- Agregamos el framework de boostrap - js -->
+    <!-- Framework Bootstrap - JS -->
     <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Agregamos la ruta para agregar el menu -->
-    <script src="../../controllers/utils/public.js"></script>
+    <!-- Agregamos la libreria para alertas -->
+    <script type="text/javascript" src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Agregamos el controlador general de la aplicacion-->
+    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
+    <!-- Agregamos el controlador de la vista -->
+    <script type="text/javascript" src="../../controllers/public/recuperacion_contra_1.js"></script>
 </body>
 
 </html>
