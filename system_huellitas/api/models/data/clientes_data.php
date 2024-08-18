@@ -30,7 +30,7 @@ class ClientesData extends  ClientesHandler
             $this->nombreCliente = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
             return  false;
         }
     }
@@ -44,7 +44,7 @@ class ClientesData extends  ClientesHandler
             $this->apellidoCliente = $value;
             return true;
         } else {
-            $this->data_error = 'El apellido debe debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'El apellido debe tener una longitud entre ' . $min . ' y ' . $max . ' caracteres';
             return  false;
         }
     }
@@ -93,10 +93,15 @@ class ClientesData extends  ClientesHandler
         }
     }
 
-    public function setDireccionCliente($value)
+    public function setDireccionCliente($value, $min = 15, $max = 250)
     {
-        $this->direccionCliente = $value;
-        return true;
+        if (Validator::validateLength($value, $min, $max)) {
+            $this->direccionCliente = $value;
+            return true;
+        } else {
+            $this->data_error = 'La dirección debe tener una longitud entre ' . $min . ' y ' . $max . ' caracteres';
+            return  false;
+        }
     }
 
     public function setClaveCliente($value)
