@@ -1,9 +1,10 @@
-**Nombre del proyecto:** Huellitas Pet's
-**Descripción del proyecto:** Huellitas Pet's es un tienda de productos de mascotas para perros y gatos.
-**Integrantes:**
-  Susan Abigail Castillo Oliva 20190200
-  Eduardo René Cubías Morán 20220332
-  Francisco Javier Guadrón Vásquez 20220229
+## **Nombre del proyecto:** Huellitas Pet's ##
+## Descripción del proyecto: ## 
+Huellitas Pet's es un tienda de productos de mascotas para perros y gatos.
+## Integrantes: ##
+  1. Susan Abigail Castillo Oliva 20190200
+  2. Eduardo René Cubías Morán 20220332
+  3. Francisco Javier Guadrón Vásquez 20220229
 
 **Funciones**
 *Gestión administrativa de la tienda por el lado del empleados*
