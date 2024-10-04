@@ -6,7 +6,7 @@ Huellitas Pet's es un tienda de productos de mascotas para perros y gatos.
   2. Eduardo René Cubías Morán 20220332
   3. Francisco Javier Guadrón Vásquez 20220229
 
-**Funciones**
+## Funciones##
 *Gestión administrativa de la tienda por el lado del empleados*
 Control de productos.
 Control de marcas.
